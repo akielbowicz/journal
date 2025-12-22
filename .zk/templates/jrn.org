@@ -1,0 +1,17 @@
+#+title: {{title}}
+#+date: {{format-date now}}
+
+* {{title}}
+
+** Lo que hice hoy
+
+
+** Aprendizajes
+
+
+** Pendientes
+
+- [ ]
+
+** Notas
+

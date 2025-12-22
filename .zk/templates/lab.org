@@ -1,0 +1,20 @@
+#+title: {{title}}
+#+date: {{format-date now}}
+
+* {{title}}
+
+** Objetivo
+
+
+** Procedimiento
+
+
+** Resultados
+
+
+** Conclusiones
+
+
+** Referencias
+
+-
