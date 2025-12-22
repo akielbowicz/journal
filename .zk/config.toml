@@ -1,0 +1,27 @@
+# Configuración de ZK para journal
+[note]
+dir = "."
+filename = "{{slug title}}.org"
+default-template = "default.org"
+lang = "es"
+id-charset = "alphanum"
+id-length = 8
+id-case = "lower"
+
+[format.org]
+extension = "org"
+title = "#+title:"
+link-format = "[[{{path}}][{{title}}]]"
+
+[group.jrn]
+paths = ["jornal"]
+filename = "{{format-date now \"2006-01-02\"}}.org"
+template = "jrn.org"
+
+[group.lab]
+paths = ["laboratorio"]
+filename = "{{slug title}}-{{format-date now \"2006-01-02\"}}.org"
+template = "lab.org"
+
+[tool]
+editor = "${EDITOR:-vim}"
