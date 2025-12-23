@@ -1,0 +1,61 @@
+# Configuración de ZK para borradores
+[note]
+# Directorio raíz de las notas
+dir = "."
+# Formato de nombre de archivo: slug basado en el título
+filename = "{{slug title}}"
+# Template por defecto
+default-template = "default.org"
+# Idioma para generación de slugs
+lang = "es"
+# ID único para enlaces
+id-charset = "alphanum"
+id-length = 8
+id-case = "lower"
+
+[format.org]
+# Configuración para archivos org-mode
+extension = "org"
+# Patrón para extraer el título (#+title: Título)
+title = "#+title:"
+# Patrón para enlaces wiki-style [[link][descripción]]
+link-format = "[[{{path}}][{{title}}]]"
+
+# Aliases para cada categoría de nota
+[alias]
+# Today I Learned / Hoy aprendí
+til = 'zk new --no-input hoy-aprendi --title "$@"'
+# Cheat sheet / Machete
+mch = 'zk new --no-input machetes --title "$@"'
+# Exploraciones
+exp = 'zk new --no-input exploraciones --title "$@"'
+# Things I want / Cosas que me gustaría tener
+tiw = 'zk new --no-input quiero --title "$@"'
+# Ideas
+ida = 'zk new --no-input ideas --title "$@"'
+
+# Grupo de templates por directorio
+[group.til]
+paths = ["hoy-aprendi"]
+template = "til.org"
+
+[group.mch]
+paths = ["machetes"]
+template = "mch.org"
+
+[group.exp]
+paths = ["exploraciones"]
+template = "exp.org"
+
+[group.tiw]
+paths = ["quiero"]
+template = "tiw.org"
+
+[group.ida]
+paths = ["ideas"]
+template = "ida.org"
+
+# Configuración del editor
+[tool]
+# Usa la variable de entorno EDITOR
+# Si no está definida, zk usará vim por defecto
