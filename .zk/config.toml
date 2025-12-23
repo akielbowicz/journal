@@ -1,7 +1,7 @@
 # Configuración de ZK para journal
 [note]
 dir = "."
-filename = "{{slug title}}.org"
+filename = "{{slug title}}"
 default-template = "default.org"
 lang = "es"
 id-charset = "alphanum"
@@ -12,6 +12,11 @@ id-case = "lower"
 extension = "org"
 title = "#+title:"
 link-format = "[[{{path}}][{{title}}]]"
+
+# Aliases para crear notas rápidamente
+[alias]
+jrn = 'zk new --no-input jornal'
+lab = 'zk new --no-input laboratorio --title "$@"'
 
 [group.jrn]
 paths = ["jornal"]

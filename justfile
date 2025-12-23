@@ -21,6 +21,21 @@ jrn-ai contenido:
     claude --model sonnet-4.5 "Organiza el siguiente stream de consciencia en una entrada de journal estructurada en formato org-mode: {{contenido}}" >> "$note_path"
     echo "Journal creado en: $note_path"
 
+# Editar una nota (con búsqueda interactiva)
+edit query="":
+    #!/usr/bin/env bash
+    if [ -z "{{query}}" ]; then
+        note=$(zk list --format path | fzf --preview 'cat {}')
+    else
+        note=$(zk list --match "{{query}}" --format path --limit 1)
+    fi
+    if [ -n "$note" ]; then
+        zk edit "$note"
+        git add "$note"
+        git commit -m "Actualizar: $(basename $note)"
+        git push
+    fi
+
 # Sincronizar cambios
 sync mensaje="Actualizar notas":
     @git add -A
@@ -45,6 +60,7 @@ help:
     @echo "  just jrn                 - Crear/editar journal de hoy"
     @echo "  just jrn-ai CONTENIDO    - Crear journal con IA"
     @echo "  just lab PROYECTO        - Crear/editar nota de laboratorio (fecha automática)"
+    @echo "  just edit [QUERY]        - Editar nota (interactivo o por búsqueda)"
     @echo "  just sync [MENSAJE]      - Commit y push de cambios"
     @echo "  just status              - Ver estado git"
     @echo "  just list [FILTRO]       - Listar notas recientes"
