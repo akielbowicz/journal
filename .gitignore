@@ -6,4 +6,4 @@
 # ZK - solo ignorar cache y db, no la config
 .zk/cache/
 .zk/.zk.db*
-.zk/notebooks.db*
+.zk/notebook.db*
