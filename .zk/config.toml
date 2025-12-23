@@ -27,6 +27,3 @@ template = "jrn.org"
 paths = ["laboratorio"]
 filename = "{{slug title}}-{{format-date now \"2006-01-02\"}}.org"
 template = "lab.org"
-
-[tool]
-editor = "${EDITOR:-vim}"
