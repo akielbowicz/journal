@@ -1,0 +1,58 @@
+# papriva
+date: 2025-12-26
+
+Ya tengo configurado Julia y puedo cargar las imágenes, ahora tengo que probar un poco cómo visualizar mejor los
+resultados y el overlay de las anotaciones.
+
+Tengo un par de ideas para iniciar la charla con Agus, antes de entrar a revisar el paper de [CellSam][https://www.nature.com/articles/s41592-025-02879-w]
+
+- Ver la distribución de colores de las imágenes y mapear las anotaciones en el espacio 3d de colores
+
+
+Antes de seguir voy a hacer un poco de investigación de la estructura del dataset
+
+> tree -L3 data
+data
+├── annotations
+│   └── annotations
+│       ├── sample_submission.csv
+│       ├── train.csv
+│       └── val.csv
+└── images
+    └── images
+        ├── test
+        ├── train
+        └── val
+
+8 directories, 3 files
+
+> du data/images/images/* | to md | save -a ~/para/areas/dev/gh/ak/journal/laboratorio/papriva.org
+| path | apparent | physical |
+| --- | --- | --- |
+| /var/home/sasha/para/areas/dev/gh/phorma/PAPRIVA/data/images/images/test | 97.1 MB | 97.3 MB |
+| /var/home/sasha/para/areas/dev/gh/phorma/PAPRIVA/data/images/images/train | 1.2 GB | 1.2 GB |
+| /var/home/sasha/para/areas/dev/gh/phorma/PAPRIVA/data/images/images/val | 201.3 MB | 201.6 MB |
+
+> du data/images/images/**/* | select physical | each { $in.physical / 1kb | math round --precision -2} | histogram | to md | save -a ~/para/areas/dev/gh/ak/journal/laboratorio/papriva.org
+| value | count | quantile | percentage | frequency |
+| --- | --- | --- | --- | --- |
+| 1400.0 | 241 | 0.23106423777564716 | 23.11% | *********************** |
+| 1500.0 | 216 | 0.20709491850431447 | 20.71% | ******************** |
+| 1600.0 | 159 | 0.15244487056567593 | 15.24% | *************** |
+| 1300.0 | 159 | 0.15244487056567593 | 15.24% | *************** |
+| 1700.0 | 81 | 0.07766059443911794 | 7.77% | ******* |
+| 1200.0 | 56 | 0.053691275167785234 | 5.37% | ***** |
+| 1800.0 | 45 | 0.04314477468839885 | 4.31% | **** |
+| 1900.0 | 25 | 0.023969319271332695 | 2.40% | ** |
+| 1100.0 | 12 | 0.011505273250239693 | 1.15% | * |
+| 2000.0 | 10 | 0.009587727708533078 | 0.96% |  |
+| 2200.0 | 9 | 0.00862895493767977 | 0.86% |  |
+| 1000.0 | 8 | 0.007670182166826462 | 0.77% |  |
+| 900.0 | 7 | 0.006711409395973154 | 0.67% |  |
+| 2100.0 | 7 | 0.006711409395973154 | 0.67% |  |
+| 800.0 | 2 | 0.0019175455417066154 | 0.19% |  |
+| 700.0 | 2 | 0.0019175455417066154 | 0.19% |  |
+| 201600.0 | 1 | 0.0009587727708533077 | 0.10% |  |
+| 600.0 | 1 | 0.0009587727708533077 | 0.10% |  |
+| 97400.0 | 1 | 0.0009587727708533077 | 0.10% |  |
+| 1242100.0 | 1 | 0.0009587727708533077 | 0.10% |  |
