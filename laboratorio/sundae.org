@@ -1,0 +1,6 @@
+# sundae
+date: 2025-12-26
+
+Ya arranqué a armar el front-end pero no me gusta para nada el estilo ni la dinámica que construyó
+goose. Creo que voy a tener que armar de manera manual el front y aprovechar para entender un poco más
+como se diseña una UI de un juego.
