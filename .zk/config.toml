@@ -20,10 +20,14 @@ lab = 'zk new --no-input laboratorio --title "$@"'
 
 [group.jrn]
 paths = ["jornal"]
-filename = "{{format-date now \"2006-01-02\"}}.org"
+
+[group.jrn.note]
+filename = "{{format-date now \"%Y-%m-%d\"}}"
 template = "jrn.org"
 
 [group.lab]
 paths = ["laboratorio"]
-filename = "{{slug title}}-{{format-date now \"2006-01-02\"}}.org"
+
+[group.lab.note]
+filename = "{{slug title}}-{{format-date now \"%Y-%m-%d\"}}"
 template = "lab.org"
