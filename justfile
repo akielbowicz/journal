@@ -18,7 +18,7 @@ jrn:
 # Crear/editar nota de laboratorio/proyecto (con nombre de proyecto y fecha automática)
 lab proyecto:
     #!/usr/bin/env bash
-    note_path=$(zk new --no-input laboratorio --title "{{proyecto}}" --print-path)
+    note_path=$(zk new --no-input lab --title "{{proyecto}}" --print-path)
     zk edit "$note_path"
     just _commit "$note_path" "Lab: {{proyecto}}"
 
