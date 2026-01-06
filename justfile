@@ -16,11 +16,25 @@ jrn:
     just _commit "$note_path" "Journal: $(date +%Y-%m-%d)"
 
 # Crear/editar nota de laboratorio/proyecto (con nombre de proyecto y fecha automática)
-lab proyecto:
+lab proyecto="":
     #!/usr/bin/env bash
-    note_path=$(zk new --no-input laboratorio --title "{{proyecto}}" --print-path)
-    zk edit "$note_path"
-    just _commit "$note_path" "Lab: {{proyecto}}"
+    if [ -z "{{proyecto}}" ]; then
+        # Editar la última nota de laboratorio
+        note_path=$(zk list laboratorio --sort created- --limit 1 --format path)
+        if [ -n "$note_path" ]; then
+            zk edit "$note_path"
+            just _commit "$note_path" "Actualizar Lab: $(basename $note_path .org)"
+        else
+            echo "No se encontraron notas de laboratorio."
+            echo "Uso: just lab \"nombre del proyecto\""
+            exit 1
+        fi
+    else
+        # Crear nueva nota de laboratorio
+        note_path=$(zk new --no-input laboratorio --title "{{proyecto}}" --print-path)
+        zk edit "$note_path"
+        just _commit "$note_path" "Lab: {{proyecto}}"
+    fi
 
 # Journal con IA - stream of consciousness
 jrn-ai contenido:
