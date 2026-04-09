@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Generate index.md for every directory so Jekyll serves browseable listings.
-# Run this BEFORE jekyll build in CI — do NOT commit the generated files.
+# Generate index.md for every directory for browseable listings.
 set -euo pipefail
 
 ROOT="${1:-.}"
@@ -19,17 +18,12 @@ find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" \
   title="${rel:-journal}"
 
   {
-    echo "---"
-    echo "layout: default"
-    echo "title: \"$title\""
-    echo "---"
-    echo ""
     echo "# $title"
     echo ""
 
     # Parent link
     if [ "$rel" != "." ] && [ -n "$rel" ]; then
-      echo "[.. (up)](../)"
+      echo "[..](../)"
       echo ""
     fi
 
@@ -38,45 +32,37 @@ find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" \
       [ -d "$entry" ] || continue
       name="$(basename "$entry")"
       [[ "$name" == _* ]] && continue
-      echo "- **[$name/]($name/)**"
+      echo "- [$name/]($name/)"
     done
 
-    # Then list files
+    # Then list files (link to .html since pandoc outputs html)
     for entry in "$dir"/*; do
       [ -f "$entry" ] || continue
       name="$(basename "$entry")"
-      # Skip index files, hidden files, underscore files
       [[ "$name" == index.md ]] && continue
       [[ "$name" == _* ]] && continue
       [[ "$name" == .* ]] && continue
 
-      # Make display name friendlier
+      # Strip extension for display, link to .html
       display="${name%.md}"
-      display="${display%.org}"
-      echo "- [$display]($name)"
+      link="${display}.html"
+      echo "- [$display]($link)"
     done
   } > "$index"
 done
 
 # Generate root index.md
 cat > "$ROOT/index.md" << 'HEREDOC'
----
-layout: default
-title: journal
----
-
 # journal
 
-> Personal work journal — PARA + Bullet Journal
+> personal work journal — PARA + Bullet Journal
 
-| | |
-|---|---|
-| [**inbox**](inbox) | Quick capture — unsorted tasks and notes |
-| [**projects/**](projects/) | Active work with defined goals |
-| [**areas/**](areas/) | Ongoing responsibilities |
-| [**resources/**](resources/) | Reference material and notes |
-| [**archive/**](archive/) | Completed and inactive items |
-| [**search**](search) | Full-text search across all entries |
+- [inbox](inbox.html)
+- [projects/](projects/)
+- [areas/](areas/)
+- [resources/](resources/)
+- [archive/](archive/)
+- [search](search.html)
 HEREDOC
 
 echo "Generated index pages"

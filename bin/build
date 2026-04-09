@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Build the journal site: org→md, generate indexes, md→html with template.
+# Replaces Jekyll entirely. Only needs pandoc.
+# Works on a staging copy to avoid mutating the repo.
+set -euo pipefail
+
+ROOT="${1:-.}"
+STAGE="$ROOT/_staging"
+OUT="$ROOT/_site"
+TEMPLATE="$ROOT/bin/template.html"
+
+rm -rf "$STAGE" "$OUT"
+mkdir -p "$OUT"
+
+# Step 0: Copy content to staging area (don't mutate the repo)
+echo ":: Staging content..."
+mkdir -p "$STAGE"
+for dir in projects areas resources archive; do
+  [ -d "$ROOT/$dir" ] && rsync -a --exclude='index.md' "$ROOT/$dir" "$STAGE/"
+done
+cp "$ROOT/inbox.md" "$STAGE/" 2>/dev/null || true
+cp "$ROOT/search.md" "$STAGE/" 2>/dev/null || true
+cp "$ROOT/README.md" "$STAGE/" 2>/dev/null || true
+
+# Step 1: Convert .org → .md in staging
+echo ":: Converting org files..."
+find "$STAGE" -name '*.org' | while read -r orgfile; do
+  mdfile="${orgfile%.org}.md"
+  pandoc -f org -t gfm --wrap=none "$orgfile" > "$mdfile"
+  rm "$orgfile"
+done
+
+# Step 2: Generate directory index.md files
+echo ":: Generating indexes..."
+"$ROOT/bin/generate-indexes" "$STAGE"
+
+# Step 3: Generate search index
+echo ":: Generating search index..."
+"$ROOT/bin/generate-search-index" "$STAGE"
+
+# Step 4: Convert all .md → .html
+echo ":: Building HTML..."
+find "$STAGE" -name '*.md' -not -name '_*' | while read -r mdfile; do
+
+  rel="${mdfile#$STAGE/}"
+  outfile="$OUT/${rel%.md}.html"
+  mkdir -p "$(dirname "$outfile")"
+
+  # Build breadcrumb from path
+  breadcrumb='<a href="/">~</a>'
+  IFS='/' read -ra parts <<< "${rel%.md}"
+  path_acc=""
+  for i in "${!parts[@]}"; do
+    part="${parts[$i]}"
+    if [ "$i" -eq $(( ${#parts[@]} - 1 )) ]; then
+      breadcrumb="$breadcrumb / <span>$part</span>"
+    else
+      path_acc="$path_acc/$part"
+      breadcrumb="$breadcrumb / <a href=\"$path_acc/\">$part</a>"
+    fi
+  done
+
+  # Extract title from first H1 or filename
+  title=$(grep -m1 '^# ' "$mdfile" | sed 's/^# //' || basename "$mdfile" .md)
+  [ -z "$title" ] && title=$(basename "$mdfile" .md)
+
+  # Convert with pandoc using template
+  pandoc -f gfm -t html5 \
+    --template="$TEMPLATE" \
+    --metadata title="$title" \
+    --variable breadcrumb="$breadcrumb" \
+    "$mdfile" -o "$outfile"
+done
+
+# Step 5: Copy search-index.json
+cp "$STAGE/search-index.json" "$OUT/search-index.json" 2>/dev/null || true
+
+# Cleanup
+rm -rf "$STAGE"
+
+echo ":: Built $(find "$OUT" -name '*.html' | wc -l) pages in $OUT"

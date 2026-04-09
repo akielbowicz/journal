@@ -23,20 +23,16 @@ jobs:
       - name: Install pandoc
         run: sudo apt-get install -y pandoc
 
-      - name: Convert org files to markdown and generate indexes
+      - name: Build site
         run: |
-          ./bin/convert-org .
-          ./bin/generate-indexes .
-          ./bin/generate-search-index .
+          chmod +x bin/*
+          ./bin/build .
 
       - uses: actions/configure-pages@v5
 
-      - uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
       - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
   deploy:
     environment:
