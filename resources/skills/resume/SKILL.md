@@ -22,13 +22,13 @@ Load focused context for a specific project or area to continue work.
 
 3. Read the matched project or area file.
 
-4. Read today's log (`$JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md`).
+4. Read today's log (`$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`).
    If it doesn't exist, create it with the daily log template.
    Scan for any earlier session entries related to this project/area today.
 
 5. Search recent logs for context (last 3 days):
    ```bash
-   grep -rl "<slug>" "$JORNAL/log/" 2>/dev/null | sort -r | head -3
+   grep -rl "<slug>" "$JORNAL/areas/log/" 2>/dev/null | sort -r | head -3
    ```
    Read any matches to understand recent session history.
 

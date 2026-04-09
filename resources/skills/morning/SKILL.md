@@ -15,7 +15,7 @@ Start the work day by reviewing context and setting focus.
    JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
    ```
 
-2. Get today's date and derive the log path: `$JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
+2. Get today's date and derive the log path: `$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
 
 3. Read yesterday's log for context (find the most recent log file before today).
 

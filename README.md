@@ -17,37 +17,31 @@ The result is a plain-text system that works from the terminal, renders on GitHu
 
 ```
 journal/
-├── inbox.md                  # Quick capture — unsorted tasks and notes
-├── projects/                 # Active work with defined goals
+├── inbox.md                          # Quick capture — unsorted tasks and notes
+├── projects/                         # Active work with defined goals
 │   └── _index.md
-├── areas/                    # Ongoing responsibilities (no end date)
+├── areas/                            # Ongoing responsibilities (no end date)
+│   ├── _index.md
+│   └── log/                          # Daily session logs
+│       └── YYYY/YYYY-MM/YYYY-MM-DD.md
+├── resources/                        # Reference material and notes
+│   ├── _index.md
+│   └── skills/                       # AI agent skills (slash commands)
+│       ├── morning/    capture/    jlog/
+│       ├── close/      park/       resume/
+│       ├── migrate/    standup/    weekly/
+│       └── archive/
+├── archive/                          # Completed projects, inactive areas
 │   └── _index.md
-├── resources/                # Reference material and notes
-│   └── _index.md
-├── archive/                  # Completed projects, inactive areas
-│   └── _index.md
-├── log/                      # Daily session logs
-│   └── YYYY/
-│       └── YYYY-MM/
-│           └── YYYY-MM-DD.md
-├── skills/                   # AI agent skills (slash commands)
-│   ├── morning/
-│   ├── capture/
-│   ├── jlog/
-│   ├── close/
-│   ├── park/
-│   ├── resume/
-│   ├── migrate/
-│   ├── standup/
-│   ├── weekly/
-│   └── archive/
 ├── bin/
-│   └── sync                  # Deploy skills to agent tools
-├── AGENTS.md                 # Instructions for AI tools
-├── CLAUDE.md -> AGENTS.md    # Symlink for Claude Code
-├── justfile                  # Human commands (just jrn, just lab, etc.)
-└── .zk/                      # Zettelkasten config for org-mode notes
+│   └── sync                          # Deploy skills to agent tools
+├── AGENTS.md                         # Instructions for AI tools
+├── CLAUDE.md -> AGENTS.md            # Symlink for Claude Code
+├── justfile                          # Human commands (just jrn, just lab, etc.)
+└── .zk/                              # Zettelkasten config for org-mode notes
 ```
+
+The top level is pure PARA: `projects/`, `areas/`, `resources/`, `archive/`, plus `inbox.md` as the entry point. Everything else nests inside those four categories — daily logs are an ongoing area, skills are a resource.
 
 ## PARA in brief
 
@@ -79,7 +73,7 @@ The key BuJo practice is **migration**: periodically reviewing open items and de
 
 ## Daily log
 
-Each day gets a file at `log/YYYY/YYYY-MM/YYYY-MM-DD.md`:
+Each day gets a file at `areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`:
 
 ```markdown
 # 2026-04-09
@@ -105,7 +99,7 @@ Sessions are appended throughout the day. `/park` snapshots mid-session; `/close
 
 ## AI agent skills
 
-This repo includes 10 lifecycle skills that work with any AI coding tool (Claude Code, Gemini CLI, Codex, Amp, OpenCode). Skills are defined in `skills/` and deployed to `~/.config/agents/skills/` via `bin/sync`.
+This repo includes 10 lifecycle skills that work with any AI coding tool (Claude Code, Gemini CLI, Codex, Amp, OpenCode). Skills are defined in `resources/skills/` and deployed to `~/.config/agents/skills/` via `bin/sync`.
 
 | Skill | When to use |
 |---|---|

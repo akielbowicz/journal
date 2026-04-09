@@ -61,7 +61,7 @@ deploy:
 
 # Commit all pending changes
 save mensaje="update journal":
-    @git add inbox.md log/ projects/ areas/ resources/ archive/
+    @git add inbox.md projects/ areas/ resources/ archive/
     @git commit -m "{{mensaje}}" || echo "Nothing to commit"
 
 # Ver el estado

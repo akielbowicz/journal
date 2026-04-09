@@ -15,9 +15,7 @@ Resolved via `$JORNAL` environment variable (default: `~/para/areas/dev/gh/ak/jo
 | `resources/` | Reference material, notes, links |
 | `archive/` | Completed projects, inactive areas, old resources |
 | `inbox.md` | Quick capture — unsorted tasks, thoughts, and notes |
-| `log/YYYY/YYYY-MM/YYYY-MM-DD.md` | AI session logs (daily entries) |
-| `jornal/` | Personal daily journal (org-mode, human-written) |
-| `laboratorio/` | Lab/experiment notes (org-mode) |
+| `areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md` | Daily session logs |
 
 ### Projects
 
@@ -153,5 +151,5 @@ In any session, when the user mentions tasks, decisions, blockers, or follow-ups
 ## Notes
 
 - Remote: `git@ak:akielbowicz/journal.git` (public). Push after committing session logs.
-- The personal journal (`jornal/`) and lab notes (`laboratorio/`) use org-mode and are managed separately via `zk` and the `justfile`.
-- The BuJo/PARA structure (`inbox.md`, `log/`, `projects/`, `areas/`) uses markdown and is managed via AI agent skills.
+- Skills live at `resources/skills/` and are deployed to `~/.config/agents/skills/` via `bin/sync`.
+- Org-mode notes (via `zk` and `justfile`) coexist alongside the markdown BuJo/PARA layer.

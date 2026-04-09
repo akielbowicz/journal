@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
-SOURCE="$REPO_DIR/skills"
+SOURCE="$REPO_DIR/resources/skills"
 TARGET="${XDG_CONFIG_HOME:-$HOME/.config}/agents/skills"
 
 if [ ! -d "$SOURCE" ]; then

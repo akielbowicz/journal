@@ -16,7 +16,7 @@ End the current session: log what was done, update tasks, commit.
    ```
 
 2. Get today's date and time (`date +%Y-%m-%d`, `date +%H:%M`).
-   Derive the log path: `$JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
+   Derive the log path: `$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
 
 3. If the log file does not exist, create it with the daily log template.
 
@@ -43,7 +43,7 @@ End the current session: log what was done, update tasks, commit.
 
 8. Commit:
    ```bash
-   cd "$JORNAL" && git add inbox.md log/ projects/ areas/ resources/ archive/ && git commit -m "log: YYYY-MM-DD session notes"
+   cd "$JORNAL" && git add inbox.md areas/log/ projects/ areas/ resources/ archive/ && git commit -m "log: YYYY-MM-DD session notes"
    ```
 
 ## Rules

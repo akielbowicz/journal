@@ -4,10 +4,9 @@ remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-remote-theme
 
-# Only include content directories — exclude tooling
+# Only include PARA content — exclude tooling
 include:
   - inbox.md
-  - log
   - projects
   - areas
   - resources
@@ -15,7 +14,6 @@ include:
 
 exclude:
   - bin
-  - skills
   - .zk
   - justfile
   - LICENSE

@@ -15,7 +15,7 @@ Generate a weekly review from the last 7 days of journal logs, project/area stat
    JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
    ```
 2. Get today's date and the date 7 days ago.
-3. Find and read all log files from the last 7 days under `$JORNAL/log/`.
+3. Find and read all log files from the last 7 days under `$JORNAL/areas/log/`.
 4. Read all active project files under `$JORNAL/projects/` (skip `_index.md`).
 5. Read all area files under `$JORNAL/areas/` (skip `_index.md`).
 6. Read `$JORNAL/inbox.md` for unprocessed items.

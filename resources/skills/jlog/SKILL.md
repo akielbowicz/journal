@@ -15,7 +15,7 @@ Open or create today's daily log entry and append content.
    ```
 2. Get today's date: `date +%Y-%m-%d`. Derive the log path:
    ```
-   $JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md
+   $JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md
    ```
 3. If the file does not exist, create it with the daily log template:
    ```markdown

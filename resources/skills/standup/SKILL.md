@@ -15,7 +15,7 @@ Generate a concise standup summary from recent journal logs.
    JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
    ```
 2. Get today's and yesterday's dates.
-3. Read yesterday's log: `$JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md`.
+3. Read yesterday's log: `$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`.
 4. Read today's log (if it exists).
 5. Read active project files under `$JORNAL/projects/` (skip `_index.md`).
 6. Collect open tasks and blockers (`[~]` items).

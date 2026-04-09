@@ -17,7 +17,7 @@ Snapshot the current session's work before switching context. This is NOT end-of
 
 2. Get today's date and current time.
 
-3. Read today's log: `$JORNAL/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
+3. Read today's log: `$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
    If it doesn't exist, create it with the daily log template.
 
 4. Review the conversation history to determine:

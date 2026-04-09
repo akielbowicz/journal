@@ -15,11 +15,11 @@ link-format = "[[{{path}}][{{title}}]]"
 
 # Aliases para crear notas rápidamente
 [alias]
-jrn = 'zk new --no-input jornal'
-lab = 'zk new --no-input laboratorio --title "$@"'
+jrn = 'zk new --no-input areas/log'
+lab = 'zk new --no-input resources --title "$@"'
 
 [group.jrn]
-paths = ["log"]
+paths = ["areas/log"]
 
 [group.jrn.note]
 filename = "{{format-date now \"%Y-%m-%d\"}}"
