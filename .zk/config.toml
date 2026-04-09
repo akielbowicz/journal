@@ -19,14 +19,14 @@ jrn = 'zk new --no-input jornal'
 lab = 'zk new --no-input laboratorio --title "$@"'
 
 [group.jrn]
-paths = ["jornal"]
+paths = ["log"]
 
 [group.jrn.note]
 filename = "{{format-date now \"%Y-%m-%d\"}}"
 template = "jrn.org"
 
 [group.lab]
-paths = ["laboratorio"]
+paths = ["resources"]
 
 [group.lab.note]
 filename = "{{slug title}}-{{format-date now \"%Y-%m-%d\"}}"

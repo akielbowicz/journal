@@ -7,3 +7,7 @@
 .zk/cache/
 .zk/.zk.db*
 .zk/notebook.db*
+
+# Scratch / private notes
+scratch.md
+private/
