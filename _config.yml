@@ -1,0 +1,25 @@
+title: journal
+description: Personal work journal — PARA + Bullet Journal for humans and AI agents
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# Only include content directories — exclude tooling
+include:
+  - inbox.md
+  - log
+  - projects
+  - areas
+  - resources
+  - archive
+
+exclude:
+  - bin
+  - skills
+  - .zk
+  - justfile
+  - LICENSE
+  - AGENTS.md
+  - CLAUDE.md
+  - "*.org"
+  - .gitignore

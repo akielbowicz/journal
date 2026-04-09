@@ -152,6 +152,6 @@ In any session, when the user mentions tasks, decisions, blockers, or follow-ups
 
 ## Notes
 
-- This is a **local-only** repository. No remote configured.
+- Remote: `git@ak:akielbowicz/journal.git` (public). Push after committing session logs.
 - The personal journal (`jornal/`) and lab notes (`laboratorio/`) use org-mode and are managed separately via `zk` and the `justfile`.
 - The BuJo/PARA structure (`inbox.md`, `log/`, `projects/`, `areas/`) uses markdown and is managed via AI agent skills.
