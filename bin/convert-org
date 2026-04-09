@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Convert .org files to .md for Jekyll rendering.
+# Adds Jekyll frontmatter so they get the site layout.
+# Deletes the original .org so Jekyll doesn't serve it raw.
+set -euo pipefail
+
+ROOT="${1:-.}"
+count=0
+
+find "$ROOT" -name '*.org' -not -path '*/.git/*' -not -path '*/.zk/*' | while read -r orgfile; do
+  mdfile="${orgfile%.org}.md"
+  title=$(grep -m1 '#+title:' "$orgfile" 2>/dev/null | sed 's/#+title:\s*//' || basename "$orgfile" .org)
+  [ -z "$title" ] && title=$(basename "$orgfile" .org)
+
+  {
+    echo "---"
+    echo "layout: default"
+    echo "title: \"$title\""
+    echo "---"
+    echo ""
+    pandoc -f org -t gfm --wrap=none "$orgfile"
+  } > "$mdfile"
+
+  rm "$orgfile"
+  count=$((count + 1))
+done
+
+echo "Converted $count org files to markdown"

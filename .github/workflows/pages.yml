@@ -20,8 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate directory indexes and search index
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
+
+      - name: Convert org files to markdown and generate indexes
         run: |
+          ./bin/convert-org .
           ./bin/generate-indexes .
           ./bin/generate-search-index .
 
