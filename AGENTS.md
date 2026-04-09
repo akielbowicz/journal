@@ -152,4 +152,5 @@ In any session, when the user mentions tasks, decisions, blockers, or follow-ups
 
 - Remote: `git@ak:akielbowicz/journal.git` (public). Push after committing session logs.
 - Skills live at `resources/skills/` and are deployed to `~/.config/agents/skills/` via `bin/sync`.
-- Org-mode notes (via `zk` and `justfile`) coexist alongside the markdown BuJo/PARA layer.
+- Org-mode notes (via `zk` and `mise run jrn`) coexist alongside the markdown BuJo/PARA layer.
+- Tools managed with mise (`.mise.toml`): `mise run build`, `mise run deploy`, `mise run jrn`, etc.

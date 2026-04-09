@@ -37,7 +37,7 @@ journal/
 │   └── sync                          # Deploy skills to agent tools
 ├── AGENTS.md                         # Instructions for AI tools
 ├── CLAUDE.md -> AGENTS.md            # Symlink for Claude Code
-├── justfile                          # Human commands (just jrn, just lab, etc.)
+├── .mise.toml                        # Tool versions + task runner
 └── .zk/                              # Zettelkasten config for org-mode notes
 ```
 
@@ -130,29 +130,27 @@ This repo includes 10 lifecycle skills that work with any AI coding tool (Claude
 ### Deploying skills
 
 ```bash
-# From the repo root
-./bin/sync
-
-# Or via justfile
-just deploy
+mise run deploy
 ```
 
 This copies each skill's `SKILL.md` to `~/.config/agents/skills/<name>/SKILL.md` with a provenance comment containing the git commit hash and date.
 
-## Human commands
+## Tasks (via mise)
 
-The repo also includes a `justfile` for non-AI workflows using [zk](https://github.com/zk-org/zk) and org-mode:
+All tasks are defined in `.mise.toml` and run with `mise run <task>`:
 
-| Command | What it does |
+| Task | What it does |
 |---|---|
-| `just jrn` | Create/edit today's journal entry (org-mode via zk) |
-| `just jrn-ai "stream of thought"` | Create a journal entry structured by AI |
-| `just lab "project name"` | Create/edit a resource note |
-| `just edit [query]` | Interactive note search and edit |
-| `just deploy` | Deploy skills to agent tools |
-| `just save [msg]` | Commit pending journal changes |
-| `just list` | List recent notes |
-| `just search query` | Search across all notes |
+| `mise run build` | Build the static site locally |
+| `mise run serve` | Build and serve at localhost:8000 |
+| `mise run deploy` | Deploy skills to agent tools |
+| `mise run jrn` | Create/edit today's journal entry (org-mode via zk) |
+| `mise run lab [name]` | Create/edit a resource note |
+| `mise run edit [query]` | Interactive note search and edit |
+| `mise run save [msg]` | Commit pending journal changes |
+| `mise run list` | List recent notes |
+| `mise run search <query>` | Search across all notes |
+| `mise run clean` | Remove build artifacts |
 
 ## Setup
 
@@ -173,18 +171,19 @@ export JORNAL="$HOME/para/areas/dev/gh/ak/journal"
 
 If unset, skills default to `~/para/areas/dev/gh/ak/journal`.
 
-### Deploy skills
+### Install tools and deploy
 
 ```bash
-cd $JORNAL && ./bin/sync
+cd $JORNAL
+mise install          # installs pandoc, zk
+mise run deploy       # deploy skills to agent tools
 ```
-
-This deploys to `~/.config/agents/skills/`. AI tools that read from that location (or symlink to it) will pick up the skills automatically.
 
 ### Dependencies
 
-- [git](https://git-scm.com/) — version control
-- [just](https://github.com/casey/just) — command runner (optional, for human commands)
+Managed by [mise](https://mise.jdx.dev/) (`.mise.toml`):
+
+- [pandoc](https://pandoc.org/) — document conversion (org→md, md→html)
 - [zk](https://github.com/zk-org/zk) — note management (optional, for org-mode journal)
 
 No dependencies are required for the AI skills — they're plain markdown files.

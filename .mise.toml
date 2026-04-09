@@ -1,0 +1,98 @@
+[tools]
+pandoc = "3"
+"aqua:zk-org/zk" = "0.15"
+
+[env]
+JORNAL = "{{config_root}}"
+
+# Site build
+[tasks.build]
+description = "Build the site locally"
+run = "./bin/build ."
+
+[tasks.serve]
+description = "Build and serve locally at http://localhost:8000"
+depends = ["build"]
+run = "cd _site && python3 -m http.server 8000 --bind 127.0.0.1"
+
+[tasks.clean]
+description = "Remove build artifacts"
+run = "rm -rf _site _staging"
+
+# Skills
+[tasks.deploy]
+description = "Deploy skills to ~/.config/agents/skills/"
+run = "./bin/sync"
+
+# Journal
+[tasks.jrn]
+description = "Create/edit today's journal entry (org-mode via zk)"
+run = """
+#!/usr/bin/env bash
+note_path=$(zk new --no-input areas/log --print-path)
+zk edit "$note_path"
+git add "$note_path"
+git commit -m "log: $(date +%Y-%m-%d)"
+echo "Committed: $note_path"
+"""
+
+[tasks.lab]
+description = "Create/edit a resource note"
+usage = "lab [proyecto]"
+run = """
+#!/usr/bin/env bash
+proyecto="${1:-}"
+if [ -z "$proyecto" ]; then
+    note_path=$(zk list resources --sort created- --limit 1 --format path)
+    if [ -n "$note_path" ]; then
+        zk edit "$note_path"
+        git add "$note_path"
+        git commit -m "resources: update $(basename $note_path .org)"
+    else
+        echo "No notes found. Usage: mise run lab <name>"
+        exit 1
+    fi
+else
+    note_path=$(zk new --no-input resources --title "$proyecto" --print-path)
+    zk edit "$note_path"
+    git add "$note_path"
+    git commit -m "resources: add $proyecto"
+fi
+"""
+
+[tasks.edit]
+description = "Interactive note search and edit"
+usage = "edit [query]"
+run = """
+#!/usr/bin/env bash
+query="${1:-}"
+if [ -z "$query" ]; then
+    note=$(zk list --format path | fzf --preview 'cat {}')
+else
+    note=$(zk list --match "$query" --format path --limit 1)
+fi
+if [ -n "$note" ]; then
+    zk edit "$note"
+    git add "$note"
+    git commit -m "update: $(basename $note)"
+fi
+"""
+
+[tasks.save]
+description = "Commit pending journal changes"
+usage = "save [message]"
+run = """
+#!/usr/bin/env bash
+msg="${1:-update journal}"
+git add inbox.md projects/ areas/ resources/ archive/
+git commit -m "$msg" || echo "Nothing to commit"
+"""
+
+[tasks.list]
+description = "List recent notes"
+run = "zk list --sort created- --limit 20"
+
+[tasks.search]
+description = "Search notes by content"
+usage = "search <query>"
+run = "zk list --match \"$1\" --format full"

@@ -5,6 +5,7 @@
 set -euo pipefail
 
 ROOT="${1:-.}"
+BASE_URL="${BASE_URL:-}"  # e.g. "/journal" for GitHub Pages
 STAGE="$ROOT/_staging"
 OUT="$ROOT/_site"
 TEMPLATE="$ROOT/bin/template.html"
@@ -47,9 +48,9 @@ find "$STAGE" -name '*.md' -not -name '_*' | while read -r mdfile; do
   mkdir -p "$(dirname "$outfile")"
 
   # Build breadcrumb from path
-  breadcrumb='<a href="/">~</a>'
+  breadcrumb="<a href=\"${BASE_URL}/\">~</a>"
   IFS='/' read -ra parts <<< "${rel%.md}"
-  path_acc=""
+  path_acc="${BASE_URL}"
   for i in "${!parts[@]}"; do
     part="${parts[$i]}"
     if [ "$i" -eq $(( ${#parts[@]} - 1 )) ]; then
