@@ -51,22 +51,19 @@ find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" \
   } > "$index"
 done
 
-# Generate root index.md from README if present, otherwise minimal
-if [ -f "$ROOT/README.md" ]; then
-  cp "$ROOT/README.md" "$ROOT/index.md"
-else
-  cat > "$ROOT/index.md" << 'INNEREOF'
-# journal
+# Generate root index.md: nav block + README content
+{
+  cat << 'NAV'
+[inbox](inbox.html) | [projects](projects/) | [areas](areas/) | [resources](resources/) | [archive](archive/) | [search](search.html)
 
-> personal work journal — PARA + Bullet Journal
+---
 
-- [inbox](inbox.html)
-- [projects/](projects/)
-- [areas/](areas/)
-- [resources/](resources/)
-- [archive/](archive/)
-- [search](search.html)
-INNEREOF
-fi
+NAV
+  if [ -f "$ROOT/README.md" ]; then
+    cat "$ROOT/README.md"
+  else
+    echo "# journal"
+  fi
+} > "$ROOT/index.md"
 
 echo "Generated index pages"
