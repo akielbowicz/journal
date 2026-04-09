@@ -4,14 +4,6 @@ remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-remote-theme
 
-# Only include PARA content — exclude tooling
-include:
-  - inbox.md
-  - projects
-  - areas
-  - resources
-  - archive
-
 exclude:
   - bin
   - .zk
@@ -19,5 +11,5 @@ exclude:
   - LICENSE
   - AGENTS.md
   - CLAUDE.md
-  - "*.org"
   - .gitignore
+  - "*.org"

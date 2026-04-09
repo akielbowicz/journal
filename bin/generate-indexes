@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# Generate index.md for every directory so Jekyll serves browseable listings.
+# Run this BEFORE jekyll build in CI — do NOT commit the generated files.
+set -euo pipefail
+
+ROOT="${1:-.}"
+
+# Directories to index (PARA + log tree)
+find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" \
+  -type d 2>/dev/null | while read -r dir; do
+
+  index="$dir/index.md"
+
+  # Skip if a hand-written index already exists
+  [ -f "$index" ] && continue
+
+  # Relative path from root for the title
+  rel="${dir#$ROOT/}"
+  title="${rel:-journal}"
+
+  {
+    echo "---"
+    echo "layout: default"
+    echo "title: \"$title\""
+    echo "---"
+    echo ""
+    echo "# $title"
+    echo ""
+
+    # Parent link
+    if [ "$rel" != "." ] && [ -n "$rel" ]; then
+      echo "[.. (up)](../)"
+      echo ""
+    fi
+
+    # List subdirectories first
+    for entry in "$dir"/*/; do
+      [ -d "$entry" ] || continue
+      name="$(basename "$entry")"
+      [[ "$name" == _* ]] && continue
+      echo "- **[$name/]($name/)**"
+    done
+
+    # Then list files
+    for entry in "$dir"/*; do
+      [ -f "$entry" ] || continue
+      name="$(basename "$entry")"
+      # Skip index files, hidden files, underscore files
+      [[ "$name" == index.md ]] && continue
+      [[ "$name" == _* ]] && continue
+      [[ "$name" == .* ]] && continue
+
+      # Make display name friendlier
+      display="${name%.md}"
+      display="${display%.org}"
+      echo "- [$display]($name)"
+    done
+  } > "$index"
+done
+
+# Generate root index.md
+cat > "$ROOT/index.md" << 'HEREDOC'
+---
+layout: default
+title: journal
+---
+
+# journal
+
+> Personal work journal — PARA + Bullet Journal
+
+| | |
+|---|---|
+| [**inbox**](inbox) | Quick capture — unsorted tasks and notes |
+| [**projects/**](projects/) | Active work with defined goals |
+| [**areas/**](areas/) | Ongoing responsibilities |
+| [**resources/**](resources/) | Reference material and notes |
+| [**archive/**](archive/) | Completed and inactive items |
+| [**search**](search) | Full-text search across all entries |
+HEREDOC
+
+echo "Generated index pages"

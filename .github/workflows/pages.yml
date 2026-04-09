@@ -20,6 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Generate directory indexes and search index
+        run: |
+          ./bin/generate-indexes .
+          ./bin/generate-search-index .
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/jekyll-build-pages@v1

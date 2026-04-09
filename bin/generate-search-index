@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# Generate search-index.json for Lunr.js client-side search.
+# Run AFTER generate-indexes so index.md pages are included.
+set -euo pipefail
+
+ROOT="${1:-.}"
+OUTPUT="$ROOT/search-index.json"
+
+echo "window.searchData = [" > "$OUTPUT"
+
+first=true
+find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" "$ROOT/inbox.md" \
+  -name '*.md' -not -name '_*' 2>/dev/null | sort | while read -r file; do
+
+  # Skip generated index files for cleaner results
+  basename="$(basename "$file")"
+
+  # Relative path from root
+  rel="${file#$ROOT/}"
+
+  # URL path (remove .md for Jekyll)
+  url_path="${rel%.md}"
+
+  # Extract title from first H1 or filename
+  title=$(grep -m1 '^# ' "$file" 2>/dev/null | sed 's/^# //' || echo "$basename")
+  [ -z "$title" ] && title="$basename"
+
+  # Extract content (strip markdown syntax, collapse whitespace)
+  content=$(sed '
+    /^---$/,/^---$/d
+    s/^#\+ //
+    s/\[[^]]*\]([^)]*)//g
+    s/[*_`]//g
+    s/|//g
+  ' "$file" | tr '\n' ' ' | sed 's/  */ /g' | head -c 2000)
+
+  # Escape for JSON
+  title=$(echo "$title" | sed 's/\\/\\\\/g; s/"/\\"/g')
+  content=$(echo "$content" | sed 's/\\/\\\\/g; s/"/\\"/g; s/\t/ /g')
+
+  if [ "$first" = true ]; then
+    first=false
+  else
+    echo "," >> "$OUTPUT"
+  fi
+
+  printf '{"url":"%s","path":"%s","title":"%s","content":"%s"}' \
+    "$url_path" "$rel" "$title" "$content" >> "$OUTPUT"
+
+done
+
+echo "" >> "$OUTPUT"
+echo "];" >> "$OUTPUT"
+
+echo "Generated search index at $OUTPUT"
