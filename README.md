@@ -28,7 +28,7 @@ journal/
 │   ├── _index.md
 │   └── skills/                       # AI agent skills (slash commands)
 │       ├── morning/    capture/    jlog/
-│       ├── close/      park/       resume/
+│       ├── close/      park/       renew/
 │       ├── migrate/    standup/    weekly/
 │       └── archive/
 ├── archive/                          # Completed projects, inactive areas
@@ -106,7 +106,7 @@ This repo includes 10 lifecycle skills that work with any AI coding tool (Claude
 | `/morning` | Start of day — briefing with open tasks, inbox, workspace context |
 | `/capture` | Quick-add a task or note to `inbox.md` |
 | `/jlog` | Append a note to today's daily log |
-| `/resume <slug>` | Pick up a project or area — loads focused context |
+| `/renew <slug>` | Pick up a project or area — loads focused context (`/resume` is taken by built-in conversation resume in most tools) |
 | `/park` | Switching context — snapshot what you were doing |
 | `/close` | End of session — summarize, log, commit |
 | `/migrate` | Review inbox and waiting tasks, decide what to do with each |
@@ -122,7 +122,7 @@ This repo includes 10 lifecycle skills that work with any AI coding tool (Claude
 /capture fix the CI → add to inbox
   ... work ...
 /park               → switching to another project
-/resume other-proj  → load context for the next thing
+/renew other-proj   → load context for the next thing
   ... work ...
 /close              → log everything, commit
 ```

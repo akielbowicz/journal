@@ -49,7 +49,7 @@ Snapshot the current session's work before switching context. This is NOT end-of
 **Session summary**
 - what was accomplished
 
-**Next step** *(for when you /resume)*
+**Next step** *(for when you /renew)*
 - the logical continuation
 
 ---

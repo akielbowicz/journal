@@ -118,7 +118,7 @@ What this area covers and why it matters.
 | `/morning` | Start-of-day briefing: projects, areas, inbox, workspace context |
 | `/capture` | Quick add to `inbox.md` |
 | `/jlog` | Open or append to today's daily log |
-| `/resume <slug>` | Pick up a specific project or area with focused context |
+| `/renew <slug>` | Pick up a specific project or area with focused context |
 | `/park` | Snapshot current work before switching context |
 | `/close` | End of session: log, commit |
 | `/migrate` | Process inbox, review waiting tasks, clean up |

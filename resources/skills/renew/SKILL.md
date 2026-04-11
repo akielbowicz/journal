@@ -1,12 +1,14 @@
 ---
-name: resume
-description: "Resume work on a specific project or area. Trigger when the user says /resume <name>, 'pick up <project>', 'continue <project>', or 'back to <project>'."
+name: renew
+description: "Resume work on a specific project or area. Trigger when the user says /renew <name>, 'pick up <project>', 'continue <project>', or 'back to <project>'."
 disable-model-invocation: true
 ---
 
-# Resume
+# Renew
 
 Load focused context for a specific project or area to continue work.
+
+> Named `/renew` instead of `/resume` because `/resume` is a built-in command in Claude Code (and other tools) for resuming previous conversations.
 
 ## Steps
 
@@ -15,7 +17,7 @@ Load focused context for a specific project or area to continue work.
    JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
    ```
 
-2. Identify the target. The user says `/resume <slug>`. Match `<slug>` against:
+2. Identify the target. The user says `/renew <slug>`. Match `<slug>` against:
    - `$JORNAL/projects/<slug>.md`
    - `$JORNAL/areas/<slug>.md`
    - If no exact match, try partial match or list available projects/areas and ask.
