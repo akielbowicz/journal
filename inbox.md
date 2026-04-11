@@ -1,3 +1,4 @@
+- 2026-04-11 [ ] Commit or discard the remaining `.gitignore` change in `nayra` after deciding whether local artifacts should be shared repo-wide
 # Inbox
 
 Quick capture for unsorted tasks, thoughts, and follow-ups.
