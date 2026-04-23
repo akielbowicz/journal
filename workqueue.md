@@ -57,3 +57,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** close out the 2 remaining instrumentation test tasks (P3) and advance `add-netdiag-app` to 44/44
 
 ---
+
+## 2026-04-23 17:45 — paranoid
+
+- Archived `add-netdiag-app` openspec (functionally complete; 2 P3 instrumentation tests deferred to July)
+- Gitignored `.claude/settings.local.json`; committed `.wai` artifacts
+- Committed 3 leftover dev scratch files (`DiagnosticsSchema.kt`, `SnapshotFileExchange.kt`, `section_snapshot_detail.xml`); deleted `network-diag.md`
+- Working tree is clean; `add-netdiag-app` fully wrapped up
+- **Next:** start `add-usage-audit-app` (10/117 tasks complete)
+
+---
