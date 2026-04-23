@@ -49,3 +49,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `REPLy_jl-499.2` — e2e coverage for listener-global sessions and limits (now unblocked)
 
 ---
+## 2026-04-23 17:39 — paranoid
+
+- Released `v0.5.0` — NetDiag exchange layer (Bluetooth, QR, file), share sheet, UI polish, site fix
+- Created `CHANGELOG.md` and committed it to the repo
+- Published GitHub release for `v0.5.0`
+- **Next:** close out the 2 remaining instrumentation test tasks (P3) and advance `add-netdiag-app` to 44/44
+
+---
