@@ -28,6 +28,10 @@ Load focused context for a specific project or area to continue work.
    If it doesn't exist, create it with the daily log template.
    Scan for any earlier session entries related to this project/area today.
 
+4a. Check `$JORNAL/workqueue.md` for any queued `/next` entries matching this slug (any date).
+    Match lines of the form `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor).
+    If entries exist, display them in the output under a **Queued sessions** section so the user has the full prior context before continuing.
+
 5. Search recent logs for context (last 3 days):
    ```bash
    grep -rl "<slug>" "$JORNAL/areas/log/" 2>/dev/null | sort -r | head -3
@@ -50,6 +54,10 @@ Load focused context for a specific project or area to continue work.
 **Resuming: Project/Area Name**
 
 **Status**: one-line summary of where things stand
+
+**Queued sessions** *(from workqueue.md — unprocessed /next entries for this slug)*
+- bullet entries from each queued session, in chronological order
+- *(none)* if no queued entries
 
 **Last session** *(from most recent log entry)*
 - what was done last time

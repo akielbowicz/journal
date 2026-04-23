@@ -120,7 +120,9 @@ What this area covers and why it matters.
 | `/jlog` | Open or append to today's daily log |
 | `/renew <slug>` | Pick up a specific project or area with focused context |
 | `/park` | Snapshot current work before switching context |
-| `/close` | End of session: log, commit |
+| `/next` | Rapid session snapshot to `workqueue.md` — no full close ceremony → feeds `/close` or `/wrap-up` |
+| `/close` | End of session: reads queued `/next` entries for this slug (any date), synthesizes multi-session arc, logs, commits |
+| `/wrap-up` | End-of-day: processes all queued sessions across all slugs, flags undocumented projects, commits |
 | `/migrate` | Process inbox, review waiting tasks, clean up |
 | `/standup` | Yesterday/today/blockers summary |
 | `/weekly` | 7-day review and next-week planning |
