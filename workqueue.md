@@ -40,3 +40,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `ruta-6nj.9` (canonical spec sync) deferred to 2026-05-06; run `bd ready` for any new open work
 
 ---
+
+## 2026-04-23 17:30 — REPLy.jl
+
+- Implemented `MultiListenerServer` + `serve_multi(specs...)` in `src/server.jl`; listeners share one `SessionManager`, `ServerState`, and middleware stack
+- Added 4 e2e tests: shared session namespace across TCP+Unix, close cleanup, single-spec, empty-spec guard — all 1351 tests pass
+- Closed `REPLy_jl-499.1`; pushed `e97cda1` + `adb698e` to `main`
+- **Next:** pick up `REPLy_jl-499.2` — e2e coverage for listener-global sessions and limits (now unblocked)
+
+---
