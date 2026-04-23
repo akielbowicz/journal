@@ -31,3 +31,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** run `bd ready` to find remaining open issues; check `wai pipeline current` for next pipeline step
 
 ---
+
+## 2026-04-23 17:05 — ruta
+
+- Marked all 25 openspec tasks complete in `openspec/changes/add-session-per-spec-layout/tasks.md`
+- Archived `add-session-per-spec-layout` via `/openspec-archive`; updated `spec/ruta.md`
+- Committed and pushed archive + spec changes to `main`
+- **Next:** `ruta-6nj.9` (canonical spec sync) deferred to 2026-05-06; run `bd ready` for any new open work
+
+---
