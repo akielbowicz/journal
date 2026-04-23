@@ -4,6 +4,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-04-23 16:28 — REPLy.jl
+
+- Implemented Phase 7D shutdown work in `src/server.jl`, `src/config/server_state.jl`, `src/middleware/eval.jl`, `src/middleware/core.jl`, and `src/transport/tcp.jl`
+- Added integration coverage in `test/integration/session_lifecycle_test.jl` for interrupting in-flight evals during shutdown and reverse-order middleware teardown
+- Committed `cc73a84` for bounded audit logging and `aaeebd3` / `8e0b850` for graceful shutdown plus beads close-out; `just test` passes with 1328 tests
+- **Next:** run `bd ready` to pick the next REPLy.jl issue, then `wai close` when ending the session
+
+---
+
 ## 2026-04-23 16:27 — ruta
 
 - Worked on `add-session-per-spec-layout` epic (`ruta-6nj`); claimed and closed cleanup task `ruta-6nj.8`
