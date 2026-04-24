@@ -31,3 +31,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** claim sxAct-0bua[0m and implement the shared notebook smoke-test workflow, then start on the highest-priority notebook fixes that depend on it.
 
 ---
+## 2026-04-24 14:47 — XAct.jl
+
+- Implemented shared notebook smoke-test infrastructure (`scripts/notebook_smoke.jl`, `just test-notebooks`) and documented the Julia-vs-Python notebook validation policy in `CONTRIBUTING.md` and `docs/src/contributing.md`.
+- Added notebook smoke coverage to `test/julia/test_docs.jl`, then completed two notebook tickets end-to-end: `sxAct-d9xg` (2-sphere notebook now explicitly validates Gaussian/scalar curvature and corrects the 2D Einstein-tensor discussion) and `sxAct-js4u` (EM notebook now explicitly checks Faraday antisymmetry and the homogeneous Maxwell/Bianchi identity, while downgrading the Lorenz-gauge section to explanatory context).
+- Verified with `Pkg.test()`, `julia --project=docs docs/make.jl`, and `julia --project=. scripts/notebook_smoke.jl`; committed repo changes as `8d304a4`, `a8628b8`, and `d0bb962`.
+- **Next:** continue the notebook-review queue one ticket at a time, with `sxAct-eo57` (Schwarzschild) as the next highest-priority docs notebook to tighten and verify.
+
+---
