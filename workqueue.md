@@ -39,3 +39,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue the notebook-review queue one ticket at a time, with `sxAct-eo57` (Schwarzschild) as the next highest-priority docs notebook to tighten and verify.
 
 ---
+
+## 2026-04-24 19:55 — XAct.jl
+
+- Completed three notebook-review tickets in `XAct.jl` one at a time with TDD + review/commit loops: `sxAct-eo57` (Schwarzschild), `sxAct-et6t` (relativistic fluids), and `sxAct-yq3b` (FLRW cosmology).
+- Tightened `notebooks/julia/carroll_schwarzschild.qmd`, `notebooks/julia/physics_fluids.qmd`, and `notebooks/julia/wald_cosmology.qmd`, regenerated the corresponding docs pages, and extended `test/julia/test_docs.jl` so the smoke suite checks for the new high-trust content.
+- Key decisions: keep notebook claims strictly aligned with what the code actually verifies; use explicit symbolic checks where possible; where backend limitations block a full derivation, prefer honest symbolic templates over overclaiming.
+- **Next:** continue the notebook-review queue with `sxAct-ticl` (gravitational waves), then keep working downward through the remaining notebook tickets; separately, `sxAct-j6t2` still tracks the broken `just test` harness.
+
+---
