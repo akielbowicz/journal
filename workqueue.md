@@ -48,3 +48,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue the notebook-review queue with `sxAct-ticl` (gravitational waves), then keep working downward through the remaining notebook tickets; separately, `sxAct-j6t2` still tracks the broken `just test` harness.
 
 ---
+
+## 2026-04-24 21:23 — XAct.jl
+
+- Completed `sxAct-ticl`: tightened `notebooks/julia/mtw_gravitational_waves.qmd`, regenerated `docs/src/notebooks/mtw_gravitational_waves_julia.md`, and extended `test/julia/test_docs.jl` with gravitational-wave smoke assertions.
+- Clarified that `perturb_curvature` provides first-order curvature ingredients, made the trace-reversed/Lorenz-gauge/vacuum assumptions explicit, and labeled the polarization plots as a visualization of a known TT plane-wave solution rather than the raw symbolic output.
+- Fixed `sxAct-j6t2` by changing `justfile` so `just test-julia` runs `Pkg.test()`, which activates test-target extras like Aqua/JET/Literate instead of failing immediately on missing packages.
+- **Next:** continue the notebook-review queue with `sxAct-ruhy` (Julia basics onboarding) or `sxAct-ljq2` (2D polar foundations), now that the main Julia test entrypoint is wired through `Pkg.test()`.
+
+---
