@@ -7,6 +7,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-04-28 [ ] In `incitaciones`, decide whether the local `content/compiled/` output should be cleaned, gitignored, or intentionally tracked
 - 2026-04-24 [ ] In `paranoid`, manually verify UsageAudit usage-access Settings handoff and overnight battery snapshot behavior on a device
 - 2026-04-20 [ ] In `incitaciones`, confirm whether removing tracked `pi-package/` files was intended; if not, restore the directory and adjust ignore/local workflow instead of deleting repo content
 - 2026-04-17 [ ] In `sxAct`, decide whether to clean up the tracked `.beads/backup/backup_state.json` churn (`sxAct-hk8w`) or leave it as accepted repo noise
