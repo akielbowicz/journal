@@ -23,3 +23,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-04-28 09:48 — atril
+
+- Implemented and committed accessibility/navigation fixes in `atril`: semantic buttons for overview/tree/breadcrumb interactions, clickable overview source badges, and an inline SVG favicon.
+- Added and committed OpenSpec cross-linking work: inline capability auto-linking in `src/shared/document-renderer.ts`, clearer active-vs-archived spec/change indexing in `src/shared/openspec-index.ts`, and canonical spec links for change delta breadcrumbs.
+- Verified each slice with targeted tests, repeated full `bun test` runs, and `bun run build`; latest committed changes include `fa5e9f7`, `9fc327f`, and `9f4b8f0`.
+- **Next:** check `bd ready` for the next unblocked atril ticket, likely outside the completed spec-change cross-links slice unless a pending-change-indicator task is now available.
+
+---
+
