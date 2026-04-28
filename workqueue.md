@@ -32,3 +32,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-04-28 15:26 — atril
+
+- Worked through four atril tickets end-to-end with implement → Rule of 5 review → fix/verify → commit: `atril-avn`, `atril-wbl`, `atril-ch4`, and `atril-7lh`.
+- Shipped and committed: default-open OpenSpec requirement/scenario sections, first-issue auto-selection in the beads list/detail view, centered animated loading UI, and issue-search empty-state/clear-search improvements across `src/main.ts`, `src/shared/beads-renderer.ts`, `src/shared/document-renderer.ts`, `src/styles.css`, and related tests.
+- Verified with targeted tests plus repeated full `bun test` runs; created WAI plan/research notes for each ticket and closed the tickets in `bd`.
+- **Next:** continue with `atril-67n` to make the branch toggle look clearly interactive, while leaving unrelated existing worktree changes in `.wai/resources/scripts/explore-video.ts`, `.wai/resources/scripts/videos/`, and `chrome` untouched.
+
+---
