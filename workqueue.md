@@ -41,3 +41,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue holistic-review with `REPLy_jl-umg.8` (security/boundary review) or `REPLy_jl-umg.4` (Rule of 5 broad review); or pivot to fixing the P1 bugs filed this session.
 
 ---
+
+## 2026-04-29 18:30 — tRAGar
+
+- Ran Rule of 5 universal review on `SPEC.md` + 8 OpenSpec capability specs; found 2 critical, 10 high, 8 medium, 7 low issues.
+- Fixed all 27 issues: OPFS SyncAccessHandle contradiction, namespace path injection, int8 dot product accumulation width, tombstones encoding, RegExp filter boundary, ingest atomicity, concurrency serialization, and 20+ clarity/edge-case gaps.
+- All 8 capability spec files received frontmatter headers and mirrored fixes; changes committed and pushed.
+- **Next:** run `openspec validate add-initial-capabilities --strict` (task 2.1) and `openspec archive` (task 3.1) to close out the proposal lifecycle; then begin implementation.
+
+---
