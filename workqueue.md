@@ -83,3 +83,10 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Phase 3 — performance, composition, and DX bugs (19 open P2 issues); run `bd ready` to see the list
 
 ---
+## 2026-04-30 14:31 — XAct.jl
+
+- Created 9 beads tickets: migration epic (sxAct-9u7t) + 2 migration subtasks (nd7v, ltaa) + 6 unimplemented module tickets (xTerior, TexAct, Harmonics, xPrint, SymManipulator, SpinFrames)
+- Ran 5-pass issue review; found CRITICAL circular epic dep and HIGH duplicate with sxAct-bsd; applied all fixes (removed circular deps, superseded bsd, rewired Spinors dep chain, added acceptance criteria and TDD entry points to all module tickets)
+- **Next:** begin migration work — claim `sxAct-nd7v` (changelog audit → `docs/migration/xact-1.3.0-analysis.md`), then `sxAct-ltaa` (update oracle pin + regenerate snapshots)
+
+---
