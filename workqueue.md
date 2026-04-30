@@ -99,3 +99,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** validate the fresh Binder badge flow on a brand-new session, confirm edit-in-Jupyter + preview-in- works smoothly, and refine the authoring workflow if live editing still feels rough.
 
 ---
+
+## 2026-04-30 16:16 — clojnder
+
+- Set up local and Binder Clay workflows for `clojnder`: added Clojure/Babashka Dockerfiles, `just` commands, Binder proxy integration, and shared Clay startup code.
+- Switched Binder to use a published GHCR base image via `Dockerfile.binder-base`, added GitHub Actions to publish/validate images, and added a Binder badge linking to `urlpath=clay`.
+- Debugged Binder runtime issues end-to-end: fixed Clojars resolution, proxy command templating, `/clay` prefix rewriting, stale subprocess handling, and added `.binder/restart-clay.sh` plus a visible starter version marker.
+- Standardized the default notebook on `notebooks/examples.clj` with `.clay/` output and verified local render + Binder preview behavior.
+- **Next:** validate the fresh Binder badge flow on a brand-new session, confirm edit-in-Jupyter + preview-in-`/clay` works smoothly, and refine the authoring workflow if live editing still feels rough.
+
+---
