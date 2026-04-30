@@ -42,14 +42,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-04-29 18:30 — tRAGar
-
-- Ran Rule of 5 universal review on `SPEC.md` + 8 OpenSpec capability specs; found 2 critical, 10 high, 8 medium, 7 low issues.
-- Fixed all 27 issues: OPFS SyncAccessHandle contradiction, namespace path injection, int8 dot product accumulation width, tombstones encoding, RegExp filter boundary, ingest atomicity, concurrency serialization, and 20+ clarity/edge-case gaps.
-- All 8 capability spec files received frontmatter headers and mirrored fixes; changes committed and pushed.
-- **Next:** run `openspec validate add-initial-capabilities --strict` (task 2.1) and `openspec archive` (task 3.1) to close out the proposal lifecycle; then begin implementation.
-
----
 ## 2026-04-30 10:27 — REPLy.jl
 
 - Completed all 13 holistic-review passes (`REPLy_jl-umg`): security, modularity, performance, DX/docs, formal-verification, and synthesis passes all closed.
@@ -65,14 +57,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Wired History list to render past days (today excluded) and tap-through to Day Detail; UsageAuditData extended with recentDays
 - All unit tests green via `just test`; OpenSpec validates strict; closed PARANOID-p5i.6
 - **Next:** start Slice B (PARANOID-p5i.7) — Day Detail hourly distribution + scoped Share/CSV; reuse DailyUsageAggregator with hourly bucketing (DST-aware) and add overnight summary inside Day Detail
-
----
-## 2026-04-30 12:44 — tRAGar
-
-- Archived `add-initial-capabilities` OpenSpec change; all 8 specs promoted to `openspec/specs/` (43 requirements total)
-- Filed 5 open-question decision issues (§21 precondition for implementation): tokenizer, default model, `ingest()` scope, worker threshold, reranker streaming
-- Discussed v0.1 scope vs "one weekend" claim — decided Path A (C++23 core, targeted cuts): drop 200-doc golden corpus, IndexedDB fallback, multi-browser CI; keep `std::generator<Hit>` Embind binding and SIMD cosine
-- **Next:** spike `std::generator<Hit>` → Embind → JS async iterator binding (2h gate) before building C++ core; then settle P2 decisions (tRAG-gmr tokenizer, tRAG-9eb default model)
 
 ---
 ## 2026-04-30 12:52 — REPLy.jl
