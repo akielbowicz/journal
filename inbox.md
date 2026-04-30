@@ -7,6 +7,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-04-30 [ ] In `clojnder`, fill in `openspec/project.md`, decide whether to configure `.wai/resources/agent-config/.projections.yml`, and create the first tracked change/task
 - 2026-04-28 [ ] In `SundaeVolatility`, decide whether untracked `src/` and `tests/` should be committed, ignored, or cleaned up
 - 2026-04-28 [ ] In `incitaciones`, decide whether the local `content/compiled/` output should be cleaned, gitignored, or intentionally tracked
 - 2026-04-24 [ ] In `paranoid`, manually verify UsageAudit usage-access Settings handoff and overnight battery snapshot behavior on a device
