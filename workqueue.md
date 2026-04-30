@@ -110,3 +110,10 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** claim and implement `tRAG-32j` — deterministic in-memory ingest/query slice (Embind bridge gets real, `ingest()` + `query()` with memory store + custom embedder)
 
 ---
+## 2026-04-30 17:28 — tRAGar
+
+- Reviewed tRAG-32j (Slice 2: deterministic ingest/query); closed 3 pending decisions: tRAG-kiw (markdown-only ingest), tRAG-gmr (chars/4 tokenizer), tRAG-36t (main-thread async, v0.3 Worker forward-compat)
+- Confirmed Slice 2 was already committed (`1f38d48`) — all 32 tests green, types/impl/demo updated, `tRAG-32j` closed
+- **Next:** pick up the newly unblocked follow-ons — `tRAG-6to` (queryStream bridge), `tRAG-jzo` (transformers.js embedder), `tRAG-lll` (shipped browser smoke test), or `tRAG-x83` (OPFS persistence)
+
+---
