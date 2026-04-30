@@ -153,3 +153,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `clojnder-lni` (status + restart controls in the preview panel) or `clojnder-a2e` (render a selected `.clj` source file)
 
 ---
+## 2026-04-30 18:23 — tRAGar
+
+- Completed slice-5: browser smoke test (`tests/browser/tracer-bullet.spec.ts`) with Playwright + Chromium headless
+- Built `dist/js/tragar.js` via Bun browser bundle; wired `just build-js` and `just test-browser` recipes
+- `just test-browser` works from cold state (build + 1 browser test in ~2s); all 59 unit tests still pass
+- Closed `tRAG-lll`; committed and pushed `f4b7451`
+- **Next:** `tRAG-x83` — OPFS/IndexedDB persistence slice (TDD, same pattern as previous slices)
+
+---
