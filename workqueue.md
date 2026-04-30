@@ -109,3 +109,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** validate the fresh Binder badge flow on a brand-new session, confirm edit-in-Jupyter + preview-in-`/clay` works smoothly, and refine the authoring workflow if live editing still feels rough.
 
 ---
+
+## 2026-04-30 16:15 — REPLy.jl
+
+- Closed `9ms` (readline OOM DoS) — already fixed in prior security commit; closed without new code.
+- Fixed `65d` (mktemp IO capture → pipe-based capture): replaced `mktemp`+`EVAL_IO_CAPTURE_LOCK` in `eval.jl` and `load_file.jl` with `Base.Pipe` async readers; 1947 tests pass.
+- Fixed `1i8` (Revise hook shadow-module injection): guard `_revise_if_present` with `Base.loaded_modules` identity check against `_REVISE_PKG_ID`; added security test for injected shadow modules.
+- **Next:** tackle P1 `3a9` (TCP auth) — needs auth mechanism design decision — or knock out DX doc bugs (`2j0`, `hdr`, `it7`, `dx7`, `c3z`).
+
+---
