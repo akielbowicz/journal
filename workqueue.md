@@ -134,3 +134,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `tRAG-x83` (OPFS/IndexedDB persistence slice) or `tRAG-lll` (browser smoke test)
 
 ---
+
+## 2026-04-30 18:16 — REPLy.jl
+
+- Closed 10 issues across 3 sessions: 6 DX doc bugs (JSON3 package note, JSONTransport snippet, middleware stack warning, MCP end-to-end example, api.md prose, Unix socket status), 4 correctness bugs (UUID format, `done` in error arrays, middleware exports)
+- Fixed atomic session limit enforcement (`ktf`/`exj`): deduplicated 3 copy-paste limit checks via `create_named_session_if_within_limit!`, eliminated TOCTOU race under single lock
+- Closed `xvl`/`gfo`/`1jy`/`iuq`/`6sr`: max_output_bytes+max_session_history threading, EVAL_IO_CAPTURE_LOCK to core.jl, Timer-based eval timeout, AbstractServerHandle refactor
+- All 1974 tests green; 4 commits pushed, branch at `c27a3a4`
+- **Next:** 6 issues remain — all require design decisions: `3a9` (TCP auth design), `gk2` (AuditLog/client_id threading), `e9g` (lifecycle dedup), `y31` (JSON3 materialization), `a4o` (per-eval stdin feeder), `cwb` (per-task IO routing)
+
+---
