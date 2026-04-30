@@ -110,3 +110,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start `clojnder-6kq` with TDD: add failing registration tests, preserve the existing `clay` launcher entrypoint, and scaffold the prebuilt JupyterLab plugin/open command.
 
 ---
+## 2026-04-30 16:53 — REPLy.jl
+
+- Worked REPLy.jl docs/API DX issue REPLy_jl-2j0; updated `docs/src/howto-sessions.md`, `docs/src/howto-mcp-adapter.md`, and `docs/src/index.md`.
+- Rewrote examples to stop teaching unexported internals via `using REPLy: ...`; now lower-level symbols are explicitly qualified as `REPLy.*` and documented as embedding/middleware APIs rather than the primary public surface.
+- Fixed the docs environment hiccup by resolving the docs project, then verified `julia --project=docs docs/make.jl` succeeds; closed REPLy_jl-2j0 and committed `0543662` (`docs(api): stop teaching internal REPLy symbols as primary API`).
+- **Next:** push `main`, then pick the next ready P1/P2 issue from `bd ready`.
+
+---
