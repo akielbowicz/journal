@@ -117,3 +117,10 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up the newly unblocked follow-ons — `tRAG-6to` (queryStream bridge), `tRAG-jzo` (transformers.js embedder), `tRAG-lll` (shipped browser smoke test), or `tRAG-x83` (OPFS persistence)
 
 ---
+## 2026-04-30 17:52 — tRAGar
+
+- Closed tRAG-9eb (model decision): keep `Xenova/all-MiniLM-L6-v2` as English default; multilingual as explicit opt-in
+- Implemented tRAG-jzo (transformers.js embedder seam): lazy-load on first `embed()`, per-config pipeline cache, `TRAGarError("EmbedderLoadFailed")`, `embedders.transformers()` public API, `TRAGarError` extracted to `js/errors.ts`; 46/46 tests green, pushed
+- **Next:** claim and implement `tRAG-6to` — `queryStream()` async iterator + `std::generator` → Embind bridge with early-break cleanup
+
+---
