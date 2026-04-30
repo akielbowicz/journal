@@ -102,3 +102,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** push `main`, then pick the next ready P1/P2 issue from `bd ready`.
 
 ---
+## 2026-04-30 17:00 — tRAGar
+
+- Scaffolded OpenSpec change `add-tracer-bullet-vertical-slice` (proposal, tasks, design) with minimal/dev-first strategy
+- Created 6 tracer-bullet implementation beads tickets (tRAG-5ip → tRAG-lll plus 3 follow-ons) with dependency chain
+- Implemented `tRAG-5ip` (Bootstrap skeleton): TDD — 10 TS tests (bun) + 8 C++ doctests all green; TS types/wrapper, C++ core, Embind scaffold, CMake preset
+- **Next:** claim and implement `tRAG-32j` — deterministic in-memory ingest/query slice (Embind bridge gets real, `ingest()` + `query()` with memory store + custom embedder)
+
+---
