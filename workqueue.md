@@ -101,3 +101,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** update `sxAct-ltaa` with the finalized breaking-change list, then begin the oracle pin and snapshot-regeneration work.
 
 ---
+
+## 2026-04-30 16:51 — clojnder
+
+- Resolved the two HITL preview-policy tickets, recorded the approved v1 defaults in `docs/clay-preview-v1-policy.md`, and linked them from `README.md` and `openspec/project.md`.
+- Created `openspec/changes/add-clay-preview-extension-skeleton/`, ran a Rule-of-5 review on the proposal, fixed all review findings, and revalidated it with `openspec validate --strict`.
+- Committed and pushed the approved proposal as `fc91d04` (`spec: approve clay preview extension skeleton proposal`); `clojnder-6kq` is now the active implementation entry point.
+- **Next:** start `clojnder-6kq` with TDD: add failing registration tests, preserve the existing `clay` launcher entrypoint, and scaffold the prebuilt JupyterLab plugin/open command.
+
+---
