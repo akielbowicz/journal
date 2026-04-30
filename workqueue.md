@@ -58,3 +58,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start Phase 2 — session lifecycle correctness: `REPLy_jl-h7o` (close/eval race), `REPLy_jl-na0` (alias detachment), `REPLy_jl-6fh` (clone publish race), then `clients`/`client_tasks` locking.
 
 ---
+
+## 2026-04-30 10:37 — paranoid
+
+- Implemented Slice A of usage-audit history & drill-down (PARANOID-p5i.6) via TDD: RecentDaysEnumerator, DailyHistoryPresenter, DayDetailPresenter, plus UsageAuditDayDetailActivity and layout
+- Wired History list to render past days (today excluded) and tap-through to Day Detail; UsageAuditData extended with recentDays
+- All unit tests green via `just test`; OpenSpec validates strict; closed PARANOID-p5i.6
+- **Next:** start Slice B (PARANOID-p5i.7) — Day Detail hourly distribution + scoped Share/CSV; reuse DailyUsageAggregator with hourly bucketing (DST-aware) and add overnight summary inside Day Detail
+
+---
