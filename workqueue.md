@@ -93,3 +93,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** review and resolve   `clojnder-s2i` and   `clojnder-6gq`, then claim   `clojnder-6kq` to begin implementation.
 
 ---
+## 2026-04-30 16:51 — XAct.jl
+
+- Claimed `sxAct-nd7v` and wrote `docs/migration/xact-1.3.0-analysis.md` auditing xAct 1.2.0 → 1.3.0.
+- Identified primary migration/parity risks in `xPerm` (`RightTransversal`) and `xTensor` (`InertHeadArgumentCount`, complex inner-vbundle metrics), plus corrected the `xPert 1.1.0` assumption.
+- Ran Rule-of-5 review on the analysis doc, then revised it to separate migration-critical modules from roadmap-only packages and to clarify same-version bundle-content drift (`xTerior`).
+- **Next:** update `sxAct-ltaa` with the finalized breaking-change list, then begin the oracle pin and snapshot-regeneration work.
+
+---
