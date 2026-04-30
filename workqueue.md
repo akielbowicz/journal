@@ -124,3 +124,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** claim and implement `tRAG-6to` — `queryStream()` async iterator + `std::generator` → Embind bridge with early-break cleanup
 
 ---
+
+## 2026-04-30 18:02 — tRAGar
+
+- Implemented `tRAG-6to`: `queryStream()` async iterator on `TRAGarMemoryInstance` (embed → score → sort → yield k hits)
+- Added `queryStream(text, opts?): AsyncIterable<Hit>` to `TRAGarInstance` interface in `js/types.ts`
+- 13 TDD tests in `js/tests/slice-querystream.test.ts` (surface shape, hit fields, ordering, k cap, empty corpus, early break, close-after-break, InstanceClosed/InvalidConfig errors); 59/59 green
+- Closed `tRAG-6to`; pushed `b3ec1ed feat(slice-4): queryStream() async iterator over scored hits`
+- **Next:** pick up `tRAG-x83` (OPFS/IndexedDB persistence slice) or `tRAG-lll` (browser smoke test)
+
+---
