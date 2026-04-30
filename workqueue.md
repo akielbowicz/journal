@@ -23,34 +23,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-
-## 2026-04-29 12:26 — REPLy.jl
-
-- Completed holistic review passes   \'REPLy_jl-umg.6\', \'REPLy_jl-umg.7\', and \'REPLy_jl-umg.11\'; added research artifacts under \' .wai/projects/holistic-review/research/\' for session invariants, failure handling, and test-suite assessment.
-- Closed the three beads tickets; no runtime code changed, but the review baseline now highlights session race hazards, fragmented failure semantics, and test-suite duplication/friction.
-- Wrote a session handoff at \' .wai/projects/holistic-review/handoffs/2026-04-28_23-39-58_holistic-review-state-and-failure-review.md\'.
-- **Next:** continue the holistic-review epic with \'REPLy_jl-umg.10\' (formal-verification readiness) or \'REPLy_jl-umg.8\' (security/boundary review), using the .6/.7/.11 artifacts as the baseline.
-
----
-
-## 2026-04-29 15:33 — REPLy.jl
-
-- Completed holistic-review pass `REPLy_jl-umg.10` (formal-verification readiness); saved research artifact to `.wai/projects/holistic-review/research/`.
-- Identified top formalization candidates: INV-3 (session lifecycle state machine) and INV-5 (per-session FIFO via eval_lock) as Phase 1 targets in TLA+.
-- Filed 5 blocking bugs: `REPLy_jl-h7o` (P1 close/eval race), `REPLy_jl-na0` (P1 alias detachment), `REPLy_jl-6fh` (P1 clone publish race), `REPLy_jl-tox` (P1 bookkeeping leak), `REPLy_jl-exj` (P2 max_sessions race).
-- **Next:** continue holistic-review with `REPLy_jl-umg.8` (security/boundary review) or `REPLy_jl-umg.4` (Rule of 5 broad review); or pivot to fixing the P1 bugs filed this session.
-
----
-
-## 2026-04-30 10:27 — REPLy.jl
-
-- Completed all 13 holistic-review passes (`REPLy_jl-umg`): security, modularity, performance, DX/docs, formal-verification, and synthesis passes all closed.
-- Phase 1 (security floor): 6 pre-exposure vectors fixed — `LookupMiddleware` RCE, bounded message reader, `LoadFileMiddleware` deny-by-default, module field isolation, TCP connection limit, bounded stdin channel. All 1915 tests green, committed and pushed.
-- 41 implementation tickets remain open (all P1/P2): Phase 2 = session lifecycle races (close/eval, clone TOCTOU, alias detachment, `clients` vector locking), Phase 3 = eval throughput + docs.
-- **Next:** start Phase 2 — session lifecycle correctness: `REPLy_jl-h7o` (close/eval race), `REPLy_jl-na0` (alias detachment), `REPLy_jl-6fh` (clone publish race), then `clients`/`client_tasks` locking.
-
----
-
 ## 2026-04-30 10:37 — paranoid
 
 - Implemented Slice A of usage-audit history & drill-down (PARANOID-p5i.6) via TDD: RecentDaysEnumerator, DailyHistoryPresenter, DayDetailPresenter, plus UsageAuditDayDetailActivity and layout
@@ -59,29 +31,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start Slice B (PARANOID-p5i.7) — Day Detail hourly distribution + scoped Share/CSV; reuse DailyUsageAggregator with hourly bucketing (DST-aware) and add overnight summary inside Day Detail
 
 ---
-## 2026-04-30 12:52 — REPLy.jl
-
-- Fixed all 5 P1 bugs from holistic-review: na0 (alias detachment), h7o (close/eval race), 6fh (clone publish race), tox (active_eval_tasks leak), wep (TOCTOU session re-resolve)
-- Fixed P2 locking bug qr9: added `clients_lock::ReentrantLock` to TCP/Unix server handles; all `clients`/`client_tasks` mutations now atomic
-- All 6 commits pushed; 1933 tests green (1 pre-existing Aqua quality error unrelated)
-- **Next:** Phase 3 — performance, composition, and DX bugs (19 open P2 issues); run `bd ready` to see the list
-
----
 ## 2026-04-30 14:31 — XAct.jl
 
 - Created 9 beads tickets: migration epic (sxAct-9u7t) + 2 migration subtasks (nd7v, ltaa) + 6 unimplemented module tickets (xTerior, TexAct, Harmonics, xPrint, SymManipulator, SpinFrames)
 - Ran 5-pass issue review; found CRITICAL circular epic dep and HIGH duplicate with sxAct-bsd; applied all fixes (removed circular deps, superseded bsd, rewired Spinors dep chain, added acceptance criteria and TDD entry points to all module tickets)
 - **Next:** begin migration work — claim `sxAct-nd7v` (changelog audit → `docs/migration/xact-1.3.0-analysis.md`), then `sxAct-ltaa` (update oracle pin + regenerate snapshots)
-
----
-
-
-## 2026-04-30 16:15 — REPLy.jl
-
-- Closed `9ms` (readline OOM DoS) — already fixed in prior security commit; closed without new code.
-- Fixed `65d` (mktemp IO capture → pipe-based capture): replaced `mktemp`+`EVAL_IO_CAPTURE_LOCK` in `eval.jl` and `load_file.jl` with `Base.Pipe` async readers; 1947 tests pass.
-- Fixed `1i8` (Revise hook shadow-module injection): guard `_revise_if_present` with `Base.loaded_modules` identity check against `_REVISE_PKG_ID`; added security test for injected shadow modules.
-- **Next:** tackle P1 `3a9` (TCP auth) — needs auth mechanism design decision — or knock out DX doc bugs (`2j0`, `hdr`, `it7`, `dx7`, `c3z`).
 
 ---
 
@@ -94,14 +48,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-04-30 16:53 — REPLy.jl
-
-- Worked REPLy.jl docs/API DX issue REPLy_jl-2j0; updated `docs/src/howto-sessions.md`, `docs/src/howto-mcp-adapter.md`, and `docs/src/index.md`.
-- Rewrote examples to stop teaching unexported internals via `using REPLy: ...`; now lower-level symbols are explicitly qualified as `REPLy.*` and documented as embedding/middleware APIs rather than the primary public surface.
-- Fixed the docs environment hiccup by resolving the docs project, then verified `julia --project=docs docs/make.jl` succeeds; closed REPLy_jl-2j0 and committed `0543662` (`docs(api): stop teaching internal REPLy symbols as primary API`).
-- **Next:** push `main`, then pick the next ready P1/P2 issue from `bd ready`.
-
----
 ## 2026-04-30 17:00 — tRAGar
 
 - Scaffolded OpenSpec change `add-tracer-bullet-vertical-slice` (proposal, tasks, design) with minimal/dev-first strategy
@@ -132,16 +78,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - 13 TDD tests in `js/tests/slice-querystream.test.ts` (surface shape, hit fields, ordering, k cap, empty corpus, early break, close-after-break, InstanceClosed/InvalidConfig errors); 59/59 green
 - Closed `tRAG-6to`; pushed `b3ec1ed feat(slice-4): queryStream() async iterator over scored hits`
 - **Next:** pick up `tRAG-x83` (OPFS/IndexedDB persistence slice) or `tRAG-lll` (browser smoke test)
-
----
-
-## 2026-04-30 18:16 — REPLy.jl
-
-- Closed 10 issues across 3 sessions: 6 DX doc bugs (JSON3 package note, JSONTransport snippet, middleware stack warning, MCP end-to-end example, api.md prose, Unix socket status), 4 correctness bugs (UUID format, `done` in error arrays, middleware exports)
-- Fixed atomic session limit enforcement (`ktf`/`exj`): deduplicated 3 copy-paste limit checks via `create_named_session_if_within_limit!`, eliminated TOCTOU race under single lock
-- Closed `xvl`/`gfo`/`1jy`/`iuq`/`6sr`: max_output_bytes+max_session_history threading, EVAL_IO_CAPTURE_LOCK to core.jl, Timer-based eval timeout, AbstractServerHandle refactor
-- All 1974 tests green; 4 commits pushed, branch at `c27a3a4`
-- **Next:** 6 issues remain — all require design decisions: `3a9` (TCP auth design), `gk2` (AuditLog/client_id threading), `e9g` (lifecycle dedup), `y31` (JSON3 materialization), `a4o` (per-eval stdin feeder), `cwb` (per-task IO routing)
 
 ---
 
