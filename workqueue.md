@@ -84,3 +84,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** tackle P1 `3a9` (TCP auth) — needs auth mechanism design decision — or knock out DX doc bugs (`2j0`, `hdr`, `it7`, `dx7`, `c3z`).
 
 ---
+
+## 2026-04-30 16:38 — clojnder
+
+- Designed a detailed implementation plan for a full-featured JupyterLab Clay Preview: in-Lab panel, backend control API, explicit file render flow, active-file follow, save-triggered rerender, recovery UX, and Binder packaging.
+- Translated the plan into 10 Beads issues with tracer-bullet vertical slices, including 2 HITL decision tickets and 13 dependency links.
+- Key first execution path is now clear: settle preview defaults/UX policy, then start   `clojnder-6kq` (extension scaffolding).
+- **Next:** review and resolve   `clojnder-s2i` and   `clojnder-6gq`, then claim   `clojnder-6kq` to begin implementation.
+
+---
