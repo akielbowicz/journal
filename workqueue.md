@@ -85,14 +85,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-04-30 16:38 — clojnder
-
-- Designed a detailed implementation plan for a full-featured JupyterLab Clay Preview: in-Lab panel, backend control API, explicit file render flow, active-file follow, save-triggered rerender, recovery UX, and Binder packaging.
-- Translated the plan into 10 Beads issues with tracer-bullet vertical slices, including 2 HITL decision tickets and 13 dependency links.
-- Key first execution path is now clear: settle preview defaults/UX policy, then start   `clojnder-6kq` (extension scaffolding).
-- **Next:** review and resolve   `clojnder-s2i` and   `clojnder-6gq`, then claim   `clojnder-6kq` to begin implementation.
-
----
 ## 2026-04-30 16:51 — XAct.jl
 
 - Claimed `sxAct-nd7v` and wrote `docs/migration/xact-1.3.0-analysis.md` auditing xAct 1.2.0 → 1.3.0.
@@ -102,14 +94,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-04-30 16:51 — clojnder
-
-- Resolved the two HITL preview-policy tickets, recorded the approved v1 defaults in `docs/clay-preview-v1-policy.md`, and linked them from `README.md` and `openspec/project.md`.
-- Created `openspec/changes/add-clay-preview-extension-skeleton/`, ran a Rule-of-5 review on the proposal, fixed all review findings, and revalidated it with `openspec validate --strict`.
-- Committed and pushed the approved proposal as `fc91d04` (`spec: approve clay preview extension skeleton proposal`); `clojnder-6kq` is now the active implementation entry point.
-- **Next:** start `clojnder-6kq` with TDD: add failing registration tests, preserve the existing `clay` launcher entrypoint, and scaffold the prebuilt JupyterLab plugin/open command.
-
----
 ## 2026-04-30 16:53 — REPLy.jl
 
 - Worked REPLy.jl docs/API DX issue REPLy_jl-2j0; updated `docs/src/howto-sessions.md`, `docs/src/howto-mcp-adapter.md`, and `docs/src/index.md`.
