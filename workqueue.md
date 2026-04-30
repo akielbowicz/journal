@@ -67,3 +67,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start Slice B (PARANOID-p5i.7) — Day Detail hourly distribution + scoped Share/CSV; reuse DailyUsageAggregator with hourly bucketing (DST-aware) and add overnight summary inside Day Detail
 
 ---
+## 2026-04-30 12:44 — tRAGar
+
+- Archived `add-initial-capabilities` OpenSpec change; all 8 specs promoted to `openspec/specs/` (43 requirements total)
+- Filed 5 open-question decision issues (§21 precondition for implementation): tokenizer, default model, `ingest()` scope, worker threshold, reranker streaming
+- Discussed v0.1 scope vs "one weekend" claim — decided Path A (C++23 core, targeted cuts): drop 200-doc golden corpus, IndexedDB fallback, multi-browser CI; keep `std::generator<Hit>` Embind binding and SIMD cosine
+- **Next:** spike `std::generator<Hit>` → Embind → JS async iterator binding (2h gate) before building C++ core; then settle P2 decisions (tRAG-gmr tokenizer, tRAG-9eb default model)
+
+---
