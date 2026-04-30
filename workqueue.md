@@ -75,3 +75,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** spike `std::generator<Hit>` → Embind → JS async iterator binding (2h gate) before building C++ core; then settle P2 decisions (tRAG-gmr tokenizer, tRAG-9eb default model)
 
 ---
+## 2026-04-30 12:52 — REPLy.jl
+
+- Fixed all 5 P1 bugs from holistic-review: na0 (alias detachment), h7o (close/eval race), 6fh (clone publish race), tox (active_eval_tasks leak), wep (TOCTOU session re-resolve)
+- Fixed P2 locking bug qr9: added `clients_lock::ReentrantLock` to TCP/Unix server handles; all `clients`/`client_tasks` mutations now atomic
+- All 6 commits pushed; 1933 tests green (1 pre-existing Aqua quality error unrelated)
+- **Next:** Phase 3 — performance, composition, and DX bugs (19 open P2 issues); run `bd ready` to see the list
+
+---
