@@ -50,3 +50,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** run `openspec validate add-initial-capabilities --strict` (task 2.1) and `openspec archive` (task 3.1) to close out the proposal lifecycle; then begin implementation.
 
 ---
+## 2026-04-30 10:27 — REPLy.jl
+
+- Completed all 13 holistic-review passes (`REPLy_jl-umg`): security, modularity, performance, DX/docs, formal-verification, and synthesis passes all closed.
+- Phase 1 (security floor): 6 pre-exposure vectors fixed — `LookupMiddleware` RCE, bounded message reader, `LoadFileMiddleware` deny-by-default, module field isolation, TCP connection limit, bounded stdin channel. All 1915 tests green, committed and pushed.
+- 41 implementation tickets remain open (all P1/P2): Phase 2 = session lifecycle races (close/eval, clone TOCTOU, alias detachment, `clients` vector locking), Phase 3 = eval throughput + docs.
+- **Next:** start Phase 2 — session lifecycle correctness: `REPLy_jl-h7o` (close/eval race), `REPLy_jl-na0` (alias detachment), `REPLy_jl-6fh` (clone publish race), then `clients`/`client_tasks` locking.
+
+---
