@@ -98,3 +98,18 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `tRAG-x83` — OPFS/IndexedDB persistence slice (TDD, same pattern as previous slices)
 
 ---
+
+## 2026-05-02 20:00 — paranoid
+
+- Committed leftover Slice A code (PARANOID-p5i.6) as `09a34b1` — bead was closed two sessions ago (2026-04-30 morning) but the code never landed on `main`; resume noticed and recovered
+- Implemented Slice B of usage-audit history & drill-down (PARANOID-p5i.7) via TDD; committed as `d9b9403`:
+  - **Domain:** `HourlyBucket` model + `DailyUsageAggregator.hourlyDistribution(...)` walking the window in 1h real-time steps; produces 23/24/25 buckets on spring-forward / normal / fall-back days
+  - **Presentation:** `DayDetailScreenState` extended with `hourlyBars` + `overnightSummary`; `DayDetailPresenter` accepts hourly buckets and an optional `OvernightAudit`, rendering the overnight panel only when its `windowStart` is inside the selected day
+  - **UI:** Day Detail layout adds hourly-bars container, overnight summary panel, Share Summary / Export CSV buttons; activity renders bars and overnight panel and wires the buttons
+  - **Data layer:** `UsageAuditData.recentDayHourlyBuckets` precomputes per-day buckets keyed by day-start; matching overnight from existing `recentNights`
+  - **Share/CSV:** reuses `TodaySummaryFormatter` / `CsvExporter.exportToday` on the selected day's summary — v1 schema preserved (no hourly/interval columns)
+- 5 new tests in `HourlyDistributionTest`, 4 new in `DayDetailPresenterTest`, 2 new in `UsageAuditExportTest`. All unit tests green via `just test`; OpenSpec strict-validates; bead PARANOID-p5i.7 closed
+- **Decisions:** hourly walk uses `+= 3_600_000` (real-time) rather than `Calendar.add(HOUR_OF_DAY, 1)` — equivalent under DST given 23/24/25h day windows, avoids the spring-forward "phantom hour" ambiguity. Did not add hourly buckets to `DailyUsageSummary` (kept the domain model render-shape-free); precomputed at the data provider instead
+- **Next:** Slice C (PARANOID-p5i.8) — App Detail drill-down: `UsageStatsManager.queryEvents` adapter for per-app foreground intervals, App Detail screen, no-activity + uninstalled-package states, Day Detail row → App Detail navigation. Tail tickets PARANOID-p5i.9 (manual device verification + functionality.md update) and tasks 3.7 (unify Today/Day Detail render paths) + 1.10 (tidy day-window helpers) still open
+
+---
