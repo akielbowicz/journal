@@ -156,3 +156,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** review/approve the OpenSpec proposal, then implement runner tests for setup-time discounting and skip/tag handling first.
 
 ---
+## 2026-05-04 19:55 — superficies
+
+- Reviewed open tickets `4zg.8` (responsive chrome) and `4zg.9` (long-hash + font pairing); chose `4zg.9` first as a correctness pass while hash/state code was fresh.
+- Implemented `BodyFont` type, font-pairing matrix, and `updateTypography()` enforcing display/body constraints across `types.ts`, `data.ts`, `state.ts`, `main.ts`.
+- Added long-hash fallback in `hash.ts`: readable hash → `#b64=<base64-json>` when >500 chars; decoder handles both formats and legacy hashes.
+- 7 new tests added; all 40 tests pass, types clean; committed `51dbc47` and closed `superficies-4zg.9`.
+- **Next:** tackle `4zg.8` — responsive editing chrome (sidebar on desktop, bottom bar + modals on mobile); requires browser verification at both breakpoints.
+
+---
