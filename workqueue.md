@@ -129,3 +129,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with ready ticket `superficies-4zg.5` to implement the computed token panel, or `superficies-4zg.9` for long-hash/font-pair constraints.
 
 ---
+## 2026-05-04 16:49 — superficies
+
+- Ran a Rule-of-5 review over the current `superficies` code and fixed the concrete issues found in `src/render.ts`, `src/export.ts`, and token/export tests.
+- Implemented `superficies-4zg.5`: added `src/tokens.ts` for derived typography/color/spacing/radius/shadow tokens, OKLCH→hex conversion, and contrast diagnostics; rendered the computed token panel and wired token JSON export to current state.
+- Fixed unsafe dynamic hero-content injection by escaping user-provided overrides before rendering, and made exports resolve current content overrides.
+- Validated with `npm test`, `npm run check`, `npm run build`, `openspec validate --strict`, then closed `superficies-4zg.5` and committed `dfec3ae feat: expose computed token diagnostics`.
+- **Next:** continue with ready ticket `superficies-4zg.6` (deterministic export workspace) or `superficies-4zg.9` (long-hash fallback and font-pair constraints).
+
+---
