@@ -113,3 +113,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement `superficies-vxs` — scaffold Vite + TypeScript + `vite-plugin-singlefile`, add minimal three-zone preview/export shell, and wire GitHub Pages deployment
 
 ---
+## 2026-05-04 15:54 — superficies
+
+- Implemented the `superficies-vxs` tracer-bullet slice with TypeScript + Vite + `vite-plugin-singlefile`, including modular source files for state, hash, render, export, and styles
+- Added a local `justfile` with `just serve`/`just preview`, GitHub Pages deployment workflow, README usage docs, and `.gitignore` entries for `node_modules/` and `dist/`
+- Validated `npm install`, `npm run build`, and local dev startup; confirmed the build emits a self-contained `dist/index.html` and then committed/pushed `3e35be2 feat: bootstrap deployable design-catalog shell`
+- **Next:** add focused tests for pure hash/state/export logic, then expand the shell into real dimensions/presets and side-by-side `both` preview behavior
+
+---
