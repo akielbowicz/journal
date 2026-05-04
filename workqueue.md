@@ -138,3 +138,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with ready ticket `superficies-4zg.6` (deterministic export workspace) or `superficies-4zg.9` (long-hash fallback and font-pair constraints).
 
 ---
+## 2026-05-04 17:01 — superficies
+
+- Completed RO5U review of deterministic export workspace; fixed export tab/copy generation to use shared artifact helpers and clear stale copy feedback.
+- Committed `facf30b feat: complete deterministic export workspace` for `superficies-4zg.6`.
+- Implemented and committed `ca6949b feat: add advanced export context` for `superficies-4zg.7`: export-only context fields, URL serialization, XML/Markdown full-brief wrappers, controls, and tests.
+- Validation passed: `npm test`, `npm run check`, `npm run build`, `openspec validate --specs --strict`; working tree clean.
+- **Next:** choose between ready tickets `superficies-4zg.8` responsive editing chrome or `superficies-4zg.9` long-hash fallback/font pairing constraints.
+
+---
