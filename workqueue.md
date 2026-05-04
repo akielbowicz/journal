@@ -81,14 +81,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-04-30 18:22 — clojnder
-
-- Implemented `clojnder-dnh`: `Clay Preview: Open` command opens a split panel in JupyterLab main area using `@jupyterlab/coreutils` for URL handling
-- Fixed editable-install packaging bug (dropped `-e` from Binder Dockerfile); extension now loads as `clay-jupyter-proxy v0.1.0 enabled OK`
-- 15/15 pytest tests green; bundle built and committed; `clojnder-dnh` closed and pushed
-- **Next:** `clojnder-lni` (status + restart controls in the preview panel) or `clojnder-a2e` (render a selected `.clj` source file)
-
----
 ## 2026-04-30 18:23 — tRAGar
 
 - Completed slice-5: browser smoke test (`tests/browser/tracer-bullet.spec.ts`) with Playwright + Chromium headless
