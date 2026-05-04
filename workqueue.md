@@ -121,3 +121,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** add focused tests for pure hash/state/export logic, then expand the shell into real dimensions/presets and side-by-side `both` preview behavior
 
 ---
+
+## 2026-05-04 16:41 — superficies
+
+- Worked through Beads tickets in `superficies`: closed state/hash pipeline, live presets/departure tracking, hero layouts/content overrides, and specimen forced-state strip.
+- Added tests and committed three feature slices: `07bb8af`, `0b38319`, `6b33b42`; latest validation passed with `npm test`, `npm run check`, and `npm run build`.
+- **Next:** continue with ready ticket `superficies-4zg.5` to implement the computed token panel, or `superficies-4zg.9` for long-hash/font-pair constraints.
+
+---
