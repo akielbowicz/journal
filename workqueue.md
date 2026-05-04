@@ -105,3 +105,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Slice C (PARANOID-p5i.8) — App Detail drill-down: `UsageStatsManager.queryEvents` adapter for per-app foreground intervals, App Detail screen, no-activity + uninstalled-package states, Day Detail row → App Detail navigation. Tail tickets PARANOID-p5i.9 (manual device verification + functionality.md update) and tasks 3.7 (unify Today/Day Detail render paths) + 1.10 (tidy day-window helpers) still open
 
 ---
+## 2026-05-04 15:14 — superficies
+
+- Initialized repo workflow/tooling with `wai`, `bd`, and `openspec`; documented project context in `openspec/project.md` and expanded `README.md`
+- Derived baseline OpenSpec specs from the design-catalog research doc for preview behavior, URL state, export flows, and single-file delivery; committed setup and spec files
+- Created and reviewed tracer-bullet ticket `superficies-vxs` for a deployable TypeScript/Vite single-file skeleton on GitHub Pages; tightened acceptance criteria, file targets, and AFK/HITL assumptions
+- **Next:** implement `superficies-vxs` — scaffold Vite + TypeScript + `vite-plugin-singlefile`, add minimal three-zone preview/export shell, and wire GitHub Pages deployment
+
+---
