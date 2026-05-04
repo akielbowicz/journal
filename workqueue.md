@@ -147,3 +147,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** choose between ready tickets `superficies-4zg.8` responsive editing chrome or `superficies-4zg.9` long-hash fallback/font pairing constraints.
 
 ---
+## 2026-05-04 17:02 — XAct.jl
+
+- Researched existing sxAct benchmark infrastructure for Wolfram-vs-Julia/Python comparisons: `xact-test benchmark`, `sxact.benchmarks.runner`, adapters, oracle server, and TOML benchmark candidates.
+- Created valid OpenSpec proposal `add-cross-adapter-benchmark-suite` with proposal/design/tasks/spec delta for lightweight cross-adapter benchmarking.
+- Captured key decision: primary benchmark medians must discount adapter init, oracle health checks, xAct loading, context creation, and file setup; these are reported as setup/cold-start metadata.
+- Created bd issue `sxAct-w9b2` to implement the approved proposal later.
+- **Next:** review/approve the OpenSpec proposal, then implement runner tests for setup-time discounting and skip/tag handling first.
+
+---
