@@ -1,12 +1,12 @@
 ---
 name: renew
-description: "Resume work on a specific project or area. Trigger when the user says /renew <name>, 'pick up <project>', 'continue <project>', or 'back to <project>'."
+description: "Resume work on a project or area, inferring the target from context when omitted. Trigger when the user says /renew, /renew <name>, 'pick up <project>', 'continue <project>', or 'back to <project>'."
 disable-model-invocation: true
 ---
 
 # Renew
 
-Load focused context for a specific project or area to continue work.
+Load focused context for a project or area to continue work. If the user omits the slug, infer the most likely target from conversation and workspace context.
 
 > Named `/renew` instead of `/resume` because `/resume` is a built-in command in Claude Code (and other tools) for resuming previous conversations.
 
@@ -17,10 +17,24 @@ Load focused context for a specific project or area to continue work.
    JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
    ```
 
-2. Identify the target. The user says `/renew <slug>`. Match `<slug>` against:
+2. Identify the target.
+
+   If the user provided a slug or name (`/renew <slug>`, `pick up <project>`, etc.), match it against:
    - `$JORNAL/projects/<slug>.md`
    - `$JORNAL/areas/<slug>.md`
    - If no exact match, try partial match or list available projects/areas and ask.
+
+   If the user omitted the target (`/renew`, `continue`, `pick this back up`), infer it from context using these signals, in order:
+   1. Current conversation: the project/area name or slug the user just mentioned.
+   2. Current working directory: repo/path components matching a project or area slug/name.
+   3. Git context: current branch name, remote URL/repo name, or recent commit messages matching a project or area slug/name.
+   4. `$JORNAL/workqueue.md`: the most recent queued `/next` entry if it is unambiguous.
+   5. Today's log: Focus section or most recent Log entry naming a project/area.
+   6. Recent logs (last 3 days): most recently active project/area.
+
+   Treat exact slug/name matches as strong evidence. Treat multiple plausible matches as ambiguous.
+
+   If exactly one strong candidate is found, proceed and mention the inference source in the output (for example: `Inferred from current directory`). If no candidate or multiple candidates are plausible, list the top candidates with their evidence and ask the user to choose instead of guessing.
 
 3. Read the matched project or area file.
 
@@ -52,6 +66,8 @@ Load focused context for a specific project or area to continue work.
 
 ---
 **Resuming: Project/Area Name**
+
+**Target inference**: explicit `<slug>`, or inferred from cwd/git/workqueue/logs
 
 **Status**: one-line summary of where things stand
 

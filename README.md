@@ -109,7 +109,7 @@ This repo includes 12 lifecycle skills that work with any AI coding tool (Claude
 | `/morning` | Start of day — briefing with open tasks, inbox, workspace context |
 | `/capture` | Quick-add a task or note to `inbox.md` |
 | `/jlog` | Append a note to today's daily log |
-| `/renew <slug>` | Pick up a project or area — loads focused context (`/resume` is taken by built-in conversation resume in most tools) |
+| `/renew [slug]` | Pick up a project or area — infers the target from context when omitted (`/resume` is taken by built-in conversation resume in most tools) |
 | `/park` | Switching context — snapshot what you were doing directly into today's log |
 | `/next` | Quick handoff to `workqueue.md` when you need to stop without a full close |
 | `/close` | End of session — summarize, log, commit, and fold in queued `/next` notes for the same slug |
@@ -136,7 +136,8 @@ This repo includes 12 lifecycle skills that work with any AI coding tool (Claude
 /capture fix the CI → add to inbox
   ... work ...
 /next               → queue a quick handoff when you need to pause fast
-/renew other-proj   → load context for the next thing
+/renew              → infer and load context for the next thing
+/renew other-proj   → explicitly load context for a project/area
   ... work ...
 /close              → log this session, folding in any queued notes for the same slug
 /wrap-up            → end-of-day sweep across all queued sessions

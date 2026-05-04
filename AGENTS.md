@@ -118,7 +118,7 @@ What this area covers and why it matters.
 | `/morning` | Start-of-day briefing: projects, areas, inbox, workspace context |
 | `/capture` | Quick add to `inbox.md` |
 | `/jlog` | Open or append to today's daily log |
-| `/renew <slug>` | Pick up a specific project or area with focused context |
+| `/renew [slug]` | Pick up a project or area with focused context; infer the target from context when omitted |
 | `/park` | Snapshot current work before switching context |
 | `/next` | Rapid session snapshot to `workqueue.md` — no full close ceremony → feeds `/close` or `/wrap-up` |
 | `/close` | End of session: reads queued `/next` entries for this slug (any date), synthesizes multi-session arc, logs, commits |
