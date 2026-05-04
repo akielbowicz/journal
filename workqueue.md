@@ -165,3 +165,25 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** tackle `4zg.8` — responsive editing chrome (sidebar on desktop, bottom bar + modals on mobile); requires browser verification at both breakpoints.
 
 ---
+
+## 2026-05-04 23:08 — superficies
+
+- Implemented `superficies-4zg.8`: responsive editing chrome.
+- Desktop (≥900px): persistent fixed-width sidebar (280px) with collapsible `<details>` sections (Preset & mode, Typography, Color & surface, Spacing, Content) beside the preview. Export button in sidebar footer.
+- Mobile (<900px): sidebar hidden by default; fixed bottom bar exposes "Edit" and "Export". Tapping "Edit" adds `.is-open` to the sidebar, revealing it as a full-screen overlay with a "Close" button.
+- `attachExportInteractions` updated to `querySelectorAll` for all `[data-export-open]` buttons (sidebar + bottom bar).
+- 3 new render tests added; 43/43 pass; `tsc --noEmit` clean; build clean.
+- Verified desktop sidebar, mobile bottom bar, Edit overlay, and live preset switching in browser.
+- Committed `13b8ff0 feat: implement responsive editing chrome`, closed `superficies-4zg.8`, pushed.
+- **Next:** `superficies-4zg.10` — run final spec verification and docs sync to close the epic.
+
+---
+
+## 2026-05-04 20:32 — superficies
+
+- Implemented `superficies-4zg.8`: responsive editing chrome — desktop sidebar (280px, 5 collapsible `<details>` sections) + mobile bottom bar with full-screen overlay
+- Added 3 tests; 43/43 pass; tsc + Vite build clean; verified live at both breakpoints
+- Closed `superficies-4zg.8` and pushed `13b8ff0`
+- **Next:** close `superficies-4zg` epic — verify all subtasks done, run `bd close superficies-4zg`
+
+---
