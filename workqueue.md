@@ -195,3 +195,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** project is feature-complete — consider advancing to design phase (`wai phase set design`) or opening new work
 
 ---
+
+## 2026-05-04 21:12 — superficies
+
+- Resumed after epic `superficies-4zg` fully shipped; 0 open issues, 43/43 tests, 17/17 Playwright checks passing
+- Cleaned up post-verification artifacts: gitignored `.playwright-mcp/` session state and all verification/screenshot PNG files
+- Committed and pushed `.gitignore` update (`9fa5dab`)
+- **Next:** project in `research` phase — advance with `wai phase set design` or open new feature tickets
+
+---
