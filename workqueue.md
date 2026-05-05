@@ -186,3 +186,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up one unblocked tracer core slice — preferably `dont-82l` storage datom layer, or parallel-friendly `dont-3am` envelope types / `dont-cnw` status lattice.
 
 ---
+## 2026-05-05 14:40 — dont
+
+- Continued  tracer-bullet storage work: completed , adding , , and  for Cozo-backed datom persistence at .
+- Hardened the new store after Rule-of-5 review: structured , typed /, schema-version mismatch rejection, write locking around tx allocation/writes, reopen persistence coverage, and tempdir cleanup.
+- Updated  OpenSpec tasks/design to mark storage complete and document SQLite as the tracer backend; validation and CI passed.
+- Committed/pushed repo changes through ; beads state pushed after closing .
+- **Next:** continue tracer bullet with  JSON envelope/error types (recommended before wiring real CLI command behavior), or  status lattice.
+
+---
