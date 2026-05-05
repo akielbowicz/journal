@@ -48,3 +48,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue sxAct-rvzo by deciding whether local snapshot/compare/loader compatibility layers should be thinned further or kept as sxAct-specific adapters; run `bd show sxAct-rvzo --json` first.
 
 ---
+
+## 2026-05-05 16:46 — XAct.jl
+
+- Completed sxAct Elegua external-dependency refactor in XAct.jl: `sxact.runner.loader` now delegates TOML parsing to `elegua.bridge.load_test_file()` while preserving sxAct compatibility dataclasses, `source_path`, schema validation, and `LoadError` behavior.
+- Added migration-boundary coverage in `tests/unit/test_elegua_migration_boundary.py`; closed beads `sxAct-rvzo` and `sxAct-u601`.
+- Validation passed: `uv run ruff check .`, `uv run mypy packages/xact-py/src packages/sxact/src`, and `just test-python` (`1004 passed, 17 skipped`). Commit `2a948dd` pushed to `origin/main`; workspace clean/up to date.
+- **Next:** pick next ready bead from `bd ready` — likely JOSS-readiness work such as `sxAct-qozc` textbook GR regressions or `sxAct-3db5` branding decision.
+
+---
