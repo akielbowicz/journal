@@ -241,3 +241,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Verify scroll fix in browser across colorways and modes; consider testing mobile layout for regressions from the viewport-height change
 
 ---
+## 2026-05-05 11:14 — dont
+
+- Evaluated the full spec set: domain model, envelope, error taxonomy, tracer bullet design all strong; gaps identified in glossary, test strategy, split define spec, and thin MCP interface
+- Deferred olog/label-validator work (`add-dont-define-label-validators`) — added explicit deferral note to tracer bullet proposal and canonical pointer in `dont-cli-core` spec
+- Wrote `implement-tracer-bullet/test-strategy.md` covering envelope schema conformance, cross-process persistence, project discovery, hedge pattern, and perf seed
+- Added tasks 10.6–10.10 to `implement-tracer-bullet/tasks.md` derived from test strategy
+- **Next:** begin `implement-tracer-bullet` — core is fully specced and pre-tracer gaps are resolved; start with CozoDB datom schema validation (Phase 1)
+
+---
