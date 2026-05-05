@@ -213,3 +213,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** create a new release/version of `paranoid` — likely involves bumping versionCode/versionName, tagging, building signed APK via `just`, and updating CHANGELOG.md
 
 ---
+
+## 2026-05-05 10:12 — superficies
+
+- Playwright UI audit found export dialog overflow and missing magazine layout — fixed CSS (`white-space: pre-wrap`, `max-height: 24rem`, magazine two-column grid, specimen grid capped at 3 cols)
+- Rule-of-5-universal review identified 3 bugs, 3 extensibility liabilities, 6 quality issues — all 12 fixed and pushed (`82f45d2`)
+- Key fixes: `isCatalogState` now validates enum values (crash prevention), token panel shows dark-mode colors, archetype dropdown is data-driven, Escape closes mobile sidebar
+- **Next:** new feature — color palette widget (side panel that slides in from right, extracts palette from a photo URL, lets user pick colors). Research phase — run `wai search "color"` and `wai search "palette"` first.
+
+---
