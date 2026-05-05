@@ -222,3 +222,22 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** new feature — color palette widget (side panel that slides in from right, extracts palette from a photo URL, lets user pick colors). Research phase — run `wai search "color"` and `wai search "palette"` first.
 
 ---
+
+## 2026-05-05 10:15 — paranoid
+
+- Cut release **v0.7.0** for paranoid covering usage-audit history & drill-down
+- Archived OpenSpec change `add-usage-audit-history-drilldown` → `2026-05-05-add-usage-audit-history-drilldown`; spec applied to `openspec/specs/usage-audit/spec.md` (+3 requirements)
+- Added `[v0.7.0]` CHANGELOG entry (UsageAudit History/Day Detail/App Detail/scoped Share+CSV; internal tidy + ProGuard + CI tests + package move)
+- `just test` green; `just build-release` fails locally (no signing env) — CI `release.yml` handles signing on tag push
+- Committed `59b0f3f`, tagged `v0.7.0` (annotated), pushed `main` + tag to `cv:charly-vibes/paranoid.git`
+- CI workflow `Release APK` should now build & publish split APKs (arm64-v8a, armeabi-v7a, x86_64) to a GitHub Release
+- `.beads/issues.jsonl` (staged) and `.claude/settings.local.json` (unstaged) left untouched per prior session
+- **Next:** verify the GitHub Actions release run succeeded & APKs uploaded; then handle the 2026-04-24 inbox item (manual on-device verification of UsageAudit usage-access handoff + overnight battery snapshot)
+
+## 2026-05-05 11:14 — superficies
+
+- Fixed 6 beads tickets: Both mode (side-by-side light/dark), surface swatch visibility in dark mode, cream background bleed, export button to topbar, About/docs section in sidebar, TUI/CLI archetypes + terminal hero layout
+- Scroll broke after the cream-bleed fix (`height: 100%` on `.shell` resolved to 0 because `#app` had no height); fixed with `height: 100dvh` directly on `.shell`
+- **Next:** Verify scroll fix in browser across colorways and modes; consider testing mobile layout for regressions from the viewport-height change
+
+---
