@@ -204,3 +204,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** project in `research` phase — advance with `wai phase set design` or open new feature tickets
 
 ---
+
+## 2026-05-05 09:40 — paranoid
+
+- Closed the three remaining agent-doable tasks in OpenSpec change `add-usage-audit-history-drilldown` (1.2 DST/past-day aggregator tests, 1.10 extracted `RecentDaysEnumerator.startOfLocalDay()`, 3.7 extracted `DailyUsageSummary.toAppRows()` to unify Today/Day Detail rendering)
+- `just test` green, `openspec validate add-usage-audit-history-drilldown --strict` passes; change is now 30/30 ✓ Complete
+- Committed `9b5a19c` and pushed to `origin/main`; pre-staged `.beads/issues.jsonl` and unstaged `.claude/settings.local.json` left untouched (not authored this session)
+- **Next:** create a new release/version of `paranoid` — likely involves bumping versionCode/versionName, tagging, building signed APK via `just`, and updating CHANGELOG.md
+
+---
