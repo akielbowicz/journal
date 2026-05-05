@@ -154,3 +154,27 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue by archiving/rebasing foundational OpenSpec changes or start the scoped tracer-bullet implementation from the clarified derived-assessment model.
 
 ---
+## 2026-05-05 12:36 — dont
+
+- Implemented  tracer-bullet Phase 1 scaffold: Rust binary crate with /, clap subcommand stubs in , and CLI scaffold tests in .
+- Added Available recipes:
+    bd-status
+    build
+    ci
+    default
+    docs-build
+    doctor
+    lint
+    prime
+    ready
+    reflect
+    run *args
+    show
+    status
+    sync
+    test
+    way recipes for , , , and ; wired clippy into lint and ignored .
+- Marked OpenSpec tasks 1.1/1.2 complete, closed bead , advanced WAI phase to implement, and committed/pushed .
+- **Next:** pick up one unblocked tracer core slice — preferably  storage datom layer, or parallel-friendly  envelope types /  status lattice.
+
+---
