@@ -31,3 +31,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `bd ready` — all OpenSpec work for the v0.3.2 spec decomposition is done; check for newly created or unblocked implementation tasks
 
 ---
+
+## 2026-05-05 15:51 — elegua
+
+- Committed staged housekeeping (archived `refactor-composition-pipeline` change files)
+- `elegua-06tm` (red): wrote failing tests for NPY array blob — added missing-blob contract test, checksum-corruption test, compressed round-trip, docstring fix, large-array threshold bump; closed after ro5u review
+- `elegua-7ktz` (green): implemented `put_array`, `get_array`, `validate_manifest`, `ArrayManifest` in `elegua/blob_array.py`; 597 tests pass; ro5u found 2 fixes (broad except → specific exceptions, dtype string → np.dtype comparison); closed
+- **Next:** `elegua-jwox` — integrate top-K array disagreement reports with numeric comparison layer (now unblocked by both 06tm and 7ktz)
+
+---
