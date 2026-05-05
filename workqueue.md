@@ -187,3 +187,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** close `superficies-4zg` epic — verify all subtasks done, run `bd close superficies-4zg`
 
 ---
+## 2026-05-04 21:02 — superficies
+
+- Ran full Playwright verification of `superficies-4zg.10` — 17/17 checks passed across cold load, URL round-trip, preset/departure, font pairing, hero layouts, light/dark/both modes, export panel (3 tabs + format toggle), desktop sidebar, and mobile chrome
+- Found and fixed dark mode bug: `.shell` lacked `color: var(--ink)` causing hero heading to be invisible in dark mode — committed `22a5bb1 fix: restore color cascade in dark mode shell`
+- Closed `superficies-4zg.10` (HITL verification slice) and parent epic `superficies-4zg`; pushed
+- **Next:** project is feature-complete — consider advancing to design phase (`wai phase set design`) or opening new work
+
+---
