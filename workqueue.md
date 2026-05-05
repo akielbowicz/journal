@@ -40,3 +40,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `elegua-jwox` — integrate top-K array disagreement reports with numeric comparison layer (now unblocked by both 06tm and 7ktz)
 
 ---
+
+## 2026-05-05 15:52 — XAct.jl
+
+- Completed issues sxAct-7ulq, sxAct-7nmo, sxAct-ovpb, sxAct-xebl, sxAct-h7ks: extracted normalize/sampling layers into elegua bridge, ported adapters, migrated TOML schema validation, replaced sxact.runner.isolation with elegua IsolatedRunner
+- Switched elegua dependency from local path to PyPI (`elegua 0.1.0`) after CI couldn't resolve sibling directory
+- Fixed ruff, mypy CI failures post-migration; tightened pre-push hooks so mypy runs at push time and triggers on pyproject.toml changes
+- **Next:** implement sxAct-rinw (end-to-end integration smoke test for elegua+sxact pipeline) and sxAct-rvzo (refactor sxact to consume elegua as external dependency)
+
+---
