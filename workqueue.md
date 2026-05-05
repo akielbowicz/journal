@@ -12,3 +12,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** check `bd ready` for newly unblocked work — likely label validators (`add-dont-define-label-validators`) or spec work (`dont-71y`, `dont-656`)
 
 ---
+
+## 2026-05-05 15:31 — elegua
+
+- Implemented `elegua/numeric/tolerance.py` (scalar tolerance types), `array.py` (array comparison with top-K diagnostics), `provenance.py`, and `verify_isolation` in `adapter.py`
+- Rule of 5 review caught and fixed: ULP distance wrong for negatives (HIGH), NaN/Inf guard (MEDIUM), label mismatch silent failure (MEDIUM), plus 3 LOWs
+- Implemented `elegua/numeric/layer.py` — `make_numeric_layer` LayerFn dispatching scalar/array/sample paths; registered in comparison pipeline as L3 via `NUMERIC_KEYS`
+- **Next:** `elegua-jwox` (integrate top-K array disagreement reports with numeric layer) or `elegua-g5k7` (backwards compatibility tests) — both now unblocked
+
+---
