@@ -195,3 +195,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue tracer bullet with  JSON envelope/error types (recommended before wiring real CLI command behavior), or  status lattice.
 
 ---
+## 2026-05-05 14:40 — dont
+
+- Corrected checkpoint for the prior malformed `/next` entry: continued `dont` tracer-bullet storage work and completed `dont-82l` with `src/lib.rs`, `src/store.rs`, and `tests/store.rs` for Cozo-backed datom persistence at `.dont/db.cozo`.
+- Hardened the new store after Rule-of-5 review: structured `StoreError`, typed `StoreStatus`/`StoreEventKind`, schema-version mismatch rejection, write locking around tx allocation/writes, reopen persistence coverage, and tempdir cleanup.
+- Updated `implement-tracer-bullet` OpenSpec tasks/design to mark storage complete and document SQLite as the tracer backend; validation and CI passed.
+- Committed/pushed repo changes through `da605ad fix: harden datom store implementation`; beads state pushed after closing `dont-82l`.
+- **Next:** continue tracer bullet with `dont-3am` JSON envelope/error types (recommended before wiring real CLI command behavior), or `dont-cnw` status lattice.
+
+---
