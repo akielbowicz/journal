@@ -250,3 +250,10 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** begin `implement-tracer-bullet` — core is fully specced and pre-tracer gaps are resolved; start with CozoDB datom schema validation (Phase 1)
 
 ---
+## 2026-05-05 11:33 — dont
+
+- Reviewed OpenSpec readiness for `dont`, then applied stale-model fixes across status lifecycle, payloads, rule engine, lifecycle verbs, derived queries, and error-code specs.
+- Committed and pushed `f56a14b spec: clarify stale as derived assessment`; validation passed with `openspec validate --changes --strict` and `just ci`.
+- **Next:** continue by archiving/rebasing foundational OpenSpec changes or start the scoped tracer-bullet implementation from the clarified derived-assessment model.
+
+---
