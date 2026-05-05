@@ -49,3 +49,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement sxAct-rinw (end-to-end integration smoke test for elegua+sxact pipeline) and sxAct-rvzo (refactor sxact to consume elegua as external dependency)
 
 ---
+
+## 2026-05-05 16:00 — XAct.jl
+
+- Implemented and pushed sxAct-rinw in XAct.jl: live runner now compares expected expressions through Elegua ComparisonPipeline with sxAct L3 canonical and L4 numeric layers when an oracle is available.
+- Added tests in packages/sxact/src/sxact/cli/run.py, tests/runner/test_run_live.py, and tests/integration/test_elegua_pipeline_smoke.py; closed bead sxAct-rinw.
+- Verification passed: non-oracle pytest suite (1051 passed), targeted smoke skipped without oracle, ruff, and mypy; pushed commit d4336ac to origin/main.
+- **Next:** start sxAct-rvzo — refactor sxAct to consume Elegua as the external dependency now that the integration smoke is in place.
+
+---
