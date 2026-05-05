@@ -57,3 +57,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick next ready bead from `bd ready` — likely JOSS-readiness work such as `sxAct-qozc` textbook GR regressions or `sxAct-3db5` branding decision.
 
 ---
+
+## 2026-05-05 17:09 — elegua
+
+- Implemented and committed `elegua-jwox`: numeric layer now surfaces array max/argmax/failing-count/top-K diagnostics through `ComparisonResult.diagnostics`, with diagnostics preserved when later layers mismatch.
+- Added and committed red-phase coverage report CLI contract tests for `elegua-29d1` in `tests/cli/test_coverage_report.py`; confirmed RED because `python -m elegua coverage` is not implemented yet.
+- Validation for implementation passed: ruff, pyright on `src`, full pytest (600 passed), and strict OpenSpec validation; pre-commit passed on both commits with existing Vale warnings only.
+- **Next:** pick up `elegua-kaqt` — add failing tests for `--full-pipeline` diagnostic mode and concordance reporting.
+
+---
