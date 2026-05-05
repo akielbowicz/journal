@@ -178,3 +178,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up one unblocked tracer core slice — preferably  storage datom layer, or parallel-friendly  envelope types /  status lattice.
 
 ---
+## 2026-05-05 12:36 — dont
+
+- Corrected checkpoint for the prior malformed `/next` entry: implemented `dont` tracer-bullet Phase 1 scaffold with Rust binary crate (`Cargo.toml`/`Cargo.lock`), clap subcommand stubs in `src/main.rs`, and CLI scaffold tests in `tests/cli_scaffold.rs`.
+- Added `just` recipes for `build`, `test`, `lint`, and `run`; wired clippy into lint and ignored `target/`.
+- Marked OpenSpec tasks 1.1/1.2 complete, closed bead `dont-s21`, advanced WAI phase to implement, and committed/pushed `5a05824 feat: scaffold Rust tracer CLI`.
+- **Next:** pick up one unblocked tracer core slice — preferably `dont-82l` storage datom layer, or parallel-friendly `dont-3am` envelope types / `dont-cnw` status lattice.
+
+---
