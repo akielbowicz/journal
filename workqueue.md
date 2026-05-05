@@ -39,3 +39,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start sxAct-rvzo — refactor sxAct to consume Elegua as the external dependency now that the integration smoke is in place.
 
 ---
+
+## 2026-05-05 16:28 — XAct.jl
+
+- Continued sxAct-rvzo in XAct.jl: removed obsolete local `sxact.runner.isolation` and its tests now that live execution uses `elegua.IsolatedRunner`.
+- Refactored `packages/sxact/src/sxact/oracle/client.py` to delegate HTTP transport to `elegua.oracle.OracleClient` while preserving sxAct `Result` compatibility; removed direct `requests` dependency and updated `uv.lock`.
+- Added migration boundary tests in `tests/unit/test_elegua_migration_boundary.py`; verification passed (ruff, mypy, non-oracle pytest 1021 passed) and pushed `812ef80` to origin/main.
+- **Next:** continue sxAct-rvzo by deciding whether local snapshot/compare/loader compatibility layers should be thinned further or kept as sxAct-specific adapters; run `bd show sxAct-rvzo --json` first.
+
+---
