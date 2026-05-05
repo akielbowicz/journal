@@ -105,48 +105,7 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Slice C (PARANOID-p5i.8) — App Detail drill-down: `UsageStatsManager.queryEvents` adapter for per-app foreground intervals, App Detail screen, no-activity + uninstalled-package states, Day Detail row → App Detail navigation. Tail tickets PARANOID-p5i.9 (manual device verification + functionality.md update) and tasks 3.7 (unify Today/Day Detail render paths) + 1.10 (tidy day-window helpers) still open
 
 ---
-## 2026-05-04 15:14 — superficies
 
-- Initialized repo workflow/tooling with `wai`, `bd`, and `openspec`; documented project context in `openspec/project.md` and expanded `README.md`
-- Derived baseline OpenSpec specs from the design-catalog research doc for preview behavior, URL state, export flows, and single-file delivery; committed setup and spec files
-- Created and reviewed tracer-bullet ticket `superficies-vxs` for a deployable TypeScript/Vite single-file skeleton on GitHub Pages; tightened acceptance criteria, file targets, and AFK/HITL assumptions
-- **Next:** implement `superficies-vxs` — scaffold Vite + TypeScript + `vite-plugin-singlefile`, add minimal three-zone preview/export shell, and wire GitHub Pages deployment
-
----
-## 2026-05-04 15:54 — superficies
-
-- Implemented the `superficies-vxs` tracer-bullet slice with TypeScript + Vite + `vite-plugin-singlefile`, including modular source files for state, hash, render, export, and styles
-- Added a local `justfile` with `just serve`/`just preview`, GitHub Pages deployment workflow, README usage docs, and `.gitignore` entries for `node_modules/` and `dist/`
-- Validated `npm install`, `npm run build`, and local dev startup; confirmed the build emits a self-contained `dist/index.html` and then committed/pushed `3e35be2 feat: bootstrap deployable design-catalog shell`
-- **Next:** add focused tests for pure hash/state/export logic, then expand the shell into real dimensions/presets and side-by-side `both` preview behavior
-
----
-
-## 2026-05-04 16:41 — superficies
-
-- Worked through Beads tickets in `superficies`: closed state/hash pipeline, live presets/departure tracking, hero layouts/content overrides, and specimen forced-state strip.
-- Added tests and committed three feature slices: `07bb8af`, `0b38319`, `6b33b42`; latest validation passed with `npm test`, `npm run check`, and `npm run build`.
-- **Next:** continue with ready ticket `superficies-4zg.5` to implement the computed token panel, or `superficies-4zg.9` for long-hash/font-pair constraints.
-
----
-## 2026-05-04 16:49 — superficies
-
-- Ran a Rule-of-5 review over the current `superficies` code and fixed the concrete issues found in `src/render.ts`, `src/export.ts`, and token/export tests.
-- Implemented `superficies-4zg.5`: added `src/tokens.ts` for derived typography/color/spacing/radius/shadow tokens, OKLCH→hex conversion, and contrast diagnostics; rendered the computed token panel and wired token JSON export to current state.
-- Fixed unsafe dynamic hero-content injection by escaping user-provided overrides before rendering, and made exports resolve current content overrides.
-- Validated with `npm test`, `npm run check`, `npm run build`, `openspec validate --strict`, then closed `superficies-4zg.5` and committed `dfec3ae feat: expose computed token diagnostics`.
-- **Next:** continue with ready ticket `superficies-4zg.6` (deterministic export workspace) or `superficies-4zg.9` (long-hash fallback and font-pair constraints).
-
----
-## 2026-05-04 17:01 — superficies
-
-- Completed RO5U review of deterministic export workspace; fixed export tab/copy generation to use shared artifact helpers and clear stale copy feedback.
-- Committed `facf30b feat: complete deterministic export workspace` for `superficies-4zg.6`.
-- Implemented and committed `ca6949b feat: add advanced export context` for `superficies-4zg.7`: export-only context fields, URL serialization, XML/Markdown full-brief wrappers, controls, and tests.
-- Validation passed: `npm test`, `npm run check`, `npm run build`, `openspec validate --specs --strict`; working tree clean.
-- **Next:** choose between ready tickets `superficies-4zg.8` responsive editing chrome or `superficies-4zg.9` long-hash fallback/font pairing constraints.
-
----
 ## 2026-05-04 17:02 — XAct.jl
 
 - Researched existing sxAct benchmark infrastructure for Wolfram-vs-Julia/Python comparisons: `xact-test benchmark`, `sxact.benchmarks.runner`, adapters, oracle server, and TOML benchmark candidates.
@@ -156,54 +115,7 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** review/approve the OpenSpec proposal, then implement runner tests for setup-time discounting and skip/tag handling first.
 
 ---
-## 2026-05-04 19:55 — superficies
 
-- Reviewed open tickets `4zg.8` (responsive chrome) and `4zg.9` (long-hash + font pairing); chose `4zg.9` first as a correctness pass while hash/state code was fresh.
-- Implemented `BodyFont` type, font-pairing matrix, and `updateTypography()` enforcing display/body constraints across `types.ts`, `data.ts`, `state.ts`, `main.ts`.
-- Added long-hash fallback in `hash.ts`: readable hash → `#b64=<base64-json>` when >500 chars; decoder handles both formats and legacy hashes.
-- 7 new tests added; all 40 tests pass, types clean; committed `51dbc47` and closed `superficies-4zg.9`.
-- **Next:** tackle `4zg.8` — responsive editing chrome (sidebar on desktop, bottom bar + modals on mobile); requires browser verification at both breakpoints.
-
----
-
-## 2026-05-04 23:08 — superficies
-
-- Implemented `superficies-4zg.8`: responsive editing chrome.
-- Desktop (≥900px): persistent fixed-width sidebar (280px) with collapsible `<details>` sections (Preset & mode, Typography, Color & surface, Spacing, Content) beside the preview. Export button in sidebar footer.
-- Mobile (<900px): sidebar hidden by default; fixed bottom bar exposes "Edit" and "Export". Tapping "Edit" adds `.is-open` to the sidebar, revealing it as a full-screen overlay with a "Close" button.
-- `attachExportInteractions` updated to `querySelectorAll` for all `[data-export-open]` buttons (sidebar + bottom bar).
-- 3 new render tests added; 43/43 pass; `tsc --noEmit` clean; build clean.
-- Verified desktop sidebar, mobile bottom bar, Edit overlay, and live preset switching in browser.
-- Committed `13b8ff0 feat: implement responsive editing chrome`, closed `superficies-4zg.8`, pushed.
-- **Next:** `superficies-4zg.10` — run final spec verification and docs sync to close the epic.
-
----
-
-## 2026-05-04 20:32 — superficies
-
-- Implemented `superficies-4zg.8`: responsive editing chrome — desktop sidebar (280px, 5 collapsible `<details>` sections) + mobile bottom bar with full-screen overlay
-- Added 3 tests; 43/43 pass; tsc + Vite build clean; verified live at both breakpoints
-- Closed `superficies-4zg.8` and pushed `13b8ff0`
-- **Next:** close `superficies-4zg` epic — verify all subtasks done, run `bd close superficies-4zg`
-
----
-## 2026-05-04 21:02 — superficies
-
-- Ran full Playwright verification of `superficies-4zg.10` — 17/17 checks passed across cold load, URL round-trip, preset/departure, font pairing, hero layouts, light/dark/both modes, export panel (3 tabs + format toggle), desktop sidebar, and mobile chrome
-- Found and fixed dark mode bug: `.shell` lacked `color: var(--ink)` causing hero heading to be invisible in dark mode — committed `22a5bb1 fix: restore color cascade in dark mode shell`
-- Closed `superficies-4zg.10` (HITL verification slice) and parent epic `superficies-4zg`; pushed
-- **Next:** project is feature-complete — consider advancing to design phase (`wai phase set design`) or opening new work
-
----
-
-## 2026-05-04 21:12 — superficies
-
-- Resumed after epic `superficies-4zg` fully shipped; 0 open issues, 43/43 tests, 17/17 Playwright checks passing
-- Cleaned up post-verification artifacts: gitignored `.playwright-mcp/` session state and all verification/screenshot PNG files
-- Committed and pushed `.gitignore` update (`9fa5dab`)
-- **Next:** project in `research` phase — advance with `wai phase set design` or open new feature tickets
-
----
 
 ## 2026-05-05 09:40 — paranoid
 
@@ -214,14 +126,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-05 10:12 — superficies
-
-- Playwright UI audit found export dialog overflow and missing magazine layout — fixed CSS (`white-space: pre-wrap`, `max-height: 24rem`, magazine two-column grid, specimen grid capped at 3 cols)
-- Rule-of-5-universal review identified 3 bugs, 3 extensibility liabilities, 6 quality issues — all 12 fixed and pushed (`82f45d2`)
-- Key fixes: `isCatalogState` now validates enum values (crash prevention), token panel shows dark-mode colors, archetype dropdown is data-driven, Escape closes mobile sidebar
-- **Next:** new feature — color palette widget (side panel that slides in from right, extracts palette from a photo URL, lets user pick colors). Research phase — run `wai search "color"` and `wai search "palette"` first.
-
----
 
 ## 2026-05-05 10:15 — paranoid
 
@@ -234,13 +138,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - `.beads/issues.jsonl` (staged) and `.claude/settings.local.json` (unstaged) left untouched per prior session
 - **Next:** verify the GitHub Actions release run succeeded & APKs uploaded; then handle the 2026-04-24 inbox item (manual on-device verification of UsageAudit usage-access handoff + overnight battery snapshot)
 
-## 2026-05-05 11:14 — superficies
-
-- Fixed 6 beads tickets: Both mode (side-by-side light/dark), surface swatch visibility in dark mode, cream background bleed, export button to topbar, About/docs section in sidebar, TUI/CLI archetypes + terminal hero layout
-- Scroll broke after the cream-bleed fix (`height: 100%` on `.shell` resolved to 0 because `#app` had no height); fixed with `height: 100dvh` directly on `.shell`
-- **Next:** Verify scroll fix in browser across colorways and modes; consider testing mobile layout for regressions from the viewport-height change
-
----
 ## 2026-05-05 11:14 — dont
 
 - Evaluated the full spec set: domain model, envelope, error taxonomy, tracer bullet design all strong; gaps identified in glossary, test strategy, split define spec, and thin MCP interface
