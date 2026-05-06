@@ -4,6 +4,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-06 19:23 — dont
+
+- Implemented CURIE resolution in `show` command (`dont-jr8`): `store::term_by_curie` already existed; wired it into the show handler so `dont show WB:P001` resolves the CURIE to its term entity
+- Unknown CURIEs now return `"no term with curie WB:ZZZZ"` (exit 1) instead of leaking `"no claim with id"`; help text updated to `"Show a claim or term."`
+- Added 2 integration tests; full 188-test suite green; committed and pushed
+- **Next:** `dont-dxu` (expose `ground` in help, completions, stdin rules, schema surfaces) or `dont-1f4` (no way to add hypotheses or atoms via CLI)
+
+---
+
 ## 2026-05-06 18:45 — dont
 
 - Implemented `--human` flag (issue `dont-0um`) as a global CLI option backed by an atomic `HUMAN_MODE` bool
