@@ -4,6 +4,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-06 16:53 — miblioteca
+
+- Implemented 5 P1/P2 tickets in one session: PWA manifest + install prompt + offline indicator (`9p4`), uploadState FSM with 5-attempt retry cap (`d1b`), camera init with getUserMedia + capabilities probe + error variants (`c9n`), shortCode + clockOffsetMs pure functions (`264`), plus ro5u fix tickets (`ouo`, `hyx`, `g8e`)
+- Ro5u applied after each ticket; fixed AbortError on install prompt, empty tracks crash in camera init, NotReadableError/SecurityError variants; 106 tests passing
+- Filed follow-up tickets: `mibilioteca-lxs` (PNG icons for Android install prompt), `mibilioteca-3ms` (re-entry hazard in upload FSM), `mibilioteca-cxk` (silent no-op in updateUploadState)
+- **Next:** `mibilioteca-lxs` (P1 — add 192×512 PNG icons to `public/` for Android install prompt) or `mibilioteca-1o8` (P1 — TypeScript domain type definitions + Generic Sensor API `.d.ts`)
+
+---
+
 ## 2026-05-06 16:32 — miblioteca
 
 - Completed `add-tracer-bullet` OpenSpec slice: factory (`capture.ts`), IDB persistence, upload adapter, `TracerBulletShell` UI, session bootstrap — 41 tests passing
