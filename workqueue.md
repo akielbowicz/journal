@@ -211,3 +211,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** CLT-8yz (create `src/profiles/registry.js`, now unblocked) + CLT-9pd (`src/profiles/state.js`) can run in parallel; CLT-8yz has highest value since it consumes the bindings just created
 
 ---
+## 2026-05-06 20:18 — dont
+
+- Ran Rule-of-5 universal review across the full codebase; found 9 issues (2 high, 3 medium, 4 low)
+- Fixed all 9: `check_evidence_uri` now returns `"unchecked"`, `derived_assessments_for_claim` threaded through all callers to avoid O(N) project opens, `list_terms` batch-refactored matching `list_claims` pattern, duplicate file-locator block extracted to `resolve_file_locator()`, `prime` `assessment_counts` now computed from real data, `format_trace` renders blocker paths as joined strings
+- Also implemented `dont-1f4`: `hypothesis add` and `hypothesis assess` subcommands; `Locked` state now fully reachable via CLI; 7 new integration tests
+- **Next:** `dont-8bu` (P2 — drift-aware evidence projection in show/why/verify-evidence) or `dont-cw6` (P2 — rollout sequencing review for the 3 shipped OpenSpec proposals)
+
+---
