@@ -58,3 +58,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick the next ready bug one-by-one — likely `dont-e6m` (stale `dont help --tutorial` hint) or `dont-cnb` (empty claim statement accepted).
 
 ---
+
+## 2026-05-06 15:28 — miblioteca
+
+- Drafted and tightened the OpenSpec tracer-bullet proposal in         , including proposal, design, tasks, and spec delta.
+- Created a vertical tracer-bullet beads lane ( through ) and wired dependencies across the new slice sequence.
+- Reframed overlapping horizontal backlog items: added tracer-bullet dependency edges to scaffold/test/IDB/camera/upload tickets and marked  and  as post-tracer-bullet expansion work.
+- **Next:** claim  and start implementing the tracer-bullet scaffold HTTPS shell and test harness.
+
+---
