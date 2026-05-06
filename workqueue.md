@@ -47,3 +47,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** advance to design phase (`wai phase set design`), add design artifacts for capture pipeline and data model, begin Vite + TypeScript project init
 
 ---
+## 2026-05-06 12:34 — dont
+
+- Implemented `dont-i1v`: five label validators for `dont define --label` — indefinite article, sentence punctuation, compound-undeclared, sentence verb, and proper noun checks; added `--label` flag to CLI, `label` field to `TermRecord` and store; 75 tests pass (13 new).
+- Rule of 5 review (Stage 4): no CRITICAL/HIGH; 3 actionable findings — misleading `term-shape-indefinite` remediation string, missing arity-mismatch test ("a triple (x, y)"), missing doc-extraction-skips-compound test.
+- ro5u findings pending: fix remediation string in `validate_label`, add 2 test cases; implementation itself is correct.
+- **Next:** apply the 3 ro5u fixes to `dont-i1v`, commit, close `dont-i1v`, then pick `dont-6d9` (ignore lifecycle verb) or `dont-2p6` (strict/permissive enforcement).
+
+---
