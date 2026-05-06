@@ -4,34 +4,8 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-06 19:38 — dont
 
-- Completed `dont-dxu`: added `clap_complete` dep and `completions <shell>` subcommand so `dont completions bash/zsh/fish/...` emits shell completions that include `ground`
-- Added stdin bulk-mode rejection to `Ground` handler — `dont ground -` now exits with `stdin-not-supported` error (code 2)
-- Four new tests cover help listing, completions output, and stdin rejection; full suite green
-- Committed and pushed `dont-dxu`; issue closed
-- **Next:** `dont-1f4` (add hypothesis/atom commands), `dont-8bu` (drift-aware evidence projection), or `dont-cw6` (rollout sequencing review)
 
----
-
-## 2026-05-06 19:23 — dont
-
-- Implemented CURIE resolution in `show` command (`dont-jr8`): `store::term_by_curie` already existed; wired it into the show handler so `dont show WB:P001` resolves the CURIE to its term entity
-- Unknown CURIEs now return `"no term with curie WB:ZZZZ"` (exit 1) instead of leaking `"no claim with id"`; help text updated to `"Show a claim or term."`
-- Added 2 integration tests; full 188-test suite green; committed and pushed
-- **Next:** `dont-dxu` (expose `ground` in help, completions, stdin rules, schema surfaces) or `dont-1f4` (no way to add hypotheses or atoms via CLI)
-
----
-
-## 2026-05-06 18:45 — dont
-
-- Implemented `--human` flag (issue `dont-0um`) as a global CLI option backed by an atomic `HUMAN_MODE` bool
-- All commands emit plain text when `--human` is set: tabular list, detail blocks for show/prime, one-liner transitions, `(no claims)` empty states
-- 8 new integration tests cover list, conclude, show, prime, init, transition, and `--json` override; full 180+ test suite stays green
-- Closed `dont-0um`; committed and pushed
-- **Next:** `dont-jr8` (CURIE/short-ID resolution in `show`) or `dont-psu`/`dont-sxh` (verb renames: `trust→doubt`, `dismiss→verify`) per `improve-cli-ergonomics` spec
-
----
 
 ## 2026-05-06 16:53 — miblioteca
 
@@ -209,14 +183,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Ran Rule-of-5 review — one fix applied: `note` field on raise-sexp for chord caveat; all other findings dismissed
 - Closed CLT-dlh; unblocked CLT-8yz (registry)
 - **Next:** CLT-8yz (create `src/profiles/registry.js`, now unblocked) + CLT-9pd (`src/profiles/state.js`) can run in parallel; CLT-8yz has highest value since it consumes the bindings just created
-
----
-## 2026-05-06 20:18 — dont
-
-- Ran Rule-of-5 universal review across the full codebase; found 9 issues (2 high, 3 medium, 4 low)
-- Fixed all 9: `check_evidence_uri` now returns `"unchecked"`, `derived_assessments_for_claim` threaded through all callers to avoid O(N) project opens, `list_terms` batch-refactored matching `list_claims` pattern, duplicate file-locator block extracted to `resolve_file_locator()`, `prime` `assessment_counts` now computed from real data, `format_trace` renders blocker paths as joined strings
-- Also implemented `dont-1f4`: `hypothesis add` and `hypothesis assess` subcommands; `Locked` state now fully reachable via CLI; 7 new integration tests
-- **Next:** `dont-8bu` (P2 — drift-aware evidence projection in show/why/verify-evidence) or `dont-cw6` (P2 — rollout sequencing review for the 3 shipped OpenSpec proposals)
 
 ---
 
