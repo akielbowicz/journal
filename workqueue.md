@@ -61,9 +61,9 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ## 2026-05-06 15:28 — miblioteca
 
-- Drafted and tightened the OpenSpec tracer-bullet proposal in         , including proposal, design, tasks, and spec delta.
-- Created a vertical tracer-bullet beads lane ( through ) and wired dependencies across the new slice sequence.
-- Reframed overlapping horizontal backlog items: added tracer-bullet dependency edges to scaffold/test/IDB/camera/upload tickets and marked  and  as post-tracer-bullet expansion work.
-- **Next:** claim  and start implementing the tracer-bullet scaffold HTTPS shell and test harness.
+- Drafted and tightened the OpenSpec tracer-bullet proposal in `openspec/changes/add-tracer-bullet/`, including proposal, design, tasks, and spec delta.
+- Created a vertical tracer-bullet beads lane (`mibilioteca-jac` through `mibilioteca-19z`) and wired dependencies across the new slice sequence.
+- Reframed overlapping horizontal backlog items: added tracer-bullet dependency edges to scaffold/test/IDB/camera/upload tickets and marked `mibilioteca-2sz` and `mibilioteca-g5y` as post-tracer-bullet expansion work.
+- **Next:** claim `mibilioteca-jac` and start implementing the tracer-bullet scaffold HTTPS shell and test harness.
 
 ---
