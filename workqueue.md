@@ -149,3 +149,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `z6p` (Background Sync Service Worker with Workbox) — only remaining P1 gap before end-to-end uploads survive tab close
 
 ---
+## 2026-05-06 19:14 — clojure-tutor
+
+- Ran Rule-of-5 review on Phase 1 proposal docs (proposal.md, tasks.md, design.md, findings.md); fixed all 18 issues — test count, task ordering, shim design, keyword/string language, init ordering, untestable Phase 1 test
+- Implemented full Phase 1 editor shell scaffold: index.html, main.js, storage, action-log, command-wrapper, eval pipeline, shell, cell, three profiles (default/vim/emacs); 28/28 tests green; CLT-37m closed
+- Archived Phase 0 spike change; fixed `just dev` to serve from project root instead of spike/ directory
+- **Next:** open CLT-29m (P3 — prototype structure-diff fallback, conditional) or start Phase 2 planning
+
+---
