@@ -123,3 +123,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** claim and implement `0bg` (ImageCapture ladder — resolution cascade for reliable camera init)
 
 ---
+## 2026-05-06 18:24 — miblioteca
+
+- Implemented `captureImage` ImageCapture → canvas degradation ladder in `src/camera/captureImage.ts`; closed `mibilioteca-0bg`; 177 tests green
+- Ro5u review found: inaccurate catch comment, missing height-axis test, untested `createImageBitmap` failure path, inactive-track guard gap, shared mock state
+- Applied all 5 Ro5u fixes + added 4 new tests (`onDegradation` hook, height-axis threshold, `createImageBitmap` throws, zero-dimension guard); 181 tests green
+- **Next:** P1 scan creation — `ypi` (POST /api/scan + shortCode + QR invite) or `iz3` (POST /api/scan/join + token handling)
+
+---
