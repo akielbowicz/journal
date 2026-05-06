@@ -89,11 +89,3 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-06 16:25 — pretender
-
-- Bootstrapped the `pretender` repo with wai (design phase), beads (23 issues), and openspec (project.md + 2 baseline specs)
-- Ran Rule-of-5-Universal review on all setup docs; applied all 22 findings (role detection priority, missing types, BranchKind collapse, parse error behavior, schema versioning, etc.)
-- Ran issue-review across all 23 beads tickets; applied all fixes: wired full 24-edge dependency graph, created tracer-bullet issue `pretender-9kx`, created `pretender-3b5` (report command) and `pretender-vuc` (explain, deferred P4), superseded `pretender-h6v`, demoted `pretender-8n5` to P2, updated verify lines and HITL notes on 10+ issues
-- **Next:** advance wai phase to `implement` with `wai phase set implement`, then start `pretender-9kx` (tracer bullet — cyclomatic complexity on one Python file) as the first true code task
-
----
