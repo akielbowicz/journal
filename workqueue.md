@@ -73,3 +73,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `dont-7o9` (verify-evidence, needs HTTP network checking) or `dont-0hk` (lock, needs hypotheses infrastructure) — both have significant scope, start fresh
 
 ---
+## 2026-05-06 13:38 — dont
+
+- Implemented `dont verify-evidence` in `src/main.rs` and added RED→GREEN coverage in `tests/verify_evidence.rs` for per-reference results, partial timeout behavior, warnings, and structural refusals.
+- Manual ro5u pass (tool unavailable here) found and fixed two follow-ups: avoid reparsing the mock outcomes for every URI and make no-evidence remediation differ for claim vs term targets.
+- Closed `dont-7o9`, committed/pushed `2bc7116 feat: implement dont verify-evidence command (dont-7o9)`, claimed `dont-0hk`; repo is clean except untracked `.claude/`.
+- **Next:** start `dont-0hk` with RED tests for `lock`: success path, non-verified/already-locked refusals, and gate failures for insufficient hypotheses/evidence.
+
+---
