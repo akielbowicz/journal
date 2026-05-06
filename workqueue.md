@@ -4,6 +4,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-06 18:45 — dont
+
+- Implemented `--human` flag (issue `dont-0um`) as a global CLI option backed by an atomic `HUMAN_MODE` bool
+- All commands emit plain text when `--human` is set: tabular list, detail blocks for show/prime, one-liner transitions, `(no claims)` empty states
+- 8 new integration tests cover list, conclude, show, prime, init, transition, and `--json` override; full 180+ test suite stays green
+- Closed `dont-0um`; committed and pushed
+- **Next:** `dont-jr8` (CURIE/short-ID resolution in `show`) or `dont-psu`/`dont-sxh` (verb renames: `trust→doubt`, `dismiss→verify`) per `improve-cli-ergonomics` spec
+
+---
+
 ## 2026-05-06 16:53 — miblioteca
 
 - Implemented 5 P1/P2 tickets in one session: PWA manifest + install prompt + offline indicator (`9p4`), uploadState FSM with 5-attempt retry cap (`d1b`), camera init with getUserMedia + capabilities probe + error variants (`c9n`), shortCode + clockOffsetMs pure functions (`264`), plus ro5u fix tickets (`ouo`, `hyx`, `g8e`)
