@@ -55,3 +55,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** apply the 3 ro5u fixes to `dont-i1v`, commit, close `dont-i1v`, then pick `dont-6d9` (ignore lifecycle verb) or `dont-2p6` (strict/permissive enforcement).
 
 ---
+
+## 2026-05-06 13:00 — miblioteca
+
+- Rule of 5 review on specs (data-model, api-contracts, project.md): found 1 critical + 9 high issues; fixed all 23 in one pass (IMU field count 13→14, shortCode format, blobRef identity contract, uploadState FSM, idempotency header, error codes, storage budget, quality thresholds, DB version history)
+- Created all 33 implementation tickets across 7 layers (infra, IDB, camera, sensors, image processing, scan/session/upload, UI) with full dependency chain
+- Fixed git remote URL typo: `mibilioteca` → `miblioteca` (pointing to correct GitHub repo)
+- Issue-review (5-pass Ro5): found priority inversion, artificial dep, missing deps, iOS null-sensor gap — all 11 fixes applied
+- **Next:** start implementation from `mibilioteca-ocf` (Vite scaffold, the only unblocked ticket); `bd ready` shows correct state
+
+---
