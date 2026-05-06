@@ -141,3 +141,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** P1 scan creation — `ypi` (POST /api/scan + shortCode + QR invite) or `iz3` (POST /api/scan/join + token handling)
 
 ---
+## 2026-05-06 19:10 — miblioteca
+
+- Implemented `createScan` (POST /api/scan + IDB persistence + QR invite); closed `ypi`; 191 tests green
+- Implemented `joinScan` (POST /api/scan/join + IDB persistence + token handling); closed `iz3`; 197 tests green
+- Removed React entirely — rewrote `TracerBulletShell`, `AppHeader`, hooks, and `QrInvite` as plain TypeScript DOM classes/factories; closed the React-removal ticket; 199 tests green
+- **Next:** `z6p` (Background Sync Service Worker with Workbox) — only remaining P1 gap before end-to-end uploads survive tab close
+
+---
