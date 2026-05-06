@@ -193,3 +193,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `mibilioteca-m7p` (online-event drain fallback loop) or `mibilioteca-ot8` (clock sync: initial + mid-session re-sync)
 
 ---
+
+
+## 2026-05-06 20:41 — miblioteca
+
+- Continued miblioteca tracer-bullet/P2 work in `charly-vibes/miblioteca`.
+- Closed `mibilioteca-m7p`: shared upload queue drain, online-event fallback, SW reuse, persisted upload claiming to avoid SW/fallback double-upload; pushed `913670b feat(upload): add online drain fallback`.
+- Closed `mibilioteca-ot8`: `src/scan/clockSync.ts` with GET `/api/scan/:id/time`, 30-min scheduling, 5s drift checks, 500ms threshold, IDB + onUpdate session updates; pushed `2f2061b feat(scan): add clock resync controller`.
+- Validation: `just test` green at 254 tests and `just check` green; lint/build still blocked by pre-existing tool/type issues; local generated cert/build-info files remain untracked.
+- **Next:** pick `mibilioteca-g2l` (IMU trace upload), `mibilioteca-50p` (upload status UI), or `mibilioteca-9fo` (scan management UI).
+
+---
