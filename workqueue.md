@@ -202,3 +202,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `mibilioteca-79a` (P2 — IMU trace recorder, Float32Array 14-field 50–60 Hz) or `mibilioteca-19z` (P2 — Android HTTPS verification)
 
 ---
+## 2026-05-06 20:17 — clojure-tutor
+
+- Implemented CLT-dlh: created `src/calva.js` with 8 Paredit keybindings sourced from Calva `package.json` in CM6 format; raise-sexp chord simplification documented via `note` field
+- Added `test/calva-bindings.test.js` (4 tests); suite now 32/32 green
+- Ran Rule-of-5 review — one fix applied: `note` field on raise-sexp for chord caveat; all other findings dismissed
+- Closed CLT-dlh; unblocked CLT-8yz (registry)
+- **Next:** CLT-8yz (create `src/profiles/registry.js`, now unblocked) + CLT-9pd (`src/profiles/state.js`) can run in parallel; CLT-8yz has highest value since it consumes the bindings just created
+
+---
