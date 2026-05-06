@@ -98,3 +98,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `CLT-7kd` — spike CM6 action observation on vim emulation (normal-mode `>` interception investigation)
 
 ---
+## 2026-05-06 17:07 — miblioteca
+
+- Wired up real camera capture in `TracerBulletShell.tsx`: `<video>` element fed by `initCamera()` stream, `captureFromLiveVideo()` replaces gray-box stub with `canvas.drawImage(video)`
+- Redesigned layout as a full-screen phone camera UI: viewfinder fills `100dvh`, white shutter button at bottom with safe-area inset support
+- Made tracer bullet the app root (removed landing page), set Vite `base: '/miblioteca/'` for GitHub Pages
+- Created `.github/workflows/deploy.yml` deploying to `https://charly-vibes.github.io/miblioteca/` on every push to `main`
+- **Next:** verify the GH Pages deploy succeeded and the camera works on a real phone; consider adding thumbnail preview after capture
+
+---
