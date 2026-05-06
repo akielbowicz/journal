@@ -185,3 +185,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `2sz` (Shutter flow, P1) or `9fo` (Scan management UI, P2) — both newly unblocked by closing `6yj`
 
 ---
+## 2026-05-06 20:08 — clojure-tutor
+
+- Designed Phase 2 (profile system): no-header layout, collapsible left panel (Claude Code-style), profile-aware which-key leader (`g` in Calva/Emacs, `Space` in Vim), reactive keybinding substitution via `active-profile` atom, fixture slide to prove substitution without lesson runner
+- Scaffolded `implement-profile-system` OpenSpec proposal; ran Rule-of-5 review (NEEDS_REVISION) — 8 HIGH fixes: reinitProfile type contract, panel focus management, fixture cell registration, cyclic-extends guard, Space-leader fallback, vocabulary drift, resolveBindings unknown-ID
+- Applied all 18 spec fixes across profile-system, which-key-nav, keybinding-substitution specs + tasks.md + design.md
+- Created 25 beads issues (CLT-026 through CLT-na9); ran issue-review (9 fixes): wired CLT-2fn into critical path, added keyboard-nav tests to CLT-90p, HITL flags on CLT-dlh and CLT-na9, refinitProfile rollback test in CLT-zqj, mounting pattern in CLT-1wr
+- **Next:** CLT-dlh (HITL — research Calva keybindings from Calva extension source) must go first; then CLT-9pd + CLT-026 can run in parallel
+
+---
