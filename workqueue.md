@@ -107,3 +107,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** verify the GH Pages deploy succeeded and the camera works on a real phone; consider adding thumbnail preview after capture
 
 ---
+## 2026-05-06 17:35 — miblioteca
+
+- Closed 9 issues in one sprint: `1o8` (Generic Sensor API .d.ts + PreviewFrame type), `07u` (idb v8 typed schema with v1→v2 migration), `lxs` (PNG 192+512 icons for Android), `3th`/`n9i` (record/blob/scan/session CRUD), `3ms` (uploadCapture re-entry guard), `8s9` (laplacianVariance + makeThumbnail), `j4s` (traces/previewFrames/previewBlobs CRUD), `idt` (probeSensors + detectSensorDeps)
+- Test suite grew from 106 → 144 passing tests across 16 files; all changes pushed to `main`
+- `07u` unblocked `3th`/`n9i`/`j4s`; `idt` now unblocks `mj8` (steadiness gate)
+- **Next:** `270` (session lifecycle), `iz3`/`ypi` (scan API), `z6p` (Background Sync SW), or `mj8` (steadiness gate using `probeSensors`)
+
+---
