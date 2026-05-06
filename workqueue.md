@@ -4,6 +4,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-06 19:38 — dont
+
+- Completed `dont-dxu`: added `clap_complete` dep and `completions <shell>` subcommand so `dont completions bash/zsh/fish/...` emits shell completions that include `ground`
+- Added stdin bulk-mode rejection to `Ground` handler — `dont ground -` now exits with `stdin-not-supported` error (code 2)
+- Four new tests cover help listing, completions output, and stdin rejection; full suite green
+- Committed and pushed `dont-dxu`; issue closed
+- **Next:** `dont-1f4` (add hypothesis/atom commands), `dont-8bu` (drift-aware evidence projection), or `dont-cw6` (rollout sequencing review)
+
+---
+
 ## 2026-05-06 19:23 — dont
 
 - Implemented CURIE resolution in `show` command (`dont-jr8`): `store::term_by_curie` already existed; wired it into the show handler so `dont show WB:P001` resolves the CURIE to its term entity
