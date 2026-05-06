@@ -214,3 +214,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** resume with `mibilioteca-g2l` (IMU trace upload), `mibilioteca-50p` (upload status UI), or `mibilioteca-9fo` (scan management UI).
 
 ---
+
+## 2026-05-06 20:44 — clojure-tutor
+
+- Continued Phase 2 profile system in `clojure-tutor`: rewired `cell.js` for resolved bindings and `reinitProfile`, added `profiles/switch.js`, nav-layer interception, fixture slide, and shell wiring.
+- Added tests for cell reinit, profile switching, nav-layer behavior, fixture mounting, and shell profile-system integration; `just test` now passes 80/80, `just build` passes, and OpenSpec validates strict.
+- Closed obsolete structure-diff fallback (`CLT-29m`/`CLT-172`) because Phase 0 action-observation coverage was sufficient; pushed commits `159d081` and `0419967` to `origin/main`.
+- **Next:** complete/manual-process `CLT-na9` browser smoke test, then mark OpenSpec task 6.3 once verified.
+
+---
