@@ -81,3 +81,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start `dont-0hk` with RED tests for `lock`: success path, non-verified/already-locked refusals, and gate failures for insufficient hypotheses/evidence.
 
 ---
+## 2026-05-06 14:24 — dont
+
+- Implemented `dont lock` in `src/main.rs` with `lockable` gate checks, `locked` event support in `src/store.rs`, model transition in `src/model.rs`, and RED→GREEN coverage in `tests/lock.rs` plus `tests/model.rs`.
+- ro5u/correctness follow-up found a dependency bug: `--depends-on` CURIEs were being treated like term IDs; fixed dependency resolution and added structured dismiss refusal coverage in `tests/dismiss.rs`.
+- Closed `dont-0hk` and `dont-bhx`; validation passed with `just test` and `cargo clippy --all-targets --all-features -- -D warnings`.
+- **Next:** pick up `dont-zal` to prevent duplicate CURIE redefinition from creating ambiguous term identities.
+
+---
