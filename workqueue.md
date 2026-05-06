@@ -194,3 +194,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** CLT-dlh (HITL — research Calva keybindings from Calva extension source) must go first; then CLT-9pd + CLT-026 can run in parallel
 
 ---
+## 2026-05-06 20:11 — miblioteca
+
+- Implemented `shutter()` orchestration (`src/tracer/shutter.ts`): `captureImage → makeThumbnail + getImageData (concurrent) → runQualityChecks → CaptureRecord → saveCapture (IDB)` with full dep injection
+- 14 new tests in `src/tracer/shutter.test.ts`; 232/232 suite green; closed `mibilioteca-2sz`
+- Pushed to main
+- **Next:** `mibilioteca-79a` (P2 — IMU trace recorder, Float32Array 14-field 50–60 Hz) or `mibilioteca-19z` (P2 — Android HTTPS verification)
+
+---
