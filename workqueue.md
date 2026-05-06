@@ -55,11 +55,3 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** apply the 3 ro5u fixes to `dont-i1v`, commit, close `dont-i1v`, then pick `dont-6d9` (ignore lifecycle verb) or `dont-2p6` (strict/permissive enforcement).
 
 ---
-## 2026-05-06 12:37 — REPLy.jl
-
-- Closed all 5 open P2 bugs: AuditLog dead code, global eval lock contention, per-eval Pipe/Task allocation, receive() Dict copy, and eval/load_file lifecycle duplication.
-- `AuditMiddleware` now wraps every request and calls `record_audit!`; `TaskCapturingIO` replaces the global `EVAL_IO_CAPTURE_LOCK` for concurrent per-task IO capture; named-session stdin Pipe+feeder persists across evals; `receive()` returns `JSON3.Object` directly; `with_session_eval` extracted as shared helper.
-- All 2060 tests pass; JET and Aqua clean (pre-existing Aqua exclusion unchanged); all changes pushed to main.
-- **Next:** no open issues remain — create new work or pull from backlog.
-
----
