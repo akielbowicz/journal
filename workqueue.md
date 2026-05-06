@@ -68,15 +68,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-06 16:13 — dont
-
-- Fixed `dont-nud`: `--reason` help text now says "(required)" for `trust` and `ignore` commands; test added in `tests/cli_scaffold.rs`
-- Fixed `dont-736`: removed stale `dont doctor` remediation hint; replaced with `ls ${DONT_DIR:-.dont}` suggestion; test in `tests/init.rs`
-- Fixed `dont-ttc`: `prime` `status_counts` now counts `ignored` and `locked` entities from both claims and terms; test in `tests/init.rs`; Ro5u found and added explicit `locked == 0` assert
-- Filed `dont-fwi` (P2): doubted terms missing from `blocking[]` in prime output — a gap made reachable after `dont-1od`
-- **Next:** `dont-fwi` (doubted terms not surfaced in blocking list) or `dont-2nh`/`dont-7r9` (P1 openspec features: evidence locators, trace query)
-
----
 
 ## 2026-05-06 16:17 — clojure-tutor
 
