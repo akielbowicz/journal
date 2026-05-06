@@ -65,3 +65,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start implementation from `mibilioteca-ocf` (Vite scaffold, the only unblocked ticket); `bd ready` shows correct state
 
 ---
+## 2026-05-06 13:06 — dont
+
+- Applied 3 ro5u fixes to `dont-i1v`: fixed `term-shape-indefinite` remediation string, added arity-mismatch test, added doc-extraction-skips-compound test; committed and closed ticket
+- Implemented `dont-6d9` (`ignore` lifecycle verb for claims and terms, 9 tests), `dont-2rn` (`reopen` inverse, 7 tests), `dont-2p6` (strict/permissive mode enforcement via `--depends-on` on `conclude`, 7 tests)
+- All 4 tickets closed and pushed to `main`; ro5u run on each
+- **Next:** `dont-7o9` (verify-evidence, needs HTTP network checking) or `dont-0hk` (lock, needs hypotheses infrastructure) — both have significant scope, start fresh
+
+---
