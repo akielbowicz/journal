@@ -30,3 +30,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `elegua-kaqt` — add failing tests for `--full-pipeline` diagnostic mode and concordance reporting.
 
 ---
+## 2026-05-06 09:15 — dont
+
+- Continued dont implementation: completed dont-79o (init strict mode, locked seed snapshot, init audit event, minimal prime) and dont-m0v (define term creation, TermView, term show).
+- Added follow-up dont-do3: repo and dont init now ignore .dont/; added just install for local CLI testing.
+- Validation stayed green: just test and cargo clippy --all-targets --all-features -- -D warnings; commits pushed through f9d9b67; beads Dolt pushed.
+- **Next:** pick one ready issue: dont-i1v label validators, dont-2p6 strict/permissive references, or lifecycle verbs (ignore, reopen, lock, verify-evidence).
+
+---
