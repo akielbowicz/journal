@@ -89,3 +89,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+
+## 2026-05-06 16:41 — clojure-tutor
+
+- Implemented `CLT-acs`: Vite + squint + CM6 + clojure-mode + vim + emacs keymaps; wrote `src/editor/command-wrapper.js` (`wrapCommand` / `makeActionLog`) and `spike/` entry (3 live editors); RO5 found and fixed wrong key labels, wrong Vite dev script, missing `Prec.highest` on emacs editor, removed dead `@vitejs/plugin-react`
+- Implemented `CLT-scl`: added vitest + happy-dom; wrote `test/default-keymap.test.js` (4 tests confirm wrapper captures slurp on default keymap); RO5 found broken "decline" assertion — fixed with a `neverFires` stub command; all 4 green
+- Both issues closed; `CLT-7kd` (vim) and `CLT-1jd` (emacs) are now unblocked
+- **Next:** `CLT-7kd` — spike CM6 action observation on vim emulation (normal-mode `>` interception investigation)
+
+---
