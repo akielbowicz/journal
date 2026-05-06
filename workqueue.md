@@ -4,6 +4,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-06 16:32 — miblioteca
+
+- Completed `add-tracer-bullet` OpenSpec slice: factory (`capture.ts`), IDB persistence, upload adapter, `TracerBulletShell` UI, session bootstrap — 41 tests passing
+- Ro5u review caught and fixed: shared mutable `qualityChecks` reference, missing `by-uploadState` IDB index, MediaStream tracks never stopped, no denial-retry button, "Retry bootstrap" race, redundant `snapshot()` interface method, silent NaN persistence from unvalidated `serverTimeMs`
+- All 5 tickets closed (`mibilioteca-lnf`, `mibilioteca-xre`, `mibilioteca-dj1`, `mibilioteca-zvo`, ro5u fixes), 6 commits pushed to origin
+- **Next:** pick up `mibilioteca-9p4` (PWA manifest), `mibilioteca-d1b` (uploadState FSM), or `mibilioteca-c9n` (camera init) — run `bd ready` to confirm priority order
+
+---
+
 ## 2026-05-05 15:31 — elegua
 
 - Implemented `elegua/numeric/tolerance.py` (scalar tolerance types), `array.py` (array comparison with top-K diagnostics), `provenance.py`, and `verify_isolation` in `adapter.py`
