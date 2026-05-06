@@ -176,3 +176,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** open CLT-29m (P3 — prototype structure-diff fallback, conditional) or start Phase 2 planning
 
 ---
+## 2026-05-06 20:00 — miblioteca
+
+- Implemented Background Sync SW (`src/sw.ts`) via `injectManifest`; drains IDB pending/failed records, error-isolates per upload, notifies window clients; 202 tests green; closed `z6p`
+- Implemented quality checks (`src/tracer/qualityChecks.ts`): `runQualityChecks` + `qualityWarnings` with exported `THRESHOLDS`; Ro5u fixed `else if` → `if` in exposure fractions + added checkerboard laplacian test; 218 tests green; closed `6yj`
+- Fixed `just dev` — installed mkcert via Homebrew, generated self-signed certs; HTTPS dev server now starts
+- Closed stale `ypi` (scan creation was already done) and `l20` (OpenSpec review superseded); unblocked `9fo`, `ot8`, `2sz`, `g5y`
+- **Next:** `2sz` (Shutter flow, P1) or `9fo` (Scan management UI, P2) — both newly unblocked by closing `6yj`
+
+---
