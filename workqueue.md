@@ -115,3 +115,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `270` (session lifecycle), `iz3`/`ypi` (scan API), `z6p` (Background Sync SW), or `mj8` (steadiness gate using `probeSensors`)
 
 ---
+## 2026-05-06 18:08 — miblioteca
+
+- Implemented `startSession`/`endSession`/`recoverCrashedSessions` in `src/tracer/session.ts` with real-IDB integration tests (10 tests); closed mibilioteca-270
+- Implemented `feedAccel` steadiness gate in `src/sensors/steadiness.ts` — ZUPT-safe variance check with null-axis guard and out-of-order timestamp protection; closed mj8
+- Workflow rule saved: implement → ro5u → fix → commit → next ticket
+- **Next:** claim and implement `0bg` (ImageCapture ladder — resolution cascade for reliable camera init)
+
+---
