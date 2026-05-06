@@ -38,3 +38,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick one ready issue: dont-i1v label validators, dont-2p6 strict/permissive references, or lifecycle verbs (ignore, reopen, lock, verify-evidence).
 
 ---
+## 2026-05-06 11:01 — mibilioteca
+
+- Scaffolded repo with wai, beads (bd), and openspec based on `bookshelf-pwa-requirements.md`
+- Ran Rule of 5 review on the scaffold; identified 1 critical, 5 high, 6 medium, 6 low issues
+- Fixed all issues: projections→slash commands, baseline OpenSpec specs (data-model + api-contracts), session close protocol, research artifacts (4 entries), CLAUDE.md structure, justfile, `.editorconfig`, `_typos.toml`
+- wai way score improved from 10/21 to 14/21
+- **Next:** advance to design phase (`wai phase set design`), add design artifacts for capture pipeline and data model, begin Vite + TypeScript project init
+
+---
