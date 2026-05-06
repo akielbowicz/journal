@@ -49,3 +49,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start implementation from `mibilioteca-ocf` (Vite scaffold, the only unblocked ticket); `bd ready` shows correct state
 
 ---
+## 2026-05-06 15:24 — dont
+
+- Closed `dont-zal`: duplicate CURIE redefinition now returns structured `curie-conflict`; added store/unit and CLI coverage to preserve the existing term unchanged.
+- Closed `dont-1od`: `trust` and `dismiss` now work for `term:...` IDs, including term status transitions, evidence persistence, and regression coverage.
+- Closed `dont-x5c`: `conclude --depends-on` now canonicalizes CURIEs to stored `term:...` IDs, accepts existing term IDs without false unresolved warnings, and keeps genuine unresolved refs as warnings/refusals.
+- Validation stayed green after follow-up expectation fixes in `tests/dismiss.rs` and `tests/lock.rs`: `just test` and `cargo clippy --all-targets --all-features -- -D warnings` passed.
+- **Next:** pick the next ready bug one-by-one — likely `dont-e6m` (stale `dont help --tutorial` hint) or `dont-cnb` (empty claim statement accepted).
+
+---
