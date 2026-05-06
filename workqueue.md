@@ -204,3 +204,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick `mibilioteca-g2l` (IMU trace upload), `mibilioteca-50p` (upload status UI), or `mibilioteca-9fo` (scan management UI).
 
 ---
+
+
+## 2026-05-06 20:42 — miblioteca
+
+- Session checkpoint already captured and corrected in workqueue: miblioteca P2 continuation in `charly-vibes/miblioteca`.
+- Completed and pushed `mibilioteca-m7p` (`913670b`) and `mibilioteca-ot8` (`2f2061b`); tests/check green.
+- Journal workqueue was repaired after an initial malformed append caused by shell backtick expansion; latest entry is clean and committed.
+- **Next:** resume with `mibilioteca-g2l` (IMU trace upload), `mibilioteca-50p` (upload status UI), or `mibilioteca-9fo` (scan management UI).
+
+---
