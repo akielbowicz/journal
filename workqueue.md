@@ -68,3 +68,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `dont-fwi` (doubted terms not surfaced in blocking list) or `dont-2nh`/`dont-7r9` (P1 openspec features: evidence locators, trace query)
 
 ---
+
+## 2026-05-06 16:17 — clojure-tutor
+
+- Initialized `wai`, `bd`, and `openspec` for the squint structural editing tutor repo, following `squint-structural-editing-tutor-spec.md`
+- Added repo hygiene files: `.gitignore`, `.editorconfig`, `_typos.toml`, `justfile`, `llm.txt`, `package.json` stub
+- Created domain ubiquitous language in `.wai/resources/ubiquitous-language/` (3 contexts: structural editing, curriculum/pedagogy, architecture)
+- Scaffolded Phase-0 openspec change proposal (CM6 action observation spike — the spec's gate to all subsequent build work); fixed 16 review findings from `rule-of-5-universal`
+- Created 6 `bd` issues for Phase-0 tasks with dependency graph; `bd ready` now shows `CLT-acs` (setup) as the first actionable item
+- **Next:** claim `CLT-acs`, install Node/squint deps, then run the CM6 action observation spike (`CLT-scl` default keymap, `CLT-7kd` vim, `CLT-1jd` emacs)
+
+---
