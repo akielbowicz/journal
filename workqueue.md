@@ -219,3 +219,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `dont-8bu` (P2 — drift-aware evidence projection in show/why/verify-evidence) or `dont-cw6` (P2 — rollout sequencing review for the 3 shipped OpenSpec proposals)
 
 ---
+
+## 2026-05-06 20:23 — miblioteca
+
+- Closed `mibilioteca-79a` (IMU trace recorder): `src/sensors/imuTrace.ts` (pure `feedSample`, 14-float row, `createTraceBlob`) and `src/sensors/imuRecorder.ts` (stateful recorder, injectable sensors, pause gaps, auto-doubling buffer, IDB write on stop)
+- `persistence.ts` traces store now typed as `ImuTrace`; 240/240 tests green
+- **Next:** `mibilioteca-m7p` (online-event drain fallback loop) or `mibilioteca-ot8` (clock sync: initial + mid-session re-sync)
+
+---
