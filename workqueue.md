@@ -353,3 +353,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with the `scaffold-editor-shell` OpenSpec (currently 0/22 tasks)
 
 ---
+## 2026-05-07 14:22 — atril
+
+- Continued OpenSpec workspace view implementation after HITL decision that navigator/cross-link proposals should merge into the workspace view.
+- Completed `atril-4tc`: added `projectDocuments` to `OpenSpecIndex` for root-level `openspec/project.md` and `openspec/AGENTS.md`, with unit tests.
+- Verified 11 openspec-index tests and full suite: 352/352 green; committed as `62f8916 feat(openspec-index): add projectDocuments to OpenSpecIndex`.
+- **Next:** Start `atril-bwg` — render the OpenSpec workspace overview on entry using the extended index.
+
+---
