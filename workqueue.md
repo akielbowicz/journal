@@ -325,17 +325,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-07 12:49 — atril
-
-- Discussed and documented the OpenSpec Workspace view (Specs view should cover the whole `openspec/` workspace, not just current specs)
-- Created change proposal `add-openspec-workspace-view` with `proposal.md`, `design.md`, `tasks.md`, and spec delta
-- Ran Rule of 5 review on the spec and applied all 8 findings (overlap resolution, edge cases, open questions)
-- Created 8 beads tickets (atril-80y through atril-amw) with dependency chain
-- Ran issue review and applied all recommended fixes: missing `atril-aca→atril-qnq` dep, description updates for bwg/amw/80y/4tc
-- **Next:** Start implementation at `atril-80y` (reconcile overlap with `add-openspec-navigator` and `add-spec-change-cross-links`) — HITL decision needed before AFK work begins
-
----
-
 ## 2026-05-07 12:51 — miblioteca
 
 - Approved HITL gate `j4x` (bundle-first MVP direction confirmed); closed ticket
@@ -351,14 +340,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Fixed three export-leakage bugs discovered after conversion: `on_eval` in `shell.cljs`, duplicate `squint_core` import alias in `eval.cljs`, and 8 leaking `defn`s in `profiles-panel.cljs`
 - App renders correctly on port 5173 with zero console errors; all 80 tests pass
 - **Next:** continue with the `scaffold-editor-shell` OpenSpec (currently 0/22 tasks)
-
----
-## 2026-05-07 14:22 — atril
-
-- Continued OpenSpec workspace view implementation after HITL decision that navigator/cross-link proposals should merge into the workspace view.
-- Completed `atril-4tc`: added `projectDocuments` to `OpenSpecIndex` for root-level `openspec/project.md` and `openspec/AGENTS.md`, with unit tests.
-- Verified 11 openspec-index tests and full suite: 352/352 green; committed as `62f8916 feat(openspec-index): add projectDocuments to OpenSpecIndex`.
-- **Next:** Start `atril-bwg` — render the OpenSpec workspace overview on entry using the extended index.
 
 ---
 ## 2026-05-07 14:30 — miblioteca
@@ -403,34 +384,6 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-07 14:55 — atril
-
-- Continued  in : added OpenSpec Workspace overview rendering, workspace file indexing, selectable project/raw file links, and routed Specs entry to the workspace view.
-- Closed beads  and ; updated OpenSpec tasks for completed reconciliation, index, overview, and project-document slices.
-- Ran Rule of 5 review on the new code and fixed all findings: Files section is navigable, overview renders before spec content fetches, spec-load failures stay inline, and index docs clarify  includes project docs.
-- Validation green: bun test v1.3.12 (700fc117) 359/359, , Built 1 files to dist/, and Change 'add-openspec-workspace-view' is valid.
-- **Next:** start  — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
-
----
-
-## 2026-05-07 14:55 — atril
-
-- Corrected checkpoint for `atril`: continued `add-openspec-workspace-view` with OpenSpec Workspace overview rendering, workspace file indexing, selectable project/raw file links, and Specs entry routing to the workspace view.
-- Closed beads `atril-bwg` and `atril-i3n`; updated OpenSpec tasks for completed reconciliation, index, overview, and project-document slices.
-- Ran Rule of 5 review on the new code and fixed all findings: Files section is navigable, overview renders before spec content fetches, spec-load failures stay inline, and index docs clarify `workspaceFiles` includes project docs.
-- Validation green: `bun test` 359/359, `bunx tsc --noEmit`, `bun run build`, and `openspec validate add-openspec-workspace-view --strict`.
-- **Next:** start `atril-n8n` — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
-
----
-## 2026-05-07 15:13 — atril
-
-- Implemented `atril-n8n`: first-class change cards in the OpenSpec workspace overview — grouped proposal/tasks/design/spec-delta links, `parseTaskSummary` for N/M task counts, missing-doc indicators, and async task-summary wiring in `main.ts`.
-- Added `src/shared/openspec-workspace.ts` (new), updated `openspec-index.ts`, `repo-overview.ts`, `main.ts`, `styles.css`, and 5 test files; 371/371 green.
-- Closed `atril-n8n`; OpenSpec validation clean (`openspec validate add-openspec-workspace-view --strict`).
-- Committed in two groups: feature+tests (`c3b5e41`) and planning artifacts (`ff843c3`).
-- **Next:** start `atril-qnq` — handle incomplete change directories and malformed task files.
-
----
 
 ## 2026-05-07 15:19 — miblioteca
 
@@ -442,22 +395,3 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-05-07 15:25 — atril
-
-- Completed `atril-qnq`: resilient handling of incomplete OpenSpec change dirs and malformed `tasks.md`
-- Malformed/non-checkbox `tasks.md` now shows "tasks document available" instead of crashing counts
-- Added RED/GREEN unit tests in `openspec-workspace.test.ts` and `openspec-index.test.ts`
-- Committed as `b55c5c9`; tasks `1.2`, `6.1`, `6.2` marked done in `add-openspec-workspace-view`
-- **Next:** `atril-aca` — task `4.6`: navigation from change details to affected current specs
-
----
-
-## 2026-05-07 15:44 — atril
-
-- Implemented `atril-aca`: wired all OpenSpec workspace navigation cross-links (task 4.6)
-- Specs section: each capability is a clickable link to `spec.md`, with sub-list of active changes affecting it; change cards get a new "Affects" list linking back to canonical spec files
-- Archive section hidden when empty; archived changes are clickable to their `proposal.md` with cross-links to any current specs they modified
-- Extended `OpenSpecIndex` with `archivedChangeFiles` + `archivedChangeAffects`; 43 workspace tests + 385 full suite passing; committed as `a3c6efb`; closed `atril-aca`
-- **Next:** `atril-amw` — manual workflow validation of the full OpenSpec workspace view (now unblocked)
-
----
