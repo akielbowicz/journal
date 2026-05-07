@@ -7,6 +7,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 
 
+## 2026-05-07 12:34 — dont
+
+- Completed `dont-unm`: generated `.dont/AGENTS.md` now teaches `dont ground` fast path, repo-relative evidence locators, core lifecycle model, and `dont trace <id>` for blocker diagnosis; added mdBook grounding-workflow page
+- Applied Rule of 5 universal review — found CORR-001 (unreadable file locators could still verify claims), EDGE-001 (symlink containment gap in audit reads), EDGE-002 (`--excerpt` without `--lines` drifted immediately), and doc example line spans
+- Fixed all Ro5 findings in `9afddf5`: unreadable `--file` locators refused before verification, symlink containment rechecked before audit reads, `--excerpt` audits by presence, corrected docs spans
+- **Next:** pick up `dont-cw6` (rollout sequencing review), `dont-sxh`, or `dont-psu`
+
+---
+
 ## 2026-05-06 16:53 — miblioteca
 
 - Implemented 5 P1/P2 tickets in one session: PWA manifest + install prompt + offline indicator (`9p4`), uploadState FSM with 5-attempt retry cap (`d1b`), camera init with getUserMedia + capabilities probe + error variants (`c9n`), shortCode + clockOffsetMs pure functions (`264`), plus ro5u fix tickets (`ouo`, `hyx`, `g8e`)
