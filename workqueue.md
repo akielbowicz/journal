@@ -307,3 +307,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** create beads issues for `scaffold-editor-shell` (22 tasks at 0%) and claim task 1.1 to start Phase 3
 
 ---
+## 2026-05-07 12:42 — miblioteca
+
+- Evaluated backend necessity — decided on bundle-first MVP: artifacts stay on phone, exported as `.mbibundle.zip` and shared via Drive/WhatsApp/email; backend deferred
+- Created OpenSpec proposal `add-portable-bundle-export`; ran Rule of 5 review → fixed upload/export state conflict, aborted export scenario, sha256 checksum, filename format, storage thresholds, tracer acceptance slice
+- Created 7 Beads tickets (j4x HITL approval → 6bo contract → kdj assembly + lfl error handling → 1el UI → u39 Android verification → 39j backend ingest decision)
+- Ran issue-review skill → restructured dep graph: `lfl` no longer blocks `1el` (happy-path UI gates only on kdj); `lfl` gates u39 instead; added archive library prereq, stakeholder names, offline generation AC, exportState persistence-after-reload AC, verification result locations
+- **Next:** unblock j4x (HITL approval from charly vibes), then start 6bo contract ticket to define `exportState` types and bundle manifest path generation
+
+---
