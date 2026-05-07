@@ -259,3 +259,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick remaining ready work: `mibilioteca-19z` (Android HTTPS verification/follow-on backlog) or a P3 such as `mibilioteca-cxk` (missing-record no-op bug) / `mibilioteca-bzk` (preview upload).
 
 ---
+
+## 2026-05-07 11:40 — dont
+
+- Used Rule of 5 review results to fix evidence-locator issues in dont: symlink escapes, invalid line spans, term evidence audit projection, payload spec clarity, duplicate trace test attribute.
+- Added regression coverage in tests/evidence_drift.rs and updated src/main.rs plus OpenSpec specs/archive state.
+- Verified with cargo test --test evidence_drift, just test, and openspec validate --all --strict.
+- **Next:** Review git diff/status, consider formatting policy (cargo fmt --check still reports pre-existing formatting drift), then commit the completed fixes.
+
+---
