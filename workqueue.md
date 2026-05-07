@@ -451,3 +451,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `atril-aca` — task `4.6`: navigation from change details to affected current specs
 
 ---
+
+## 2026-05-07 15:44 — atril
+
+- Implemented `atril-aca`: wired all OpenSpec workspace navigation cross-links (task 4.6)
+- Specs section: each capability is a clickable link to `spec.md`, with sub-list of active changes affecting it; change cards get a new "Affects" list linking back to canonical spec files
+- Archive section hidden when empty; archived changes are clickable to their `proposal.md` with cross-links to any current specs they modified
+- Extended `OpenSpecIndex` with `archivedChangeFiles` + `archivedChangeAffects`; 43 workspace tests + 385 full suite passing; committed as `a3c6efb`; closed `atril-aca`
+- **Next:** `atril-amw` — manual workflow validation of the full OpenSpec workspace view (now unblocked)
+
+---
