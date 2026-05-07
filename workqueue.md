@@ -441,3 +441,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `mibilioteca-u39` — Android Chrome verification of the full bundle export flow (now unblocked).
 
 ---
+
+## 2026-05-07 15:25 — atril
+
+- Completed `atril-qnq`: resilient handling of incomplete OpenSpec change dirs and malformed `tasks.md`
+- Malformed/non-checkbox `tasks.md` now shows "tasks document available" instead of crashing counts
+- Added RED/GREEN unit tests in `openspec-workspace.test.ts` and `openspec-index.test.ts`
+- Committed as `b55c5c9`; tasks `1.2`, `6.1`, `6.2` marked done in `add-openspec-workspace-view`
+- **Next:** `atril-aca` — task `4.6`: navigation from change details to affected current specs
+
+---
