@@ -42,3 +42,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `mibilioteca-xoa` (image recompression warning in export UI), `mibilioteca-9is` (back button on new-scan screen), or `mibilioteca-csp` (export discoverability in capture UI)
 
 ---
+
+## 2026-05-07 19:53 — miblioteca
+
+- Scaffolded + Ro5-reviewed OpenSpec proposals for `add-ghost-overlay` and `add-capture-metrics`; applied all critical fixes (wrong paths, duplicate canvas field, missing boolean fields, artificial deps)
+- Created 9 beads tickets from the proposals; ran issue-review, removed artificial `am1→401` dep, clarified 3 ticket descriptions
+- Implemented all 8 code tickets: boolean quality fields + `stepCountSincePrev→displacementMeters` rename (401), Welford `laplacianVariance` (am1), `rotateVec` in `src/sensors/imuMath.ts` (ybm), shift clamping (qjd), null `grabFrame` guard (b9f), motion gating (bud), exposure threshold tuning (cr6), `estimateDisplacement` wired into shutter (8zk)
+- Ran Ro5 on the new code; applied 3 fixes: RAF loop `destroyed` flag, NaN guard in `estimateDisplacement`, `qualityWarnings` DRY using boolean flags — 438 tests green
+- **Next:** `mibilioteca-9is` (back button on new-scan screen) or `mibilioteca-csp` (export discoverability) — both P3 and unblocked; `mibilioteca-4n4` is the manual ghost overlay acceptance test on real device
+
+---
