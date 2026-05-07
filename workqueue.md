@@ -268,3 +268,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Review git diff/status, consider formatting policy (cargo fmt --check still reports pre-existing formatting drift), then commit the completed fixes.
 
 ---
+## 2026-05-07 12:12 — miblioteca
+
+- Completed Android HTTPS tracer-bullet verification (`mibilioteca-19z`): app works on Android Chrome (camera, capture, upload attempt); filed follow-on issues `ni0`, `uyq`, `o25`; added `android-verification.md` checklist and OpenSpec proposal description.
+- Fixed `updateUploadState` missing-record no-op bug (`mibilioteca-cxk`): both `updateUploadState` and `updateUploadProgress` now throw on missing records; removed spurious `tx.abort()` calls that caused unhandled `AbortError` rejections.
+- Implemented ghost overlay (`mibilioteca-iho`): `ghostOverlay.ts` (pure yaw integrator + focal-length pixel shift), `ghostOverlayCanvas.ts` (RAF loop with `translate3d`), wired into `CaptureView`.
+- Completed capture viewfinder UI (`mibilioteca-g5y`): steadiness gate (accel → shutter disabled + red/green dot), quality warning badges (blur/exposure poll loop overlaid on viewfinder); 315 tests green.
+- **Next:** pick remaining P2 `mibilioteca-ni0` (real backend integration) or P3s `bzk` (preview frame upload), `646` (iOS fallback), `o25` (upload reliability), `uyq` (multi-user join flow).
+
+---
