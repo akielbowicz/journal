@@ -307,6 +307,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** create beads issues for `scaffold-editor-shell` (22 tasks at 0%) and claim task 1.1 to start Phase 3
 
 ---
+## 2026-05-07 12:43 — dont
+
+- Confirmed rollout sequencing order: `add-ground-command` → `add-trace-query` → `improve-cli-ergonomics`; recorded decision in wai note and closed `dont-cw6`
+- Archived `add-ground-command` openspec: checked off all 5 remaining tasks (1.1–2.2), ran `openspec validate --strict` (27 specs, all pass), promoted delta specs to `openspec/specs/`; committed and pushed
+- `add-ground-command` is now fully complete; `add-trace-query` (2/7, 28%) is next in sequence
+- **Next:** start `add-trace-query` — pull up remaining tasks and begin implementation
+
+---
 ## 2026-05-07 12:42 — miblioteca
 
 - Evaluated backend necessity — decided on bundle-first MVP: artifacts stay on phone, exported as `.mbibundle.zip` and shared via Drive/WhatsApp/email; backend deferred
