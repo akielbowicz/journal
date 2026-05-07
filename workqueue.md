@@ -241,3 +241,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick `mibilioteca-9fo` (scan management UI) for user flow, or `mibilioteca-1bp` if continuing IMU/motion-quality work.
 
 ---
+
+## 2026-05-07 10:03 — miblioteca
+
+- Continued miblioteca scan-management work after Rule-of-5 review of the new code; fixed all findings in src/App.ts, src/scan/ScanManagementView.ts, src/tracer/mockScanApi.ts, and tests.
+- Added app-level active-session resume before scan management, dev mock support for POST /api/scan/join, trimmed input validation, duplicate-create prevention, and success copy after creating a scan.
+- Validation passed: just test (277), just check, just build, just lint; committed/pushed 18b5357 fix(scan): address scan management review findings after earlier 9ee4f3b feat(scan): add scan management UI.
+- **Next:** pick a ready P2: mibilioteca-1bp (motionWindow extraction), mibilioteca-k56 (storage persistence/quota warning), or mibilioteca-19z (Android HTTPS verification).
+
+---
