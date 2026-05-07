@@ -412,3 +412,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start  — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
 
 ---
+
+## 2026-05-07 14:55 — atril
+
+- Corrected checkpoint for `atril`: continued `add-openspec-workspace-view` with OpenSpec Workspace overview rendering, workspace file indexing, selectable project/raw file links, and Specs entry routing to the workspace view.
+- Closed beads `atril-bwg` and `atril-i3n`; updated OpenSpec tasks for completed reconciliation, index, overview, and project-document slices.
+- Ran Rule of 5 review on the new code and fixed all findings: Files section is navigable, overview renders before spec content fetches, spec-load failures stay inline, and index docs clarify `workspaceFiles` includes project docs.
+- Validation green: `bun test` 359/359, `bunx tsc --noEmit`, `bun run build`, and `openspec validate add-openspec-workspace-view --strict`.
+- **Next:** start `atril-n8n` — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
+
+---
