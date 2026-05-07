@@ -232,3 +232,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick `mibilioteca-50p` (upload status UI) or `mibilioteca-9fo` (scan management UI); `mibilioteca-1bp` is also ready if continuing IMU-derived motion windows.
 
 ---
+
+## 2026-05-07 09:02 — miblioteca
+
+- Implemented and shipped `mibilioteca-50p`: upload status panel in `src/pwa/UploadStatusPanel.ts` plus `src/tracer/uploadStatus.ts`, with counts by uploadState, rejected upload details, and retry-failed flow that requeues then drains.
+- Fixed CI/build blockers: added `src/qrcode-svg.d.ts`, cleaned strict TypeScript errors in tests, made `lint` runnable via `tsc --noEmit`, and ignored local/generated HTTPS/build outputs.
+- Validation passed: `just test` (266 tests), `just check`, `just build`, and `just lint`; committed/pushed `fcda71b feat(upload): add upload status panel`; repo clean/up-to-date.
+- **Next:** pick `mibilioteca-9fo` (scan management UI) for user flow, or `mibilioteca-1bp` if continuing IMU/motion-quality work.
+
+---
