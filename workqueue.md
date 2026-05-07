@@ -378,3 +378,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** advance `add-trace-query` spec (2/7 tasks done) — next implementation task in that track.
 
 ---
+## 2026-05-07 14:48 — dont
+
+- Completed and archived the `add-trace-query` OpenSpec lane in `dont`; promoted trace requirements into current specs, including new `dont-trace-query` spec.
+- Aligned `dont trace` JSON payload with `TraceView`: `data.blockers[]`, `data.as_of`, per-blocker `start_entity`, path, blocking node/unresolved reference, and remediation; updated `tests/trace.rs`.
+- Validated with `cargo test --test trace`, `just test`, and `openspec validate --all --strict`; committed repo work as `9328fdb feat: finalize trace query contract`.
+- **Next:** continue `improve-cli-ergonomics`, starting with lifecycle/status spec updates for `flag` and `undoubt`.
+
+---
