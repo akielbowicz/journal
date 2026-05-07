@@ -250,3 +250,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick a ready P2: mibilioteca-1bp (motionWindow extraction), mibilioteca-k56 (storage persistence/quota warning), or mibilioteca-19z (Android HTTPS verification).
 
 ---
+## 2026-05-07 11:39 — miblioteca
+
+- Continued `charly-vibes/miblioteca` with implement → Ro5U → fix → commit flow; completed `mibilioteca-1bp` and `mibilioteca-k56`.
+- Added `extractMotionWindow()` in `src/sensors/imuTrace.ts` with 7-field IMU windows, malformed input guards, and tests; pushed `a064dfc feat(sensors): extract IMU motion windows`.
+- Added storage budget protection in `src/pwa/storageBudget.ts` and `CaptureView`: request `navigator.storage.persist()`, sticky eviction warning, low-storage warning, and exhausted-quota capture block; pushed `3c02e7e feat(pwa): warn on unsafe storage budget`.
+- Validation after both tickets: `just test`, `just check`, `just build`, `just lint` green; repo clean/up-to-date.
+- **Next:** pick remaining ready work: `mibilioteca-19z` (Android HTTPS verification/follow-on backlog) or a P3 such as `mibilioteca-cxk` (missing-record no-op bug) / `mibilioteca-bzk` (preview upload).
+
+---
