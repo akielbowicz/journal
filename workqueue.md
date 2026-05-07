@@ -361,3 +361,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Start `atril-bwg` — render the OpenSpec workspace overview on entry using the extended index.
 
 ---
+## 2026-05-07 14:30 — miblioteca
+
+- Implemented bundle assembly for one-record portable exports in `src/bundle/assemble.ts` with manifest generation, SHA256 checksums, zip creation, and self-validation.
+- Added bundle path/type support for scan/session metadata and 13 integration tests in `src/bundle/assemble.test.ts`; full suite passed (345 tests).
+- Added `jszip` dependency, committed `feat(bundle): assemble and validate one-record portable bundle`, closed `miblioteca-kdj`, and pushed to origin.
+- **Next:** continue with `lfl` — handle bundle export failures, aborts, and storage-limit cases.
+
+---
