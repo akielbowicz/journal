@@ -386,3 +386,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue `improve-cli-ergonomics`, starting with lifecycle/status spec updates for `flag` and `undoubt`.
 
 ---
+## 2026-05-07 14:50 — miblioteca
+
+- Completed `mibilioteca-lfl` in `charly-vibes/miblioteca`: bundle export failure handling, abort/retry states, storage headroom blocking, archive validation rejection, and persisted session export states.
+- Updated OpenSpec `add-portable-bundle-export` design/tasks for JSZip and completed bundle contract/export validation tasks; committed/pushed `666319a feat(bundle): handle export failure states`.
+- Validation green: `just test` (352), `just check`, `just lint`, `just build`, and `openspec validate add-portable-bundle-export --strict`.
+- **Next:** pick `mibilioteca-1el` — add user-initiated bundle download/share UI using the exported bundle states and download/Web Share fallbacks.
+
+---
