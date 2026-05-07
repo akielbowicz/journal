@@ -223,3 +223,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** complete/manual-process `CLT-na9` browser smoke test, then mark OpenSpec task 6.3 once verified.
 
 ---
+## 2026-05-06 21:56 — miblioteca
+
+- Continued P2 upload pipeline in `charly-vibes/miblioteca`; implemented and pushed `mibilioteca-g2l` as commit `75cfaf2 feat(upload): add IMU trace upload`.
+- Added `src/tracer/uploadTrace.ts` plus tests: trace Blob POST to `/api/upload/trace`, required session/scan/sample-rate/fields headers, 400/413 rejection, 500/network failure, malformed trace guard.
+- Updated `endSession()` to optionally trigger trace upload after the session is marked completed; closed `mibilioteca-g2l`.
+- Validation: `just test` 262 green and `just check` green; `just build`/`just lint` remain blocked by pre-existing issues/tooling; local generated cert/build files remain untracked.
+- **Next:** pick `mibilioteca-50p` (upload status UI) or `mibilioteca-9fo` (scan management UI); `mibilioteca-1bp` is also ready if continuing IMU-derived motion windows.
+
+---
