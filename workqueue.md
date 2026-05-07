@@ -431,3 +431,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start `atril-qnq` — handle incomplete change directories and malformed task files.
 
 ---
+
+## 2026-05-07 15:19 — miblioteca
+
+- Implemented `mibilioteca-1el`: `src/bundle/share.ts` (Web Share / download fallback, `detectShareCapability`, `transferGuidance`), `src/bundle/BundleExportPanel.ts` (full export panel FSM — idle → exporting → exported/failed/aborted, 100 MB/500 MB size warnings, persisted delivery state restored on init), wired into `CaptureView`.
+- Ran Ro5u review — found P0 (restored `exported` state enables transfer button that sends an empty blob), two P1s (`appVersion: '0.0.0'` hardcoded, `AbortError` from share-sheet cancel not caught cleanly), plus P2 accessibility gap.
+- Applied all fixes: `blob: Blob | null` with "Re-export" fallback path, `appVersion` injectable via `CaptureViewOptions`, `AbortError` swallowed cleanly, `aria-live="polite"` on status element, dead `in_progress` branch removed; 376/376 tests green.
+- Committed `7af2e02 feat(bundle): add user-initiated bundle download/share UI` and `817198f fix(bundle): address ro5 review issues in export panel`; pushed to origin.
+- **Next:** `mibilioteca-u39` — Android Chrome verification of the full bundle export flow (now unblocked).
+
+---
