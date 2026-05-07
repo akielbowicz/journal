@@ -345,3 +345,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `kdj` — assemble and validate one-record portable bundle (zip up artifacts into `.mbibundle.zip` using types/paths just defined)
 
 ---
+## 2026-05-07 13:15 — clojure-tutor
+
+- Converted all 16 application source files from JS to Squint/ClojureScript (`.cljs`), keeping only the 4 boundary files (`main.js`, `storage.js`, `action-log.js`, `command-wrapper.js`) as plain JS per spec
+- Fixed three export-leakage bugs discovered after conversion: `on_eval` in `shell.cljs`, duplicate `squint_core` import alias in `eval.cljs`, and 8 leaking `defn`s in `profiles-panel.cljs`
+- App renders correctly on port 5173 with zero console errors; all 80 tests pass
+- **Next:** continue with the `scaffold-editor-shell` OpenSpec (currently 0/22 tasks)
+
+---
