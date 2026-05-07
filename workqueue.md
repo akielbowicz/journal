@@ -394,3 +394,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick `mibilioteca-1el` — add user-initiated bundle download/share UI using the exported bundle states and download/Web Share fallbacks.
 
 ---
+## 2026-05-07 14:15 — REPLy.jl
+
+- Diagnosed performance bottlenecks using julia-performance-diagnostician.
+- Identified critical dynamic dispatch in middleware and lock contention in IO capture.
+- Created 4 prioritized Beads issues (REPLy_jl-xk4, -elu, -tjb, -kkq).
+- **Next:** Implement REPLy_jl-xk4 (Tuple-based middleware stack) to remove top-level dynamic dispatch.
+
+---
