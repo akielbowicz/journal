@@ -22,3 +22,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up next ready issue — `mibilioteca-39j` (HITL: decide backend ingest shape), `mibilioteca-o25` (upload reliability), or `mibilioteca-646` (iOS fallback)
 
 ---
+
+## 2026-05-07 17:32 — miblioteca
+
+- Deferred backend-related tickets (`39j`, `o25`, `bzk`, `ni0`, `uyq`) to 2026-07-01; focus shifted to app completion
+- Reviewed and reconciled specs: superseded `add-tracer-bullet` in favor of `add-portable-bundle-export` as the canonical vertical-slice definition; task 1.2 checked off
+- Created UI completion tickets: `72k` (routing), `3fa` (sessions list), `pa3` (captures gallery), `csp` (export discoverability), `xoa` (recompression warning), `2tu` (acceptance test)
+- Implemented and closed `mibilioteca-72k`: hash-based session routing (`#/session/:id`, `#/new`), generation counter for async safety, back button on `CaptureView` — 380 tests green
+- Implemented and closed `mibilioteca-3fa`: sessions list home screen with capture count + export status badge, Space `preventDefault` fix, DB error handling, timezone-safe tests — 391 tests green
+- **Next:** pick up `mibilioteca-pa3` (captures gallery / thumbnails view in session) or `mibilioteca-xoa` (image recompression warning in export UI)
+
+---
