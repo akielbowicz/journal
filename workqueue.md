@@ -324,3 +324,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** unblock j4x (HITL approval from charly vibes), then start 6bo contract ticket to define `exportState` types and bundle manifest path generation
 
 ---
+
+## 2026-05-07 12:49 — atril
+
+- Discussed and documented the OpenSpec Workspace view (Specs view should cover the whole `openspec/` workspace, not just current specs)
+- Created change proposal `add-openspec-workspace-view` with `proposal.md`, `design.md`, `tasks.md`, and spec delta
+- Ran Rule of 5 review on the spec and applied all 8 findings (overlap resolution, edge cases, open questions)
+- Created 8 beads tickets (atril-80y through atril-amw) with dependency chain
+- Ran issue review and applied all recommended fixes: missing `atril-aca→atril-qnq` dep, description updates for bwg/amw/80y/4tc
+- **Next:** Start implementation at `atril-80y` (reconcile overlap with `add-openspec-navigator` and `add-spec-change-cross-links`) — HITL decision needed before AFK work begins
+
+---
