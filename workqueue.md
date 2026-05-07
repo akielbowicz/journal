@@ -422,3 +422,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start `atril-n8n` — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
 
 ---
+## 2026-05-07 15:13 — atril
+
+- Implemented `atril-n8n`: first-class change cards in the OpenSpec workspace overview — grouped proposal/tasks/design/spec-delta links, `parseTaskSummary` for N/M task counts, missing-doc indicators, and async task-summary wiring in `main.ts`.
+- Added `src/shared/openspec-workspace.ts` (new), updated `openspec-index.ts`, `repo-overview.ts`, `main.ts`, `styles.css`, and 5 test files; 371/371 green.
+- Closed `atril-n8n`; OpenSpec validation clean (`openspec validate add-openspec-workspace-view --strict`).
+- Committed in two groups: feature+tests (`c3b5e41`) and planning artifacts (`ff843c3`).
+- **Next:** start `atril-qnq` — handle incomplete change directories and malformed task files.
+
+---
