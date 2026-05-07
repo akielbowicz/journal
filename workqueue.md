@@ -402,3 +402,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Implement REPLy_jl-xk4 (Tuple-based middleware stack) to remove top-level dynamic dispatch.
 
 ---
+
+## 2026-05-07 14:55 — atril
+
+- Continued  in : added OpenSpec Workspace overview rendering, workspace file indexing, selectable project/raw file links, and routed Specs entry to the workspace view.
+- Closed beads  and ; updated OpenSpec tasks for completed reconciliation, index, overview, and project-document slices.
+- Ran Rule of 5 review on the new code and fixed all findings: Files section is navigable, overview renders before spec content fetches, spec-load failures stay inline, and index docs clarify  includes project docs.
+- Validation green: bun test v1.3.12 (700fc117) 359/359, , Built 1 files to dist/, and Change 'add-openspec-workspace-view' is valid.
+- **Next:** start  — make active changes first-class review objects (proposal/tasks/design/deltas grouped by change with task summary and missing-doc indicators).
+
+---
