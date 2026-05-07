@@ -33,3 +33,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `mibilioteca-pa3` (captures gallery / thumbnails view in session) or `mibilioteca-xoa` (image recompression warning in export UI)
 
 ---
+
+## 2026-05-07 17:53 — miblioteca
+
+- Implemented `mibilioteca-pa3`: captures gallery / thumbnails strip in `CaptureView` — loads on bootstrap, updates after each capture, revokes object URLs on destroy; 4 new tests, 395 total green
+- Ran `rule-of-5-universal` review — found 4 issues: broken-image flash (C1), object URL leak on mid-load destroy (C2), concurrent-call URL accumulation (C3), serial IDB fetches (C4)
+- Fixed all 4: `gallerySeq` monotonic counter stops stale calls, `destroyed` guard prevents post-destroy leaks, old URLs revoked only after `replaceChildren`, `Promise.all` parallelizes thumbnail fetches
+- **Next:** pick up `mibilioteca-xoa` (image recompression warning in export UI), `mibilioteca-9is` (back button on new-scan screen), or `mibilioteca-csp` (export discoverability in capture UI)
+
+---
