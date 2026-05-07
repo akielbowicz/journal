@@ -369,3 +369,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with `lfl` — handle bundle export failures, aborts, and storage-limit cases.
 
 ---
+## 2026-05-07 14:40 — dont
+
+- Resolved `dont-psu`: explored verb semantics under the "dont = do not" phrase constraint; chose `trust`/`flag` pair (`dont flag` = "don't flag as concern" = verified).
+- Renamed `dismiss → flag` throughout codebase (`StoreEventKind`, command handler, tests, specs, docs); backward-compat alias preserved for old events.
+- Resolved `dont-sxh`: added `undoubt` verb (`doubted → unverified`) distinct from `reopen` (ignored entities only); full test coverage.
+- Updated `.dont/AGENTS.md` and command help strings with explicit "dont = do not" reading guide table.
+- **Next:** advance `add-trace-query` spec (2/7 tasks done) — next implementation task in that track.
+
+---
