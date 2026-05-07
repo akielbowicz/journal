@@ -288,3 +288,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start `scaffold-editor-shell` — 22 issues at 0%, mark OpenSpec task 6.3, run `bd ready` for first unblocked Phase 3 ticket
 
 ---
+
+## 2026-05-07 12:23 — clojure-tutor
+
+- User reconsidered Phase 2 mid-session (profile system felt like a nice-to-have); decided to wrap it rather than rip it out since it was 24/25 done
+- Marked OpenSpec task 6.3 complete (browser verification via prior Playwright smoke test); archived `implement-profile-system` → `openspec/changes/archive/2026-05-07-implement-profile-system/`
+- Promoted three new specs into `openspec/specs/`: `keybinding-substitution`, `profile-system`, `which-key-nav`; added `.playwright-mcp/` and `playwright.config.js` to `.gitignore`
+- Phase 2 now 25/25 complete; committed and pushed to origin/main
+- **Next:** create beads issues for `scaffold-editor-shell` (22 tasks at 0%) and claim task 1.1 to start Phase 3
+
+---
