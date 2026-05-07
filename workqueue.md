@@ -335,3 +335,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Start implementation at `atril-80y` (reconcile overlap with `add-openspec-navigator` and `add-spec-change-cross-links`) — HITL decision needed before AFK work begins
 
 ---
+
+## 2026-05-07 12:51 — miblioteca
+
+- Approved HITL gate `j4x` (bundle-first MVP direction confirmed); closed ticket
+- Implemented ticket `6bo`: defined `BundleManifest`, file entry types, and `exportState` in `src/bundle/types.ts`; deterministic filename/path generation in `src/bundle/paths.ts`
+- TDD: wrote failing tests first, then implementations — 17 new tests, all green; full suite 332 passing
+- Committed and pushed `feat(bundle): add portable bundle contract types and deterministic paths`
+- **Next:** `kdj` — assemble and validate one-record portable bundle (zip up artifacts into `.mbibundle.zip` using types/paths just defined)
+
+---
