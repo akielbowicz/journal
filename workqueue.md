@@ -277,3 +277,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick remaining P2 `mibilioteca-ni0` (real backend integration) or P3s `bzk` (preview frame upload), `646` (iOS fallback), `o25` (upload reliability), `uyq` (multi-user join flow).
 
 ---
+
+## 2026-05-07 12:14 — clojure-tutor
+
+- Fixed nav-layer guard to allow F2 (non-printing) as leader for default/calva/emacs profiles — `g` was previously intercepted and broke typing; leader changed to F2 in `src/profiles/registry.js`
+- Fixed which-key listener to use capture phase so vim doesn't intercept `p` as paste before the panel handler fires
+- Routed F5 through CM6 `keymap.of()` in `emacs.js` so browser reload is prevented; noted GNOME Ctrl+Alt+Arrow as OS-level limitation (unfixable)
+- Ran full Playwright MCP smoke test (6 screenshots): F2 → overlay, p → profiles panel, arrow nav, Enter → vim profile, fixture updates (`Ctrl-ArrowRight` → `>` / `barf-forward`), Space leader in vim — all pass
+- Closed CLT-na9; `implement-profile-system` OpenSpec now 25/25; screenshots committed then removed + `*.png`/`*.mp4`/`*.webm` added to `.gitignore`; pushed to origin/main
+- **Next:** start `scaffold-editor-shell` — 22 issues at 0%, mark OpenSpec task 6.3, run `bd ready` for first unblocked Phase 3 ticket
+
+---
