@@ -34,3 +34,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `dont-gl0` (`[project]` `[output]` `[storage]` blocks) — the last config.toml cluster
 
 ---
+
+## 2026-05-08 16:30 — dont
+
+- Reviewed epistemic/ontological system status: FSM, evidence, atoms, hedges fully wired; import adapters and reasoning engine still stubs (~60% done)
+- Closed `dont-yve` (rule engine spec — already complete via archived `add-dont-rules-specs`)
+- Implemented `dont-8cs`: `RuleEngine` in `src/rules/mod.rs` with `evaluate()`, `severity()`, warn/strict dispatch, mode escalation; `Store::run_rule_query()` wired; 9 tests green; pushed to main
+- **Next:** implement individual shipped rules (`ungrounded`, `lockable`, `stale-cascade`) — all unblocked now; or tackle `dont-pnx` (MCP server, P1, no blockers)
+
+---
