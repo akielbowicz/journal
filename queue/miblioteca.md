@@ -110,3 +110,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** test ghost overlay on real Firefox Android device; verify `DeviceMotionEvent` permission gate behavior and sign conventions; check `add-portable-bundle-export` remaining 8 tasks (18/26 done)
 
 ---
+
+## 2026-05-08 15:43 — miblioteca
+
+- Investigated `share:result → error: Permission denied` via debug log; replaced silent programmatic download with user-tappable "Download" button in `BundleExportPanel.ts`
+- Fixed ghost overlay scan axis: switched `gz` (compass spin) to `gy` (gamma/device-y) — debug log confirmed `gy` reaches ±0.35 rad/s during scanning while `gz` stays near ±0.02
+- Rule-of-5 review surfaced landscape orientation gap (EDGE-001) and async race in `transfer()` catch; all findings applied — 498 tests pass, pushed
+- Added `scanAxis` param to `feedGhostGyro` for landscape support (`'x'` = gx); hardened `transfer()` with optimistic-concurrency guard, double-tap prevention, and unexpected-error fallback
+- **Next:** physical hardware test to verify `gy` sign direction on Android Chrome — if ghost moves backwards flip sign at `ghostOverlay.ts:34`; remaining spec tasks 1.3, 1.4, 5.3, 6.3, 6.4
+
+---
