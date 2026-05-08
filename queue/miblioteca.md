@@ -4,6 +4,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-08 12:47 — miblioteca
+
+- Completed all `add-debug-event-log` implementation: `DebugLogger`, `DebugPanel`, `CaptureView` debug wiring, and all 5 instrumentation tickets (camera, sensor/permissions, GhostOverlayCanvas, share/download, capture shutter)
+- Applied ro5 fixes: `stack` in `error:uncaught`, logger DI via `CaptureViewOptions`, DOM-append anchor pattern, 4 CaptureView debug-path tests — 472 tests green, pushed
+- **Next:** `mibilioteca-toq` (integration tests — now fully unblocked) or manual acceptance tests `4n4`/`2tu` on real device
+
+---
+
 ## 2026-05-08 12:22 — miblioteca
 
 - Proposed, ro5-reviewed, and expanded `add-debug-event-log` OpenSpec — added orientation throttle, `share:api-check`, lifecycle + uncaught-error events, metadata export envelope
