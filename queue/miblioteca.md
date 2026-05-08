@@ -90,3 +90,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** manual device acceptance tests `mibilioteca-4n4` (ghost overlay) and `mibilioteca-2tu` (bundle export end-to-end on Android Chrome); then `mibilioteca-646` (iOS InputFileCapture fallback) if device available
 
 ---
+
+## 2026-05-08 13:34 — miblioteca
+
+- Closed `mibilioteca-toq` (integration tests for all instrumented debug subsystems): created `src/debug/integration.test.ts` with 12 tests covering camera init, sensor probe/permissions, ghost overlay lifecycle+render, share/download handlers, and capture shutter flow
+- Ro5u review caught missing payload validation and `ghost:created`/`ghost:destroyed` lifecycle coverage — fixed both; suite went from 10 → 12 tests, all green (484 total)
+- Committed and pushed; `add-debug-event-log` spec is now fully complete
+- **Next:** manual device acceptance tests `mibilioteca-4n4` (ghost overlay on real device) and `mibilioteca-2tu` (bundle export end-to-end on Android Chrome); or `mibilioteca-y6e` (Playwright spike) if staying at desk
+
+---
