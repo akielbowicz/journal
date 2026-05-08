@@ -13,3 +13,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** push the commit, then pick up next unblocked issue — shell completions (`dont-8h2`) or config.toml sections (`dont-2tl`, `dont-h8c`, `dont-gl0`) are all ready
 
 ---
+
+## 2026-05-08 15:57 — dont
+
+- Validated and closed `dont-3so` (improve-cli-ergonomics milestone): all 26 openspec checks passed, Locked state reachable via full CLI path
+- Implemented `dont-2tl`: new `src/config.rs` with `Config`/`ImportConfig`/`VerifyEvidenceConfig`/`DefineShapeConfig` structs; wired into `dont import` (adapter-disabled gate), `verify-evidence` (default timeout), and `validate_label` (shape toggles)
+- Added `tests/config.rs` covering all three config surfaces; full test suite green, clippy clean
+- Committed and pushed `feat(config): parse [import] [verify_evidence] [define.shape] config blocks`
+- **Next:** pick up `dont-h8c` (`[trust.hedges]` and `[rules]` severity blocks) or `dont-gl0` (`[project]` `[output]` `[storage]` blocks) — config infrastructure is now in place
+
+---
