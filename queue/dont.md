@@ -23,3 +23,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `dont-h8c` (`[trust.hedges]` and `[rules]` severity blocks) or `dont-gl0` (`[project]` `[output]` `[storage]` blocks) — config infrastructure is now in place
 
 ---
+
+## 2026-05-08 16:11 — dont
+
+- Implemented `dont-h8c`: `TrustHedgesConfig`, `TrustConfig`, `TermNonfunctionalConfig`, and `RulesConfig` structs wired into `Config`
+- `contains_hedge` now merges hardcoded `DEFAULT_HEDGES` with project-config patterns; both `dont trust` and `dont ignore` load config before the hedge check
+- `dont define` emits `term-nonfunctional-label` warning when `[rules.term_nonfunctional].enabled = true` and the label matches a configured pattern
+- `dont prime` reflects `[rules].warn` and `[rules].strict` lists; removed `[trust.hedges]` from init template to avoid duplicate TOML table conflicts
+- Committed and pushed `feat(config): parse [trust.hedges] and [rules] severity blocks`; closed `dont-h8c`
+- **Next:** `dont-gl0` (`[project]` `[output]` `[storage]` blocks) — the last config.toml cluster
+
+---
