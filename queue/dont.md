@@ -43,3 +43,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement individual shipped rules (`ungrounded`, `lockable`, `stale-cascade`) — all unblocked now; or tackle `dont-pnx` (MCP server, P1, no blockers)
 
 ---
+
+## 2026-05-08 17:11 — dont
+
+- Implemented 7 shipped rules across 4 issues (dont-711, dont-7bg, dont-v70, dont-5sq): `ungrounded`, `unresolved-terms`, `stale-cascade`, `lockable`, `correlated-error`, `dangling-definition`, `term-nonfunctional-label`; all dispatched via `RuleEngine::evaluate_shipped()`; 41 tests green
+- Ran `/ro5` review; surfaced 2 HIGH (duplicated evidence utilities, lockable/dangling contradiction), 4 MEDIUM, 4 LOW issues
+- Fixed all findings: extracted `source_key`/`host_from_uri` to `mod.rs` with port stripping, made `lockable` treat unresolved deps as blocking, fixed misleading comments, added malformed-dep guard in `ungrounded`; 46 tests green
+- Committed `refactor(rules): address Ro5 review findings` + `chore: update llm.txt`; deferred `dont-pnx` (MCP server, P1)
+- **Next:** push to remote, then implement `dont-iny` (rules add/test), `dont-y8v` (rules list/show), or `dont-9fv` (explain command) — all P2, unblocked
+
+---
