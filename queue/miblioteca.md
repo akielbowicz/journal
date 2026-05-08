@@ -120,3 +120,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** physical hardware test to verify `gy` sign direction on Android Chrome — if ghost moves backwards flip sign at `ghostOverlay.ts:34`; remaining spec tasks 1.3, 1.4, 5.3, 6.3, 6.4
 
 ---
+
+## 2026-05-08 18:55 — miblioteca
+
+- Implemented `add-translation-tracking`: `DeviceMotion.acceleration` integrated via trapezoidal rule with wallclock-elapsed dt (matching `feedGhostGyro`), beta-angle guard silently zeroes translation when phone is flat, primary ZUPT via `setSnapshot()` velocity reset
+- Fixed null-to-zero velocity drift: `DeviceMotionLinearAccelAdapter` now returns early when `e.acceleration` is null; canvas adds matching null guard; stale velocity no longer accumulates on intermittent-null Android devices
+- Extracted `focalLengthPx()` helper, added `DeviceMotionLinearAccelAdapter` unit tests (8 new), 542 tests passing; all 6 `add-translation-tracking` tickets closed
+- `add-distance-config` tickets created and dependency-wired (`7st`, `e3k` both depend on `jjb`); ruler calibration flow replaces slider in proposals
+- **Next:** implement `add-distance-config` — start with `mibilioteca-7st` (ruler calibration overlay) then `mibilioteca-e3k` (persistence + debug field)
+
+---
