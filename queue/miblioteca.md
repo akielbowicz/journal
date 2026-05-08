@@ -99,3 +99,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** manual device acceptance tests `mibilioteca-4n4` (ghost overlay on real device) and `mibilioteca-2tu` (bundle export end-to-end on Android Chrome); or `mibilioteca-y6e` (Playwright spike) if staying at desk
 
 ---
+
+## 2026-05-08 15:13 — miblioteca
+
+- Fixed `NotAllowedError` crash in Web Share API (`BundleExportPanel.ts`) — falls back to download instead of propagating; covered by new test
+- Added `DeviceMotionEvent` adapters for Firefox (`deviceMotionAdapter.ts`) — ghost overlay now works without Generic Sensor API; handles deg/s → rad/s conversion and beta/gamma/alpha → x/y/z axis mapping
+- Applied ro5u fixes: real event passed to `AccelerometerLike.onreading`, axis-mapping comment added, `debugLogger` import ordering fixed in `probe.ts`
+- Fixed CI: `SensorProbeDeps` test fixtures missing required `hasDeviceMotionEvent` field
+- Added `simple-git-hooks`: pre-commit runs `tsc --noEmit`, pre-push runs full test suite (495 tests)
+- **Next:** test ghost overlay on real Firefox Android device; verify `DeviceMotionEvent` permission gate behavior and sign conventions; check `add-portable-bundle-export` remaining 8 tasks (18/26 done)
+
+---
