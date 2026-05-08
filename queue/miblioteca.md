@@ -4,6 +4,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-08 12:22 — miblioteca
+
+- Proposed, ro5-reviewed, and expanded `add-debug-event-log` OpenSpec — added orientation throttle, `share:api-check`, lifecycle + uncaught-error events, metadata export envelope
+- Created 9 beads issues for the feature; issue-review found 2 missing dep edges (`5v7→3fg`, `0ml→tvi`) and patched all clarity/verification gaps
+- Implemented `DebugLogger` (ring buffer, 1000 slots, URLSearchParams DI, metadata envelope), `DebugPanel` (floating export button, DOM anchor pattern), and `CaptureView` debug wiring (lifecycle/error listeners, `share:api-check`)
+- Applied ro5 fixes: added `stack` to `error:uncaught`, logger DI via `CaptureViewOptions`, DOM-append anchor for Firefox compat, 4 new CaptureView debug-path tests — 52 tests green
+- **Next:** Continue with instrumentation tickets — `mibilioteca-r7c` (camera init), `mibilioteca-5v8` (sensor probe/permissions), `mibilioteca-9kb` (GhostOverlayCanvas), `mibilioteca-vfu` (share/download handlers)
+
+---
+
 ## 2026-05-08 10:44 — miblioteca
 
 - Designed and created 9 Playwright E2E tickets under epic `mibilioteca-vwi` (Suites 1–8); issue-review pass surfaced 1 CRITICAL (Playwright not installed) and patched all gaps — setup ticket, spike, file paths, done criteria
