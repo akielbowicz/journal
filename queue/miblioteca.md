@@ -4,6 +4,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-05-08 10:44 — miblioteca
+
+- Designed and created 9 Playwright E2E tickets under epic `mibilioteca-vwi` (Suites 1–8); issue-review pass surfaced 1 CRITICAL (Playwright not installed) and patched all gaps — setup ticket, spike, file paths, done criteria
+- Implemented 35 Playwright tests across 7 suites; uncovered real bug: `GhostOverlayCanvas` was silently evicted from DOM by `render()`'s `replaceChildren` — fixed in `CaptureView.ts`
+- Ran Rule of 5 review on full codebase; found 3 HIGH bugs: quality checks never persisted at shutter, tilt detection hardcoded to 0, upload FSM rejected HTTP 201/204 as terminal failure — all fixed
+- Fixed MEDIUM issues: dt clamp for yaw spike prevention, RAF lifecycle when destroyed, O(n²) base64, mid-record abort in bundle assembly, aria attributes on overlay and export panel
+- **Next:** tackle remaining open specs — `add-capture-metrics` (0/15) or `add-tracer-bullet` (0/11); run `bd ready` to pick up next ticket
+
+---
+
 ## 2026-05-07 16:00 — miblioteca
 
 - Ran full Android Chrome verification of the portable bundle MVP (ticket `u39`): capture, persistence, export, retry, bundle validation, file transfer — all passed
