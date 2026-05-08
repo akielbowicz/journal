@@ -52,3 +52,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `mibilioteca-9is` (back button on new-scan screen) or `mibilioteca-csp` (export discoverability) — both P3 and unblocked; `mibilioteca-4n4` is the manual ghost overlay acceptance test on real device
 
 ---
+
+## 2026-05-08 09:01 — miblioteca
+
+- Implemented back button on `#/new` (ScanManagementView) and moved BundleExportPanel to root — then reverted panel to `this.controls` after `overflow: hidden` on `.camera-app` clipped it
+- Fixed bundle filename redundancy: `TB-9170_TB-9170_2026-05-08` → `TB-9170_2026-05-08_00-09` (shortCode once + HH-MM from exportedAt)
+- Sized `scan-back-btn` with CSS (was unstyled SVG expanding to fill screen)
+- Fixed ghost overlay never activating: `App.ts` now wires real `Gyroscope`/`Accelerometer` via `detectSensorDeps`; Ro5u caught guard bug (`!== undefined` true for null) — fixed to truthy; 442 tests green, CI green
+- **Next:** manual device acceptance tests `mibilioteca-4n4` (ghost overlay) and `mibilioteca-2tu` (bundle export end-to-end on Android Chrome); then `mibilioteca-646` (iOS InputFileCapture fallback) if device available
+
+---
