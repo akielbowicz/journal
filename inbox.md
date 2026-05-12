@@ -7,6 +7,9 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-05-12 [ ] In `charly/espectacular`, persist the AI-dev ecosystem gap analysis as a parent document and link the `add-spec-assertions` epic plus feedback-loop tickets back to it.
+- 2026-05-12 [ ] In the `charly` ecosystem, open the deferred observability work with a harness-agnostic scope covering Pi, Codex, and Claude Code trace collection.
+- 2026-05-12 [ ] In the `charly` ecosystem, create placeholders for the still-deferred gaps: dependency validation and context curation.
 - 2026-05-04 [ ] In `clojnder`, after Binder picks up commit `9e243ff`, verify the `/user/<session>/clay-preview/*` routes work end-to-end and consider adding explicit image/version metadata for easier in-pod debugging.
 - 2026-04-30 [ ] In `clojnder`, fill in `openspec/project.md`, decide whether to configure `.wai/resources/agent-config/.projections.yml`, and create the first tracked change/task
 - 2026-04-28 [ ] In `SundaeVolatility`, decide whether untracked `src/` and `tests/` should be committed, ignored, or cleaned up

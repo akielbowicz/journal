@@ -18,6 +18,7 @@ implement phase — tracer bullet complete
 - [ ] `pretender-9hk` — External metric plugin wrappers
 - [ ] `pretender-a80` — Diff-only mode (git2)
 - [ ] `pretender-vuc` — P4: `pretender explain <metric>`
+- [ ] `pretender-5rk` — Design feedback-loop signal persistence for recurring structural violations
 
 ## Notes
 - Universal model: Module → CodeUnit → Block → Branch; each language adapter produces the model; metrics are language-agnostic
