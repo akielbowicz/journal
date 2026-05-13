@@ -21,3 +21,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue the same one-ticket-at-a-time loop on `wai-fvhv.119`, focusing on `wai why` provider-selection and `--no-llm` routing coverage before the later `why.rs` modularization ticket.
 
 ---
+
+## 2026-05-13 18:25 — wai
+
+- Closed `wai-fvhv.119`, `wai-fvhv.118`, and `wai-fvhv.115` in the `wai` repo with focused Rust test coverage for `wai why` provider selection/history fallback and `wai resource` archive import/export flows.
+- Added deterministic tests in `src/llm.rs`, `src/commands/why.rs`, and `tests/integration.rs`, then committed and pushed them as `a77855c`; also recorded handoff/tracker follow-up in `eab1f1f` and reopened deferred ticket `wai-fvhv.114` in `e578f2a`.
+- Verified with targeted cargo test runs plus the full pre-push suite; `main` is pushed to `origin/main`.
+- **Next:** resume the QA epic at `wai-fvhv.114` for `wai resource` skill-lifecycle coverage, then continue down the remaining ready focused-coverage tickets.
+
+---
