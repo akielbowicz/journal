@@ -30,3 +30,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** resume the QA epic at `wai-fvhv.114` for `wai resource` skill-lifecycle coverage, then continue down the remaining ready focused-coverage tickets.
 
 ---
+
+## 2026-05-14 10:17 — wai
+
+- Continued the wai QA epic autonomously with ticket-by-ticket focused test work, closing `wai-fvhv.114`, `wai-fvhv.111`, `wai-fvhv.25`, `wai-fvhv.30`, and `wai-fvhv.47`.
+- Added dedicated command-focused test files `tests/add_test.rs`, `tests/import_test.rs`, and `tests/way_test.rs`, while also extending `tests/integration.rs` for resource install and plugin passthrough scenarios.
+- Verified each ticket with targeted `cargo test` runs (`add_test`, `import_test`, `way_test`, plus focused integration filters) and kept the TDD/RO5 one-ticket loop intact.
+- **Next:** commit the new focused test files and tracker updates, then continue the QA queue with the next highest-priority dedicated test ticket such as `wai-fvhv.39` or `wai-fvhv.28`.
+
+---
