@@ -32,26 +32,28 @@ End the current session: log what was done, update tasks, commit.
    ## Decisions
    ```
 
-4. Detect the project slug from the current working directory (same logic as `/next`):
+4. Detect the project slug (same logic as `/next` step 3):
    ```bash
-   git remote get-url origin 2>/dev/null | sed 's/.*\///' | sed 's/\.git$//'
+   RAW=$(git remote get-url origin 2>/dev/null | sed 's/.*\///' | sed 's/\.git$//')
+   [ -z "$RAW" ] && RAW=$(basename "$PWD")
+   [ "$PWD" = "$HOME" ] && RAW="general"
+   SLUG=$(echo "$RAW" | tr ' /()' '----' | tr '[:upper:]' '[:lower:]')
    ```
-   Fall back to `basename $PWD`, or `general` if in `$HOME`.
 
-5. Check `$JORNAL/workqueue.md` for entries matching the detected slug across **all dates** — not just today.
-   Match lines of the form `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor; slug must match exactly, not as substring).
-   Each matching block runs from that `##` line to the next `---` separator.
-   If entries exist, load them as prior-session context for the synthesis in step 6.
+5. Load queued prior-session context:
+   - **Primary:** check `$JORNAL/queue/$SLUG.md`. If it exists, is non-empty, and contains at least one `## ` section header, load its entries.
+   - **Fallback:** if `queue/$SLUG.md` is absent or fails validation, check `$JORNAL/workqueue.md` for entries matching `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor; slug must match exactly, not as substring). Each matching block runs from that `##` line to the first `---` separator following it.
+   - **Skip:** if neither source has entries for this slug, proceed as a normal single-session close.
 
-6. Review the full conversation history (plus any workqueue entries from step 5) and write a concise session summary covering:
-   - What was worked on (key topics, files, repos) — synthesized across all sessions if workqueue had entries
+6. Review the full conversation history (plus any queued entries from step 5) and write a concise session summary covering:
+   - What was worked on (key topics, files, repos) — synthesized across all sessions if queue had entries
    - Decisions made
    - Tasks completed or created
    - Any unresolved items or next steps
 
 7. Append the summary to the `## Log` section of today's daily log.
    If `## Log` does not exist in the file, append the section header before the entry.
-   If workqueue entries were present (step 5), N = count of workqueue entries + 1 (current session). Use the multi-session heading:
+   If queued entries were present (step 5), N = count of queued entries + 1 (current session). Use the multi-session heading:
    ```
    ### Sessions HH:MM (<slug> — N sessions)
    - synthesized bullet points
@@ -73,21 +75,20 @@ End the current session: log what was done, update tasks, commit.
 
 9. If any tasks or follow-ups came up that aren't in a project/area, add them to `inbox.md`.
 
-10. If workqueue entries for this slug were incorporated (step 5), remove them from `$JORNAL/workqueue.md`.
-    **Removal algorithm:**
-    - Match blocks whose header line matches `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` exactly (line-end anchor prevents `journal` from matching `journal-redesign`).
-    - Each block ends at (and includes) the first `---` separator following the header.
-    - Remove only those blocks. Leave all entries for other slugs untouched.
-    - The file's top-level header (`# Work Queue`) and its description + opening `---` are **never** removed.
+10. If queued entries were incorporated (step 5):
+    - If entries came from `$JORNAL/queue/$SLUG.md`: remove all `## ` session blocks from the file using the Write or Edit tool; preserve the file header (`# Queue: ...`).
+    - If entries came from legacy `$JORNAL/workqueue.md`: remove only the matching blocks. Match `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` exactly (line-end anchor prevents substring matches). Each block ends at (and includes) the first `---` following its header. Leave all other slugs' entries and the file header untouched.
+    - Commit both removals in the same commit as the log entry (step 11).
 
 11. Commit:
     ```bash
-    cd "$JORNAL" && git add workqueue.md inbox.md areas/log/ projects/ areas/ && git commit -m "log: YYYY-MM-DD session notes"
+    cd "$JORNAL" && git add "queue/$SLUG.md" workqueue.md inbox.md areas/log/ projects/ areas/ && git commit -m "log: YYYY-MM-DD session notes"
     ```
+    Including both `queue/$SLUG.md` and `workqueue.md` covers both new and legacy locations during the migration period.
 
 ## Rules
 
 - Do NOT ask the user any questions. Summarize automatically from conversation context.
 - Keep the summary concise — bullet points, not paragraphs.
 - If today's log already has content, append to it; never overwrite existing entries.
-- If `workqueue.md` does not exist or has no entries for this slug, proceed as a normal single-session close.
+- If no queue file or legacy `workqueue.md` entries exist for this slug, proceed as a normal single-session close.

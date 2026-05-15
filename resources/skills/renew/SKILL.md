@@ -28,7 +28,7 @@ Load focused context for a project or area to continue work. If the user omits t
    1. Current conversation: the project/area name or slug the user just mentioned.
    2. Current working directory: repo/path components matching a project or area slug/name.
    3. Git context: current branch name, remote URL/repo name, or recent commit messages matching a project or area slug/name.
-   4. `$JORNAL/workqueue.md`: the most recent queued `/next` entry if it is unambiguous.
+   4. `$JORNAL/queue/<slug>.md` (or legacy `$JORNAL/workqueue.md`): the most recent queued `/next` entry if it is unambiguous.
    5. Today's log: Focus section or most recent Log entry naming a project/area.
    6. Recent logs (last 3 days): most recently active project/area.
 
@@ -42,20 +42,43 @@ Load focused context for a project or area to continue work. If the user omits t
    If it doesn't exist, create it with the daily log template.
    Scan for any earlier session entries related to this project/area today.
 
-4a. Check `$JORNAL/workqueue.md` for any queued `/next` entries matching this slug (any date).
-    Match lines of the form `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor).
-    If entries exist, display them in the output under a **Queued sessions** section so the user has the full prior context before continuing.
+4a. Derive `$SLUG` from the matched project/area name (same sanitization as `/next` step 3):
+    ```bash
+    SLUG=$(echo "$RAW" | tr ' /()' '----' | tr '[:upper:]' '[:lower:]')
+    ```
 
-5. Search recent logs for context (last 3 days):
+    Load queued prior-session context:
+    - **Primary:** check `$JORNAL/queue/$SLUG.md`. If it exists, is non-empty, and contains at least one `## ` section header, load its entries.
+    - **Fallback:** if `queue/$SLUG.md` is absent or fails validation, check `$JORNAL/workqueue.md` for entries matching `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor).
+      - If legacy entries found: migrate them into `$JORNAL/queue/$SLUG.md` (create file with header if needed), remove the matching blocks from `workqueue.md`, and commit both files together with the next git operation.
+      - If no legacy entries: no queued context.
+
+    Before using any queue content, validate it contains at least one `## ` section header; otherwise treat as empty.
+
+    Display loaded entries under **Queued sessions** in chronological order. Legacy entries sort before new-file entries when timestamps match.
+
+    **Compact display rule:**
+    - 1 entry: show full bullets
+    - 2–4 entries: show latest in full; for each older entry show its date, slug, and **Next:** line only
+    - 5+ entries: show latest in full; show `+ N earlier sessions (YYYY-MM-DD to YYYY-MM-DD)` with their **Next:** lines collected
+
+    Always preserve the **Next:** bullet from every queued session — it is the most actionable part.
+
+5. Extract recent session context from logs. For each of the last 3 days (today, yesterday, 2 days ago) — stop as soon as a match is found:
    ```bash
-   grep -rl "<slug>" "$JORNAL/areas/log/" 2>/dev/null | sort -r | head -3
+   # Find start line of the slug's session section using fixed-string matching
+   grep -nF "($SLUG)" "$LOG_FILE" 2>/dev/null | head -1
+   grep -nF "($SLUG —" "$LOG_FILE" 2>/dev/null | head -1
    ```
-   Read any matches to understand recent session history.
+   Use the start line number to find the next `---` separator line; read only that block using the Read tool with offset and limit. Do not load the entire log file.
+
+   If no match is found in any of the 3 days, output `"No log section found for '<slug>' in the last 3 days"` instead of a silent empty **Last session** field.
 
 6. Search inbox for related items:
    ```bash
-   grep -i "<slug>" "$JORNAL/inbox.md"
+   grep -iF "$SLUG" "$JORNAL/inbox.md"
    ```
+   Show all matching lines under **Related inbox items**.
 
 7. If in a git repo, gather workspace context:
    - `git branch --show-current`
@@ -67,15 +90,15 @@ Load focused context for a project or area to continue work. If the user omits t
 ---
 **Resuming: Project/Area Name**
 
-**Target inference**: explicit `<slug>`, or inferred from cwd/git/workqueue/logs
+**Target inference**: explicit `<slug>`, or inferred from cwd/git/queue/logs
 
 **Status**: one-line summary of where things stand
 
-**Queued sessions** *(from workqueue.md — unprocessed /next entries for this slug)*
-- bullet entries from each queued session, in chronological order
+**Queued sessions** *(from queue/<slug>.md — unprocessed /next entries for this slug)*
+- bullet entries from each queued session, in chronological order (compact format for 2+ entries)
 - *(none)* if no queued entries
 
-**Last session** *(from most recent log entry)*
+**Last session** *(from most recent log entry, or "No log section found for '<slug>' in the last 3 days")*
 - what was done last time
 
 **Open tasks**

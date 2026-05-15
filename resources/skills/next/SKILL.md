@@ -19,25 +19,31 @@ Snapshot the current session to the work queue and move on. Fast — no project 
 
 3. Detect project slug from the current working directory:
    ```bash
-   git remote get-url origin 2>/dev/null | sed 's/.*\///' | sed 's/\.git$//'
+   RAW=$(git remote get-url origin 2>/dev/null | sed 's/.*\///' | sed 's/\.git$//')
+   [ -z "$RAW" ] && RAW=$(basename "$PWD")
+   [ "$PWD" = "$HOME" ] && RAW="general"
+   SLUG=$(echo "$RAW" | tr ' /()' '----' | tr '[:upper:]' '[:lower:]')
    ```
-   If not in a git repo or no remote, use `basename $PWD`.
-   If in `$HOME`, use `general`.
 
 4. Scan the last portion of the conversation and write a 2–5 bullet snapshot:
    - What was worked on (files, topics, repos)
    - Key decisions or changes made
    - **Next:** the most logical continuation point
 
-5. Append to `$JORNAL/workqueue.md` (create with header if missing):
+5. Write the entry using the Write or Edit tool (not a shell heredoc). Target: `$JORNAL/queue/$SLUG.md`.
+   First ensure the directory exists:
+   ```bash
+   mkdir -p "$JORNAL/queue"
+   ```
+   If the file doesn't exist, create it with this header:
    ```markdown
-   # Work Queue
+   # Queue: <slug>
 
    Sessions captured with /next — processed by /close or /wrap-up.
 
    ---
    ```
-   Then append the entry:
+   Then append the session entry:
    ```markdown
    ## YYYY-MM-DD HH:MM — <slug>
 
@@ -47,10 +53,11 @@ Snapshot the current session to the work queue and move on. Fast — no project 
 
    ---
    ```
+   Never overwrite or edit existing entries — only append.
 
 6. Commit:
    ```bash
-   cd "$JORNAL" && git add workqueue.md && git commit -m "wq: YYYY-MM-DD <slug>"
+   cd "$JORNAL" && git add "queue/$SLUG.md" && git commit -m "wq: YYYY-MM-DD $SLUG"
    ```
 
 ## Output format
@@ -68,4 +75,4 @@ Snapshot the current session to the work queue and move on. Fast — no project 
 
 - Do NOT ask the user any questions.
 - Keep it to 2–5 bullets — this is a checkpoint, not a full log.
-- Never overwrite or edit existing workqueue entries.
+- Never overwrite or edit existing queue entries.
