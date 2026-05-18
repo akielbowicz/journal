@@ -11,3 +11,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** re-run the feasibility evaluation on the updated specs or move into implementation against the now-clarified OpenSpec task breakdown.
 
 ---
+
+## 2026-05-18 14:15 — espectacular
+
+- Added three SDD research documents to wai and synthesized findings into `sdd-findings-espectacular.md` (EARS archetypes, Schemathesis drift model, 12-point rubric)
+- Applied rule-of-5-universal review twice — once on findings, once on proposals — and fixed all issues each round
+- Updated `add-spec-assertions` (NR archetype), `add-quality-measurement-and-adapters` (conformance matrix + `ah report`), and scaffolded new `add-spec-quality-checks` proposal (`ah lint`, 6 check categories, TDD-ordered tasks)
+- All changes committed and pushed to origin
+- **Next:** Begin implementation — claim `espectacular-ol7.1` (S1 gate core) and start red→green cycle; `add-spec-quality-checks` tasks are ready to claim once assertions S1 is done
+
+---
