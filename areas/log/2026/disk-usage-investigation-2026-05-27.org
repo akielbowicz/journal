@@ -1,0 +1,146 @@
+#+title: Disk Usage Investigation
+#+date: 2026-05-27
+
+* System snapshot
+- Uptime: 7 days, 9 hours
+- Main filesystem: /dev/nvme0n1p3
+- Capacity: 930G total, 770G used, 157G free
+- Utilization: 84%
+
+* Biggest top-level items in /var/home/sasha
+- 296G :: /var/home/sasha/para
+- 228G :: /var/home/sasha/Downloads
+- 37G :: /var/home/sasha/PROJECTOR
+- 2.5G :: /var/home/sasha/actions-runner
+- 1.7G :: /var/home/sasha/models
+
+* Downloads findings
+- Downloads is a major storage consumer and should be reviewed separately if cleanup is desired.
+
+* Hidden directories in ~
+- 38G :: ~/.cache
+  - 22G :: ~/.cache/rattler
+  - 6.6G :: ~/.cache/uv
+  - 4.2G :: ~/.cache/Homebrew
+  - 1.9G :: ~/.cache/ms-playwright
+- 36G :: ~/.local
+  - 36G :: ~/.local/share
+- 18G :: ~/.julia
+  - 5.6G :: compiled
+  - 5.3G :: artifacts
+  - 2.6G :: juliaup
+- 16G :: ~/.var
+  - 16G :: ~/.var/app
+- 4.8G :: ~/.npm
+  - 4.0G :: ~/.npm/_cacache
+
+* ~/para breakdown
+- 211G :: ~/para/areas
+  - 211G :: ~/para/areas/dev
+- 85G :: ~/para/projects
+  - 85G :: ~/para/projects/work
+
+* ~/para/areas/dev breakdown
+- 211G :: ~/para/areas/dev/gh
+
+Largest subtrees:
+- 176G :: ~/para/areas/dev/gh/charly
+- 30G :: ~/para/areas/dev/gh/phorma
+- 3.2G :: ~/para/areas/dev/gh/sk
+- 2.1G :: ~/para/areas/dev/gh/ak
+
+** gh/charly breakdown
+- 75G :: dont
+- 57G :: fotos
+- 38G :: wai
+- 3.4G :: pretender
+- 1.3G :: espectacular
+
+** gh/phorma breakdown
+- 29G :: PAPRIVA
+- 758M :: pap-fixes
+
+* Why dont is large
+- 63G :: ~/para/areas/dev/gh/charly/dont/.claude
+- 13G :: ~/para/areas/dev/gh/charly/dont/target
+- 60M :: ~/para/areas/dev/gh/charly/dont/.beads
+- 7.6M :: ~/para/areas/dev/gh/charly/dont/.git
+
+** dont/.claude breakdown
+- 63G :: ~/para/areas/dev/gh/charly/dont/.claude/worktrees
+- 4K :: settings.local.json
+
+The large files under .claude/worktrees are repeated Rust build outputs, for example:
+- ~168M :: target/debug/dont and target/debug/deps/dont-*
+- ~175M :: target/debug/deps/libcozo-*.rlib
+
+Per-agent worktree sizes:
+- 6.1G :: agent-a8b7be7b
+- 5.9G :: agent-aa96cafe
+- 5.8G :: agent-a9ec9965
+- 5.7G :: agent-a252e688
+- 5.7G :: agent-a497a44a
+- 5.7G :: agent-a617d702
+- 5.7G :: agent-ae276a1d
+- 5.7G :: agent-ae2a2032
+- 5.7G :: agent-aedbbd7a
+- 5.4G :: agent-aab5bca7
+- 5.0G :: agent-a27af15c
+- 3.6M :: agent-aeb12e5f
+
+Conclusion: dont is large primarily because Claude agent worktrees each contain duplicated Rust target directories.
+
+* Why fotos is large
+- 32G :: ~/para/areas/dev/gh/charly/fotos/target
+- 25G :: ~/para/areas/dev/gh/charly/fotos/.flatpak-builder
+- 295M :: ~/para/areas/dev/gh/charly/fotos/.flatpak-repo
+- 41M :: ~/para/areas/dev/gh/charly/fotos/.flatpak-build
+
+Conclusion: fotos is large primarily because of Rust/Tauri build outputs and Flatpak build cache/artifacts.
+
+* Work project breakdown
+- 66G :: ~/para/projects/work/.local
+  - 66G :: ~/.local/share
+- 7.0G :: ~/.cache
+  - 3.2G :: uv
+  - 2.1G :: ms-playwright
+  - 1.5G :: Homebrew
+- 4.1G :: navari
+- 3.6G :: navari-thinking
+- 3.6G :: navari-ak-mcp-sop
+
+Inside the code directories, size is mostly from .venv, common, frontend, mcp, and .git.
+
+* .claude/worktrees across ~/para/areas/dev
+Found 4 worktrees directories under ~/para/areas/dev.
+
+By repo:
+- 63G :: ~/para/areas/dev/gh/charly/dont/.claude/worktrees
+- 2.6M :: ~/para/areas/dev/gh/charly/nayra/.claude/worktrees
+- 0 :: ~/para/areas/dev/gh/charly/wai/.claude/worktrees
+- 0 :: ~/para/areas/dev/gh/sk/elegua/.claude/worktrees
+
+Total across all discovered worktrees directories:
+- 61.97 GiB
+
+Worktree counts by repo:
+- 12 :: ~/para/areas/dev/gh/charly/dont
+- 1 :: ~/para/areas/dev/gh/charly/nayra
+- 0 :: ~/para/areas/dev/gh/charly/wai
+- 0 :: ~/para/areas/dev/gh/sk/elegua
+
+* Main cleanup candidates
+Safest obvious candidates:
+- Large stale files in ~/Downloads
+- ~/.cache/rattler
+- ~/.cache/uv
+- ~/.cache/Homebrew
+- ~/.npm/_cacache
+- ~/para/areas/dev/gh/charly/fotos/target
+- ~/para/areas/dev/gh/charly/fotos/.flatpak-builder
+- ~/para/areas/dev/gh/charly/dont/target
+
+Potentially high-impact candidate requiring intent check:
+- ~/para/areas/dev/gh/charly/dont/.claude/worktrees
+  - Large because of duplicated per-agent build outputs
+  - Should confirm whether any active Claude agent sessions still depend on these worktrees before deletion
