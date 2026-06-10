@@ -13,3 +13,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** 7 issues now ready — top P1s are `ah explain` subcommand (6nm.10) and the custom runner plugin protocol (6nm.7, unblocks doctor); pick up with `bd show espectacular-6nm.7` or `bd show espectacular-6nm.10`
 
 ---
+
+## 2026-06-10 19:19 — espectacular
+
+- Implemented `src/explain.rs`: 31-topic compile-enforced registry (17 FindingKind, 7 SuggestedAction, 4 general, 3 adapter topics) with markdown bodies, `--json`, `--list`, and did-you-mean for unknown topics
+- Wired `ah explain` subcommand into `src/main.rs`; added 14 unit tests + 11 CLI integration tests; all 200 tests passing
+- Closed beads `6nm.10`; checked off all 13 tasks in section 9 of `tasks.md`; pushed commit `704444e`
+- **Next:** pick up `espectacular-e5w` (P1 — dont rejection signal tracer bullet end-to-end) or `espectacular-6nm.7` (P2 — custom runner plugin protocol, unblocks doctor)
+
+---
