@@ -3,7 +3,7 @@
 CLI tool for code quality metrics: cyclomatic complexity, ABC score, etc. Universal model over tree-sitter adapters for multiple languages.
 
 ## Status
-implement phase — pre-commit hook functional, diff-only mode shipped
+implement phase — hooks install/uninstall complete with safety guards; 101 tests passing
 
 ## Tasks
 - [x] Bootstrap repo (wai, beads, openspec)
@@ -12,6 +12,7 @@ implement phase — pre-commit hook functional, diff-only mode shipped
 - [x] `pretender-9kx` — Tracer bullet: cyclomatic complexity on Python files
 - [x] `pretender-zsu` — History feedback loop for cognitive_max violations (P2)
 - [x] `pretender-a80` — Diff-only mode: git2 integration for staged files and diff-base (P3)
+- [x] `pretender-hay` — Native pre-commit hook generator (install/uninstall with safety guards)
 - [ ] `pretender-b5o` — P1 wave (unblocked by tracer bullet)
 - [ ] `pretender-jy9` — P1 wave
 - [ ] `pretender-8ai` — 5 additional languages (Go, Java, Ruby, C, C++)
@@ -28,3 +29,5 @@ implement phase — pre-commit hook functional, diff-only mode shipped
 - Fixture: `tests/fixtures/python_simple.py` with 6 callables across complexity levels
 - git2 integration: staged_files() diffs index vs HEAD (None tree = empty repo safe); diff_base_files() diffs tree to tree; empty-staging short-circuits before directory walk
 - Pre-commit hook uses `--staged`; `--staged` and `--diff-only` are mutually exclusive via clap conflicts_with
+- install/uninstall are symmetric: both refuse to touch hooks not installed by Pretender (PRE_COMMIT_HOOK_MARKER check)
+- pre_commit_hook_contents() is built from PRE_COMMIT_HOOK_MARKER constant — cannot drift
