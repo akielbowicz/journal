@@ -33,3 +33,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `espectacular-6nm.8` (Q7: `ah doctor` detection and `--enable`) — the remaining ready P2 item
 
 ---
+
+## 2026-06-17 15:32 — espectacular
+
+- Implemented Q7 (`ah doctor` detection + `--enable`): all 9 sub-tasks complete
+- `run_doctor()` detects pytest/cargo/vitest/property; configured → detections, detected-but-unconfigured → recommendations with `apply_command`
+- `ah doctor --enable <capability>` writes exact v1 config tables (runner entries or `[capabilities.*]` blocks); AlreadyEnabled no-op; unknown capability errors
+- Config text helpers (`insert_runner_entry`, `append_capability_block`) extracted to `init.rs` for 7.9 refactor; `CapabilitiesConfig` added to `config.rs`
+- 37 new tests, 272 total green; epic at 84% (69/82); committed `78a1d27` and pushed
+- **Next:** check `bd ready` for next open task in `add-quality-measurement-and-adapters` (task 8.9 or later sections); `ah check` should still show 0 findings
+
+---
