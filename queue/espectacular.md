@@ -72,3 +72,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement `espectacular-dl5`, then start `add-spec-quality-checks` (`ah lint` command, 21 tasks)
 
 ---
+
+## 2026-06-17 18:45 — espectacular
+
+- Completed `espectacular-dl5`: updated `AH_BLOCK_CONTENT` in `src/init.rs` plus live `CLAUDE.md` and `AGENTS.md` managed blocks to include `ah explain`, `ah doctor --enable`, `ah signals`; verified `ah init` injects all 7 commands; pushed
+- Audited documentation: found `add-quality-measurement-and-adapters` was implemented but never formally archived — fixed MODIFIED→ADDED spec section markers in `cli` and `gate` change specs, ran `openspec archive`, promoted 4 specs (`adapters`, `cli`, `explain`, `gate`) to `openspec/specs/`, stubbed 81 new sidecar contracts; pushed
+- Created 5 tickets for user documentation site (GitHub Pages with mdBook): `espectacular-0rl` (scaffold, ready), `espectacular-aid` (install guide), `espectacular-b16` (command reference), `espectacular-ojc` (concepts), `espectacular-h9a` (epic)
+- Ran `/issue-review` on the doc tickets; applied fixes: HITL warning + `index.md` scope to `espectacular-0rl`, added `ah type` to `espectacular-b16`
+- **Next:** pick up `espectacular-0rl` (scaffold mdBook + GH Actions workflow) — only ready ticket; then content tickets can run in parallel
+
+---
