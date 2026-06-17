@@ -3,7 +3,7 @@
 CLI tool for code quality metrics: cyclomatic complexity, ABC score, etc. Universal model over tree-sitter adapters for multiple languages.
 
 ## Status
-implement phase — hooks install/uninstall complete with safety guards; 101 tests passing
+implement phase — mutation testing wrapper shipped; 149 tests passing; 1 open issue
 
 ## Tasks
 - [x] Bootstrap repo (wai, beads, openspec)
@@ -13,14 +13,15 @@ implement phase — hooks install/uninstall complete with safety guards; 101 tes
 - [x] `pretender-zsu` — History feedback loop for cognitive_max violations (P2)
 - [x] `pretender-a80` — Diff-only mode: git2 integration for staged files and diff-base (P3)
 - [x] `pretender-hay` — Native pre-commit hook generator (install/uninstall with safety guards)
-- [ ] `pretender-b5o` — P1 wave (unblocked by tracer bullet)
-- [ ] `pretender-jy9` — P1 wave
-- [ ] `pretender-8ai` — 5 additional languages (Go, Java, Ruby, C, C++)
-- [ ] `pretender-4eh` — ABC scoring with smell weights
-- [ ] `pretender-3b5` — `pretender report` command
-- [ ] `pretender-9hk` — External metric plugin wrappers (P3, now unblocked)
+- [x] `pretender-b5o` — Implement universal code model types
+- [x] `pretender-jy9` — Implement pure metric functions
+- [x] `pretender-8ai` — 5 additional languages (Go, Java, Ruby, C, C++)
+- [x] `pretender-4eh` — ABC scoring with smell weights
+- [x] `pretender-3b5` — `pretender report` command
+- [x] `pretender-9hk` — External metric plugin wrappers (eslint, ruff, clippy, staticcheck)
+- [x] `pretender-xgn` — Structural duplication detection (pretender duplication)
+- [x] `pretender-238` — Mutation testing wrapper (pretender mutation)
 - [ ] `pretender-vuc` — P4: `pretender explain <metric>`
-- [ ] `pretender-5rk` — Design feedback-loop signal persistence for recurring structural violations
 
 ## Notes
 - Universal model: Module → CodeUnit → Block → Branch; each language adapter produces the model; metrics are language-agnostic
