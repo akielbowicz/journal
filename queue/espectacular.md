@@ -23,3 +23,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up `espectacular-6nm.14` (Q8b property-based testing signal) or `espectacular-6nm.15` (Q8c snapshot-testing signal) — both ready, depend on completed pytest adapter
 
 ---
+
+## 2026-06-16 23:14 — espectacular
+
+- Implemented Q8b/Q8c property and snapshot test quality signals: added special dispatch in `check.rs` `evaluate_scope` for `tests.property` and `tests.snapshot` entries
+- Passing runs emit `quality-property`/`quality-snapshot` into `quality_findings`; failing runs emit `test-failing` — 4 new unit tests cover both paths
+- Closed both `espectacular-6nm.14` (Q8b) and `espectacular-6nm.15` (Q8c); committed `6d7c064` and pushed
+- `add-quality-measurement-and-adapters` epic at ~70%; tasks 8.5 and 8.6 now checked off in `tasks.md`
+- **Next:** pick up `espectacular-6nm.8` (Q7: `ah doctor` detection and `--enable`) — the remaining ready P2 item
+
+---
