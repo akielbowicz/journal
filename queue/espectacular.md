@@ -44,3 +44,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** check `bd ready` for next open task in `add-quality-measurement-and-adapters` (task 8.9 or later sections); `ah check` should still show 0 findings
 
 ---
+
+## 2026-06-17 15:58 — espectacular
+
+- Ran TDD pipeline on remaining tasks: checked off Q6 (6.1–6.8 already implemented, tasks.md updated); completed 8.9/8.10/8.11
+- `collect_quality_findings` now returns `(Vec<QualityFinding>, Vec<String>)`; mutation tool non-zero exit propagates as `test-failing` ReportFinding via check.rs; 2 new tests confirm the behavior
+- `QualityFinding::for_test_type()` constructor added to `quality.rs`; inline duplication in `check.rs` removed (8.11 refactor)
+- Fixed pre-existing ETXTBSY flake in `adapters::custom` tests: `write_runner`/`write_envelope` now use atomic counter for unique filenames per call
+- **Next:** task 0.5 (cross-reference finding object definition between `custom-runner.schema.json` and `check-output.schema.json`) — then r05 review and archive `add-quality-measurement-and-adapters`
+
+---
