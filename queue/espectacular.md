@@ -63,3 +63,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement `espectacular-gin` and `espectacular-dl5` (both P2, unblocked), then start `add-spec-quality-checks` (`ah lint` command, 21 tasks, all prereqs now deployed).
 
 ---
+
+## 2026-06-17 16:46 — espectacular
+
+- Completed `espectacular-gin` (P2): updated README with all content from `add-quality-measurement-and-adapters` — `ah explain`, `ah signals`, `ah doctor --enable`, language adapter dispatch, custom runner protocol, quality signals, fixed stale schema paths, updated JSON output docs and finding kinds table
+- Bonus: fixed persistent ETXTBSY flake in `adapters::custom` tests — test helpers now use `/bin/sh script.sh` instead of chmod'd scripts, eliminating the VFS race entirely; both changes committed and pushed
+- `espectacular-gin` closed; `espectacular-dl5` (P2, Update AGENTS.md managed block + `src/init.rs` template) is the only remaining ready ticket
+- **Next:** implement `espectacular-dl5`, then start `add-spec-quality-checks` (`ah lint` command, 21 tasks)
+
+---
