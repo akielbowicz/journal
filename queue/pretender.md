@@ -23,3 +23,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement documentation tickets; suggested order: pretender-0nl (getting-started) → pretender-t9i (config reference) → pretender-ey6 (mutation docs) → pretender-bq9 (plugin guide) → pretender-iy1 (per-language pages)
 
 ---
+
+## 2026-06-17 16:33 — pretender
+
+- Implemented all 5 documentation tickets: `docs/configuration.md`, `docs/mutation.md`, `docs/plugins.md`, `docs/getting-started.md`, `languages/*/README.md` (×9); each went through write → ro5u → fix → commit
+- Notable ro5u catches: ESLint bracket-indexing silently produces zero findings (fixed to wrapper script); Java/PIT mutation runner not implemented (clearly noted); Rust README falsely claimed closure tracking; `--diff-only` framing inverted (CLI never reads `config.scope.diff_only`)
+- Added runnable `metrics/example/long-lines.sh` plugin; Documentation section wired into README; cascading fix to `configuration.md` `scope.diff_only` description
+- All 5 tickets closed; 158 tests pass; pushed to remote (`f3d0cb1`)
+- **Next:** `bd ready` — check for newly unblocked issues; consider `wai phase next` to advance pretender-mvp or `wai move pretender-mvp archives` to archive the project
+
+---
