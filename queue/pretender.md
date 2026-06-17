@@ -13,3 +13,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** only `pretender-vuc` remains open — `pretender explain <metric>` (P4)
 
 ---
+
+## 2026-06-17 16:02 — pretender
+
+- Implemented `pretender explain <metric>` (pretender-vuc): static catalog of 11 metrics with definition, formula, per-role threshold, citation, and improvement tip; 158 tests green; pushed
+- Closed out all beads issues; archived journal project entry and all 11 V2 OpenSpec proposals (deferred, never implemented)
+- Updated README (removed stale "reserved" section, added full command/metrics tables), created CHANGELOG.md covering full 0.1.0 MVP
+- Created and issue-reviewed 5 documentation tickets (pretender-0nl, -iy1, -bq9, -t9i, -ey6); fixed all review findings — each ticket now has exact file location, done criteria, and verification step
+- **Next:** implement documentation tickets; suggested order: pretender-0nl (getting-started) → pretender-t9i (config reference) → pretender-ey6 (mutation docs) → pretender-bq9 (plugin guide) → pretender-iy1 (per-language pages)
+
+---
