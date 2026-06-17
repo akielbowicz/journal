@@ -54,3 +54,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** task 0.5 (cross-reference finding object definition between `custom-runner.schema.json` and `check-output.schema.json`) — then r05 review and archive `add-quality-measurement-and-adapters`
 
 ---
+
+## 2026-06-17 16:34 — espectacular
+
+- Completed `add-quality-measurement-and-adapters` (82/82 tasks): committed final batch — mutation tool error surfacing as `test-failing` findings, Q6/Q8.9–8.11 task completions, schema cross-reference (0.5) and prerequisite (P.1) checked off; epic `espectacular-6nm` closed and pushed.
+- Created `CHANGELOG.md` for v0.1.0 covering both deployed change proposals (`add-spec-assertions` + `add-quality-measurement-and-adapters`).
+- Created and reviewed tickets `espectacular-gin` (README update) and `espectacular-dl5` (AGENTS.md managed block + `src/init.rs` template); both amended with acceptance criteria, stale schema path fix, and verification steps.
+- **Next:** implement `espectacular-gin` and `espectacular-dl5` (both P2, unblocked), then start `add-spec-quality-checks` (`ah lint` command, 21 tasks, all prereqs now deployed).
+
+---
