@@ -21,7 +21,7 @@ implement phase — mutation testing wrapper shipped; 149 tests passing; 1 open 
 - [x] `pretender-9hk` — External metric plugin wrappers (eslint, ruff, clippy, staticcheck)
 - [x] `pretender-xgn` — Structural duplication detection (pretender duplication)
 - [x] `pretender-238` — Mutation testing wrapper (pretender mutation)
-- [ ] `pretender-vuc` — P4: `pretender explain <metric>`
+- [x] `pretender-vuc` — P4: `pretender explain <metric>`
 
 ## Notes
 - Universal model: Module → CodeUnit → Block → Branch; each language adapter produces the model; metrics are language-agnostic
