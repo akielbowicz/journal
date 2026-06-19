@@ -13,3 +13,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `dont-dq2f` (trust naming confusion) is blocked on `dont-kxg` (dt binary alias, P2 open since May); that's the natural next issue — implement the `dt` alias with positive-framing vocabulary
 
 ---
+
+## 2026-06-19 11:09 — dont
+
+- Implemented `dont-kxg`: `dt` binary alias with strictly-separated positive-framing vocabulary — single binary detects `argv[0]`, routes `dt record/challenge/lock` to `conclude/trust/forget`, and errors cross-vocab calls with suggestions ("unknown command 'conclude' for dt. Did you mean 'dt record'?")
+- Cargo.toml: added `[[bin]] name = "dt"` pointing at same `src/main.rs`; `active_interface()` checks basename of argv[0]; `cross_vocab_refusal()` builds the structured error
+- `dont lock` is now `dt`-exclusive (errors in `dont` mode); updated 3 existing tests (`glossary_alignment`, `lock`, `invocation_flags`) to use `dont forget`
+- 10 new acceptance tests in `tests/dt_alias.rs`; all 77 test suites green; pushed to main as `6362d4a`
+- **Next:** `dont-dq2f` (P3) — `dont trust` semantics are counterintuitive; improve help text to make the double-negative framing explicit and less surprising; verify resolution against `dont-cli-surface/spec.md`
+
+---
