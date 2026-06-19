@@ -13,3 +13,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `wai phase next` or `wai move pretender-mvp archives` to close the project; check tarpaulin coverage baseline from CI run and add `--fail-under` threshold if appropriate
 
 ---
+
+## 2026-06-19 11:08 — pretender
+
+- Closed TDD pipeline (`wai close`), then fixed all 12 open P1–P3 bugs via implement→ro5u→fix→commit loop
+- Key fixes: binary file crash, config-missing warning (command-layer only), `⚠ ADVISORY` vs `✗ VIOLATION` by mode, duplicate `--defaults` removed, `fmt_metric` for clean float display, `--verbose` flag for check output, staged/diff-only empty-result message, `complexity` multi-path + threshold markers, `junit`/`markdown` removed from `--format` enum
+- Each fix reviewed with `/rule-of-5-universal`; caught test assertion bugs, doc drift (openspec + status.md), and a silent UX regression (unintended indentation) before commit
+- 12 beads closed, 13 commits pushed; all 173 tests green
+- **Next:** `wai phase next` or `wai move pretender-mvp archives` to close the MVP project; consider `add-doctor-command` OpenSpec implementation (0/18 tasks)
+
+---
