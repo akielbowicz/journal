@@ -4,6 +4,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
+## 2026-06-19 11:31 — espectacular
+
+- Wired 15 of 20 cli spec contracts with `[[tests.shell]]` entries; `ah check` cli findings dropped from 20 to 5
+- Remaining 5 (report-* ×4, recommendation-finding-is-a-finding-kind) have no backing implementation — filed `espectacular-14e` (ah doctor --json) and `espectacular-gqi` (ah report command)
+- Rule-of-5 review found 3 actionable issues; all fixed: dropped trailing underscores from 2 filters, added `_is_noop` second test entry to `enable-already-active-capability-is-a-no-op`, filed `espectacular-kn2` for zero-match silent-pass systemic bug
+- **Next:** pick up `espectacular-6de` (wire explain spec contracts) or `espectacular-kn2` (fix runner to treat 0-tests-ran as failure — high leverage for the whole contract suite)
+
+---
+
 ## 2026-06-18 19:52 — espectacular
 
 - Ran `ah check` for the first time as a dogfooding session; found 81 `malformed-contract` findings (all specs: adapters/cli/explain/gate) + 1 intermittent `test-failing`
