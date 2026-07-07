@@ -33,3 +33,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** the next ready issue from `bd ready`, or `wai phase next` / `wai move pretender-mvp archives`
 
 ---
+
+## 2026-07-07 14:11 — pretender
+
+- Closed pretender-mvp project (`wai move`); committed OpenSpec `add-doctor-command` (18/18 tasks)
+- Implemented R language plugin (pretender-14z): tree-sitter-r 1.3.0, metrics.scm with anonymous fn naming via `<-`/`=`/`<<-`, test fixture, integration test
+- Implemented Julia language plugin (pretender-m63): tree-sitter-julia 0.23.1, metrics.scm with function_definition→call_expression naming, `(#eq?)` for binary_expression operator matching, test fixture, integration test
+- Ran `/rule-of-5-universal` review on all new code — verdict: READY with bounded artifacts (+1 spurious ABC call per Julia fn signature)
+- Fixed `extract_params` in engine.rs to handle R's `parameter` node kind
+- All 74 tests green, 2 beads closed, 3 commits pushed to main
+- **Next:** C# language plugin (pretender-9vw) from `bd ready`
+
+---
