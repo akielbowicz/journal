@@ -23,3 +23,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `wai phase next` or `wai move pretender-mvp archives` to close the MVP project; consider `add-doctor-command` OpenSpec implementation (0/18 tasks)
 
 ---
+
+## 2026-07-07 12:25 — pretender
+
+- Fixed `--version` flag (pretender-bdv): added version attribute to clap derive macro; now consistent with `wai`/`dont`/`ah`
+- Fixed silent failure on unsupported-language paths (pretender-4uh): `pretender check <dir>` now emits stderr warning when no files match a supported grammar
+- Both fixes TDD: wrote failing test first, then implementation — all 72 integration tests green
+- 2 beads closed, 2 commits pushed to main
+- **Next:** the next ready issue from `bd ready`, or `wai phase next` / `wai move pretender-mvp archives`
+
+---
