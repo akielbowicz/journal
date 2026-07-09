@@ -22,3 +22,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Fixed CI lint: moved `import pickle` to module top, removed quotes from type annotation
 
 **Next:** P2 issues remain — elegua-c3p9 (F23: CLI + __all__), elegua-a89j (F21: deprecated API in docs), or openspec changes
+
+---
+
+## 2026-07-09 18:38 — elegua
+
+- Fixed F23 (elegua-c3p9, P2): added `elegua run` CLI subcommand, removed deprecated symbols from `__all__`, 6 new CLI tests
+- Fixed F21 (elegua-a89j, P2): replaced deprecated API examples in docs with current IsolatedRunner/MultiTierRunner APIs
+- Fixed F19 (elegua-te5t, P2): added docs/reference/index.md stub, `mkdocs build --strict` passes clean
+- All 3 closed, committed, pushed to main
+- **Next:** elegua-bk9e (F16: snapshot key omits adapter identity, P2)
