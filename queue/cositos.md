@@ -25,3 +25,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** implement one of the two ready tickets: buffer-split edge cases (cositos-514) or Python lifecycle reducer (cositos-jjp)
 
 ---
+
+## 2026-07-14 17:37 — cositos
+
+- Set up `testaruda` test selection engine (v0.1.0) — `init`, `discover`, `ingest`, `select` all operational end-to-end
+- Wrote usage report in `docs/testaruda-usage-report-2026-07-14.md` covering 8 sections + reproduction checklist
+- Ran `rule-of-5-universal` review on the report — addressed 10 findings, fixed amnesia test failures (added intro, terminology table, key findings box)
+- **Next:** File the critical static-deps directionality bug against the testaruda repo, or fix it directly
+
+---
