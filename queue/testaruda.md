@@ -22,3 +22,9 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Continue with testaruda-x1i — Deterministic ordering and agent output (TIA-SEL-005, TIA-AGENT-001..007)
 
 ---
+
+## 2026-07-14 15:26 — testaruda
+
+- Closed all 7 ready issues: always-run set completeness (v5q), confidence floor (7uv), missed-selection incidents (5nv), must-run rules + periodic full-run (609), environment fingerprinting (t5q), graph export/import (vzo), Soufflé oracle bridge (skx)
+- Schema migrations v1→v2 (quarantine), v2→v3 (incidents); 97 tests total
+- **Next:** backlog is empty — new issues or upstream feature work needed
