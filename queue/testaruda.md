@@ -13,3 +13,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** start on `testaruda-bmm` — Runtime edge creation from test runner output (TIA-RUN-001..003) — highest-leverage P2 that unblocks bb8 and m2z
 
 ---
+
+## 2026-07-14 17:36 — testaruda
+
+- Added `just install` command to the justfile (cargo install --path .), following wai project pattern
+- Committed and pushed to main
+- **Next:** pick up from previous session — start on `testaruda-bmm` (Runtime edge creation)
+
+---
