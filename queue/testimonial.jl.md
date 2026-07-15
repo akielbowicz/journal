@@ -33,3 +33,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Continue P0 coverage layer implementation — pick up Persistence, ASTParser, or Query tickets
 
 ---
+
+## 2026-07-15 20:14 — testimonial.jl
+
+- Diagnosed and fixed CI: 3 failing jobs (pretender, espectacular, OpenSpec) all had broken download URLs or missing actions
+- Fixed pretender/espectacular install: curl from charly-vibes/releases → cargo install from crates.io
+- Fixed OpenSpec validation: missing GitHub Action → npm install @fission-ai/openspec + CLI command
+- Committed .espectacular/config.toml (was gitignored, needed by CI)
+- **Next:** Continue P0 coverage layer — pick up Persistence, ASTParser, or Query tickets
+
+---
