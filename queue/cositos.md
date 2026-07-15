@@ -34,3 +34,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** File the critical static-deps directionality bug against the testaruda repo, or fix it directly
 
 ---
+
+## 2026-07-15 11:46 — cositos
+
+- Archived `julia-send-state-identity-remerge` openspec change (tasks marked done, moved to archive)
+- Group 1: Added cycle detection + depth capping to Julia/C#/Clojure/R buffer-split, with tests (7 tasks)
+- Group 2: Created Python lifecycle reducer — effect/event types, Phase enum, TransportCapabilities, pure `reduce` function, 10 fixtures, 31 tests (7 tasks)
+- Group 3: Implemented WidgetShell with full public API, inbound callback loop, comm-id feedback loop, 22 parity tests (5 tasks)
+- Group 4: Replaced Widget internals to delegate to WidgetShell — all 112 tests pass (2 tasks)
+- **Next:** Groups 5-9 — Julia lifecycle reducer + shell, C#/R lifecycle, TransportCapabilities, docs, final verification
+
+---
