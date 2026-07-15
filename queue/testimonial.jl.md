@@ -22,3 +22,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
   (Project.toml, src/Testimonial.jl, test/runtests.jl)
 
 ---
+
+## 2026-07-15 18:54 — testimonial.jl
+
+- Verified and fixed all toolchain tools: dont init, lefthook install, espectacular version drift + pytest adapter, testaruda init
+- Filed bug report for wai sync destructively overwriting justfile (beads: testimonial-2ph0)
+- Documented TDD-Ro5 pipeline in AGENTS.md / CLAUDE.md (Red→Green→Refactor→/ro5 per ticket)
+- Implemented and closed 2 P0 tickets: Project.toml bootstrap + core types (src/Testimonial.jl, 31 tests)
+- Fixed Meta.parse → Meta.parseall in julia-syntax pre-commit hook
+- **Next:** Continue P0 coverage layer implementation — pick up Persistence, ASTParser, or Query tickets
+
+---
