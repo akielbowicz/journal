@@ -51,3 +51,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Continue P0 coverage layer — GitDiff, ASTParser, Query, or Runner tickets
 
 ---
+
+## 2026-07-15 21:18 — testimonial.jl
+
+- Closed testimonial-2ph0 (wai sync justfile bug — fixed in v2026.7.16)
+- Implemented P0 tickets: file_hash, extract_tags, discover_testitems (24 tests)
+- Added pretender, dont, ah (espectacular) to pre-commit hooks
+- Ran Rule of 5 review — fixed 10 findings (error format, equality, triple-read, multi-line @testitem, recursive walk, dict dispatch)
+- **Next:** GitDiff (Section 4) — parse_unified_diff, unit tests
+
+---
