@@ -34,6 +34,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Fixed `handle_client!` handler exception crash in `src/transport/tcp.jl` — now catches handler exceptions and returns error responses instead of dropping the connection
 - Updated 3 test files with 2-arg handler signatures to match `handle_client!(msg, stream)` API
 - All 2496 tests pass
-- **Next:** start implementing P0 release blockers — Step 1 (fix-audit-entries-race) or R1 (apply CLI installer patch upstream)
+---
+
+## 2026-07-16 20:11 — reply.jl
+
+- Step B2: Decomposed eval_responses god-function (~175→30 coordinator lines) — extracted `run_with_timeout` (bounded-wait + timer) and `annotate_terminal!` (single-pass annotation replacing 3× map+merge)
+- Step B4: Added `EvalOutcome` discriminated union (Completed/Interrupted/TimedOut/Errored/Cancelled) replacing `EvalCoreResult`; serialized to wire format only at handler boundary via `serialize()`; stable error codes added to eval validation paths
+- Step B5: Documented field→lock ownership table on `NamedSession`; created `StdinFeeder` value type encapsulating Pipe+Task pair; `@assert islocked` guard on `clamp_history!`
+- All 2532 tests pass across all three steps
+- **Next:** Step 12 (REPLy_jl-3o6) — Add first-class REPLy.Client, or Step 13a (REPLy_jl-n4mu) — Split mcp_adapter.jl god-file into modules
 
 ---
