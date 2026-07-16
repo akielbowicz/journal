@@ -25,3 +25,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** P3 features — streaming stdout (REPLy_jl-3oz) or trusted-session mode (REPLy_jl-k9i)
 
 ---
+
+## 2026-07-16 15:36 — reply.jl
+
+- Created 17 openspec change proposals from the integrated assessment, split per Part E execution order (5 release blockers P0, 6 structural P1, 10 improvements P2+)
+- Created 26 beads issues with correct dependency chains, acceptance criteria, estimates, and gate labels
+- Fixed test hang: `collect_until_done` infinite loop in `test/helpers/tcp_client.jl` (empty `readline` at EOF with `isopen` always true) — added `eof(sock)` guard
+- Fixed `handle_client!` handler exception crash in `src/transport/tcp.jl` — now catches handler exceptions and returns error responses instead of dropping the connection
+- Updated 3 test files with 2-arg handler signatures to match `handle_client!(msg, stream)` API
+- All 2496 tests pass
+- **Next:** start implementing P0 release blockers — Step 1 (fix-audit-entries-race) or R1 (apply CLI installer patch upstream)
+
+---
