@@ -61,3 +61,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** GitDiff (Section 4) — parse_unified_diff, unit tests
 
 ---
+## 2026-07-15 22:30 — testimonial.jl
+
+- Implemented 4 protocol adapter handlers for the coverage layer MVP: PROTO-003 (handle_discover), PROTO-004 (handle_ingest), PROTO-005 (handle_static-deps), plus integration tests for PROTO-001 loop
+- Created CoverageLayer.jl stub with record_item (subprocess isolation confirmed by reset_coverage spike)
+- Added session_coverage state, _resolve_node_id helper, _normalize_path helper, shared _TESTITEM_PATTERN constant
+- Refactored handle_ingest from 116→10 lines (extracted _ingest_one_item, _build_edges_for_item, _add_line_edges)
+- Updated AGENTS.md Ro5 references to Universal Rule of 5; added glob filter to pretender-check in lefthook.yml
+- All 7 protocol handlers now implemented (handshake, discover, ingest, static-deps, fingerprint, run-args)
+- **Next:** Continue with remaining P0 tickets — GitDiff parser (Section 4), CoverageLayer real implementation (Section 5), or CLI layer (Section 8)
+
+---
