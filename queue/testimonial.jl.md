@@ -41,3 +41,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with `testimonial-99u` (integration test for CoverageIndex) or `testimonial-mc0` (CLI run)
 
 ---
+
+## 2026-07-17 12:55 — testimonial.jl
+
+- Closed `testimonial-yczs`: added `params.run_output` handler to `handle_ingest` in `Protocol.jl` per TIA-ADAPT-008
+- New handler parses JSON-line test results, records per-item coverage via subprocess runner, returns `runtime_edges` (DepEdge format), `per_test_results`, and `external_inputs`
+- Added 7 testsets covering response shape, field accuracy, multiple items, empty/missing/malformed input
+- All 312+ tests green, push and issue close complete
+- **Next:** `testimonial-mc0` (CLI run) or continue with `implement-coverage-layer` epic tasks
+
+---
