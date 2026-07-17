@@ -22,3 +22,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `testimonial-0zr` — `record_all` with parallel recording, or `testimonial-fgr` — unit tests for query engine
 
 ---
+## 2026-07-17 09:29 — testimonial.jl
+
+- Closed testimonial-fgr (query engine tests — already written and passing)
+- Fixed pre-push hooks: added `test-quick` recipe (312 tests, ~15s), removed hanging openspec-validate-all
+- Implemented `record_all` with parallel `Threads.@threads` recording and incremental cache (testimonial-0zr)
+- Implemented `build_index(items_dir)` to reconstruct CoverageIndex from .jls cache files (testimonial-8um)
+- Epic progress: 44/61 (72%), 312 tests all green
+- CI failure on latest push (build_index) — needs investigation. Likely timeout on full test suite or Serialization dep issue.
+- **Next:** investigate CI failure, then continue with `testimonial-99u` (integration test for CoverageIndex) or `testimonial-mc0` (CLI run)
+
+---
