@@ -11,3 +11,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** `testimonial-bl6` — timeout handling for subprocesses
 
 ---
+## 2026-07-16 21:00 — testimonial.jl
+
+- Implemented subprocess timeout handling (`run_with_timeout`, `with_retry`) in `CoverageLayer.jl` — closes `testimonial-bl6`
+- Implemented `record_item(runner::SubprocessRunner, ref)` with real subprocess spawning via TestimonialRunner driver — closes `testimonial-e47`
+- Fixed driver.jl for ReTestItems API (no `files`/`names` kwargs, use positional path + `name` kw) — closes `testimonial-wah`
+- Implemented `select_changed_items` and `_discover_in_file` in `Testimonial.jl` — closes `testimonial-7pe`
+- Built `src/Query.jl` module: `query_files`, `coverage_gaps`, `nearest_covered_lines`, `query` with `direct_change_provider`/`unresolved_provider` — closes `testimonial-amd`, `testimonial-ekf`, `testimonial-2df`
+- Epic progress: 40/61 (65%), 70+ tests all green
+- **Next:** `testimonial-0zr` — `record_all` with parallel recording, or `testimonial-fgr` — unit tests for query engine
+
+---
