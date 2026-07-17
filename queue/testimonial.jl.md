@@ -33,3 +33,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** investigate CI failure, then continue with `testimonial-99u` (integration test for CoverageIndex) or `testimonial-mc0` (CLI run)
 
 ---
+## 2026-07-17 11:20 — testimonial.jl
+
+- Investigated and fixed CI failure: thread-safety bug in MockRunner (race condition on captured_cmd Vector during Threads.@threads)
+- Added ReentrantLock to MockRunner for concurrent push!/merge! operations
+- CI now fully green: all 5 jobs pass (Julia 1.11, 1.12, OpenSpec, pretender, espectacular)
+- **Next:** continue with `testimonial-99u` (integration test for CoverageIndex) or `testimonial-mc0` (CLI run)
+
+---
