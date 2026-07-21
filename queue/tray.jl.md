@@ -79,3 +79,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Task 4.1 (update-strategy adapter) or Task 5.6 (final validation gates)
 
 ---
+
+## 2026-07-21 18:27 — tray.jl
+
+- Implemented TRAYS-ecx Task 4.1 (update-strategy adapter): UpdateSnapshot, UpdateStrategy, apply_strategy, validate_with_oracle, update_with_strategy — 9 tests, all green
+- Implemented TRAYS-ecx Tasks 4.2 & 4.3 (runtime boundary detection & atomic ancestor-path updates): try_apply_strategy with classified (:success | :boundary) results, update_with_boundary_detection with private-state computation and atomic publication — 7+ tests, all green
+- All pushed to main (2 commits: 7936aab, 266efef)
+- **Next:** Task 5.1 (artifact identity and binding: method instance/world, closure snapshot, registry revision) or Task 5.6 (final validation gates)
+
+---
