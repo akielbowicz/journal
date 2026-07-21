@@ -31,3 +31,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
   TRAYS-ebb (structural mutations), or TRAYS-x38 (multidimensional axes)
 
 ---
+
+## 2026-07-21 12:19 — tray.jl
+
+- Fixed Docs CI pipeline: `Documenter.makedocs` was failing with `missing_docs` error
+  - Created `docs/src/api.md` with `@autodocs` block for API reference
+  - Removed `module TrayDocs` wrapper from `docs/make.jl` (hid `Tray` from Documenter's eval context)
+  - Added `checkdocs = :none` to `makedocs` (Base-extension docstrings like `==`, `hash`, `show` can't be auto-included)
+- Added `doc-check` pre-push hook in `lefthook.yml` — runs docs build inline, catches failures before CI
+- Added `doc-check` target to `justfile` and added it to the `ci` pipeline
+- **Next:** pick the next P1 ticket from the beads backlog
