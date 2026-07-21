@@ -22,3 +22,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick up Shard plan section (7.1–7.3) or move to next epic (Safety Invariants, Runtime Feedback, etc.)
 
 ---
+
+## 2026-07-21 16:21 — testimonial.jl
+
+- Investigated and fixed CI failure on `main` — `using TOML` in source but `TOML` was missing from committed `Project.toml [deps]`
+- Committed fix (`ed682f0`) and pushed — pre-push hook passed all 680 quick tests
+- **Next:** verify CI passes on the next run, then pick up Shard plan (section 7.1) or next epic
+
+---
