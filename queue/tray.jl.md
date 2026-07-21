@@ -49,3 +49,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick next P1 ticket: TRAYS-ecx (compiler IR incrementalization), TRAYS-x38 (multidimensional axes), TRAYS-ebb (structural mutations), or TRAYS-aak (derived payload statistics)
 
 ---
+
+## 2026-07-21 14:31 — tray.jl
+
+- Implemented TRAYS-ecx Task 1.1 (finite-change algebra): Change{T} for Float64/Float32/Int/Int32/UInt, ScalarSummaryChange{T}, zero_change/valid_change/apply_change/compose_change, exact built-in rules (add/mul/sin/min/max) — 24 test items green
+- Implemented TRAYS-ecx Task 2.1 (rule registry): RuleKey{F,A}, Rule{F,A,AppF}, RegistrySnapshot, RuleRegistry with register!/replace!/remove!/lookup, Julia-like specificity and ambiguity detection — 10 test items green
+- Files: src/incremental.jl (new), test/runtests.jl (appended)
+- All 130+ tests green, committed and pushed (b9ad243, 24952b6)
+- **Next:** Task 1.2 (IR provider interface) or Task 2.2 (sealed AnalysisResult)
+
+---
