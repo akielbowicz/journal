@@ -1,3 +1,8 @@
+# Queue: testimonial.jl
+
+Sessions captured with /next — processed by /close or /wrap-up.
+
+---
 ## 2026-07-21 12:49 — testimonial.jl
 
 - Completed 11 Component Boundary tickets in a single session (o50, 2fl, 3ig, 3ok, 2jw, h1o, r24, 440, 22g, 5bn + state cleanup commits)
@@ -6,5 +11,14 @@
 - Migration: migrate_index() converts old flat to per-component layout
 - Query engine: all providers accept component= kwarg for scoped queries
 - **Next:** claim 1jn — Implement bottom-up component resolution in smart_run
+
+---
+
+## 2026-07-21 16:11 — testimonial.jl
+
+- Completed the **Component Boundary** epic (sections 1–7): bottom-up resolution, parallel per-component queries, dependency fingerprints, selection cache, cache invalidation, TOML components override
+- Fixed pre-existing bug in `_save_per_component_indices`: relative test file paths not normalized to absolute before component matching
+- Files touched: `src/CLI.jl`, `src/IndexBuilder.jl`, `src/Testimonial.jl`, plus 5 new test files
+- **Next:** pick up Shard plan section (7.1–7.3) or move to next epic (Safety Invariants, Runtime Feedback, etc.)
 
 ---
