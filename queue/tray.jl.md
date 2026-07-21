@@ -88,3 +88,49 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Task 5.1 (artifact identity and binding: method instance/world, closure snapshot, registry revision) or Task 5.6 (final validation gates)
 
 ---
+
+## 2026-07-21 19:20 — tray.jl
+
+- Implemented TRAYS-ecx Task 5.1 (artifact identity and binding / REQ-A16):
+  - ArtifactBinding struct with method instance, world age, argtypes, closure
+    capture type, registry revision, provider identity, Julia version, payload
+    schema version
+  - BoundArtifact callable wrapper validates staleness at invocation (world
+    age, Julia version); throws StaleArtifactError on mismatch
+  - StaleArtifactError caught in try_apply_strategy, returning classified
+    StaleArtifact diagnostic
+  - current_artifact_binding factory function for derivation context
+  - detect_mutable_captures (Julia ≤ 1.11: field-level; Julia 1.12+: opaque
+    fallback — can no longer distinguish mutable from immutable captures)
+  - derive() captures binding and detects mutable captures before IR analysis
+  - 10 new test items, all 473+ tests green, formatted, typos-clean
+  - Committed and pushed to main (b24a37f)
+- **Next:** TRAYS-ecx Task 5.3 (Julia ≥ 1.10/IRTools compatibility matrix) or
+  Task 5.6 (final validation gates)
+
+---
+
+## 2026-07-21 20:37 — tray.jl
+
+- Completed final two tasks of TRAYS-ecx epic:
+  - Task 5.3: REQ-A17 compatibility tests (registry without IRTools,
+    BoundArtifact without provider, Julia version check in available())
+  - Task 5.6: validation gates (all tests pass, ah check, git diff --check)
+- TRAYS-ecx epic fully complete — all 6 tasks, REQ-A1–A17 covered
+- Files: src/incremental.jl, test/runtests.jl,
+  openspec/changes/add-compiler-ir-incrementalization/tasks.md
+- **Next:** pick next P1: TRAYS-x38 (multidimensional axes),
+  TRAYS-ebb (structural mutations), or TRAYS-aak (derived payload stats)
+
+## 2026-07-21 19:54 — tray.jl
+
+- Completed TRAYS-ecx Tasks 5.3 and 5.6:
+  - Task 5.3: Added REQ-A17 tests for registry operations without IRTools,
+    BoundArtifact invocation without provider, and Julia version check
+    in available(). 3 new test items, all 482+ tests green.
+  - Task 5.6: Run full test suite, ah check --changes, git diff --check
+    (fixed trailing whitespace). All CI gates pass.
+- **TRAYS-ecx epic is now COMPLETE** (all 6 tasks, 5 subsections, REQ-A1–A17)
+- Git log: 8e0ef87 (Task 5.3), e0a145d (whitespace fix), 1c7c211 (Task 5.6 done)
+- **Next:** pick next P1 ticket: TRAYS-x38 (multidimensional axes),
+  TRAYS-ebb (structural mutations), or TRAYS-aak (derived payload stats)
