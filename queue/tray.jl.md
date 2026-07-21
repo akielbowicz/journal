@@ -41,3 +41,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Added `doc-check` pre-push hook in `lefthook.yml` — runs docs build inline, catches failures before CI
 - Added `doc-check` target to `justfile` and added it to the `ci` pipeline
 - **Next:** pick the next P1 ticket from the beads backlog
+## 2026-07-21 13:00 — tray.jl
+
+- Closed TRAYS-00e (Reconciled attribution payload algebra): ro5u review found 1 MEDIUM issue (3-arg derive_ratio not validating numerator_id) → fixed; added edge-case tests (K=1, tolerance boundary, 3-arg derive_ratio paths); updated tasks.md
+- Overhauled documentation: status.md (reflects actual implementation), index.md (removed "scaffold only"), architecture.md (replaced "proposed" language), created examples.md (7 walkthroughs: ScalarSummary, AttributionPayload, immutable update, custom payload, root fold property, depth-targeted query, error handling)
+- Ran rule-of-5 review on docs: 8 findings (1 MEDIUM, 7 LOW) → all fixed and pushed
+- **Next:** pick next P1 ticket: TRAYS-ecx (compiler IR incrementalization), TRAYS-x38 (multidimensional axes), TRAYS-ebb (structural mutations), or TRAYS-aak (derived payload statistics)
+
+---
