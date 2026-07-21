@@ -32,3 +32,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Start TypeScript adapter implementation with testaruda-xq1 (crate scaffolding), or pick up Julia adapter deferred items (seeded-fault test, ah check timing issue)
 
 ---
+
+## 2026-07-21 16:15 — testaruda
+
+- Housekeeping: closed stale testaruda-d7f (shell completions — already shipped), fixed Julia adapter TOML dependency bug in Testimonial.jl (all 7 tests now passing)
+- Created 12 beads tickets for the Clojure adapter from the openspec proposal (22 tasks across 5 sections)
+- Ran issue-review skill on all Clojure tickets — identified and fixed a structural dependency gap (runner detection split across tickets), created shared utility ticket fjj, rewired dependency graph, retitled iq6/kol/da1, standardized spec ID prefixes
+- **Next:** Implement testaruda-4tm (scaffold adapter-clojure crate) — unblocks all other Clojure work
+
+---
