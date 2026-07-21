@@ -41,3 +41,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Implement testaruda-4tm (scaffold adapter-clojure crate) — unblocks all other Clojure work
 
 ---
+
+## 2026-07-21 17:55 — testaruda
+
+- Investigated `ah check` timeout: root cause is 159 contracts each spawning `cargo test` sequentially. Created `espectacular-cxw` (P1) in espectacular repo.
+- Fixed version drift in `.espectacular/config.toml` (0.2.1 → 0.2.2). Closed `testaruda-4e2`.
+- Fixed 4 orphan Julia contracts: moved from `.espectacular/adapter-protocol/` to `.espectacular/changes/add-julia-adapter-via-testimonial/adapter-protocol/` and renamed with correct scenario IDs (julia-handshake-with-runtime_edges, discover-julia-tests-from-testitem-blocks, first-invocation-unresolved-fallback). `ah doctor` now healthy.
+- **Next:** Pick up non-adapter work — `testaruda-aj6` (git-history mining tool), `testaruda-64o` (catalog Python edge cases), or implement testaruda-4tm (Clojure crate scaffolding).
+
+---
