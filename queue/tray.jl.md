@@ -68,3 +68,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - 15 new tests, all 1326 tests green, full CI passes
 - Files: src/incremental.jl, src/Tray.jl, test/runtests.jl
 - **Next:** Task 1.3 (generate from covered IR) or Task 3.1 (exact rules and baselines)
+
+## 2026-07-21 16:44 — tray.jl
+
+- Implemented TRAYS-ecx Task 1.3 (IR analysis, coverage classification, generation): IROpKind enum, AnalyzedStmt, IRSummary, classify_operation, analyze_ir, generate_recompute_artifact, change_between, wired into derive()
+- Implemented TRAYS-ecx Task 3.2 (domain-neutral baseline validation): 9 test items validating ScalarSummary and numeric change/compose/recompute against canonical combine
+- Implemented TRAYS-ecx Task 5.2 (classified public errors): lookup_classified, check_call_coverage (RuleMissing/RuleAmbiguous), availability_diagnostics (UnsupportedEnvironment/IRProviderUnavailable)
+- Implemented TRAYS-ecx Task 5.4 (non-goal tests): REQ-A12–A15 verification (no LLVM, no differential-dataflow, memoization, broadcast boundary)
+- Implemented TRAYS-ecx Task 5.5 (requirement-to-test traceability): REQ-A1–A17 traceability matrix in runtests.jl
+- **Next:** Task 4.1 (update-strategy adapter) or Task 5.6 (final validation gates)
+
+---
