@@ -59,3 +59,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** Task 1.2 (IR provider interface) or Task 2.2 (sealed AnalysisResult)
 
 ---
+
+## 2026-07-21 15:38 — tray.jl
+
+- Implemented TRAYS-ecx Task 1.2 (IR provider interface): AbstractProvider, DefaultProvider, lazy IRTools loading, derive() entry point with classified error handling
+- Implemented TRAYS-ecx Task 2.2 (sealed AnalysisResult sum type): CoverageLevel lattice, Derived/Rejected variants, Diagnostic struct with 7 fields, coverage_join
+- Replaced temporary DerivedIR/DerivationError types with permanent AnalysisResult types
+- 15 new tests, all 1326 tests green, full CI passes
+- Files: src/incremental.jl, src/Tray.jl, test/runtests.jl
+- **Next:** Task 1.3 (generate from covered IR) or Task 3.1 (exact rules and baselines)
