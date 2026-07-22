@@ -134,3 +134,13 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Git log: 8e0ef87 (Task 5.3), e0a145d (whitespace fix), 1c7c211 (Task 5.6 done)
 - **Next:** pick next P1 ticket: TRAYS-x38 (multidimensional axes),
   TRAYS-ebb (structural mutations), or TRAYS-aak (derived payload stats)
+
+## 2026-07-22 15:27 — tray.jl
+
+- Completed TRAYS-ebb (structural mutations): insert!/insert (REQ-14), remove!/remove (REQ-15), reweight_subtree (REQ-18), LazyTag (REQ-29), O(log_b n) update!/update (REQ-41). Files: src/core.jl, src/base.jl, src/scalar_summary.jl
+- Completed TRAYS-x38 (multidimensional axes): AxisMap, AxisIndex, MultiAxisSet, register_axis!, update_axis_map!, intersect_axes (REQ-8, 25, 39). New file: src/axes.jl
+- Completed TRAYS-aak (derived statistics): derived_variance, derived_std (REQ-5). Created follow-up TRAYS-ha1 for remaining REQ-6/16/17/36
+- Decided: focus on finishing `add-tray-capabilities` epic before picking up `add-compiler-ir-incrementalization` P1s
+- **Next:** pick remaining add-tray-capabilities tasks (Task 1.2: AlignedArrayPayload/SamplePayload, Task 1.3: remaining derived stats, Task 2.4: property tests, or Task 4: remaining rollup features)
+
+---
