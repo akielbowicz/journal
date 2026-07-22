@@ -144,6 +144,18 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick remaining add-tray-capabilities tasks (Task 1.2: AlignedArrayPayload/SamplePayload, Task 1.3: remaining derived stats, Task 2.4: property tests, or Task 4: remaining rollup features)
 
 ---
+## 2026-07-22 20:06 — tray.jl
+
+- Closed TRAYS-719 (ScalarSummary extrema semantics — documented append-only widening)
+- Closed TRAYS-ha1 (AlignedArrayPayload, quadratic_projection, normalized_covariance_contribution)
+- Closed TRAYS-e7k (fractional_depth_query, fractional_depth_quantile)
+- Closed TRAYS-bn5 (save_tree/load_tree with binary format, versioning, checksums, atomic file commit)
+- New files: src/aligned_array.jl, src/fractional_depth.jl, src/persistence.jl
+- Added LinearAlgebra and Serialization deps
+- **Next:** TRAYS-1m0 (dashboard protocol) then y3y (rolling samples) then 93x (conformance)
+
+---
+
 ## 2026-07-22 16:40 — tray.jl
 
 - Completed TRAYS-t3f (REQ-20, REQ-28, REQ-30): SamplePayload, dataset revision management, sample regeneration, matrix projection, Cornish-Fisher moment quantile. Fixed duplicate update!/update in core.jl.
