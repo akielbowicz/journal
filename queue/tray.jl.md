@@ -144,3 +144,10 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick remaining add-tray-capabilities tasks (Task 1.2: AlignedArrayPayload/SamplePayload, Task 1.3: remaining derived stats, Task 2.4: property tests, or Task 4: remaining rollup features)
 
 ---
+## 2026-07-22 16:40 — tray.jl
+
+- Completed TRAYS-t3f (REQ-20, REQ-28, REQ-30): SamplePayload, dataset revision management, sample regeneration, matrix projection, Cornish-Fisher moment quantile. Fixed duplicate update!/update in core.jl.
+- Completed TRAYS-x6z (REQ-21, REQ-22, REQ-32, REQ-44): SketchConfig, HistogramSketch with aligned-sum combine, CompressedSamplePayload, exact/sketch quantile/tail-mean functions, storage bound validation.
+- **Next:** all P1 tickets closed. Next highest: TRAYS-ha1 (P2 — remaining derived stats: REQ-6, REQ-16, REQ-17, REQ-36) or TRAYS-719 (P2 bug — ScalarSummary extrema semantics).
+
+---
