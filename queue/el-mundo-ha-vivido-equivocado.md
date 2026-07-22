@@ -17,7 +17,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 
 ---
 
-## 2026-07-21 20:31 — el-mundo-ha-vivido-equivocado
+## 2026-07-22 20:47 — el-mundo-ha-vivido-equivocado
+
+- Migrated domain: equivocados.ar → equivocadxs.ar con redirect 301 desde Cloudflare
+- Implemented 8 UI/UX tickets from evaluation report: inline hero audio player, platform distribution links, metadata badges (duration/genre), SVG cover artwork, quick-filter chips (AND), empty-state fallbacks for search/filter, nav label refinement, persistent sticky bottom audio bar with SPA fetch navigation
+- Ran Rule of 5 review, fixed all findings: sessionStorage audio persistence, shared player partial (global-player.html + inject-player.mjs), atom-cached search index, tag validation, error handling on popstate
+- Added boilerplate content to programa/cuentos, programa/ideas, programa/cronograma
+- Created paginas/sobre.org + paginas/contacto.org with build-org-pages.mjs integration
+- Added redirect pages: /sobre/ → /paginas/sobre/, /contacto/ → /paginas/contacto/, /episodios/1/ → /episodios/el-aleph/, /episodios/2/ → /episodios/la-noche-boca-arriba/
+- Created custom 404.html with nav, episode suggestion, and global player
+- **Next:** implement the textos pipeline (pl2) — build-textos.mjs, template, index, sample textos — or address any remaining OpenSpec tasks
 
 - Extracted audio from YouTube (Charly García reportaje 1982), cut segment 9:19–10:19
 - Created materiales/ and programa/ dirs with .org files (org-mode per project convention)
