@@ -36,3 +36,18 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** continue with textos pipeline (pl2) from the OpenSpec proposal, or resume program planning
 
 ---
+
+## 2026-07-23 10:10 — el-mundo-ha-vivido-equivocado
+
+- Implemented textos pipeline (pl2):
+  - scripts/build-textos.mjs: reads textos/*.md → HTML with prev/next nav, index with author/genre filters
+  - scripts/texto-template.html: semantic HTML + a11y, related episode link, print button, EPUB download
+  - scripts/new-texto.mjs: interactive scaffolder for new textos
+  - textos/ directory with 2 sample texts (Borges, Neruda)
+  - Textos added to search-index.json for global search
+- Added Textos to all navs (homepage, episodes, org pages, 404)
+- Homepage now links to /textos/ section
+- Print styles improved: hide audio/video/search/filters, show URL footnotes
+- CF Web Analytics snippet added to all templates (token: REPLACE_ME)
+- epub-gen npm package installed
+- **Next:** implement EPUB generation (build-epub.mjs), update docs, or resume program planning
