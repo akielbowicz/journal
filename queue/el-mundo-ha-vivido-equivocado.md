@@ -51,3 +51,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - CF Web Analytics snippet added to all templates (token: REPLACE_ME)
 - epub-gen npm package installed
 - **Next:** implement EPUB generation (build-epub.mjs), update docs, or resume program planning
+
+---
+
+## 2026-07-23 10:20 — el-mundo-ha-vivido-equivocado
+
+- Added EPUB generation: scripts/build-epub.mjs generates valid EPUB3 files for each texto
+- Updated AGENTS.md and README.md with textos workflow documentation
+- **Next:** seasonal theming, analytics token config, or resume program planning
