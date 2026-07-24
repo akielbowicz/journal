@@ -163,3 +163,15 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** all P1 tickets closed. Next highest: TRAYS-ha1 (P2 — remaining derived stats: REQ-6, REQ-16, REQ-17, REQ-36) or TRAYS-719 (P2 bug — ScalarSummary extrema semantics).
 
 ---
+
+## 2026-07-24 08:48 — tray.jl
+
+- Closed TRAYS-t3f, TRAYS-x6z, TRAYS-2ib, TRAYS-1m0, TRAYS-y3y, TRAYS-trw, TRAYS-rsi (all add-tray-capabilities feature work)
+- New modules: src/snapshot.jl (SnapshotEpoch), src/dashboard.jl (DashboardModel), src/financial_risk.jl (FinancialRisk adapter)
+- Implemented advance_window! for rolling-sample advancement in src/sample_analytics.jl
+- Closed TRAYS-5h6 (P0 bug): fixed SamplePayload combine summary computation, removed non-conforming compressed sample exports
+- Closed TRAYS-djr (P1 bug): added stable leaf IDs to Tree struct, fixed intersect_axes ID-to-rank lookup
+- Updated tasks.md with completion markers and ticket references
+- **Next:** TRAYS-0m4 (attribution residual semantics) and TRAYS-9r4 (fractional depth projection contract) — both block TRAYS-qvp (final validation gate)
+
+---
