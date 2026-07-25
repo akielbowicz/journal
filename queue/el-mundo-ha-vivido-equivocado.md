@@ -59,3 +59,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Added EPUB generation: scripts/build-epub.mjs generates valid EPUB3 files for each texto
 - Updated AGENTS.md and README.md with textos workflow documentation
 - **Next:** seasonal theming, analytics token config, or resume program planning
+## 2026-07-25 15:17 — el-mundo-ha-vivido-equivocado
+
+- Fixed search: rewrote src/search.js as pure JS (no squint runtime), resolving
+  esbuild tree-shaking conflicts and squint nested-function wrapper issues
+- Search now has keyboard navigation, works with native Array.from (no js->clj)
+- Loads as separate <script type="module"> — no more dynamic import issues
+- Closed 5 blocked tickets (2kt, 8x5, g4r, svl, u39) plus 3 others
+- Other fixes: org pages at pretty URLs (by3), materials assets copy (8lp),
+  hidden media controls (cby), core.mjs→core.js rename
+- **Next:** P2 tickets — episode date timezone bug (hi8), template escaping (pfb),
+  org syntax (ae1), or skip to P3 seasonal theming (7bh)
+
+---
