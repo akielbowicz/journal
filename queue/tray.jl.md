@@ -194,3 +194,16 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - Ran Rule of 5 review (universal) on the full epic — 7 findings fixed: extracted TokenPayload into test/helpers/TokenPayload.jl, improved persistent-update property with distinct tokens, switched smoke property to Tray types, fixed docs consistency
 - All pushed to main (5 commits + 1 fixup commit)
 - **Next:** pick a ticket from the remaining P2/P3 backlog: TRAYS-93x (tree conformance), TRAYS-ltz (just test-file ReTestItems bug), or TRAYS-msh (Espectacular contract persistence)
+
+---
+
+## 2026-07-27 20:43 — tray.jl
+
+- Closed all 3 remaining backlog tickets via TDD→ro5u→fix→commit→next
+  - TRAYS-93x (P2): 13 attribution conformance @testitem blocks through Tree/Axis ops
+  - TRAYS-ltz (P3): fixed `just test-file` with ReTestItems 1.35.2 focused runner
+  - TRAYS-msh (P3): persisted `.espectacular/` contracts with shell test declarations
+- Also marked task 2.4 (property tests) done — add-tray-capabilities now 21/21 complete
+- All pushed to main; backlog is clean
+- **Next:** `defer-nonconforming-sample-compression` (0/12 tasks) — fix HistogramSketch
+  compression regression, or wrap up the session
