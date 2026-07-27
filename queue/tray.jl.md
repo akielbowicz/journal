@@ -175,3 +175,14 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** TRAYS-0m4 (attribution residual semantics) and TRAYS-9r4 (fractional depth projection contract) — both block TRAYS-qvp (final validation gate)
 
 ---
+
+## 2026-07-27 17:31 — tray.jl
+
+- Housekeeping: dropped stale stash, removed dead research artifacts (req19-bug.md, tray-jl-category-theory-review.md), committed wai triage notes
+- Closed 10 stale beads tickets (compiler IR epic + add-tray-capabilities follow-ups)
+- Updated tasks.md for add-attribution-payload (16/16), clarify-attribution-construction-boundary (12/12), add-tray-capabilities (20/20) — all validation complete
+- Created Espectacular contracts for attribution-payload (8) and clarify-attribution-construction-boundary (10) scenarios
+- Ran R5U review, ah check, openspec validate — all clean. Advanced wai phase to implement
+- **Next:** pick next ready ticket: TRAYS-nyc.1 (Supposition property testing integration), TRAYS-93x (tree conformance), or TRAYS-ltz (just test-file ReTestItems bug)
+
+---
