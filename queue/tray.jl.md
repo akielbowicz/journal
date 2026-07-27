@@ -186,3 +186,11 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** pick next ready ticket: TRAYS-nyc.1 (Supposition property testing integration), TRAYS-93x (tree conformance), or TRAYS-ltz (just test-file ReTestItems bug)
 
 ---
+
+## 2026-07-27 19:44 — tray.jl
+
+- Implemented TRAYS-nyc.1–4: Supposition 0.3.5 test-only dep, smoke property, noncommutative token ordering, exact depth, persistent-update equivalence
+- Implemented TRAYS-nyc.5: documentation, validation, tasks.md checkoff — epic 5/5 complete
+- Ran Rule of 5 review (universal) on the full epic — 7 findings fixed: extracted TokenPayload into test/helpers/TokenPayload.jl, improved persistent-update property with distinct tokens, switched smoke property to Tray types, fixed docs consistency
+- All pushed to main (5 commits + 1 fixup commit)
+- **Next:** pick a ticket from the remaining P2/P3 backlog: TRAYS-93x (tree conformance), TRAYS-ltz (just test-file ReTestItems bug), or TRAYS-msh (Espectacular contract persistence)
