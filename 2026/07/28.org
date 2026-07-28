@@ -16,3 +16,14 @@
 - HTTPS dependency URL, simplified cargo config
 - Tests: 294 passing, clippy -D warnings clean
 - **Next:** push to remote, verify openspec validate --strict
+
+### Session: 03:50 (pretender adopt-genesis — all tickets, Ro5U reviews, push)
+- Completed 8 pretender-cgp tickets: genesis dep, envelope, managed_block, suggestions, feedback subcommand, error-footer, cleanup, acceptance
+- Ran 2x Rule of 5 Universal reviews (16+ findings total, all fixed)
+- Refactored: dry-run to direct command print, PRETENDER_COMMANDS const with compile-time assertion, SSH URL handling, merged FeedbackKind matches, CARGO_PKG_NAME, build_feedback_body() helper, unix_epoch_seconds() replacing 50-line date calc
+- Genesis imports moved to module level
+- All 199 tests pass, clippy -D warnings clean, cargo fmt clean
+- Pushed 11 commits to main (bc3bf13..05a6380)
+- Closed pretender-nu9 (F1) as superseded by genesis envelope
+- Updated metadata.files on all genesis issues
+- **Next:** pretender-gyb (config template) is the remaining open genesis-related ticket
