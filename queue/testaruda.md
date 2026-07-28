@@ -27,3 +27,12 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - **Next:** TypeScript adapter scaffolding (testaruda-xq1) or Clojure adapter scaffolding (testaruda-4tm) — both at 0/31 and 0/29 in OpenSpec.
 
 ---
+
+## 2026-07-27 22:31 — testaruda
+
+- Implemented full TypeScript adapter: crate scaffolding, 3 .scm query files (discover, imports, exports), grammar selector, public query runner, all 6 adapter protocol commands (handshake, discover, static-deps, fingerprint, run-args, ingest), runner detection (Vitest/Jest), JUnit XML parsing, config registration, project detection, and fixture project with 4 integration tests
+- Closed 9 tickets: xq1, 83s, l33, tw4, 9h5, byx, adv, xy2, u8i, a9r
+- 196 tests total (54 adapter-specific unit + 6 integration + 136 core)
+- **Next:** testaruda-4tm (Clojure adapter scaffolding), or testaruda-86m (config schema bug), or testaruda-2jp (espectacular contracts)
+
+---
