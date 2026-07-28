@@ -207,3 +207,17 @@ Sessions captured with /next — processed by /close or /wrap-up.
 - All pushed to main; backlog is clean
 - **Next:** `defer-nonconforming-sample-compression` (0/12 tasks) — fix HistogramSketch
   compression regression, or wrap up the session
+
+---
+
+## 2026-07-27 21:33 — tray.jl
+
+- Completed `defer-nonconforming-sample-compression` epic (12/12 tasks):
+  - Removed non-conforming compressed types (HistogramSketch, CompressedSamplePayload, SketchConfig, ApproximateResult) — 741 lines deleted
+  - Fixed SamplePayload identity summary to derive from zero vector (count=S)
+  - Made SketchConfig construction fail with compression-deferred error
+  - Added regression tests (elementwise-sum stats, adversarial re-pairing, identity coherence)
+  - Marked ADR-002 superseded, amended REQ-21 to exact-only, documented acceptance oracle
+  - Added 5 Espectacular contracts, passed R5U review and all validation gates
+- All 11 commits pushed to main
+- **Next:** backlog is clean — no open tickets remaining. Pick a new epic or wrap up the session.
