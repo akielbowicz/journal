@@ -1,0 +1,13 @@
+* 2026-07-27
+
+** Log
+
+### Session:22:53 (pretender bugfix & release)
+- Reviewed pretender codebase for bugs
+- Found and fixed: crash on Unix sockets in tree walk (collect_path() errored on .git/fsmonitor--daemon.ipc)
+- Found and fixed: stale version assertion in test_version_flag_works (checked for "0.2." after bump to 0.3.0)
+- Bumped version 0.3.0 → 0.3.1
+- Updated CHANGELOG.md for v0.3.1
+- Created & closed beads issue pretender-piz tracking the fix
+- Committed, pushed, and tagged v0.3.1 release
+- All 78 tests pass, pre-commit and pre-push hooks green
