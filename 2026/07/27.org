@@ -11,3 +11,23 @@
 - Created & closed beads issue pretender-piz tracking the fix
 - Committed, pushed, and tagged v0.3.1 release
 - All 78 tests pass, pre-commit and pre-push hooks green
+
+### Session:23:08 (wai spec health check & housekeeping)
+- Checked wai codebase for bugs: cargo check, cargo test, cargo clippy all clean
+- ah check: 385 no-tests-declared issues (all specs lack test mappings)
+- ah doctor: version drift (0.2.2→0.3.0) and duplicate slug cli-core
+- 3 openspec changes incomplete (missing design: add-decision-freshness-tracking, add-feedback-subcommand, adopt-genesis)
+- Committed and pushed 3 commits:
+  - chore(espectacular): configure cargo and pytest runners
+  - chore: update beads data and testaruda config
+  - chore: add openspec change stubs for feedback-subcommand and adopt-genesis
+
+### Session:23:09 (espectacular bug audit & fixes)
+- Audited espectacular codebase for bugs (278 tests, 5 source files, Cargo.toml)
+- Found and fixed: `detect_slug_collisions` only flagged duplicate scenarios (2nd, 3rd+), not the first colliding scenario — rewritten to a two-pass count approach that flags ALL scenarios sharing a colliding slug
+- Found and fixed: `doctor.rs` collision diagnostic bound spec_path to a variable named `slug`, producing misleading messages like "duplicate scenario slug: compiler" instead of "duplicate scenario slug 'empty-input-rejected' in spec 'compiler'"
+- Fixed 14 clippy warnings: `needless_borrows_for_generic_args` (12), `useless_format` (1), `len_zero` (1)
+- Fixed dual binary definition warning in Cargo.toml (removed `espectacular` alias)
+- Updated test expectations: `four_findings_fixture` now expects 5 findings (was 4), `detects_slug_collision` expects 2 (was 1)
+- All 278 tests pass, zero compiler/clippy warnings
+- **Next:** adopt-genesis proposal (untracked) — needs review
