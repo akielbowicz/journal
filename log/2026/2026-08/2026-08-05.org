@@ -38,3 +38,14 @@
 - Verified publish workflow passed: CI checks ✓, publish to crates.io ✓
 - genesis-vibes v0.6.0 now live on crates.io
 - *Next:* implement the 6 downstream adoption tickets (espectacular first — 1 call site)
+
+*** Session:16:45 (wai — 2 tickets closed + release v2026.8.5)
+- Renewed wai workspace; no in_progress tickets, 2 ready
+- **wai-4guc** (P2, genesis CLI ergonomics): replaced individual `-v`/`-q`/`--json` flags with genesis `CliVerbosity` and `CliFormat` flattened structs. Gained `--human` flag. Wired `Guide::set_verbosity()`. TDD: 4 new integration tests, all 479 green.
+- **wai-91zm** (P2, pretender.toml rollout): created `pretender.toml` for wai with app/test/script roles, added `pretender check` to lefthook.yml pre-commit and `just ci`, installed pretender in CI workflow. Closed per user direction (config task, unrelated to wai core).
+- **Release v2026.8.5**: bumped version, tagged, pushed. Initial CI failure due to `pretender doctor` (exits non-zero in CI — no hook). Removed from CI pipeline. Second failure: `cargo publish` broken by `include_str!` referencing `.wai/` (outside package). Fixed by copying skill templates into `src/commands/way/` and updating paths. Re-tagged, re-pushed. Both CI and Release workflows green.
+- **Decisions:**
+  - `pretender doctor` is a dev diagnostic, not a CI gate — removed from `just ci`
+  - Skill templates embedded in `src/` to fix `cargo publish` (pre-existing bug since v2026.7.31)
+  - wai-91zm closed as wai's part done; remaining 6 repos are cross-repo work
+- **Next:** no ready work — all open tickets deferred to 2026-10-08 or blocked in epic wai-fvhv
