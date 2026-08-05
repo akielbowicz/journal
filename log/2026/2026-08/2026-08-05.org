@@ -28,3 +28,13 @@
 - pretender excluded — no envelope call sites
 - *Decision:* published v0.6.0 via GHA; downstream adoption tickets are self-contained with call site lists and acceptance criteria
 - *Next:* implement the 6 downstream adoption tickets (start with espectacular — 1 call site)
+
+*** Session:12:15 (CI fix — publish workflow missing mdbook)
+- Diagnosed v0.6.0 publish failure: GHA publish workflow's =check= job ran =just ci= (which includes =mdbook build=) but never installed mdBook
+- Root cause: =publish.yml= was missing the =taiki-e/install-action@mdbook= step that =ci.yml= had
+- Fix: added =Install mdBook= step to =publish.yml= check job, matching =ci.yml=
+- Committed, pushed to main (7f0d0a9)
+- Moved v0.6.0 tag from old commit to fixed commit (delete old tag, delete on remote, recreate, re-push)
+- Verified publish workflow passed: CI checks ✓, publish to crates.io ✓
+- genesis-vibes v0.6.0 now live on crates.io
+- *Next:* implement the 6 downstream adoption tickets (espectacular first — 1 call site)
