@@ -1,0 +1,18 @@
+* 2026-08-05
+
+** Log
+
+*** Session:10:22 (charly-vibes ecosystem report triage and issue review)
+- Reviewed validated Round 2 and Round 3 evaluation reports across 12 repositories and compared findings against each repository's existing tracker.
+- Created 24 Beads tickets and 3 GitHub issues for missing actionable findings; avoided duplicates already tracked in =dont= and other repositories.
+- Ran the five-pass issue-review workflow over the new issue set, then fixed all findings:
+  - added concrete acceptance criteria, source provenance, verification commands, labels, and structured =metadata.files= arrays;
+  - narrowed overlapping or ambiguous tickets and chose explicit trust, migration, sensor, and session-ID behavior;
+  - split oversized work into =espectacular-a77=, three =vampiro-410.*= language slices, and =fotos-hko=/=fotos-dn5=;
+  - raised validated CI, storage, and multi-language correctness findings to P1;
+  - marked approval-bound work with =hitl-approval= and =openspec-required=.
+- Refreshed all affected =.beads/issues.jsonl= exports and verified every reviewed Beads ticket has an array-valued file list, acceptance criteria, source, and verification command; all dependency graphs are cycle-free.
+- Pushed healthy Dolt trackers for dulce-de-leche, espectacular, pretender, testaruda, vampiro, and paranoid. Per user direction, ignored wai's divergent Dolt history and treated its local JSONL export as authoritative; fotos, fabbro, and miblioteca also remain local-export-only because they have no Dolt remote.
+- Updated =jams= issues #2-#4 with owned files, focused outcomes, provenance, verification, and triage labels.
+- *Decision:* report-derived tickets should be tracer-bullet slices; =bd update --metadata '{"files":[...]}'= is required because =--set-metadata 'files=[...]'= stores a string rather than an array.
+- *Next:* start with the P0 =wai-5i1l= trust proposal or another P1 AFK-ready ticket; obtain HITL/OpenSpec approval before implementing approval-gated slices.
