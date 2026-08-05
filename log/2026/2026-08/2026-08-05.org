@@ -16,3 +16,15 @@
 - Updated =jams= issues #2-#4 with owned files, focused outcomes, provenance, verification, and triage labels.
 - *Decision:* report-derived tickets should be tracer-bullet slices; =bd update --metadata '{"files":[...]}'= is required because =--set-metadata 'files=[...]'= stores a string rather than an array.
 - *Next:* start with the P0 =wai-5i1l= trust proposal or another P1 AFK-ready ticket; obtain HITL/OpenSpec approval before implementing approval-gated slices.
+
+*** Session:11:42 (genesis-5gf — cli_version API fix + v0.6.0 release + downstream tickets)
+- Fixed genesis-5gf: removed =CLI_VERSION= default, made =cli_version= caller-supplied in all Envelope constructors
+- Ran Rule of 5 review and applied polish fixes (doc comments, stale version refs, trailing blank line)
+- Ran =cargo fmt= (pre-commit hook), committed, pushed: =2243cce=
+- Bumped genesis to v0.6.0 (breaking API change), tagged =v0.6.0=, pushed for GHA publish
+- Discovered =bd create --description= with backticks breaks shell interpolation — used =--body-file= instead (recorded in =~/.whisper/rules.md=)
+- Created 6 P1 adoption tickets across downstream repos (wai-47m0, dont-88m8, espectacular-9ys, testaruda-2wwn, vampiro-aq0, DDL-iqv)
+- Updated genesis-vjp epic with child ticket references
+- pretender excluded — no envelope call sites
+- *Decision:* published v0.6.0 via GHA; downstream adoption tickets are self-contained with call site lists and acceptance criteria
+- *Next:* implement the 6 downstream adoption tickets (start with espectacular — 1 call site)
