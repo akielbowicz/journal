@@ -47,3 +47,8 @@ Generate a weekly review from the last 7 days of journal logs, project/area stat
 - suggest running `/migrate` if there are more than 3 unprocessed items
 
 Keep it actionable. Flag anything blocked or overdue.
+
+> **DEPRECATED — DOCUMENTATION ONLY.** Skills are no longer developed in this repo;
+> the journal depends on [incitaciones](https://github.com/akielbowicz/incitaciones)
+> for shared skills. This journal-specific skill still runs from
+> `~/.agents/skills/` (symlinked here) until it is upstreamed into incitaciones.

@@ -150,9 +150,19 @@ In any session, when the user mentions tasks, decisions, blockers, or follow-ups
 - `inbox: capture tasks` / `inbox: migrate`
 - `archive: close <name>`
 
+## Publishing
+
+- Public repo: `git@ak:akielbowicz/journal.git` (GitHub: `akielbowicz/journal`). Push after committing session logs.
+- **Published online** via GitHub Pages at **http://ak.saxa.xyz/journal/** — auto-deploys on push to `main` through `.github/workflows/pages.yml` (pandoc site build via `bin/build`, also runnable locally with `mise run build` / `mise run serve`).
+- This repo is the **source of truth for records**: daily logs, inbox, projects, areas, resources.
+
+## Skills Dependency
+
+- Shared skills (`close`, `next`, `park`, `renew`) come from **[incitaciones](https://github.com/akielbowicz/incitaciones)** (npm) — declared as a pi project dependency in `.pi/settings.json` and managed by its installer into `~/.agents/skills/`. Do not edit journal copies.
+- Journal-specific skills (`archive`, `capture`, `jlog`, `migrate`, `morning`, `standup`, `weekly`, `wrap-up`) still live in `resources/skills/`, symlinked into `~/.agents/skills/`; candidates for upstreaming into incitaciones.
+- `resources/skills/` and `bin/sync` are **deprecated** — see `resources/skills/README.md`.
+
 ## Notes
 
-- Remote: `git@ak:akielbowicz/journal.git` (public). Push after committing session logs.
-- Skills live at `resources/skills/` and are deployed to `~/.config/agents/skills/` via `bin/sync`.
 - Org-mode notes (via `zk` and `mise run jrn`) coexist alongside the markdown BuJo/PARA layer.
-- Tools managed with mise (`.mise.toml`): `mise run build`, `mise run deploy`, `mise run jrn`, etc.
+- Tools managed with mise (`.mise.toml`): `mise run build`, `mise run serve`, `mise run jrn`, etc.

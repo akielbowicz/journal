@@ -163,3 +163,7 @@ Before writing any code, claim the ticket atomically and check for file conflict
 
 File conflict detection only works when both tickets have `metadata.files` populated (set by `create-issues` or `/w link` at ticket creation time). Tickets created before this convention was adopted have no metadata. For those tickets, **"no conflict found" means unknown, not safe**.
 <!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->
+
+> **DEPRECATED — DOCUMENTATION ONLY.** The live version of this skill comes from
+> [incitaciones](https://github.com/akielbowicz/incitaciones) (npm). This copy is a
+> stale snapshot kept for reference. Do not edit here — edit upstream and re-install.

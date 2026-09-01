@@ -68,3 +68,8 @@ Present a morning briefing:
 ---
 
 Then ask: *"What would you like to set as today's focus?"* and update the `## Focus` section of today's log once the user responds.
+
+> **DEPRECATED — DOCUMENTATION ONLY.** Skills are no longer developed in this repo;
+> the journal depends on [incitaciones](https://github.com/akielbowicz/incitaciones)
+> for shared skills. This journal-specific skill still runs from
+> `~/.agents/skills/` (symlinked here) until it is upstreamed into incitaciones.

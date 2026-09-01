@@ -1,37 +1,14 @@
 #!/usr/bin/env bash
-# Deploy journal skills to ~/.config/agents/skills/
-# Other tools (claude, gemini, amp) should symlink to that location.
-set -euo pipefail
-
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REPO_DIR="$(dirname "$SCRIPT_DIR")"
-SOURCE="$REPO_DIR/resources/skills"
-TARGET="${XDG_CONFIG_HOME:-$HOME/.config}/agents/skills"
-
-if [ ! -d "$SOURCE" ]; then
-  echo "error: skills directory not found at $SOURCE" >&2
-  exit 1
-fi
-
-# Get git metadata for provenance tracking
-COMMIT=$(git -C "$REPO_DIR" rev-parse --short HEAD 2>/dev/null || echo "unknown")
-COMMIT_DATE=$(git -C "$REPO_DIR" log -1 --format=%ci 2>/dev/null || echo "unknown")
-REPO_PATH="$REPO_DIR"
-
-mkdir -p "$TARGET"
-
-count=0
-for skill_dir in "$SOURCE"/*/; do
-  skill_name="$(basename "$skill_dir")"
-  mkdir -p "$TARGET/$skill_name"
-
-  # Inject provenance comment at end of deployed copy
-  {
-    cat "$skill_dir"SKILL.md
-    printf '\n<!-- deployed from %s @ %s (%s) -->\n' "$REPO_PATH" "$COMMIT" "$COMMIT_DATE"
-  } > "$TARGET/$skill_name/SKILL.md"
-
-  count=$((count + 1))
-done
-
-echo "Deployed $count skills from $REPO_PATH@$COMMIT to $TARGET"
+# DEPRECATED (2026-09-01).
+#
+# The journal no longer deploys skills. Shared skills (close, next, park, renew)
+# come from incitaciones (npm) — managed by its installer into ~/.agents/skills/
+# and declared as a pi project dependency in .pi/settings.json.
+#
+# Journal-specific skills (archive, capture, jlog, migrate, morning, standup,
+# weekly, wrap-up) are symlinked from resources/skills/ into ~/.agents/skills/
+# and are candidates for upstreaming into incitaciones.
+#
+# See resources/skills/README.md
+echo "deprecated: journal skills are managed by incitaciones — run: pi install npm:incitaciones" >&2
+exit 1

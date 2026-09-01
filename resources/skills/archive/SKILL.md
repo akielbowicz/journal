@@ -50,3 +50,8 @@ Move a completed project or inactive area to the archive directory.
 - File moved to `archive/<slug>.md`
 
 ---
+
+> **DEPRECATED — DOCUMENTATION ONLY.** Skills are no longer developed in this repo;
+> the journal depends on [incitaciones](https://github.com/akielbowicz/incitaciones)
+> for shared skills. This journal-specific skill still runs from
+> `~/.agents/skills/` (symlinked here) until it is upstreamed into incitaciones.

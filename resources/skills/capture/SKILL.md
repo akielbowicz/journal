@@ -24,3 +24,8 @@ Add an item to the work journal inbox.
 6. Confirm the item was added.
 
 Do not commit.
+
+> **DEPRECATED — DOCUMENTATION ONLY.** Skills are no longer developed in this repo;
+> the journal depends on [incitaciones](https://github.com/akielbowicz/incitaciones)
+> for shared skills. This journal-specific skill still runs from
+> `~/.agents/skills/` (symlinked here) until it is upstreamed into incitaciones.

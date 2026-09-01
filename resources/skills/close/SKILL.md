@@ -67,3 +67,7 @@ Uses `$JOURNAL_PATH` (defaults to `~/dev/status`) for the daily log journal, and
 - If today's log already has content, append to it; never overwrite existing entries.
 - Always pull before reading and push after committing.
 <!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->
+
+> **DEPRECATED — DOCUMENTATION ONLY.** The live version of this skill comes from
+> [incitaciones](https://github.com/akielbowicz/incitaciones) (npm). This copy is a
+> stale snapshot kept for reference. Do not edit here — edit upstream and re-install.

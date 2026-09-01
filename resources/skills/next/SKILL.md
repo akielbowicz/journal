@@ -53,3 +53,7 @@ Use `/renew` later to pick this back up.
 - Do NOT update project files, inbox, or tickets.
 - Do NOT run `/clear`.
 <!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->
+
+> **DEPRECATED — DOCUMENTATION ONLY.** The live version of this skill comes from
+> [incitaciones](https://github.com/akielbowicz/incitaciones) (npm). This copy is a
+> stale snapshot kept for reference. Do not edit here — edit upstream and re-install.

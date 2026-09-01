@@ -111,3 +111,8 @@ End-of-day sweep: pull all queued session snapshots into the log, check every pr
 - If the work queue is empty and all projects are current, say so and exit cleanly.
 - Never delete workqueue entries that belong to future dates.
 - Keep synthesized summaries concise — bullet points, not paragraphs.
+
+> **DEPRECATED — DOCUMENTATION ONLY.** Skills are no longer developed in this repo;
+> the journal depends on [incitaciones](https://github.com/akielbowicz/incitaciones)
+> for shared skills. This journal-specific skill still runs from
+> `~/.agents/skills/` (symlinked here) until it is upstreamed into incitaciones.

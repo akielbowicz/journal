@@ -97,3 +97,7 @@ Uses `$JOURNAL_PATH` (defaults to `~/dev/status`) for the daily log journal, and
 - Do NOT commit or push the journal repo.
 - Do NOT run `/clear` — the user may continue working in this session.
 <!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->
+
+> **DEPRECATED — DOCUMENTATION ONLY.** The live version of this skill comes from
+> [incitaciones](https://github.com/akielbowicz/incitaciones) (npm). This copy is a
+> stale snapshot kept for reference. Do not edit here — edit upstream and re-install.
