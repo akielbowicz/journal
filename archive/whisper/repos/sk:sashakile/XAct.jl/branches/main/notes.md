@@ -1,0 +1,4 @@
+### 2026-08-05 12:15 — snap
+- Completed 5 tickets in the unify-expression-parser project: Phase C.1 (SortCovDs/CommuteCovDs → unified AST), seeded stress_test.jl regression suite, fixed Contract self-trace (R^a_a → RicciScalar), fixed VarD variance-inconsistent output (added _swap_variance), fixed perturb curvature tensors (added _perturb_curvature_factor)
+- Merged and pushed 5 commits to main. Stress test: 10 passing, 10 @test_broken remaining
+- **Next:** Phase C.2 (sxAct-44do) — migrate `_preprocess_covd_reductions` from string-regex to AST, remove `_extract_covd_chain`, `_split_expression_terms`, and string-based CovD helpers in Canonical.jl

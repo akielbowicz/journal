@@ -88,6 +88,17 @@ git add inbox.md projects/ areas/ resources/ archive/
 git commit -m "$msg" || echo "Nothing to commit"
 """
 
+[tasks.whisper-sync]
+description = "Import ~/.whisper session snapshots/rules into archive/whisper/ and commit"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+rsync -a "$HOME/.whisper/" "archive/whisper/"
+git add archive/whisper/
+git commit -m "archive: whisper snapshot $(date +%Y-%m-%d)" || echo "No whisper changes"
+git push
+"""
+
 [tasks.list]
 description = "List recent notes"
 run = "zk list --sort created- --limit 20"
