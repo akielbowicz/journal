@@ -64,3 +64,6 @@ This re-triggers the publish workflow against the fixed tree.
 
 ### WeasyPrint `RecursionError` on truncated email HTML — use DOM-level truncation
 Email HTML (Mailchimp/Drip templates) is deeply nested tables; truncating by regex and hand-appending guessed closing tags (`</td></tr></table></div>`) leaves unbalanced nesting that crashes WeasyPrint with `RecursionError` in cffi. Instead parse with BeautifulSoup and truncate structurally: find the signature text node, then for each ancestor up to the document root `extract()` all `next_sibling`s. Always verify post-cut text is free of boilerplate markers before rendering.
+
+### In-place writers through symlinks — spot-check the source repo after installers run
+The incitaciones installer (`install --global`) rewrites skill files including provenance injection, and it followed symlinks into the journal repo's `resources/skills/`, clobbering content with generated output. Rule: after running any installer/tool that mutates skill directories in place, immediately `git status` the source repos behind those symlinks and revert unintended writes. Prefer point-installers at explicit targets over blanket `--global` re-installs when symlinked sources exist.

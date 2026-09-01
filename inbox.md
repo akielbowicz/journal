@@ -7,6 +7,10 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-09-01 [ ] Upstream the 8 journal-specific skills (archive, capture, jlog, migrate, morning, standup, weekly, wrap-up) into incitaciones so `resources/skills/` can be retired
+- 2026-09-01 [ ] Report incitaciones bug: `/next` mis-parses `git@host:` remotes into junk dirs (`repos/gh/`, `repos/github.com/`, `repos/ak:akielbowicz/`)
+- 2026-09-01 [ ] Enforce HTTPS on GitHub Pages for `ak.saxa.xyz` once the cert provisions (`gh api -X PUT repos/akielbowicz/journal/pages --input - <<< '{"https_enforced": true}'`)
+- 2026-09-01 [ ] Optionally trim `resources/skills/` deprecated snapshots to just the 4 upstream-derived ones (close/next/park/renew)
 - 2026-07-28 [ ] Workflow: when implementing tickets, follow TDD → Ro5U → fix → commit → next cycle
 - 2026-05-12 [ ] In `charly/espectacular`, persist the AI-dev ecosystem gap analysis as a parent document and link the `add-spec-assertions` epic plus feedback-loop tickets back to it.
 - 2026-05-12 [ ] In the `charly` ecosystem, open the deferred observability work with a harness-agnostic scope covering Pi, Codex, and Claude Code trace collection.
