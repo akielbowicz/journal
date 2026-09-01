@@ -67,3 +67,7 @@ Email HTML (Mailchimp/Drip templates) is deeply nested tables; truncating by reg
 
 ### In-place writers through symlinks — spot-check the source repo after installers run
 The incitaciones installer (`install --global`) rewrites skill files including provenance injection, and it followed symlinks into the journal repo's `resources/skills/`, clobbering content with generated output. Rule: after running any installer/tool that mutates skill directories in place, immediately `git status` the source repos behind those symlinks and revert unintended writes. Prefer point-installers at explicit targets over blanket `--global` re-installs when symlinked sources exist.
+
+## Documentation Drift Prevention
+
+Markdown code fences in docs are never compiled — they drift silently when APIs change. For libraries with copy-paste onboarding snippets, add a CI-compiled mirror test (test file mirroring each snippet, or rustdoc `no_run` doctests + `mdbook test`). Coverage must be verifiable: every mirror test maps to a doc location, and a "forbidden patterns" guard fails when removed/renamed API call-shapes reappear in docs. Keep the forbidden list in a human-maintained doc (markdown table), not in the test file — humans update docs, CI consumes them. When bumping a crate version, grep docs for the old pin in the same commit.

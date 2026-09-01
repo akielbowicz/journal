@@ -123,3 +123,11 @@
 All three release.yml workflows had the same `--locked` + `cargo publish dirty` bugs.
 Fixed across testaruda, espectacular, and wai repos.
 The release workflow has NEVER succeeded before this round.
+
+## Doc-drift guard system (added 2026-09-01)
+
+- Onboarding docs are drift-guarded three ways, all failing `cargo test`: `tests/doc_examples.rs` (compilable mirrors of mdBook snippets), `tests/doc_sync.rs` (forbidden-pattern scan + snippet-map coverage + version-pin tracking), `just doc-test` runs both.
+- The forbidden-API blocklist lives in `docs/explanation/removed-apis.md` (maintained markdown table); `doc_sync.rs` derives patterns from it. Add a row there whenever a public API is removed/renamed. The anchor page is excluded from the scan (it quotes the patterns).
+- Version pins in README.md + docs/getting-started.md are tracked against Cargo.toml — bumping the manifest version requires updating both files in the same commit or CI fails.
+- Beads tracker has no dolt remote; `.beads/issues.jsonl` git export is the sync mechanism (commit it alongside ticket changes).
+- `bd create --set-metadata 'files=[...]'` errors out (help text); create first, then `bd update --set-metadata`. Setting metadata on `bd update` works fine.
