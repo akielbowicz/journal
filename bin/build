@@ -6,6 +6,7 @@ set -euo pipefail
 
 ROOT="${1:-.}"
 BASE_URL="${BASE_URL:-}"  # e.g. "/journal" for GitHub Pages
+SITE_NAME="journal"
 STAGE="$ROOT/_staging"
 OUT="$ROOT/_site"
 TEMPLATE="$ROOT/bin/template.html"
@@ -14,12 +15,16 @@ rm -rf "$STAGE" "$OUT"
 mkdir -p "$OUT"
 
 # Step 0: Copy content to staging area (don't mutate the repo)
+# Note: 'repos' excluded so whisper repo clones are never published.
 echo ":: Staging content..."
 mkdir -p "$STAGE"
 for dir in projects areas resources archive; do
-  [ -d "$ROOT/$dir" ] && rsync -a --exclude='index.md' "$ROOT/$dir" "$STAGE/"
+  [ -d "$ROOT/$dir" ] && rsync -a --exclude='index.md' --exclude='repos' "$ROOT/$dir" "$STAGE/"
 done
-cp "$ROOT/inbox.md" "$STAGE/" 2>/dev/null || true
+cp "$ROOT/inbox.md" "$STAGE/" 2>/dev/null || echo ":: WARNING: inbox.md missing — nav link will 404"
+[ -f "$ROOT/search.md" ] || echo ":: WARNING: search.md missing — search nav will 404"
+[ -d "$ROOT/areas/log" ] || echo ":: WARNING: areas/log missing — daily logs will not be published"
+[ -f "$ROOT/bin/lunr.min.js" ] || echo ":: WARNING: bin/lunr.min.js missing — search will rely on CDN"
 cp "$ROOT/search.md" "$STAGE/" 2>/dev/null || true
 cp "$ROOT/README.md" "$STAGE/" 2>/dev/null || true
 
@@ -47,17 +52,19 @@ find "$STAGE" -name '*.md' -not -name '_*' | while read -r mdfile; do
   outfile="$OUT/${rel%.md}.html"
   mkdir -p "$(dirname "$outfile")"
 
-  # Build breadcrumb from path
+  # Build breadcrumb from path (root index: show site name, not "index")
   breadcrumb="<a href=\"${BASE_URL}/\">~</a>"
   IFS='/' read -ra parts <<< "${rel%.md}"
   path_acc="${BASE_URL}"
   for i in "${!parts[@]}"; do
     part="${parts[$i]}"
+    label="$part"
+    [ "$part" = "index" ] && label="$SITE_NAME"
     if [ "$i" -eq $(( ${#parts[@]} - 1 )) ]; then
-      breadcrumb="$breadcrumb / <span>$part</span>"
+      breadcrumb="$breadcrumb / <span>$label</span>"
     else
       path_acc="$path_acc/$part"
-      breadcrumb="$breadcrumb / <a href=\"$path_acc/\">$part</a>"
+      breadcrumb="$breadcrumb / <a href=\"$path_acc/\">$label</a>"
     fi
   done
 
@@ -65,16 +72,21 @@ find "$STAGE" -name '*.md' -not -name '_*' | while read -r mdfile; do
   title=$(grep -m1 '^# ' "$mdfile" | sed 's/^# //' || basename "$mdfile" .md)
   [ -z "$title" ] && title=$(basename "$mdfile" .md)
 
+  # Root index: don't render "journal — journal" (empty title → template default)
+  [ "$rel" = "index.md" ] && title=""
+
   # Convert with pandoc using template
   pandoc -f gfm -t html5 \
     --template="$TEMPLATE" \
     --metadata title="$title" \
     --variable breadcrumb="$breadcrumb" \
+    --variable updated="$(date -u +%Y-%m-%d)" \
     "$mdfile" -o "$outfile"
 done
 
-# Step 5: Copy search-index.json
+# Step 5: Copy search assets (vendored lunr + index)
 cp "$STAGE/search-index.json" "$OUT/search-index.json" 2>/dev/null || true
+cp "$ROOT/bin/lunr.min.js" "$OUT/lunr.min.js" 2>/dev/null || true
 
 # Cleanup
 rm -rf "$STAGE"

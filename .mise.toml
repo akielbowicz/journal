@@ -22,10 +22,6 @@ description = "Remove build artifacts"
 run = "rm -rf _site _staging"
 
 # Skills
-[tasks.deploy]
-description = "Deploy skills to ~/.config/agents/skills/"
-run = "./bin/sync"
-
 # Journal
 [tasks.jrn]
 description = "Create/edit today's journal entry (org-mode via zk)"

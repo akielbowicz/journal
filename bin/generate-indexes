@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+# Look up a one-line description for `slug` in a directory's hand-written _index.md
+# (_index.md format: - [slug](slug.md) — description)
+describe_entry() {
+  local dir="$1" display="$2"
+  local idx="$dir/_index.md"
+  if [ -f "$idx" ]; then
+    awk -v slug="$display" -F' — ' '
+      $1 ~ "^- \\[" slug "\\]" { for (i=2; i<=NF; i++) printf "%s%s", (i>2?" — ":""), $i; print ""; exit }
+    ' "$idx"
+  fi
+}
+
 # Generate index.md for every directory for browseable listings.
 set -euo pipefail
 
@@ -46,7 +58,12 @@ find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" \
       # Strip extension for display, link to .html
       display="${name%.md}"
       link="${display}.html"
-      echo "- [$display]($link)"
+      desc="$(describe_entry "$dir" "$display")"
+      if [ -n "$desc" ]; then
+        echo "- [$display]($link) — $desc"
+      else
+        echo "- [$display]($link)"
+      fi
     done
   } > "$index"
 done
@@ -54,7 +71,7 @@ done
 # Generate root index.md: nav block + README content
 {
   cat << 'NAV'
-[inbox](inbox.html) | [projects](projects/) | [areas](areas/) | [resources](resources/) | [archive](archive/) | [search](search.html)
+[inbox](inbox.html) | [log](areas/log/) | [projects](projects/) | [areas](areas/) | [resources](resources/) | [archive](archive/) | [search](search.html)
 
 ---
 

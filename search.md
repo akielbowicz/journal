@@ -4,7 +4,7 @@
 
 <ul id="search-results"></ul>
 
-<script src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
+<script src="lunr.min.js"></script>
 <script>
 (function() {
   var script = document.createElement('script');

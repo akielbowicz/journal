@@ -32,7 +32,7 @@ find "$ROOT/projects" "$ROOT/areas" "$ROOT/resources" "$ROOT/archive" "$ROOT/inb
     s/\[[^]]*\]([^)]*)//g
     s/[*_`]//g
     s/|//g
-  ' "$file" | tr '\n' ' ' | sed 's/  */ /g' | head -c 2000)
+  ' "$file" | tr '\n' ' ' | sed 's/  */ /g' | head -c 20000)
 
   # Escape for JSON
   title=$(echo "$title" | sed 's/\\/\\\\/g; s/"/\\"/g')

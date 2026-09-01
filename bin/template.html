@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>$title$ — journal</title>
+<title>$if(title)$$title$ — journal$else$journal$endif$</title>
 <style>
 :root {
   --fg: #d4d4d4;
@@ -113,6 +113,6 @@ strong { color: var(--accent); }
 <body>
 <nav class="breadcrumb">$breadcrumb$</nav>
 $body$
-<footer><a href="https://github.com/akielbowicz/journal" target="_blank" rel="noopener">GitHub</a> · journal</footer>
+<footer><a href="https://github.com/akielbowicz/journal" target="_blank" rel="noopener">GitHub</a> · journal · updated $updated$</footer>
 </body>
 </html>
