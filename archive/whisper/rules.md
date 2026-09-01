@@ -71,3 +71,9 @@ The incitaciones installer (`install --global`) rewrites skill files including p
 ## Documentation Drift Prevention
 
 Markdown code fences in docs are never compiled — they drift silently when APIs change. For libraries with copy-paste onboarding snippets, add a CI-compiled mirror test (test file mirroring each snippet, or rustdoc `no_run` doctests + `mdbook test`). Coverage must be verifiable: every mirror test maps to a doc location, and a "forbidden patterns" guard fails when removed/renamed API call-shapes reappear in docs. Keep the forbidden list in a human-maintained doc (markdown table), not in the test file — humans update docs, CI consumes them. When bumping a crate version, grep docs for the old pin in the same commit.
+
+### Mermaid version pinning for self-contained HTML reports
+Mermaid v10+ ships ESM-only builds; `<script src="mermaid.esm.min.mjs">` from a `file://` page is blocked by CORS in Chromium, so diagrams silently don't render. **Fix:** vendor the Mermaid **v9.4.3 IIFE build** (`mermaid.min.js`, global `mermaid`) next to the report and reference it with a relative path. Keep the raw Mermaid source in a `<details><pre class="mermaid-source">` fallback so nothing is blank without JS. (Established in incitaciones codebase-cartography HTML export spec, 2026-09-01.)
+
+### Journal repo: parallel-machine sync on log files
+The journal repo gets commits from multiple machines; `git pull` there often rebases a long unpushed local history onto remote and hits `AA/UU` conflicts in log files (both machines appended different sessions from an empty base; `git rerere` preimages may auto-replay stale resolutions). **Fix:** for each conflict, concatenate both sides' session entries under a single `## Log` heading (keep one copy of each `### Session:` block), `git add`, `GIT_EDITOR=true git rebase --continue`. Check for duplicated session blocks before committing — rerere can glue content weirdly.
