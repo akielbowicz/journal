@@ -155,6 +155,7 @@ In any session, when the user mentions tasks, decisions, blockers, or follow-ups
 - Public repo: `git@ak:akielbowicz/journal.git` (GitHub: `akielbowicz/journal`). Push after committing session logs.
 - **Published online** via GitHub Pages at **http://ak.saxa.xyz/journal/** — auto-deploys on push to `main` through `.github/workflows/pages.yml` (pandoc site build via `bin/build`, also runnable locally with `mise run build` / `mise run serve`).
 - This repo is the **source of truth for records**: daily logs, inbox, projects, areas, resources.
+- `~/.whisper` is a **symlink to `archive/whisper/`** — incitaciones skills (`/next`, `/close`) write knowledge here directly. Run `mise run whisper-sync` to commit + push new entries (they land as untracked files until committed).
 
 ## Skills Dependency
 

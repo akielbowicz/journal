@@ -1,8 +1,8 @@
 # Whisper archive
 
-Mirror of `~/.whisper/` — operational knowledge accumulated by the incitaciones
-skills (`/next` session snapshots per repo/branch, `/close` env notes, and
-`rules.md` universal agent rules).
+This directory **is** `~/.whisper/` — a symlink (`~/.whisper` → `archive/whisper/`).
+The incitaciones skills (`/next` per repo/branch session snapshots, `/close` env
+notes, `rules.md` universal agent rules) write here directly.
 
-Imported by `mise run whisper-sync`. Re-run anytime to refresh
-(additive — deletions in ~/.whisper are not propagated).
+Run `mise run whisper-sync` to commit + push new entries (they land as untracked
+files until committed).

@@ -89,13 +89,12 @@ git commit -m "$msg" || echo "Nothing to commit"
 """
 
 [tasks.whisper-sync]
-description = "Import ~/.whisper session snapshots/rules into archive/whisper/ and commit"
+description = "Commit + push new ~/.whisper entries (symlinked into archive/whisper/)"
 run = """
 #!/usr/bin/env bash
 set -euo pipefail
-rsync -a "$HOME/.whisper/" "archive/whisper/"
 git add archive/whisper/
-git commit -m "archive: whisper snapshot $(date +%Y-%m-%d)" || echo "No whisper changes"
+git commit -m "archive: whisper entries $(date +%Y-%m-%d)" || echo "No whisper changes"
 git push
 """
 
