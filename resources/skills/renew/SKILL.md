@@ -1,121 +1,165 @@
 ---
 name: renew
-description: "Resume work on a project or area, inferring the target from context when omitted. Trigger when the user says /renew, /renew <name>, 'pick up <project>', 'continue <project>', or 'back to <project>'."
-disable-model-invocation: true
+description: "Resume work on a specific project or area. Loads focused context for continuing where you left off. When no name is given, infers the project/area from the current repo and git branch. Trigger when the user says '/renew', '/renew <name>', 'pick up <project>', 'continue <project>', or 'back to <project>'."
+tools: Read, Write, Edit, Glob, Bash, Grep
 ---
 
 # Renew
 
-Load focused context for a project or area to continue work. If the user omits the slug, infer the most likely target from conversation and workspace context.
+Load focused context for a specific project or area to continue work.
 
-> Named `/renew` instead of `/resume` because `/resume` is a built-in command in Claude Code (and other tools) for resuming previous conversations.
+Uses `$JOURNAL_PATH` (defaults to `~/dev/status`) for the daily log journal, and `~/.whisper/` for accumulated operational knowledge. The log subdirectory defaults to `log/`; set `$JOURNAL_LOG_SUBDIR` to override (e.g. `areas/log` for the JORNAL layout).
 
 ## Steps
 
-1. Resolve the journal path:
+1. Pull the journal repo:
    ```bash
-   JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
+   JOURNAL="${JOURNAL_PATH:-$HOME/dev/status}"
+   LOG_SUBDIR="${JOURNAL_LOG_SUBDIR:-log}"
+   cd "$JOURNAL" && git pull
    ```
 
 2. Identify the target.
 
-   If the user provided a slug or name (`/renew <slug>`, `pick up <project>`, etc.), match it against:
-   - `$JORNAL/projects/<slug>.md`
-   - `$JORNAL/areas/<slug>.md`
-   - If no exact match, try partial match or list available projects/areas and ask.
+   **If a `<slug>` is provided:** The user says `/renew <slug>`.
 
-   If the user omitted the target (`/renew`, `continue`, `pick this back up`), infer it from context using these signals, in order:
-   1. Current conversation: the project/area name or slug the user just mentioned.
-   2. Current working directory: repo/path components matching a project or area slug/name.
-   3. Git context: current branch name, remote URL/repo name, or recent commit messages matching a project or area slug/name.
-   4. `$JORNAL/queue/<slug>.md` (or legacy `$JORNAL/workqueue.md`): the most recent queued `/next` entry if it is unambiguous.
-   5. Today's log: Focus section or most recent Log entry naming a project/area.
-   6. Recent logs (last 3 days): most recently active project/area.
+   **If no slug is provided:** Infer from the current workspace context:
+   - Get the repo name: `basename $(git rev-parse --show-toplevel 2>/dev/null)`
+   - Get the branch name: `git branch --show-current 2>/dev/null`
+   - Extract a candidate slug from the branch (strip prefix like `ak/`, `feature/`, etc.)
+   - Use both the repo name and branch-derived slug as candidates
 
-   Treat exact slug/name matches as strong evidence. Treat multiple plausible matches as ambiguous.
-
-   If exactly one strong candidate is found, proceed and mention the inference source in the output (for example: `Inferred from current directory`). If no candidate or multiple candidates are plausible, list the top candidates with their evidence and ask the user to choose instead of guessing.
+   **Match candidates** against:
+   - `$JOURNAL/projects/*.md` — check filenames and grep for repo/branch references
+   - `$JOURNAL/areas/*.md` — same
+   - Try exact match, then partial/substring match
+   - If multiple matches found, list them and ask the user to pick
+   - If no match found, list available projects/areas and ask
 
 3. Read the matched project or area file.
 
-4. Read today's log (`$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`).
+4. Read today's log (`$JOURNAL/$LOG_SUBDIR/YYYY/YYYY-MM/YYYY-MM-DD.md`).
    If it doesn't exist, create it with the daily log template.
    Scan for any earlier session entries related to this project/area today.
 
-4a. Derive `$SLUG` from the matched project/area name (same sanitization as `/next` step 3):
-    ```bash
-    SLUG=$(echo "$RAW" | tr ' /()' '----' | tr '[:upper:]' '[:lower:]')
-    ```
-
-    Load queued prior-session context:
-    - **Primary:** check `$JORNAL/queue/$SLUG.md`. If it exists, is non-empty, and contains at least one `## ` section header, load its entries.
-    - **Fallback:** if `queue/$SLUG.md` is absent or fails validation, check `$JORNAL/workqueue.md` for entries matching `^## \d{4}-\d{2}-\d{2} \d{2}:\d{2} — <slug>$` (line-end anchor).
-      - If legacy entries found: migrate them into `$JORNAL/queue/$SLUG.md` (create file with header if needed), remove the matching blocks from `workqueue.md`, and commit both files together with the next git operation.
-      - If no legacy entries: no queued context.
-
-    Before using any queue content, validate it contains at least one `## ` section header; otherwise treat as empty.
-
-    Display loaded entries under **Queued sessions** in chronological order. Legacy entries sort before new-file entries when timestamps match.
-
-    **Compact display rule:**
-    - 1 entry: show full bullets
-    - 2–4 entries: show latest in full; for each older entry show its date, slug, and **Next:** line only
-    - 5+ entries: show latest in full; show `+ N earlier sessions (YYYY-MM-DD to YYYY-MM-DD)` with their **Next:** lines collected
-
-    Always preserve the **Next:** bullet from every queued session — it is the most actionable part.
-
-5. Extract recent session context from logs. For each of the last 3 days (today, yesterday, 2 days ago) — stop as soon as a match is found:
+5. Search recent logs for context (last 3 days):
    ```bash
-   # Find start line of the slug's session section using fixed-string matching
-   grep -nF "($SLUG)" "$LOG_FILE" 2>/dev/null | head -1
-   grep -nF "($SLUG —" "$LOG_FILE" 2>/dev/null | head -1
+   grep -rl "<slug>" "$JOURNAL"/"$LOG_SUBDIR"/YYYY/YYYY-MM/ 2>/dev/null | tail -3
    ```
-   Use the start line number to find the next `---` separator line; read only that block using the Read tool with offset and limit. Do not load the entire log file.
-
-   If no match is found in any of the 3 days, output `"No log section found for '<slug>' in the last 3 days"` instead of a silent empty **Last session** field.
+   Read any matches to understand recent session history.
 
 6. Search inbox for related items:
    ```bash
-   grep -iF "$SLUG" "$JORNAL/inbox.md"
+   grep -i "<slug>" "$JOURNAL"/inbox.md
    ```
-   Show all matching lines under **Related inbox items**.
 
-7. If in a git repo, gather workspace context:
-   - `git branch --show-current`
+7. **Check `~/.whisper/` for accumulated knowledge.**
+   If `~/.whisper/` exists, load context:
+   ```bash
+   repo_url=$(git remote get-url origin 2>/dev/null | sed 's|https://||;s|git@||;s|\.git$||')
+   branch_slug=$(git rev-parse --abbrev-ref HEAD | sed 's|/|--|g')
+   whisper_dir=~/.whisper/repos/"${repo_url}"/branches/"${branch_slug}"
+   ```
+   - Read `context.md` if it exists (extract beads-epic, status)
+   - Read `plan.md` if it has real content
+   - Read `notes.md` if it has real content
+   - Read `env.md` at repo level for infra facts
+   - If beads is available, fetch open issues:
+     ```bash
+     bd list --label branch:<branch> 2>/dev/null
+     bd list --status in_progress --label branch:<branch> 2>/dev/null
+     ```
+     Surface any `in_progress` tickets prominently. The **Suggested next step** must only reference tickets NOT currently `in_progress`.
+
+8. If the project/area has a worktree or repo path noted in its file, gather git context:
+   - `cd <worktree-path> && git branch --show-current`
    - `git log --oneline -5`
    - `git status --short`
+   - `git log --oneline origin/main..HEAD`
 
 ## Output format
 
+```
 ---
 **Resuming: Project/Area Name**
 
-**Target inference**: explicit `<slug>`, or inferred from cwd/git/queue/logs
+**Status**: brief one-line summary of where things stand
 
-**Status**: one-line summary of where things stand
-
-**Queued sessions** *(from queue/<slug>.md — unprocessed /next entries for this slug)*
-- bullet entries from each queued session, in chronological order (compact format for 2+ entries)
-- *(none)* if no queued entries
-
-**Last session** *(from most recent log entry, or "No log section found for '<slug>' in the last 3 days")*
+**Last session** *(from most recent log entry)*
 - what was done last time
 
 **Open tasks**
 - [ ] task list from the project/area file
 
 **Waiting**
-- [~] any blocked items
+- [~] any blocked items and who/what they're waiting on
 
 **Related inbox items** *(if any)*
 - items that mention this project
 
-**Workspace** *(if in a relevant git repo)*
-- Branch, status, recent commits
+**Whisper context** *(if ~/.whisper/ exists)*
+- Plan: summary of current plan
+- Notes: key findings
+- Beads issues: <n> open, <n> in_progress
+
+**⚠ Active in flight** *(omit if none)*
+- ◐ `<id>` — <title> [started: <date>]
+- *(If your intended ticket is listed here, see **Claiming work** below.)*
+
+**Workspace**
+- Worktree: path, branch, status
+- Commits ahead of main, uncommitted changes, etc.
 
 **Suggested next step**
-- what makes sense based on task list and last session
+- what makes sense to do next — only suggest tickets NOT currently in_progress
+```
+
+Then ask: *"Ready to continue, or want to adjust the plan?"*
 
 ---
 
-Then ask: *"Ready to continue, or want to adjust the plan?"*
+## Claiming work
+
+Before writing any code, claim the ticket atomically and check for file conflicts.
+
+### Steps
+
+1. **Claim atomically:**
+   ```bash
+   bd update <ticket-id> --claim
+   ```
+
+2. **Check for file-level conflicts** with other in-progress tickets:
+   ```bash
+   bd list --status in_progress --label branch:<branch> --json 2>/dev/null \
+     | python3 -c "
+   import json, sys
+   issues = json.loads(sys.stdin.read() or '[]')
+   for i in issues:
+       files = (i.get('metadata') or {}).get('files', [])
+       for f in files:
+           print(i['id'] + '\t' + f)
+   "
+   ```
+   Cross-reference against the claimed ticket's own `metadata.files`.
+   If overlap found, surface a warning:
+   ```
+   ⚠ File conflict detected:
+     services/api.py is also claimed by ticket-abc (in_progress)
+
+   Options:
+     A) Gate this ticket until the blocker closes
+     B) Coordinate merge order
+     C) Proceed — accept the conflict (reconcile at merge time)
+   ```
+
+3. **If backing off** (chose option A):
+   ```bash
+   bd update <ticket-id> --assignee "" --status open
+   bd gate create <ticket-id> --type bead --await-id <blocking-id>
+   ```
+
+### Metadata coverage warning
+
+File conflict detection only works when both tickets have `metadata.files` populated (set by `create-issues` or `/w link` at ticket creation time). Tickets created before this convention was adopted have no metadata. For those tickets, **"no conflict found" means unknown, not safe**.
+<!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->

@@ -1,48 +1,80 @@
 ---
 name: park
-description: "Snapshot current work before switching context. Trigger when the user says /park, 'park this', 'pause this', 'switching to', or 'context switch'."
-disable-model-invocation: true
+description: "Snapshot current work before switching context. Logs what was done and what's next without ending the day. Trigger when the user says '/park', 'park this', 'switching to', 'pause this', or 'context switch'."
+tools: Read, Write, Edit, Bash
 ---
 
 # Park
 
-Snapshot the current session's work before switching context. This is NOT end-of-day — just a context switch.
+Snapshot the current session's work on a project/area before switching context. This is NOT end-of-day — just a context switch.
+
+Uses `$JOURNAL_PATH` (defaults to `~/dev/status`) for the daily log journal, and `~/.whisper/` for accumulated operational knowledge. The log subdirectory defaults to `log/`; set `$JOURNAL_LOG_SUBDIR` to override (e.g. `areas/log` for the JORNAL layout).
 
 ## Steps
 
-1. Resolve the journal path:
+1. Get today's date and current time (`date +%Y-%m-%d`, `date +%H:%M`).
    ```bash
-   JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
+   JOURNAL="${JOURNAL_PATH:-$HOME/dev/status}"
+   LOG_SUBDIR="${JOURNAL_LOG_SUBDIR:-log}"
    ```
 
-2. Get today's date and current time.
-
-3. Read today's log: `$JORNAL/areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md`
+2. Read today's log: `$JOURNAL/$LOG_SUBDIR/YYYY/YYYY-MM/YYYY-MM-DD.md`
    If it doesn't exist, create it with the daily log template.
 
-4. Review the conversation history to determine:
+3. Review the conversation history to determine:
    - What project/area was being worked on
    - What was accomplished in this session
    - What the logical next step is
    - Any new tasks, decisions, or blockers discovered
 
-5. Append a session entry to today's log under `## Log`:
+4. Append a session entry to today's log under `## Log`:
    ```
-   ### Session HH:MM (<project/area context> — parked)
+   ### Session:HH:MM (<project/area context>)
    - what was done
    - decisions made
    - **Next:** what to do when resuming
    ```
 
-6. Update the relevant project/area file if needed:
+5. Update the relevant project/area file if needed:
    - Mark completed tasks `[x]`
    - Add new tasks discovered during the session
    - Add/update `[~]` waiting items with context
+   - Update `## Notes` with any decisions
 
-7. If there are uncommitted changes in the project's git worktree, note them in the log entry.
+6. If there are uncommitted changes in the project's git worktree, note them in the log entry.
+
+7. **Release any in-progress ticket claim if leaving mid-work.**
+   Check whether a ticket was claimed for this session:
+   ```bash
+   BRANCH=$(git branch --show-current 2>/dev/null)
+   bd list --status in_progress --label branch:$BRANCH 2>/dev/null
+   ```
+   For each in-progress ticket that is NOT complete:
+   - **If meaningful work was committed:** keep the claim and append a progress note:
+     ```bash
+     bd note <id> "Session parked $(date +%H:%M). Done: <brief>. Safe to resume from: <last commit>."
+     ```
+   - **If nothing was committed:** release the claim so another agent can pick it up:
+     ```bash
+     bd update <id> --assignee "" --status open
+     ```
+
+8. **Record snapshot to `~/.whisper/`.** If `~/.whisper/` exists and a beads-epic is linked, append a note to the epic:
+   ```bash
+   repo_url=$(git remote get-url origin 2>/dev/null | sed 's|https://||;s|git@||;s|\.git$||')
+   branch_slug=$(git rev-parse --abbrev-ref HEAD | sed 's|/|--|g')
+   context_path=~/.whisper/repos/"${repo_url}"/branches/"${branch_slug}"/context.md
+   beads_epic=$(grep '^beads-epic:' "$context_path" 2>/dev/null | sed 's/^beads-epic: *//')
+   if [ -n "$beads_epic" ]; then
+     bd note "$beads_epic" "Parked $(date +%H:%M). Done: <what was accomplished>. Next: <the logical continuation>."
+   fi
+   ```
+
+9. Do NOT commit/push the journal repo yet — that happens at `/close`. Just write the files.
 
 ## Output format
 
+```
 ---
 **Parked: <project/area name>**
 
@@ -52,10 +84,16 @@ Snapshot the current session's work before switching context. This is NOT end-of
 **Next step** *(for when you /renew)*
 - the logical continuation
 
----
+**Updated**
+- files modified in status repo (log, project file, etc.)
+
+*Ready to switch context. Use `/renew <slug>` to pick up something else.*
+```
 
 ## Rules
 
 - Do NOT ask questions — summarize automatically from conversation context.
 - Keep it brief — this is a quick snapshot, not a full report.
-- Do NOT commit the journal repo.
+- Do NOT commit or push the journal repo.
+- Do NOT run `/clear` — the user may continue working in this session.
+<!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->

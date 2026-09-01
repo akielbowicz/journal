@@ -1,78 +1,55 @@
 ---
 name: next
-description: "Rapid session snapshot to the work queue — no full close ceremony. Trigger when the user says /next, 'snap', 'quick save', 'stash session', or 'moving on'."
-disable-model-invocation: true
+description: "Rapid session snapshot to ~/.whisper/ — no full close ceremony. Trigger when the user says '/next', 'snap', 'quick save', 'stash session', or 'moving on'."
+tools: Read, Write, Edit, Bash
 ---
 
 # Next
 
-Snapshot the current session to the work queue and move on. Fast — no project file updates, no inbox triage.
+Snapshot the current session to `~/.whisper/` and move on. Fast — no project file updates, no inbox triage, no ticket operations. Pure stash.
 
 ## Steps
 
-1. Resolve journal path:
+1. Get timestamp: `date +%Y-%m-%d` and `date +%H:%M`.
+
+2. Detect repo and branch:
    ```bash
-   JORNAL="${JORNAL:-$HOME/para/areas/dev/gh/ak/journal}"
+   repo_url=$(git remote get-url origin 2>/dev/null | sed 's|https://||;s|git@||;s|\.git$||')
+   branch=$(git rev-parse --abbrev-ref HEAD)
+   branch_slug=$(echo "$branch" | sed 's|/|--|g')
+   notes_path=~/.whisper/repos/"${repo_url}"/branches/"${branch_slug}"/notes.md
    ```
 
-2. Get timestamp: `date +%Y-%m-%d` and `date +%H:%M`
-
-3. Detect project slug from the current working directory:
-   ```bash
-   RAW=$(git remote get-url origin 2>/dev/null | sed 's/.*\///' | sed 's/\.git$//')
-   [ -z "$RAW" ] && RAW=$(basename "$PWD")
-   [ "$PWD" = "$HOME" ] && RAW="general"
-   SLUG=$(echo "$RAW" | tr ' /()' '----' | tr '[:upper:]' '[:lower:]')
-   ```
+3. If `~/.whisper/` doesn't exist or the branch slot doesn't exist, run `/w check` first (which will offer to init). If the user declines, skip and warn.
 
 4. Scan the last portion of the conversation and write a 2–5 bullet snapshot:
-   - What was worked on (files, topics, repos)
+   - What was worked on (files, topics)
    - Key decisions or changes made
    - **Next:** the most logical continuation point
 
-5. Write the entry using the Write or Edit tool (not a shell heredoc). Target: `$JORNAL/queue/$SLUG.md`.
-   First ensure the directory exists:
-   ```bash
-   mkdir -p "$JORNAL/queue"
+5. Append the snapshot to `notes.md`:
    ```
-   If the file doesn't exist, create it with this header:
-   ```markdown
-   # Queue: <slug>
-
-   Sessions captured with /next — processed by /close or /wrap-up.
-
-   ---
-   ```
-   Then append the session entry:
-   ```markdown
-   ## YYYY-MM-DD HH:MM — <slug>
-
-   - bullet describing what was done
-   - another bullet if needed
-   - **Next:** what to pick up
-
-   ---
-   ```
-   Never overwrite or edit existing entries — only append.
-
-6. Commit:
-   ```bash
-   cd "$JORNAL" && git add "queue/$SLUG.md" && git commit -m "wq: YYYY-MM-DD $SLUG"
+   ### YYYY-MM-DD HH:MM — snap
+   - what was worked on
+   - decisions made
+   - **Next:** continuation point
    ```
 
-## Output format
+6. No commit, no push, no ticket operations. Just write the file.
 
----
-**Queued: <slug>**
+## Output
 
-- snapshot bullets
+```
+✓ Snapped to ~/.whisper/repos/<repo>/branches/<slug>/notes.md
 
-*Continue with `/renew <slug>`, finalize with `/close`, or end the day with `/wrap-up`.*
-
----
+Use `/renew` later to pick this back up.
+```
 
 ## Rules
 
-- Do NOT ask the user any questions.
-- Keep it to 2–5 bullets — this is a checkpoint, not a full log.
-- Never overwrite or edit existing queue entries.
+- Do NOT ask questions — summarize automatically from conversation context.
+- Keep it brief — 2–5 bullets, not paragraphs.
+- Do NOT commit or push anything.
+- Do NOT update project files, inbox, or tickets.
+- Do NOT run `/clear`.
+<!-- Upstream: incitaciones v0.5.0 (npm) — edit upstream, then re-sync here -->
