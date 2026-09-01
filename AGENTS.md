@@ -17,6 +17,8 @@ Resolved via `$JORNAL` environment variable (default: `~/para/areas/dev/gh/ak/jo
 | `inbox.md` | Quick capture — unsorted tasks, thoughts, and notes |
 | `areas/log/YYYY/YYYY-MM/YYYY-MM-DD.md` | Daily session logs |
 
+Note: `$JORNAL` resolves via `~/para/areas/jornal`, which is itself a symlink to this repo (`~/para/areas/dev/gh/ak/journal`). `$JOURNAL_PATH` derives from `$JORNAL`.
+
 ### Projects
 
 Each project lives at `projects/<slug>.md`. Link it from `projects/_index.md`. A project file should have:

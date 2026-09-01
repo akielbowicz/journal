@@ -4,6 +4,8 @@ pandoc = "3"
 
 [env]
 JORNAL = "{{config_root}}"
+JOURNAL_PATH = "{{config_root}}"        # incitaciones /close target
+JOURNAL_LOG_SUBDIR = "areas/log"
 
 # Site build
 [tasks.build]
@@ -97,6 +99,10 @@ git add archive/whisper/
 git commit -m "archive: whisper entries $(date +%Y-%m-%d)" || echo "No whisper changes"
 git push
 """
+
+[tasks.doctor]
+description = "Self-test: journal paths, symlinks, skills, env vars"
+run = "./bin/doctor"
 
 [tasks.list]
 description = "List recent notes"

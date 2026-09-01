@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# journal doctor — self-test of the journal/skills/whisper arrangement
+set -uo pipefail
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
+fail=0
+check() { # label, exit-code
+  if [ "$2" -eq 0 ]; then echo "  ✓ $1"; else echo "  ✗ $1"; fail=1; fi
+}
+
+echo "journal doctor ($REPO)"
+
+# Env vars set and resolving to this repo
+[ -n "${JORNAL:-}" ] && [ "$(readlink -f "${JORNAL:-/none}")" = "$REPO" ]
+check '$JORNAL resolves to repo' $?
+[ -n "${JOURNAL_PATH:-}" ] && [ "$(readlink -f "${JOURNAL_PATH:-/none}")" = "$REPO" ]
+check '$JOURNAL_PATH resolves to repo' $?
+[ "${JOURNAL_LOG_SUBDIR:-}" = "areas/log" ]
+check '$JOURNAL_LOG_SUBDIR=areas/log' $?
+
+# Symlinks intact
+[ "$(readlink -f "$HOME/.whisper" 2>/dev/null)" = "$REPO/archive/whisper" ]
+check '~/.whisper -> archive/whisper' $?
+[ "$(readlink -f "$HOME/para/areas/jornal" 2>/dev/null)" = "$REPO" ]
+check '~/para/areas/jornal -> repo' $?
+
+# Incitaciones-managed skills present
+for s in close next park renew; do
+  grep -q installed-from "$HOME/.agents/skills/$s/SKILL.md" 2>/dev/null
+  check "skill $s (incitaciones)" $?
+done
+
+# Journal-specific skills symlinked into ~/.agents/skills
+for s in archive capture jlog migrate morning standup weekly wrap-up; do
+  [ "$(readlink -f "$HOME/.agents/skills/$s" 2>/dev/null)" = "$REPO/resources/skills/$s" ]
+  check "skill $s (symlinked)" $?
+done
+
+# Site publishable
+[ -x "bin/build" ]; check 'bin/build executable' $?
+[ -f ".github/workflows/pages.yml" ]; check 'pages workflow present' $?
+
+if [ $fail -eq 0 ]; then echo "all checks passed"; else echo "FAILURES — see above"; fi
+exit $fail
