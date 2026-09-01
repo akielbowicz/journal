@@ -7,6 +7,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-09-01 [ ] incitaciones: cut npm release (`npm version minor` + push tag) so `pi install npm:incitaciones` users get the reworked cartography HTML export + fixed docs; verify `git tag -l` after versioning (fragile tag gotcha)
 - 2026-09-01 [ ] Upstream the 8 journal-specific skills (archive, capture, jlog, migrate, morning, standup, weekly, wrap-up) into incitaciones so `resources/skills/` can be retired
 - 2026-09-01 [ ] Report incitaciones bug: `/next` mis-parses `git@host:` remotes into junk dirs (`repos/gh/`, `repos/github.com/`, `repos/ak:akielbowicz/`)
 - 2026-09-01 [ ] Enforce HTTPS on GitHub Pages for `ak.saxa.xyz` once the cert provisions (`gh api -X PUT repos/akielbowicz/journal/pages --input - <<< '{"https_enforced": true}'`)
