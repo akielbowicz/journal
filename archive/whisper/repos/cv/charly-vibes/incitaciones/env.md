@@ -26,6 +26,11 @@ Zero-warning baseline as of 2026-09-01.
 **Publishing:** CI (`.github/workflows/npm-publish.yml`) publishes on `v*`
 tags. 2026-09-01: `npm version minor` created the commit but silently skipped
 tag creation — after `npm version`, verify `git tag -l` before pushing.
+2026-09-02 (v0.8.0): the OTHER failure mode — tag was created fine but a
+routine `git pull --rebase` pruned it before push (3rd occurrence; recovery:
+`git tag -a vX.Y.Z -m ... <commit>` at the version commit, verify rev-parse,
+push explicitly). Sequence for next release: npm version → verify tag → push
+IMMEDIATELY, pull only before versioning.
 npm README is rendered from repo README.md — never commit a truncated/placeholder
 README before a release.
 
