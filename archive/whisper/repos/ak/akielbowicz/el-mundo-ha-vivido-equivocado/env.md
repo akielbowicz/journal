@@ -34,7 +34,21 @@
 
 ## CI gotchas
 
-- `build-show.mjs` hace `process.exit(1)` si falta pandoc — en CI no hay pandoc, ahora hace return graceful (skip grillas)
+- `build-show.mjs` hace return graceful si falta pandoc (skip grillas); desde 2026-09-03 CI instala pandoc + weasyprint, así que se genera en el deploy
 - `check-js.mjs` (smoke test) hardcodeaba paths de textos/episodios — ahora descubre el primer texto dinámicamente desde `/textos/`
 - El deploy falla en pre-push por a11y errors en `dist/_show/` (grillas: long-title, multiple h1) — pre-existing, se pushea con `--no-verify`
 - `build-programa.mjs` en CI lee desde GitHub Releases (no desde `materiales/programas/` que no se commitea); si se crea un release *después* del push, hay que triggerar `gh workflow run deploy.yml --ref main` manualmente
+
+## EPUB / PDF generation (pandoc, desde 2026-09-03)
+
+- `build-epub.mjs` usa **pandoc directo** (ya no `epub-gen`/`marked`) → `dist/textos/<slug>.epub`; paths de descarga sin cambios
+- `build-show.mjs` usa **`scripts/print-style.css`** (no `resources/style.css`) para el PDF de grillas → sin chrome del sitio (header/nav/breadcrumb/live-banner) ni borders
+- Los CSS de build viven en **`scripts/`** a propósito: squint copia `resources/*.css` a `dist/`, así que un CSS ahí contaminaría el sitio
+- CI (deploy.yml) instala `pandoc` + `weasyprint` (apt + pip) — EPUB y PDF se generan en el deploy, no solo local
+- `package.json` ya no tiene `epub-gen`
+
+## Stream recording timer (systemd)
+
+- Timer user: `~/.config/systemd/user/download-stream.{timer,service}` — jueves 18:45, graba 1h30m
+- Gotcha: a veces systemd pierde el próximo evento (`Trigger: n/a`) — `just check-stream-timer` detecta `NextElapseUSecRealtime` vacío y hace reenable + restart
+- Output: `materiales/grabaciones/stream_<ts>_<dur>s.mp3`
