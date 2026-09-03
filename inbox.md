@@ -7,6 +7,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-09-03 [ ] In `phormasci.github.io`, fix broken `pr-preview.yml` deploy-preview: regenerate fine-grained PAT with access to `PhormaSci/pr-site-preview` and update the `PREVIEW_REPO_TOKEN` secret (broken since 2025-12, "could not read Username")
+- 2026-09-03 [ ] In `phormasci.github.io`, add Cloudflare Pages auto-deploy to `static.yml` (`wrangler-action` + `CLOUDFLARE_API_TOKEN` secret) so merges to main ship to phorma.sh without manual `just deploy`
 - 2026-09-01 [x] incitaciones: cut npm release (`npm version minor` + push tag) so `pi install npm:incitaciones` users get the reworked cartography HTML export + fixed docs; verify `git tag -l` after versioning (fragile tag gotcha) — DONE v0.8.0, published 2026-09-02 (incitaciones-ba6)
 - 2026-09-01 [ ] Upstream the 8 journal-specific skills (archive, capture, jlog, migrate, morning, standup, weekly, wrap-up) into incitaciones so `resources/skills/` can be retired
 - 2026-09-01 [ ] Report incitaciones bug: `/next` mis-parses `git@host:` remotes into junk dirs (`repos/gh/`, `repos/github.com/`, `repos/ak:akielbowicz/`)
