@@ -96,3 +96,6 @@
 - **Key design**: single source of truth in `test/manifest.jl` — adding a new test_*.jl requires an entry there or CI fails. Both runners derive from it.
 - **Closed** `nl2b.1`. `nl2b.2` and `nl2b.1` both closed in this session. CI green.
 - **Next**: `bd ready` → `nl2b.3` (P1, seeded-fault checks) or `nl2b.4`–`nl2b.8` (P2 architecture cleanup).
+- **Fixed CI infrastructure**: runner project dev-pathed on CI in nightly-record.yml + ci-e2e.yml (commit `219abdb`, Ro5-reviewed before implementation). Verified by dispatch runs: nightly setup passes (was dead at 24s), E2E 1.11 record_item tests pass, 1.12 green. Closed `testimonial-4ec8`.
+- **Filed P1 follow-ups**: `nmih` (test_lcov_tracefile testset lacks VERSION gate though tracefile lookup is 1.12+ hard-gated in CoverageLayer.jl:317 — failure was masked by the E2E red), `l7hk` (nightly record_all hit 30-min step timeout with zero stdout — measure per-item latency before re-budgeting), ci.yml quick-suite 1.11 gate (same ungated setup defect, red since Aug 5).
+- **Next**: `nmih` (1-line gate) → ci.yml ungate → `l7hk`.
