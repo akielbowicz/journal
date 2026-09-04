@@ -26,6 +26,36 @@ The release workflow's homebrew/scoop update steps fail if `TAP_GITHUB_TOKEN` se
 If `mise.toml` has a custom backend tool entry with URL templates (e.g. Julia with `url = """..."""`), mise may ignore the custom template and use its own built-in plugin's URL resolution. This can produce wrong download URLs (e.g. `1.11.9/` instead of `1.11/`).
 **Fix:** Remove the tool entry from `mise.toml` and install it via an alternative mechanism (e.g. GitHub Actions' `setup-julia`, `setup-dotnet`, etc.).
 
+## OpenRouter Free Models for pi Coding Agent
+
+### Free models available (21 as of 2026-09-03)
+- Best coding models: `cohere/north-mini-code:free`, `poolside/laguna-s-2.1:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`
+- All support tool calling ✅ (required for pi agent)
+- Most support reasoning ✅
+- Context windows range from 65K to 1M (avoid `liquid/lfm-2.5-2.6b:free` at 65K)
+
+### Rate Limits (from OpenRouter docs)
+- 20 RPM shared across all free models
+- 50 RPD if account has purchased <$10 total
+- 1000 RPD if account has purchased ≥$10 total
+- Rate limit 429s also come from upstream providers, not just OpenRouter platform
+
+### Creating a Free-Models-Only API Key
+- **Web UI:** https://openrouter.ai/settings/keys → Create with `limit: 0` (key only works for free models, paid models get 402)
+- **Management API:** Create a management key, then `POST /api/v1/keys` with `{"name": "...", "limit": 0}`
+- **Guardrails:** Can also restrict via model allowlist, but `limit: 0` is simpler
+
+### Pi Usage
+- `pi --provider openrouter --model "openrouter/cohere/north-mini-code:free" -p "task"`
+- Configure `modelOverrides` in `~/.pi/agent/models.json` for proper metadata (contextWindow, maxTokens, reasoning)
+- pi already has built-in OpenRouter OAuth support via `/login openrouter`
+- Existing API key in `auth.json` works fine with `:free` suffixed models
+
+### Session Economics
+- Avg ~95 LLM requests per coding task → ~5 min at 20 RPM
+- At 1000 RPD: ~10 autonomous tasks/day max
+- Start fresh sessions per task to avoid context bloat
+
 ## Beads (`bd`) batch issue creation — workflow gotchas
 
 ### `bd create -f <file>` is the batch path; `--stdin` ignores some flags
@@ -77,3 +107,12 @@ Mermaid v10+ ships ESM-only builds; `<script src="mermaid.esm.min.mjs">` from a 
 
 ### Journal repo: parallel-machine sync on log files
 The journal repo gets commits from multiple machines; `git pull` there often rebases a long unpushed local history onto remote and hits `AA/UU` conflicts in log files (both machines appended different sessions from an empty base; `git rerere` preimages may auto-replay stale resolutions). **Fix:** for each conflict, concatenate both sides' session entries under a single `## Log` heading (keep one copy of each `### Session:` block), `git add`, `GIT_EDITOR=true git rebase --continue`. Check for duplicated session blocks before committing — rerere can glue content weirdly.
+
+### hljs CDN "common" bundle coverage — verify per language
+The highlight.js CDN `highlight.min.js` (common bundle) is NOT a fixed superset to assume from memory — it omits julia, clojure, and many others, while `toml` resolves via the `ini` grammar's alias and `html`/`svg` via `xml`. **Fix:** after the bundle, load `<script src=".../build/languages/<lang>.min.js">` for each missing grammar (self-registers into the global `hljs`); verify with `hljs.getLanguage(l)` per rendered language in headless chromium. (Established in michael site, 2026-09-04.)
+
+### hljs 11 re-highlight skip — clear the marker
+`hljs.highlightElement()` sets `data-highlighted="yes"` and silently no-ops on subsequent calls to the same element (even after `textContent` is replaced). **Fix:** `el.removeAttribute('data-highlighted')` (+ `data-hljs` for older versions) before re-highlighting. Symptom: "syntax highlighting lost after switching languages."
+
+### flatpak Chromium headless — /tmp inaccessible, screenshots land in $HOME
+`flatpak run org.chromium.Chromium --headless` cannot read `file:///tmp/...` test pages (sandbox) and a `--screenshot=foo.png` relative path may write to `$HOME`. **Fix:** place test HTML + assets in `$HOME`, use absolute output paths, and use the real home prefix in `file://` URLs (e.g. `file:///var/home/<user>/...`, not `/home/<user>`). `--dump-dom` + `--screenshot` + `--window-size` is a fast zero-setup way to verify deployed public pages (deploy timing, cache staleness, CTA fold position).
