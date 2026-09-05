@@ -116,3 +116,6 @@ The highlight.js CDN `highlight.min.js` (common bundle) is NOT a fixed superset 
 
 ### flatpak Chromium headless — /tmp inaccessible, screenshots land in $HOME
 `flatpak run org.chromium.Chromium --headless` cannot read `file:///tmp/...` test pages (sandbox) and a `--screenshot=foo.png` relative path may write to `$HOME`. **Fix:** place test HTML + assets in `$HOME`, use absolute output paths, and use the real home prefix in `file://` URLs (e.g. `file:///var/home/<user>/...`, not `/home/<user>`). `--dump-dom` + `--screenshot` + `--window-size` is a fast zero-setup way to verify deployed public pages (deploy timing, cache staleness, CTA fold position).
+
+### Multi-part edit calls are atomic — verify every edit landed
+If one `edits[]` entry fails to match, none of the edits apply; a later call re-applying only the failed item silently leaves the others out. Symptom: commit message/notes claim a change that isn't in the file. **Fix:** treat any partial-match error as "all-or-nothing," re-apply the full set, and grep the actual file for every intended change before claiming completion. (Established incitaciones, 2026-09-05: report-template.md macro-mode edit silently dropped, caught only by a post-commit review.)

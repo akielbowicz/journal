@@ -1,0 +1,5 @@
+### Deployment topology (phormasci.github.io / phorma.sh)
+- Production **phorma.sh = Cloudflare Pages** project `phorma-sh`, deployed manually via `just deploy` (wrangler). GH Actions `static.yml` deploys only to GitHub Pages (phormasci.github.io), which 301-redirects to phorma.sh — so GH Pages deploys never reach production visitors.
+- Content is build-time rendered by zero-dep `scripts/build.js` into committed HTML between `<!-- build:start/end -->` markers. After editing `content/**.md`, run `just build` and commit regenerated pages; `Build Check` workflow enforces via `git diff --exit-code`. New md files auto-discovered, sorted by frontmatter `order`.
+- `pr-preview.yml` (PREVIEW_REPO_TOKEN → pr-site-preview repo) broken since 2025-12: token can't authenticate ("could not read Username for https://github.com"). Needs fine-grained PAT with access to PhormaSci/pr-site-preview.
+- Candidate improvement: add `wrangler-action` + `CLOUDFLARE_API_TOKEN` secret to `static.yml` so merges auto-deploy production (as of 2026-09-03 not done).
