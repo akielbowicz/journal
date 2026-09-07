@@ -52,3 +52,11 @@
 - Timer user: `~/.config/systemd/user/download-stream.{timer,service}` — jueves 18:45, graba 1h30m
 - Gotcha: a veces systemd pierde el próximo evento (`Trigger: n/a`) — `just check-stream-timer` detecta `NextElapseUSecRealtime` vacío y hace reenable + restart
 - Output: `materiales/grabaciones/stream_<ts>_<dur>s.mp3`
+
+## VM Oracle (stream recording, desde 2026-09-07)
+
+- VM gratuita Oracle: `oracle-stream` alias SSH (129.80.26.2, ubuntu). Clave: `~/.ssh/id_oracle` (pattern de naming `id_<host>`; NO en ~/Downloads, NO en dotfiles)
+- Grabación primaria: jueves 18:45 -03 (timer `download-stream.timer` en la VM). Local solo pullea jueves 20:30 (`pull-grabacion.timer`) y su timer de grabación está DESHABILITADO
+- `sudo loginctl enable-linger ubuntu` es OBLIGATORIO — sin linger los user timers mueren al cerrar la sesión SSH
+- Timer de prueba: `download-stream-test.timer` en la VM, diario 9:00-10:00 -03 → `~/grabaciones-test/` (borrar cuando ya no se necesite)
+- `just deploy-stream-vm` sincroniza scripts repo→VM; `just check-stream-timer --vm` chequea el timer remoto
