@@ -24,3 +24,15 @@
   capa de costeo/agregación (~692 → ~300 líneas).
 - Queries útiles: `path query 'map(select(any(.change[].structural.token_usage;
   .input_tokens > 50000)))'`
+
+## 2026-09-05 — Review rule-of-5 sobre v4.1 (commit fc7a0fc)
+
+- 0 CRITICAL, 3 HIGH corregidos: per-tool breakdown ahora incluye
+  cache_read/cache_write; dedup key agrega project (recupera 14 filas Pi
+  colisionando en mismo segundo); cache_write a 1.25x en estimate_cost
+- metadata.token_accounting documenta semántica (cache aparte de input/output)
+- Números actuales: 135,436 reqs, eff $3,800.84, real $369.58, cache_r 9.19B
+- ⚠️ Abierto (DRAFT-001): drafts/post-principal-resoluciones.md cita números v4
+  viejos y el cutoff de datos sigue avanzando (ahora Sep 7) — al escribir el
+  post, congelar un reporte y citar "datos al <fecha>"
+- DRAFT-002: nombre de archivo usage_report_v3.json vs script v4.1 — no alineado
