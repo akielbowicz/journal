@@ -128,3 +128,6 @@ Skill files are agent-executed code — before committing one, extract the block
 
 ### Never reimplement a shell parser — source the config in a subshell
 When a script needs values from user shell config (`.bashrc` etc.) and the shell is non-interactive, don't grep+cut+sed the file: comments, column alignment, quotes, and `$VAR` indirection each break naive parsing. Instead `bash -c 'source ~/.bashrc >/dev/null 2>&1; printf "%s" "${'"'$1'"'}"'` — the shell itself resolves comments, quotes, and nested indirection in one step, and sourced vars arrive fully expanded. (Established 2026-09-05; supersedes any grep-based config-reading attempt.)
+
+### Eval harnesses: run baseline AND treatment, score the delta
+When evaluating a prompt/skill kit, every case must run twice — with the kit and with an inert baseline (`--no-skills`) — same model, same sandbox. Absolute pass/fail is misleading: strong models pass without the kit (it's dead context weight for them), weak models fail with it. The meaningful output is the per-model effect size. (Established fck eval work, 2026-09-09; kit effect was +3.1 on sonnet but ≈0 on deepseek/gpt-5.6-luna.)
