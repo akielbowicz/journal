@@ -25,3 +25,14 @@ Updated: 2026-09-04
 ## Drafts
 - `drafts/post-principal-resoluciones.md` — estructura del post grande
 - `drafts/serie-aprendizaje-6-meses-boceto.md` — boceto original
+## Conference analysis (added 2026-09-15)
+- `conference-analysis/` lives on branch `data/conference-analysis` (not main);
+  raw .vtt (61MB) excluded from git — regenerate from YouTube IDs in playlist JSONs
+- Reports follow the amnesia test: self-contained, all terms glossed inline,
+  method caveats match what was actually done (e.g. corpus A = abstracts + 4
+  transcript openings, NOT full transcripts — don't overstate)
+- All verbatim quotes come from YouTube auto-captions → systematically garbled
+  (names, model names); always flag transcription fidelity when quoting
+- New artifact: `conference-analysis/memory-systems-report.md` (Rule-of-5
+  reviewed to READY) — thematic synthesis of memory/KB talks; talk-level claims
+  verified against transcripts in analysis/data/, stats in talks.json
