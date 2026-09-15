@@ -9,3 +9,12 @@
 - Justfile gained `ci: fmt-check lint test build-locked` and `build-locked` — the `--locked` build verifies Cargo.lock sync before release.yml's `cargo publish --locked` would trip on it
 - `just ci` green locally (14 tests, clippy -D warnings); committed `1664c56`, pushed, ticket closed
 - **Next:** `whisper-ae0` — implement `turu consolidate` (legacy repo-key dir migration; detection already in doctor); optionally port `bins/`/`dist/` gitignore + darwin-triple fixes to `dont`'s release workflow
+
+### 2026-09-16 16:0x — turu consolidate shipped (whisper-ae0 closed)
+- Implemented `workspace::consolidate()` (TDD, 5 new tests): wholesale rename when canonical dir absent; per-entry move without conflict, else text merge by extending with trimmed-line dedup; legacy dirs removed after
+- New `Consolidate` subcommand emits moved/merged manifest + hint `turu doctor — the legacy-keys check must pass`; doctor fix hint now real
+- **Safety fix folded in:** `legacy_variants` colon rule matched any dir with a colon — real false positive in this very workspace (`ak:akielbowicz`, a multi-repo legacy root with other repos' knowledge). Detection now requires the post-colon path to equal the bare repo name; regression test added. Detection that warns can be loose; detection that moves data cannot
+- End-to-end verified against a synthetic workspace: check → consolidate → doctor pass
+- Cargo quirk hit twice: `cargo build` claims fresh but target/debug/turu is stale after src changes (hardlinked bins); `cargo clean -p whisper-vibes` before smoke-testing binaries
+- Committed `e217adf`, pushed; both whisper tickets now closed
+- **Next:** optionally port `bins/`/`dist/` gitignore + darwin-triple fixes to `dont`'s release workflow; consider version bump v0.4.0 (consolidate + ci.yml) via tag push
