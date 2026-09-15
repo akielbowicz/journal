@@ -23,3 +23,11 @@
 - Backfill structural limit confirmed in Baileys source: HISTORY_SYNC_ON_DEMAND anchors at the OLDEST stored msg, fetches older-only → newest stubs unreachable by design; phone PDO resend window is ~14 days (3 July-era stubs got no response)
 - Docs: README "Troubleshooting: undecryptable messages (CIPHERTEXT stubs)" — detect via rg -l 'No session found' data/messages/, older stubs → media-ingest; bd uarup-6ee closed; both commits pushed
 - **Next:** if new stubs appear (detect one-liner), run `npx tsx scripts/recover-stubs.mjs <chatJid>` with phone online; consider wiring stub detection into `sync` output; open item: mediaFileName collision (uarup-aos/uarup-w8u)
+
+### 2026-09-15 16:19 — session: bulk download complete (437/437 chats done)
+- Shipped `scripts/download-all.sh`: per-chat backfill loop + ONE full export pass at end (per-chat export was a design gap — done chats skipped entirely, so live re-msgs never re-exported and transient media never retried). State markers `data/download-all/{done,failed}/<sanitized-jid>`; run log + per-chat logs in `logs/`; `--limit` pacing; `--requeue` clears failed
+- `backfill --json` → `RESULT {...}` line (exhausted/capped) for scripting
+- `link` command → `data/by-name/` symlink view (slugified names → transcripts/media); export auto-covers chats known only by stored messages (merge message-dir filenames into jid set — LID chats with no metadata)
+- Bug: VALID_JID lacked `@broadcast`/`@newsletter` suffixes → status@broadcast unresolvable every run; fixed + regression test
+- Media audit (2026-09-15): 4,132 media msgs → 636 on disk, ~3,172 permanent mac-mismatch (LID rekey ceiling, matches 09-08 findings), ~324 transient (auto-retried each run now). Transcripts 443/443. media-ingest (adb, phone storage) is the only path for mac-mismatch
+- **Next:** periodic `download-all.sh` runs for maintenance; per-chat `media-ingest` if mac-mismatch media matters
