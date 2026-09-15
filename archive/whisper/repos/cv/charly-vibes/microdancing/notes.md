@@ -36,3 +36,17 @@
   viejos y el cutoff de datos sigue avanzando (ahora Sep 7) — al escribir el
   post, congelar un reporte y citar "datos al <fecha>"
 - DRAFT-002: nombre de archivo usage_report_v3.json vs script v4.1 — no alineado
+
+## 2026-09-15 — Transcript mining technique (conference-analysis)
+
+- `transcripts_aieng/txt/` (and `transcripts/txt/`) files are **single-line**
+  (whole transcript per file): `grep -c` and per-line counts are useless; `grep -n`
+  always returns line 1
+- Technique that works: `grep -rhoiE ".{160}(pattern).{160}" .` for context
+  windows; `fold -w 200 file | grep -nE -B1 -A2` for per-file passages
+- To attribute a phrase to its talk: `grep -rlE "phrase" .`
+- Rule learned reviewing workshop/skill_management_practices.md: when paraphrasing
+  transcripts, quantifiers in the transcript ("these are the reasons", "maybe that's
+  a good point", "a few hands") must not be hardened into superlatives or
+  thresholds ("#1 reason", "at 10", "almost none") — re-verify against the
+  transcript before publishing any corpus-grounded claim
