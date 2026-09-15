@@ -131,3 +131,9 @@ When a script needs values from user shell config (`.bashrc` etc.) and the shell
 
 ### Eval harnesses: run baseline AND treatment, score the delta
 When evaluating a prompt/skill kit, every case must run twice — with the kit and with an inert baseline (`--no-skills`) — same model, same sandbox. Absolute pass/fail is misleading: strong models pass without the kit (it's dead context weight for them), weak models fail with it. The meaningful output is the per-model effect size. (Established fck eval work, 2026-09-09; kit effect was +3.1 on sonnet but ≈0 on deepseek/gpt-5.6-luna.)
+
+### yt-dlp playlist workflows: -J for metadata, IDs as the only join key
+For playlist harvesting: `yt-dlp -J <playlist-url>` gives full metadata (views/likes/descriptions) in one JSON; `--print` templates break on null-like values (`like_count` prints unquoted `NA`, invalid JSON). Two traversals of the same playlist (metadata dump vs subtitle download) can label indices differently — join artifacts by video **ID in brackets**, never by position. Auto-caption VTTs are rolling: dedupe by keeping the last line of each cue body, not consecutive-line dedup. (Established microdancing conference-corpus work, 2026-09-15; 371 talks harvested.)
+
+### Pre-register hypotheses (checksummed) before blind content extraction
+When doing content analysis where the requester has suspicions, have them write hypotheses to a file, checksum it, and extract without reading it; score supported/refuted/no-signal afterward. Prevents contamination both ways — the extraction stays honest AND the requester's pet theory gets falsified, not confirmed. (Established microdancing conference analysis, 2026-09-15.)

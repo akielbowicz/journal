@@ -12,6 +12,11 @@
 - `bins/` and `dist/` must stay gitignored — untracked packaging artifacts make `cargo publish` abort with the dirty-workdir check (exit 101)
 - Failed releases leave the GH Release behind: delete (`gh release delete <tag> --yes`) before rerunning, or "release with same tag already exists" fails the rerun
 
+## CI (added 2026-09-16)
+
+- `ci.yml` runs `just ci` (genesis parity pattern): fmt-check + clippy `-D warnings` + test + `build-locked`; the locked build catches Cargo.lock drift before release.yml's `cargo publish --locked` trips on it
+- Justfile recipes `ci` and `build-locked` are the local equivalents — if CI fails, reproduce with `just ci`
+
 ## Known issues
 
 - No `ci.yml` yet — `--locked` builds aren't verified before tags (beads: `whisper-bez`)

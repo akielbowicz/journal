@@ -60,3 +60,21 @@
 - `sudo loginctl enable-linger ubuntu` es OBLIGATORIO — sin linger los user timers mueren al cerrar la sesión SSH
 - Timer de prueba: `download-stream-test.timer` en la VM, diario 9:00-10:00 -03 → `~/grabaciones-test/` (borrar cuando ya no se necesite)
 - `just deploy-stream-vm` sincroniza scripts repo→VM; `just check-stream-timer --vm` chequea el timer remoto
+
+### lefthook: glob negations unreliable — filter inside the command
+Lefthook `glob: ["scripts/*", "!scripts/*.mjs", ...]` did NOT exclude the negated patterns — shellcheck ran over `.mjs` JS files as shell and blocked every commit touching them (session 2026-09-07). **Fix:** drop the negations and filter in the command body: `for f in {staged_files}; do case "$f" in *.mjs|*.html...) ;; *) shellcheck "$f" ;; esac; done`.
+
+### Episode covers: workflow + visual iteration loop
+`node scripts/new-cover.mjs NNN [--palette <name>]` scaffolds `resources/images/NNN.svg` (Inkscape layers; `decoracion` is the free zone to fill) and the episode .md already points `image:` at it. To iterate visually: `magick -density 96 resources/images/NNN.svg /tmp/c.png` then Read the PNG — ImageMagick renders gradients/transform/rotate fine (rsvg-convert/inkscape not installed). Keep glows as radialGradient fills, not low-opacity circles (gray discs with hard edges).
+
+### og:image is SVG — social crawlers won't show it
+Episode covers are 400×400 SVGs referenced as `og:image`. Facebook/WhatsApp/Telegram don't render SVG for link previews — consider generating PNG fallbacks in the build if social preview matters.
+
+## Stream recording infra (download-stream)
+
+- Timers systemd **user** (no cron): `download-stream.timer` (jueves 18:45, graba 1h30m) y `pull-grabacion.timer` (jueves 20:30). Corren en la máquina local (bluefin) — coexisten con corridas manuales: NUNCA matar ffmpeg del stream indiscriminadamente
+- `scripts/download-stream` mata solo instancias stale (> DURATION + 960s). Un pkill indiscrimiado mató una grabación legítima (timer 18:45 vs manual 18:00) y el handler borró el parcial
+- ffmpeg flags críticos para streams: `-nostdin` (hang/detención bajo tty: lee stdin para el handler interactivo), `-rw_timeout 15000000` (connect-stall: server acepta TCP pero nunca manda headers → hang eterno sin esto), `-reconnect` solo cubre cortes post-conexión
+- Parciales con ≥60s de audio se conservan en error (validado con ffprobe); el fs es btrfs con discard=async → NO hay undelete posible si se borra
+- `scripts/publish-episodio` — publica materiales/programas/ como GH Release (`episodio-NNN`), convierte WAV→MP3 V0 vía to-mp3 si el ganador es .wav, prefiere versión `-dur` (editada) sobre raw, re-dispara deploy.yml. `--update` reemplaza assets, `--dry-run` es seguro
+- Gotcha bash: `"${ARRAY[*]}"` + `sort` colapsa el array en UN string (IFS=espacio) — para ordenar entradas usar `printf '%s\n' "${ARRAY[@]}" | sort`
