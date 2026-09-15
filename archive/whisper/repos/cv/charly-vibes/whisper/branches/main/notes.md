@@ -18,3 +18,9 @@
 - Cargo quirk hit twice: `cargo build` claims fresh but target/debug/turu is stale after src changes (hardlinked bins); `cargo clean -p whisper-vibes` before smoke-testing binaries
 - Committed `e217adf`, pushed; both whisper tickets now closed
 - **Next:** optionally port `bins/`/`dist/` gitignore + darwin-triple fixes to `dont`'s release workflow; consider version bump v0.4.0 (consolidate + ci.yml) via tag push
+
+### 2026-09-15 15:57 — snap
+- Shipped both whisper tickets: `whisper-bez` (ci.yml + `just ci` with build-locked, commit `1664c56`) and `whisper-ae0` (`turu consolidate` — move/merge migration with line-dedup, commit `e217adf`)
+- Folded-in safety fix: `legacy_variants` colon rule tightened (colon dir must end in bare repo name) after finding real false positive `ak:akielbowicz` in ~/.whisper holding other repos' knowledge
+- All gates green, both repos pushed, tickets closed, knowledge routed
+- **Next:** port `bins/`/`dist/` gitignore + darwin-triple fixes to `dont`'s failed release workflow; consider tagging v0.4.0 (consolidate + CI) to exercise release.yml end-to-end
