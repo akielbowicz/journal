@@ -100,3 +100,7 @@ When creating new bug tickets, always run `bd list --status=open` first to check
 - dont-dbmi (dont check --lock-readiness) — duplicate: dont-zvlu
 - fotos-dn5/hko/a1h (wire toolbar actions) — duplicate: fotos-xzl
 - fotos-c01 (fix MCP resources) — duplicate: fotos-1qu
+
+## 2026-09-15: Store locking — flock is NOT cross-platform for same-process threads
+
+`flock(2)` (via fs2 in `src/store.rs`) is per-open-file-description on Linux (same-process threads with separate FDs conflict correctly) but **per-process on BSD/macOS** — two threads can both "hold" it, racing on the shared SQLite file (SQLITE_BUSY). `with_file_lock` now acquires a process-wide mutex registry keyed by lock path *before* the file lock; flock still guards cross-process access. Fixed in v0.4.0 (dont-regm). Never remove the in-process layer thinking flock alone suffices.
