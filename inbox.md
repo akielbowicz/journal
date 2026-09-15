@@ -7,6 +7,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+
+- 2026-09-15 [ ] incitaciones: use file-headers convention in an external codebase, then promote status tested → verified (evidence needed for the final promotion)
 - 2026-09-15 [ ] microdancing: choose workshop primary buyer persona (HR/L&D non-coders vs CTO engineers vs lab directors) — fork determines curriculum design
 - 2026-09-15 [ ] microdancing: gather Argentina market data for workshop pricing/verticals (CONICET, universities, biotech/agtech, YPF-Tec) — corpus has no LatAm data, flagged in dossier §6/§7
 - 2026-09-15 [ ] microdancing: pick concrete stack for workshop content (Claude Code / Cursor / etc.) — corpus deliberately tool-agnostic
