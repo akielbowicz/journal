@@ -30,3 +30,9 @@
 - v0.3.0 released: changelog created, version bumped, tagged + pushed
 - 71 tests total, all passing, clippy clean, fmt clean
 - **Next:** all DDL tickets closed — no remaining work
+
+### 2026-09-15 15:50 — snap
+- Shipped `feat/init-wai-and-incitaciones` merged to main (`aa56513`): `ddl init` now always forces `wai init`; incitaciones added as npm-managed tool (new `InstallMethod::Npm`, `src/skills.rs` global/local skill detection via `installed-from:` frontmatter marker, global/local/skip prompt, doctor check)
+- Fixed Windows npm `.cmd` shim routing via `installer::npm_command()` helper (DDL-1hf); rule-of-5 polish applied: `Tool.npm_package` field, advisory wai init, prompt scoping, walk-up local detection (DDL-ayl); merge commit `aa56513`, feature branch deleted, beads synced
+- Rule-of-5 review of the change found and resolved all findings; DDL-b33/1hf/ayl closed
+- **Next:** remaining open beads are pre-existing: DDL-q9b (P0 migrate corrupts single-file configs), DDL-0jo/DDL-1se/DDL-mfq (P1 CI badge red, doctor --fix no-op, migrate idempotency), DDL-9c2 (whisper/turu to toolset — now trivial via `Tool.npm_package` if npm), DDL-cnh (stale tap formulas)
