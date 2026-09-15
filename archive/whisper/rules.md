@@ -137,3 +137,6 @@ For playlist harvesting: `yt-dlp -J <playlist-url>` gives full metadata (views/l
 
 ### Pre-register hypotheses (checksummed) before blind content extraction
 When doing content analysis where the requester has suspicions, have them write hypotheses to a file, checksum it, and extract without reading it; score supported/refuted/no-signal afterward. Prevents contamination both ways — the extraction stays honest AND the requester's pet theory gets falsified, not confirmed. (Established microdancing conference analysis, 2026-09-15.)
+
+### Concurrent sessions in one repo: sync via the wire protocol, never fight the worktree
+Before pushing to a repo, check for an active concurrent session (shifting branches, in-flight uncommitted edits, failing pre-push hooks on files you didn't touch). If one exists, stop touching the worktree — the issue tracker's own sync (e.g. `bd dolt push` to `refs/dolt/data`) is the real wire protocol; passive exports like `issues.jsonl` re-export commits can wait for the other session's push. Retrying pushes against a moving worktree only creates interleaved broken states. (Established dont/whisper session, 2026-09-15.)
