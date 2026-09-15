@@ -44,3 +44,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-07-27 [~] In `charly`, decide whether to adopt `bd --global` shared-server for cross-repo dependency tracking; if yes, encode the genesis critical path there and close `charly-7f5` suite-index ticket. (Suite-index ticket is the interim authoritative graph.)
 - 2026-07-27 [ ] In each charly-vibes tool repo (wai/dont/pretender/espectacular/testaruda/crua/livin/vampiro/genesis), commit the uncommitted openspec proposal files for `adopt-genesis`/`depend-on-genesis`/`add-genesis-foundation`/`add-feedback-subcommand`.
 - 2026-07-27 [ ] When `genesis` tags v0.1.0, unblock the 8 adopter tickets and re-point `dont-2j6o`'s child adoption issues at the per-repo `adopt-genesis` proposals before closing it.
+- [ ] microdancing: agregar workshop/ (skill_management_practices, skills_dossier, research_labs_addendum) a la tabla de contenidos del README de conference-analysis
