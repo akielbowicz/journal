@@ -103,3 +103,15 @@ so newer skills aren't reflected.
 the name suggests (parallel-review → `prompt-workflow-parallel-review.md`, NOT
 `prompt-workflow-multi-agent-parallel-review.md`, which is multi-agent-review).
 Check the manifest entry before bumping versions.
+
+## 2026-09-15: v0.9.0 released cleanly
+
+Followed the documented sequence (pull BEFORE versioning → `npm version minor` →
+verify `git tag -l` + rev-parse → `git push origin main v0.9.0` in ONE command,
+no pull after) — zero tag incidents. New fact: after publish, registry
+**metadata** (dist-tags, integrity) propagates in ~2 min but the **tarball CDN**
+can 404 on direct curl for several minutes longer even though the version is
+real — verify with `npm pack <pkg>@<version>` (client fetch), not curl HEAD,
+before assuming a failed publish. CI log `+ pkg@ver` line = authoritative
+success signal. v0.9.0 ships file-headers (161 distilled files) + top-8
+essentials bundle.
