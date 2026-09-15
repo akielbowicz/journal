@@ -7,6 +7,11 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 ---
 
 <!-- New entries go below, newest first, with date prefix -->
+- 2026-09-15 [ ] microdancing: choose workshop primary buyer persona (HR/L&D non-coders vs CTO engineers vs lab directors) — fork determines curriculum design
+- 2026-09-15 [ ] microdancing: gather Argentina market data for workshop pricing/verticals (CONICET, universities, biotech/agtech, YPF-Tec) — corpus has no LatAm data, flagged in dossier §6/§7
+- 2026-09-15 [ ] microdancing: pick concrete stack for workshop content (Claude Code / Cursor / etc.) — corpus deliberately tool-agnostic
+- 2026-09-15 [ ] cleanup: delete /var/home/sasha/scratch (all committed on microdancing data/conference-analysis) or keep raw VTTs only
+
 - 2026-09-09 [ ] fck: eval `negative` case showed glm-5.3-flash over-firing the decoder on swear-in-sentence (kit arm) — consider hardening the skill `description` boundary or accepting the false-positive rate
 - 2026-09-09 [ ] fck: run full sonnet (~anthropic/claude-sonnet-latest) across all case kinds — only `trigger` was rerun after the pinned-id 404s
 - 2026-09-07 [ ] microdancing: congelar un usage_report para el post y actualizar cifras citadas en `drafts/post-principal-resoluciones.md` (cita números v4 viejos: 133,819 reqs / $366.20; actuales v4.1: 135,436 reqs / $369.58 real / 9.19B cache-read). El cutoff de datos avanza solo — citar "datos al <fecha>"
