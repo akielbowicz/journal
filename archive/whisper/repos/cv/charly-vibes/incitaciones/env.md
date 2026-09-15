@@ -115,3 +115,9 @@ real — verify with `npm pack <pkg>@<version>` (client fetch), not curl HEAD,
 before assuming a failed publish. CI log `+ pkg@ver` line = authoritative
 success signal. v0.9.0 ships file-headers (161 distilled files) + top-8
 essentials bundle.
+
+## 2026-09-15 — release + quality-gate operations (v0.10.0)
+- Pre-push gate `validate-skills-dir` blocks ANY push after manifest changes: run `just generate-skills-dir` + commit BEFORE pushing. Hit twice (eval rubrics, trigger clauses). npm version also demands a clean tree — .pi/ and .claude/skills/ are now gitignored (local runtime artifacts).
+- bd gotcha: `bd close` has no --append-notes flag; use `--reason-file`.
+- justfile recipes cannot embed column-0 heredoc bodies (just parse error) — extract python checks into scripts/*.py with file headers instead.
+- Quality gates now: security-audit + trigger-overlap in sync-manifest; skill-eval (actor/judge, 2-run agreement) on model change — rituals documented in README release section + CONTRIBUTING. Essentials eval reds are meaningful signals, tracked as tickets (e5v/tth pattern), never fixed by weakening rubrics.
