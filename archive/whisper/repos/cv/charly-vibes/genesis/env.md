@@ -131,3 +131,17 @@ The release workflow has NEVER succeeded before this round.
 - Version pins in README.md + docs/getting-started.md are tracked against Cargo.toml — bumping the manifest version requires updating both files in the same commit or CI fails.
 - Beads tracker has no dolt remote; `.beads/issues.jsonl` git export is the sync mechanism (commit it alongside ticket changes).
 - `bd create --set-metadata 'files=[...]'` errors out (help text); create first, then `bd update --set-metadata`. Setting metadata on `bd update` works fine.
+
+## Exit-code contract (since genesis-u40, 2026-09-15)
+- `Guide::run`/`run_formatted`: 0 success, 1 user-facing error (stable), 2 internal failure (I/O during emission), panics unwind (101; `panic="abort"` aborts instead — no 101 guarantee). Downstream evals: assert 1 for graceful failure w/ hint envelope, any other nonzero = crash. Compat note in CHANGELOG.md [Unreleased].
+
+## Evals module core slice (genesis-zxv, 5fca187 + review fixes 337860b)
+- `genesis::evals`: `ErrorTaxonomy` (6 `ERR_*` codes, round-trip via `from_code`), `parse_envelope` (lenient: only `ok` required), `Scenario` (fixture + prompt + named deterministic checks) replayed against in-memory `AgentStep` transcripts (no LLM, no subprocess runner).
+- Semantics: `ERR_ENVELOPE_HINT_BLINDNESS` is ONLY assigned by `agent_followed_hint`; a followed-but-ineffective fix is a tool fault (`CheckOutcome::tool_fault`, taxonomy None = tool/fixture fault, not "unclassified agent fault").
+- `Scenario::run` returns `Result<ScenarioReport, EvalsError>` (`EvalsError::Fixture` on temp-dir failure) — no panic path.
+
+## bd cross-rig gates are dead (genesis-4iw, closed --force 2026-09-15)
+- Cross-rig bead gates referencing beads outside the local DB can never be checked ("multi-rig routing removed"). If the underlying condition is verifiable in source, close with `--force` and a justification comment.
+
+## Adoption status (2026-09-15)
+- genesis-vjp CLOSED: wai, dont (v0.4.0), pretender, espectacular, testaruda, vampiro, dulce-de-leche all on genesis-vibes 0.6. Only genesis-ntg (Agent Value Alignment epic) open; genesis-le7 deferred.
