@@ -75,3 +75,31 @@ README before a release.
 - `/skill:rule-of-5-universal` runs 5-stage review (DRAFT → CORRECTNESS → CLARITY → EDGE CASES → EXCELLENCE) with convergence checks after stages 2–4. Output format in `references/templates.md`; convergence rules in `references/criteria.md`.
 - Convergence = no new CRITICAL + new-issue rate <10% vs previous stage + false-positive rate <20%. Can stop before stage 5 if converged.
 - Useful for reviewing both prose (research docs) and skill structures.
+
+## 2026-09-15: file-headers convention + version-consistency guard
+
+**File Headers convention shipped** (`content/prompt-system-file-headers.md`,
+status: tested): every source file opens with `Purpose / Responsibilities /
+Rationale`; undescribable-in-one-sentence = cohesion violation. Enforced at
+both boundaries: creation-time (context-guardian, tdd, implement-plan,
+create-issues) and review-time (issue-review pass-5, code-review,
+modularity-diagnostician, resonant-refactor). `just header-audit` gates the
+repo's own scripts. Promote to verified only after real use in an external
+codebase.
+
+**Version-consistency guard (incitaciones-wp1, closed):** `just sync-manifest`
+now fails when a distilled `<!-- skill: NAME, version: X -->` marker differs
+from the source frontmatter version. Caught 8 pre-existing drifts repo-wide
+(all reconciled 2026-09-15). Lesson: distilled version markers drift silently —
+never bump one file without the other; the guard now does it mechanically.
+
+**Essentials bundle is usage-driven:** = top-8 from
+`research-finding-skill-usage-analysis.md` (commit, rule-of-5-universal, tdd,
+issue-review, debug, create-issues, create-handoff, grill-me). Re-tune by
+rerunning `just trace-insights` when usage shifts; usage window was 2026-04..07,
+so newer skills aren't reflected.
+
+**Gotcha:** manifest `source` paths can point at differently-named files than
+the name suggests (parallel-review → `prompt-workflow-parallel-review.md`, NOT
+`prompt-workflow-multi-agent-parallel-review.md`, which is multi-agent-review).
+Check the manifest entry before bumping versions.
