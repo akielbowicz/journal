@@ -140,3 +140,6 @@ When doing content analysis where the requester has suspicions, have them write 
 
 ### Concurrent sessions in one repo: sync via the wire protocol, never fight the worktree
 Before pushing to a repo, check for an active concurrent session (shifting branches, in-flight uncommitted edits, failing pre-push hooks on files you didn't touch). If one exists, stop touching the worktree — the issue tracker's own sync (e.g. `bd dolt push` to `refs/dolt/data`) is the real wire protocol; passive exports like `issues.jsonl` re-export commits can wait for the other session's push. Retrying pushes against a moving worktree only creates interleaved broken states. (Established dont/whisper session, 2026-09-15.)
+
+### chezmoi non-interactive triage: diff direction + template attr + force
+`chezmoi diff` direction is a=live file, b=desired (what apply would write) — the opposite of intuition; verify with `chezmoi cat <target>` when deciding which side is truth. Drift resolution per file: hand edits newer → `chezmoi add <target>`; source newer → `chezmoi apply --force <target>` (TTY-less sessions block on "changed since last written" prompts otherwise). `chezmoi add` on a `.tmpl` entry prompts to drop the template attribute — instead edit the template content directly to preserve `{{ ... }}` constructs. (Established dotfiles session, 2026-09-16.)
