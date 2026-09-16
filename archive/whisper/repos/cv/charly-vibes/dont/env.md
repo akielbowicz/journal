@@ -104,3 +104,8 @@ When creating new bug tickets, always run `bd list --status=open` first to check
 ## 2026-09-15: Store locking — flock is NOT cross-platform for same-process threads
 
 `flock(2)` (via fs2 in `src/store.rs`) is per-open-file-description on Linux (same-process threads with separate FDs conflict correctly) but **per-process on BSD/macOS** — two threads can both "hold" it, racing on the shared SQLite file (SQLITE_BUSY). `with_file_lock` now acquires a process-wide mutex registry keyed by lock path *before* the file lock; flock still guards cross-process access. Fixed in v0.4.0 (dont-regm). Never remove the in-process layer thinking flock alone suffices.
+
+## 2026-09-15: Gate policy decided (dont-bpuo) + dirty db.cozo gotcha
+
+- The epistemic gate is **repo-local and opt-in** per the ADR in `docs/enforcement.md` ("Scope of the gate"). Do NOT wire `dont prime`/`just check-claims` into suite repos by default — adopt only where a real claim corpus exists (testaruda, vampiro have chores filed: testaruda-zvbw, vampiro-bf6). `dont check` exits 0 vacuously on empty stores and exits 1 outside an initialized project — a bare "pass" proves nothing.
+- `.dont/db.cozo` shows as modified in `git status` even though `.dont/` is meant to be gitignored — the file is historically tracked (ticket dont-72gk). Convention: leave it uncommitted AND never `git checkout -- .dont/db.cozo` (that would wipe the local claim store, including verified claims).

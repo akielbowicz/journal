@@ -145,3 +145,10 @@ The release workflow has NEVER succeeded before this round.
 
 ## Adoption status (2026-09-15)
 - genesis-vjp CLOSED: wai, dont (v0.4.0), pretender, espectacular, testaruda, vampiro, dulce-de-leche all on genesis-vibes 0.6. Only genesis-ntg (Agent Value Alignment epic) open; genesis-le7 deferred.
+
+## AIX eval-loop research (2026-09-16)
+
+- Corpus research (AIEWF 344 talks) → `microdancing/conference-analysis/aix-for-genesis-report.md` (READY) + wai research `2026-09-15-aix-practices-from-the-aiewf-conference-corpus.md`; openspec change `add-aix-eval-loop` (committed), tickets genesis-f2o/35d/lzo/m3p/g5g (g5g blocked-by all four).
+- **Shape constraint (load-bearing):** `feedback::ContextBundle` and `scratch::ErrorRecord` carry NO fixture files or captured output — only command/exit_code/suggestion_footer/argv/env state. Any feedback→evals conversion must take caller-supplied fixtures. Do not assume bundle snapshots.
+- Token-budget decision: chars/4 heuristic (±25%, labeled `TokenCost.heuristic`), NOT a tokenizer dep; existing `generate_llms_txt`/`generate_llm_txt` signatures pinned additive-only by golden-file test; bounded variants are new fns.
+- Eval-gate positioning: genesis as "observability + contract layer for agent-first CLI tools" — reconciled with ddl-family evaluation (substrate vs adoption funding; evals-gate = the falsifiable-metric mechanism).
