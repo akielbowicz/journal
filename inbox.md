@@ -8,6 +8,10 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-09-17 [ ] REPLy.jl: stale untracked `aek-analysis/` (Aug 7 progressive-eval plan, 5 waves) — commit to a branch, file in beads, or delete
+- 2026-09-17 [ ] REPLy.jl infra: local/remote tag `v0.3.0` divergence makes `git pull --rebase` warn (would clobber) — retag or force-fetch
+- 2026-09-17 [ ] REPLy.jl infra: `bd dolt push` broken — dolt internal error "this operation must be run in a work tree"; beads state still synced via git-committed issues.jsonl
+
 - 2026-09-15 [ ] incitaciones: use file-headers convention in an external codebase, then promote status tested → verified (evidence needed for the final promotion)
 - 2026-09-15 [ ] microdancing: choose workshop primary buyer persona (HR/L&D non-coders vs CTO engineers vs lab directors) — fork determines curriculum design
 - 2026-09-15 [ ] microdancing: gather Argentina market data for workshop pricing/verticals (CONICET, universities, biotech/agtech, YPF-Tec) — corpus has no LatAm data, flagged in dossier §6/§7
