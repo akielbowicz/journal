@@ -47,3 +47,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] microdancing: agregar workshop/ (skill_management_practices, skills_dossier, research_labs_addendum) a la tabla de contenidos del README de conference-analysis
 - 2026-09-16 [ ] Run `projector-queue` for real — queue holds Ludwig 2024 S01 (6 eps) + Ted Lasso S04E07; `-- --remux` suffices for Jellyfin (direct-plays HEVC, encode only for USB-projector)
 - 2026-09-17 [x] insta: anchor `base_commit` metadata on all 31 beads tickets after the first commit lands (issue-review PRE-003/004 pre-flight needs it). — done at insta 4a8c5e5
+- 2026-09-17 [ ] Email sysadmins@gnu.org asking to remove the IP block on 186.148.206.6 (gnu.org silently drops our packets; draft ready in session notes)
