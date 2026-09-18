@@ -48,7 +48,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-07-27 [~] In `charly`, decide whether to adopt `bd --global` shared-server for cross-repo dependency tracking; if yes, encode the genesis critical path there and close `charly-7f5` suite-index ticket. (Suite-index ticket is the interim authoritative graph.)
 - 2026-07-27 [ ] In each charly-vibes tool repo (wai/dont/pretender/espectacular/testaruda/crua/livin/vampiro/genesis), commit the uncommitted openspec proposal files for `adopt-genesis`/`depend-on-genesis`/`add-genesis-foundation`/`add-feedback-subcommand`.
 - 2026-07-27 [ ] When `genesis` tags v0.1.0, unblock the 8 adopter tickets and re-point `dont-2j6o`'s child adoption issues at the per-repo `adopt-genesis` proposals before closing it.
-- [ ] microdancing: agregar workshop/ (skill_management_practices, skills_dossier, research_labs_addendum) a la tabla de contenidos del README de conference-analysis
+- [~] ~~microdancing: agregar workshop/ (skill_management_practices, skills_dossier, research_labs_addendum) a la tabla de contenidos del README de conference-analysis~~ — 2026-09-18: conference-analysis se extrajo al repo `tv` (raíz); hacer TOC ahí si aplica
 - 2026-09-16 [ ] Run `projector-queue` for real — queue holds Ludwig 2024 S01 (6 eps) + Ted Lasso S04E07; `-- --remux` suffices for Jellyfin (direct-plays HEVC, encode only for USB-projector)
 - 2026-09-17 [x] insta: anchor `base_commit` metadata on all 31 beads tickets after the first commit lands (issue-review PRE-003/004 pre-flight needs it). — done at insta 4a8c5e5
+- 2026-09-18 [ ] In `wai`, run `bd bootstrap` to re-clone the diverged dolt remote (`refs/dolt/data` has no common ancestor with local history) or force-push if local is authoritative
 - 2026-09-17 [ ] Email sysadmins@gnu.org asking to remove the IP block on 186.148.206.6 (gnu.org silently drops our packets; draft ready in session notes)
