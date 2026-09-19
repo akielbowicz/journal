@@ -11,7 +11,7 @@ truth for `phormasci.github.io/content/trainees/`. Whisper is repo-local
 
 - [ ] Sasha: CABA §7 decisions (see `program/deep-research/caba-analysis-2026-09-18.md`): shortlist approval (83→81→51→21→31), design-vs-outreach sequencing (agent rec: outreach first), first channel (rec: CONICET direct), in-company pricing, 71/72 CABA sequencing
 - [ ] Sasha: persona-fork decision for 91–93 was resolved 2026-09-18 (parked, option c) — no action; tripwire recorded in `program/catalog.md` Parked section
-- [ ] Bioimage/pathology deep-research prompt: run + intake + batch analysis (prompt at `program/deep-research/prompt-bioimage-pathology-2026-09-18.md`); feeds 51–54 design fuel + 5x-vs-6x persona question
+- [ ] Bioimage/pathology deep-research: run + intake DONE (2026-09-18, `2026-09-18-bioimage-pathology-landscape.md`); 70/80-leverage pass done at intake (agentic failure modes seed 71/73/74/82/83; LABI/CABANA = regional channels). Remaining: 51–54 design-fuel pass + digital-pathology new-workshop question + tool-version spot-checks before any `shared/` use
 - [ ] Design passes for remaining shells when promotion demand lands (51/21/31 shortlisted for CABA; shells = interest-registration only per analysis readiness rungs)
 
 ## Waiting
