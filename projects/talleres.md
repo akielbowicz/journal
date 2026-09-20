@@ -19,7 +19,7 @@ truth for `phormasci.github.io/content/trainees/`. Whisper is repo-local
 
 ## Waiting
 
-- [~] Verify-before-use list before any batch-A candidate adoption (C-6/C-9/C-15): Microsoft eval-faq primary, MCP stateless spec version, Inzlicht study — `program/deep-research/batch-analysis-a-2026-09-18.md` §6
+- [~] Sasha walkthroughs (criterion 6) for 71/75/83 + 72/73/74/81/82 — **all five ready-check mechanics tickets (mok/xf3/0yl/m9c/ukm) executed 2026-09-20, all green except walkthrough entries**; after walkthroughs: flip designing→ready both trees + catalog, same commit
 - [~] 71 delivery prerequisite: ops-provisioning capability before selling (`program/evidence/71-ops-provisioning-check-2026-09-17.md`)
 - [~] Whisper #1 relative-path bug: `.whisper/config.toml` pinned absolute until fixed; flip when whisper#1 ships
 
