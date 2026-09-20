@@ -47,3 +47,23 @@
 - CI pipeline set up with GitHub Actions: ci.yml (push/PR), publish.yml (tag push → crates.io)
 - Openspec status: add-config 23/23, add-guide 30/30, add-test-fixture 26/26, add-genesis-foundation 27/29
 - Remaining: genesis-9o5 (Appendix A matrix), vampiro-d8o (config/guide adoption), crua-o1c/livin-8vc (spec-stage)
+
+### 2026-09-20 18:54 — snap
+- Reviewed + revised `openspec/changes/add-evals-guidelines`: 5-pass spec review fixes (bound-stopped trial status, ERR-code routing key, v1 contract home = docs/fixture-normative, precision items) and alignment with Hamel/Shreya AI Evals FAQ (new D8; scenario provenance, prevalence bounding, battery maintenance requirements).
+- `openspec validate add-evals-guidelines` passes; committed `0ee8b94` and pushed to origin/main; working tree clean.
+- Implementation not started — tasks.md unchecked: ActionFormatViolation taxonomy variant + tests (§2), report contract reference page + fixtures (§3), 4 mdBook pages (§4), adoption tickets (§6).
+- **Next:** implement tasks §2 (ErrorTaxonomy::ActionFormatViolation + round-trip tests, TDD) and §3 (report contract docs/fixtures), then §4 docs, then archive the change.
+
+### 2026-09-20 19:27 — close (implementation + archive)
+- **`add-evals-guidelines` fully implemented (TDD) and archived** — all 19 tasks done; commits `828cb63` (implementation) + `2c9dbbe` (archive/deploy) pushed. Spec deployed: `openspec/specs/evals-guidelines/spec.md` (13 reqs, 32 scenarios); evals spec gained the ActionFormatViolation requirement + verbatim-id attribution wording.
+- Shipped: `ErrorTaxonomy::ActionFormatViolation`; report contract v1 (`docs/reference/eval-report.md` + normative fixtures `tests/golden/eval_report_{tier2,replay}.json` + round-trip/no-nulls/vocabulary tests); book pages (`evals.md` live cadence + `how-to/evals-ci.md` + `explanation/why-weak-readers.md`); `EvalsGuidelinesAdoption` advisory linter; 5 adoption tickets (genesis-eiq/o1j/lmv/6ky/fsp for dont/wai/espectacular/pretender/testaruda); 2 wai records (design decisions + D8 FAQ alignment).
+- **espectacular deployment pattern (repeatable)**: archiving a change with Scenario deltas trips pre-push `ah check` no-toml findings. Fix = deploy contracts under `.espectacular/<spec>/<scenario-slug>.toml`. For machinery scenarios map to real test flags; for **doc-normative** scenarios (design D4: book is the normative home) write normative-doc guards — `tests/evals_guidelines_docs.rs` pattern: one test per requirement asserting normative phrasing in the deployed pages, with whitespace + markdown-noise (`\`*`) normalized matching. Guards double as doc-drift catchers (they caught 2 wording drifts vs spec).
+- **Noted, not fixed**: `evals` module missing from `examples/gen-aix.rs` AIX module list — llms.txt/llm.txt don't advertise the evals module (pre-existing gap).
+- **Next:** `genesis-dvf` (P2 testaruda feedback wiring) or `add-config`/`add-guide`/`add-test-fixture` openspec changes; 5 adoption tickets parked until per-repo batteries start.
+
+### 2026-09-20 19:27 — close (implementation + archive)
+- **`add-evals-guidelines` fully implemented (TDD) and archived** — all 19 tasks done; commits `828cb63` (implementation) + `2c9dbbe` (archive/deploy) pushed. Spec deployed: `openspec/specs/evals-guidelines/spec.md` (13 reqs, 32 scenarios); evals spec gained the ActionFormatViolation requirement + verbatim-id attribution wording.
+- Shipped: `ErrorTaxonomy::ActionFormatViolation`; report contract v1 (`docs/reference/eval-report.md` + normative fixtures `tests/golden/eval_report_{tier2,replay}.json` + round-trip/no-nulls/vocabulary tests); book pages (`evals.md` live cadence + `how-to/evals-ci.md` + `explanation/why-weak-readers.md`); `EvalsGuidelinesAdoption` advisory linter; 5 adoption tickets (genesis-eiq/o1j/lmv/6ky/fsp); 2 wai records (design decisions + D8 FAQ alignment).
+- **espectacular deployment pattern (repeatable)**: archiving a change with Scenario deltas trips pre-push `ah check` no-toml findings. Fix = deploy contracts under `.espectacular/<spec>/<scenario-slug>.toml`. For machinery scenarios map to real test flags; for **doc-normative** scenarios (design D4: book is the normative home) write normative-doc guards — `tests/evals_guidelines_docs.rs` pattern: one test per requirement asserting normative phrasing in deployed pages, whitespace + markdown-noise normalized. Guards double as doc-drift catchers (caught 2 wording drifts vs spec).
+- **Noted, not fixed**: `evals` module missing from `examples/gen-aix.rs` AIX module list — llms.txt doesn't advertise the evals module (pre-existing).
+- **Next:** `genesis-dvf` (P2) or `add-config`/`add-guide`/`add-test-fixture`; 5 adoption tickets parked until per-repo batteries start.
