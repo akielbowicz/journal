@@ -53,3 +53,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-09-17 [x] insta: anchor `base_commit` metadata on all 31 beads tickets after the first commit lands (issue-review PRE-003/004 pre-flight needs it). — done at insta 4a8c5e5
 - 2026-09-18 [ ] In `wai`, run `bd bootstrap` to re-clone the diverged dolt remote (`refs/dolt/data` has no common ancestor with local history) or force-push if local is authoritative
 - 2026-09-17 [ ] Email sysadmins@gnu.org asking to remove the IP block on 186.148.206.6 (gnu.org silently drops our packets; draft ready in session notes)
+- 2026-09-20 [ ] pretender: sync the beads no-db commit (02d1a56) to other machines and set `no-db: true` there BEFORE running any bd command (stale dolt DB would diverge from issues.jsonl)
