@@ -54,3 +54,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-09-18 [ ] In `wai`, run `bd bootstrap` to re-clone the diverged dolt remote (`refs/dolt/data` has no common ancestor with local history) or force-push if local is authoritative
 - 2026-09-17 [ ] Email sysadmins@gnu.org asking to remove the IP block on 186.148.206.6 (gnu.org silently drops our packets; draft ready in session notes)
 - 2026-09-20 [ ] pretender: sync the beads no-db commit (02d1a56) to other machines and set `no-db: true` there BEFORE running any bd command (stale dolt DB would diverge from issues.jsonl)
+- 2026-09-20 [ ] Give the leverage thesis site-facing copy in `phormasci.github.io` (mission "Knowledge Multiplier" or Trainee Program hero): "AI multiplies what you have; structure converts it into quality" — talleres principle #22 + teaching-topics §0 are the source; manual sync, no status fields cross
