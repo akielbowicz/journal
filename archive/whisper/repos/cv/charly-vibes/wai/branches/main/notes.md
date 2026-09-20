@@ -39,3 +39,9 @@
 - **Key decision:** pretender doctor removed from CI pipeline (exits non-zero in CI, no hook); pretender check --diff-only is the CI gate
 - **Next:** no ready work — all tickets deferred or blocked
 - **Cargo publish fix:** skill templates must live inside src/ (not .wai/) for cargo package to verify the tarball
+
+### 2026-09-17 11:49 — snap
+- Merged PR #1 into main (way artifact-stub check wai-vdg6, prime Prior-context wai-xt9o, CI fetch-depth fix); branch deleted; dogfood confirmed on main
+- Session-mining research doc + 6 tickets filed; wai-sojk blocked on add-decision-freshness-tracking epic (17 tasks: 4 spec, 3 design, 5 impl TDD, validation)
+- bd dolt push still failing (diverged histories) — needs user decision (force vs bootstrap)
+- **Next:** start add-decision-freshness-tracking epic spec tasks 1.1–1.4 (openspec deltas), then design 2.1–2.3, then TDD impl 3.x/4.x; fresh session via /renew or wai prime

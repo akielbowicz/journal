@@ -24,3 +24,7 @@
 - Folded-in safety fix: `legacy_variants` colon rule tightened (colon dir must end in bare repo name) after finding real false positive `ak:akielbowicz` in ~/.whisper holding other repos' knowledge
 - All gates green, both repos pushed, tickets closed, knowledge routed
 - **Next:** port `bins/`/`dist/` gitignore + darwin-triple fixes to `dont`'s failed release workflow; consider tagging v0.4.0 (consolidate + CI) to exercise release.yml end-to-end
+- 2026-09-17T16:22:03Z [id:7adb4b097bc0d7e1fbdeedb68f0af1e3dac365f8d798d53eef537855121279ed] (#session) ### 2026-09-17 13:21 — snap
+  - Fixed GH #1 (relative repo workspace_root anchors to config dir) + whisper-122 follow-up (doctor/check shadowed-global warning); shipped v0.5.0
+  - Wired `turu feedback` via genesis::feedback (whisper-1ug) incl. error-scratch contract + genesis compat fixture; Rule-of-5 fixes; shipped v0.6.0
+  - **Next:** whisper-kt5 — decide shared-bundle transport (in-repo dir vs git-refs vs remote); tag creation should be a separate step from `git pull --rebase` (vanished twice in && chains)

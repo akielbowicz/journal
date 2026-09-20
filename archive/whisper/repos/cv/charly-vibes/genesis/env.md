@@ -152,3 +152,18 @@ The release workflow has NEVER succeeded before this round.
 - **Shape constraint (load-bearing):** `feedback::ContextBundle` and `scratch::ErrorRecord` carry NO fixture files or captured output — only command/exit_code/suggestion_footer/argv/env state. Any feedback→evals conversion must take caller-supplied fixtures. Do not assume bundle snapshots.
 - Token-budget decision: chars/4 heuristic (±25%, labeled `TokenCost.heuristic`), NOT a tokenizer dep; existing `generate_llms_txt`/`generate_llm_txt` signatures pinned additive-only by golden-file test; bounded variants are new fns.
 - Eval-gate positioning: genesis as "observability + contract layer for agent-first CLI tools" — reconciled with ddl-family evaluation (substrate vs adoption funding; evals-gate = the falsifiable-metric mechanism).
+
+## Feedback integration status across the suite (2026-09-17)
+
+- Wired: wai (deepest — own command module, context+redactor+gh, fallback ladder), dont, espectacular, pretender (simplest pattern: one-liner `handle_feedback` delegation), vampiro (with genesis_compatibility.rs test).
+- Not wired (tickets filed in each repo's own beads DB, P2): testaruda-6k0z, whisper-1ug, DDL-5db.
+- Both wai and dont print `<tool> feedback bug --from-last-error` as an error-path hint — convention to keep.
+- genesis beads DB has no dolt sync remote configured; `bd dolt push` only prints remote help.
+
+## v0.7.0 release + espectacular contracts (2026-09-17)
+
+- add-aix-eval-loop fully implemented and released as v0.7.0 (crates.io, tag pushed): envelope receipt metadata, aix token-cost/bounded generators, evals distractors + doc_drift_blindness (ERR_DOC_DRIFT_BLINDNESS), feedback→Scenario conversion. All 5 tickets closed; per-ticket pipeline recorded via bd remember (genesis-per-ticket-pipeline-tdd-ro5-wai-claim).
+- Golden-file convention: tests/golden/ holds byte-exact snapshots generated BEFORE the change (envelope_without_receipt.json, aix_llms_txt.txt, aix_llm_txt.txt); ladder/budget tests derive budgets relative to est(full) so they survive fixture evolution.
+- Downstream notification: downstream deps are crates.io semver ranges ("0.6" excludes 0.7.0 under caret) → Dependabot works; .github/dependabot.yml seeded into all 7 downstream repos; `just notify-downstream <ver>` opens gh announcement issues; `just seed-dependabot` seeds configs.
+- espectacular lifecycle gotcha recorded via bd remember: archived changes with Scenario deltas need contracts at .espectacular/<spec>/<scenario-id>.toml and must leave openspec/changes/ (else no-toml / overlay-conflict findings).
+- Remaining: genesis-dvf (testaruda feedback wiring, in testaruda's repo), genesis-ntg epic remainder lives downstream (5-tool VP upgrades + bpuo wiring chores), genesis-le7 deferred.

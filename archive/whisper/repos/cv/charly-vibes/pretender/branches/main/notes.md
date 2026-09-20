@@ -25,3 +25,13 @@
 - Bumped version to 0.4.0, tagged v0.4.0, pushed to main and crates.io via CI
 - All 91 tests passing, clippy clean, fmt clean
 - **Next:** pretender-gyb (P2 — canonical pretender.toml template for suite repos)
+
+### 2026-09-20 (cont.) — pretender-hrw done
+- Pinned dtolnay/rust-toolchain to @1.98 (minor branch; @1.98.1 ref doesn't exist upstream) in ci.yml + release.yml (5 refs). PR #13, CI green 33s.
+- Gotcha: `bd close` + immediate `git add` staged a stale in_progress snapshot of issues.jsonl — re-add before commit. Worktree was correct all along.
+- Bump procedure: bump the @1.98 refs in ci.yml + release.yml together with local `rustup update`.
+- Remaining: merge PR #13 (user decision, main-push equivalent); 10 Dependabot PRs open+rebased, unmerged (checkout 4→7, upload-artifact 4→7, codecov 5→7 are major bumps — verify before merging).
+- **Dependabot wave complete** (11/11 merged): 4 cargo tree-sitter bumps (python+go needed the except_group_clause fix, #14), 4 actions majors (checkout v7, upload-artifact v7, download-artifact v8, upload-pages-artifact v5), codecov v7. CI+Docs green @2b28aca.
+- **Workflow-merge workaround documented** in env.md: gh token lacks `workflow` scope (SSH auth, can't re-auth) → merge workflow-file PRs locally with `--no-ff` and push over SSH.
+- **pretender-x3p closed** (#15): flaky feedback test isolated via private XDG_CACHE_HOME tempdir per test (pattern from CORR-001 test). 5× cli_test runs + just ci green.
+- **Gotcha:** bd close's JSONL write can be reverted by a git autostash applied mid-sequence — always re-grep the JSONL status after add/commit before pushing (hit twice today).

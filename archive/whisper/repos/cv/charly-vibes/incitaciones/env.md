@@ -121,3 +121,14 @@ essentials bundle.
 - bd gotcha: `bd close` has no --append-notes flag; use `--reason-file`.
 - justfile recipes cannot embed column-0 heredoc bodies (just parse error) — extract python checks into scripts/*.py with file headers instead.
 - Quality gates now: security-audit + trigger-overlap in sync-manifest; skill-eval (actor/judge, 2-run agreement) on model change — rituals documented in README release section + CONTRIBUTING. Essentials eval reds are meaningful signals, tracked as tickets (e5v/tth pattern), never fixed by weakening rubrics.
+
+## 2026-09-18 — compiled pointers + v0.10.1 release
+- Router-member/pointer architecture: pointers are permanent compiled aliases (manifest `pointer_for: "<router>/<member>"`), compiled by scripts/lib/compile.mjs into every surface — never hand-edited, never deleted; the repo's content/distilled/pointers/*.md prose stubs are overridden at distribution. Distilled files are body-only: manifest owns metadata (file-level frontmatter drifted twice now — the [has frontmatter] rule enforces this).
+- Release-sequence gotcha: `npm version patch` bumps package.json, and generate-skills-dir embeds installed-version → validate-skills-dir (pre-push) fails on the same push. Proven sequence: finalize CHANGELOG → `npm version patch` → `node scripts/generate-skills-dir.mjs` + commit → `git tag -f v<N>` → `git push --follow-tags`. Automating this as a `just release` recipe is filed as bd follow-up.
+- npm-publish.yml has no test/eval gate before publish — quality gates are local (pre-push hook + skill-eval). Run `just sync-manifest` before tagging.
+
+## 2026-09-18 — v0.10.2 hotfix: npm package shipped broken (kbk)
+- Root cause: `package.json` `files` omitted `scripts/lib/` — the tarball lacked `compile.mjs` which `generate-pi-resources.mjs` imports at postinstall. **Rule: anything imported by a shipped lifecycle script must be in `files`**; verify with `npm pack` + untar + run the script BEFORE tagging. This is the class of bug the missing test/eval gate (previous note) would have caught.
+- `npm version --no-git-tag-version` bumps package.json but creates NO tag/commit (by design) — the 2026-09-01 "npm version skips tag" incident pattern; only the `--no-git-tag-version` variant makes it non-surprising.
+- npm 26 blocks package lifecycle scripts pending `npm install-scripts approve <pkg>` (run from a dir where the package resolves). Benign for incitaciones — `pi-package/` ships pre-built in the tarball, so postinstall is redundant even when blocked.
+- `bd close`/`bd update` fail outside the beads workspace (run from repo root); gitignored `.beads/` needs no commit — dolt sync is remote-push based.
