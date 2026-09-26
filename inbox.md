@@ -8,6 +8,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-09-25 [ ] whisper workspace hygiene: legacy colon-key dirs in live `~/.whisper/repos/` (cv:charly-vibes, ak:akielbowicz, sk:sashakile) + stale mirrors in jornal `archive/whisper/` — run `turu doctor` → `turu consolidate` in the live workspace, then re-sync or prune the journal archive copy
 - 2026-09-17 [ ] REPLy.jl: stale untracked `aek-analysis/` (Aug 7 progressive-eval plan, 5 waves) — commit to a branch, file in beads, or delete
 - 2026-09-17 [ ] REPLy.jl infra: local/remote tag `v0.3.0` divergence makes `git pull --rebase` warn (would clobber) — retag or force-fetch
 - 2026-09-17 [ ] REPLy.jl infra: `bd dolt push` broken — dolt internal error "this operation must be run in a work tree"; beads state still synced via git-committed issues.jsonl

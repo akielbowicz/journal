@@ -23,3 +23,12 @@ authoritative local export and refresh it explicitly with:
 ```bash
 bd export -o .beads/issues.jsonl
 ```
+
+## 2026-09-25: pre-push hook + flaky test
+
+The lefthook pre-push hook runs the full lib test suite and blocks pushes on
+any failure. `plugin::tests::execute_hook_no_deadlock_on_fast_command` is
+timing-flaky: it can fail under parallel load while passing in isolation and
+in full re-runs (filed as wai-z25x). If a push is blocked by it, re-run the
+push rather than reaching for --no-verify. Cosmetic noise: `git add` prints
+ignored-path hints for `.beads/backup/*` — harmless, commits land fine.
