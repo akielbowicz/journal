@@ -50,3 +50,9 @@
 - **`src/installer.rs` downloads have no checksum/signature/pin verification** (`download_and_extract_tar_gz`/`_zip`: reqwest::get → tar → unpack). Fix candidates: release checksum manifests + verify, `ddl.lock` pinning (proposed in docs/adversarial-evaluation-addendum.md)
 - Family evaluation verdict: pipeline is doc-only (no tool consumes another's workflow state); highest-leverage moves = evals for the family's own tools, checksum the supply chain, measure injected context tokens, per-tool falsifiable metrics
 - ⚠️ Stale claim to verify: evaluation report F3 cites placeholder Homebrew formulas (from old adversarial-eval doc) — but DDL-cnh closed 2026-09-15 17:21 saying formulas fixed pre-rekey; confirm before citing
+
+### 2026-09-29 15:07 — ZZZZ-docs external evals triaged + improvement tickets filed
+- ZZZZ-docs/ = 4 external AI evals (3× Grok 4.5, 2× Qwen3.7) contra snapshot 2026-09-21 — mayoría stale (fabbro/fotos-mcp ya fuera, genesis 0.8.1, ddl 0.6.0); review Rule-of-5: ~40% mejora / ~60% YAGNI
+- **YAGNI verdicts (no filedocs):** Core Quality Triad fail-closed (dont+ah+vampiro) contradice el census (0 installs / frozen) — enforcement parked tras dogfood epic charly-26y; quality receipt sin consumer; benchmark-harness repo duplica evallerina; env-locking/data-lineage/@numerical = schema sin users
+- **Mejoras → 6 tickets filed + issue-review pass** (metadata.files, base_commit, Must gates cuantificados, co-mod notes): DDL-5ph (checksums installer.rs — F3 verificado aún missing), DDL-3i4 (registry partition core/recommended/extension), DDL-91a (ddl catalog + capability matrix, un solo registry), incitaciones-xdo + fabbro-dqtc (licencias), evallerina-sqq (6 archetypes, blocked-by e10, reusa fixtures de 7y1)
+- **Gotcha:** `bd export` default = stdout — para actualizar el JSONL fuente hace falta `-o .beads/issues.jsonl` (el file puede quedar stale sin que nada falle); después de creates/updates: export -o → add -f → commit → push por store
