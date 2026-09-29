@@ -6,3 +6,8 @@
 - Skills: `close`/`next`/`park`/`renew` come from incitaciones (npm; pi project dep in `.pi/settings.json`); 8 journal-only skills (archive, capture, jlog, migrate, morning, standup, weekly, wrap-up) live in `resources/skills/`, symlinked into `~/.agents/skills/` — deprecated docs + upstream candidates
 - NEVER run `git clean -fd` in this repo (unpublished whisper notes would be destroyed)
 - `mise run doctor` validates env vars, symlinks, skills, and site buildability
+# status (journal repo) — operational knowledge
+## Push destination
+- This journal repo (`~/dev/status`) has **no git remote configured** — commits succeed but `git push` fails with "No configured push destination". Session-close flows log and commit fine; don't retry push or treat it as an error. Fix would be `git remote add origin <url>` + `git push -u origin main` (user decision, not agent's).
+## Conventions
+- Daily logs at `log/<year>/<year>-<month>/<YYYY-MM-DD.md>`, sessions appended under `## Log` as `### Session:HH:MM (<context>)` blocks.

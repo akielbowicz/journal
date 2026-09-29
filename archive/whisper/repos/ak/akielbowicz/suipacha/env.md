@@ -21,3 +21,15 @@ También afecta al justfile recipe `kv-create` si se corre sin `.env` — el rec
   (`{{file_stem()}}`) o deps explícitos `(render "...")`.
 - `render <taller>` asume `<taller>/propuesta.md`; presentacion-direccion.md
   vive en la raíz y tiene su propio recipe `just direccion`.
+
+## flyers: render de SVG sin rsvg-convert (2026-09-28)
+- `rsvg-convert` NO está instalado y `pip install cairosvg` sí funciona: usar
+  `cairosvg.svg2pdf/svg2png` en vez del recipe `just flyer` (que falla por el
+  binario ausente). SVG con `<style>` y `<pattern>` renderizan bien con cairosvg.
+- Fuentes del sistema: solo Liberation Sans genérica (no DejaVu Bold pesada) —
+  los flyers diseñados con `font-family="Arial, Liberation Sans, ..."` caen a
+  Liberation Sans y el render es fiel a lo que verá la imprenta en Linux.
+- Verificación de QR en flyers: `cv2.QRCodeDetector().detectAndDecode` sobre el
+  PNG exportado decodifica sin zbar (pyzbar no tiene la lib compartida en el
+  sistema). Probar 3 casos: render completo, zoom 3× y threshold duro con ruido
+  gaussiano (simulación de tinta en papel).

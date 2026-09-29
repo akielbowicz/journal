@@ -45,3 +45,24 @@
 - Session-mining research doc + 6 tickets filed; wai-sojk blocked on add-decision-freshness-tracking epic (17 tasks: 4 spec, 3 design, 5 impl TDD, validation)
 - bd dolt push still failing (diverged histories) — needs user decision (force vs bootstrap)
 - **Next:** start add-decision-freshness-tracking epic spec tasks 1.1–1.4 (openspec deltas), then design 2.1–2.3, then TDD impl 3.x/4.x; fresh session via /renew or wai prime
+
+### 2026-09-28 19:14 — release v2026.9.28
+- Released v2026.9.28: decision matrix feature (wai-vk0u, PR #14) + way stub-check + prime prior-context; changelog got retroactive [2026.8.5] section (that release shipped with no changelog entry)
+- CI red on the tag: matrix decide-snapshot test read the matrix/ *directory* via fs::read_to_string — read_dir ordering is filesystem-dependent, so it passed locally in pre-push and failed in CI. Test now filters to regular files (PR #15, merged)
+- bd close takes ONE id at a time (multi-id silently fails); .beads is gitignored but issues.jsonl is tracked → needs `git add -f .beads/issues.jsonl`
+- Release convention confirmed: release commit = Cargo.toml/lock bump only (CalVer YYYY.M.D); GHA Release workflow publishes crates.io + binaries; mdbook Docs workflow is separate
+- bd dolt push issue from earlier sessions is resolved by design: no-db=true, JSONL is the sync path
+- **Next:** ready work = wai-sib1 (P1, project use portability), wai-sojk (P2), remaining P2/P3 hygiene
+### 2026-07-31 16:26 — close session (genesis adoption completion + v2026.7.31 release)
+- **wai-xkoq closed**: all 14 genesis v0.4.0 modules adopted
+- **discovery**: `genesis::discovery::register("wai", ...)` during `wai init` — wai now self-registers in `.genesis/tools.toml`
+- **aix**: created `examples/gen-aix.rs` with `just aix-gen`. Uses `genesis::aix::agents_block()`. Full structured generation (ProjectMeta, section helpers) not yet available in published crate — inline formatting for now
+- **fixture**: `tests/genesis_fixture_test.rs` demonstrates `Fixture` builder with markers, TOML config, git init, and custom files. Prefer `Fixture` over raw `TempDir` for new tests
+- **Release v2026.7.31**: tag pushed, CI should build/publish binaries to GitHub
+- **Next:** `wai-91zm` (pretender.toml rollout) or `wai-4guc` (CLI ergonomics adoption)
+### 2026-09-28 15:39 — snap
+- Merged PR #14 (feat/matrix-command-group, decision matrix) into main via --no-ff, pushed; PR marked MERGED, CI green
+- Fixed beads Dolt divergence: local DB was authoritative (710) vs stale remote (425); recovered 3 remote-only issues (wai-sib1, wai-cmej, wai-005m) via JSONL import → 713 total, 656 dep edges, verified union before any destructive step
+- Root cause of slow/broken sync: no-db was false + sync.remote set (gitblobstore chunk push over SSH). Fixed: `no-db: true`, dropped sync.remote, deleted stale refs/dolt/data from remote — sync is now git-tracked issues.jsonl only
+- Verified fresh-clone bootstrap yields 713; committed dbebd46. Note: GitHub SSH port 443 intermittently denied clones mid-session (rate-limit suspicion); retries work
+- **Next:** nothing pending on beads/PR-14 thread; `bd ready` shows next work (wai-cjnx epic: 16 clippy errors). Consider tracking junk tracked in git (.beads/dolt-config.log, dolt-server.pid, dolt-server.activity) for gitignoring

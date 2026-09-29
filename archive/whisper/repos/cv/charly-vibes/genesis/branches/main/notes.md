@@ -67,3 +67,54 @@
 - **espectacular deployment pattern (repeatable)**: archiving a change with Scenario deltas trips pre-push `ah check` no-toml findings. Fix = deploy contracts under `.espectacular/<spec>/<scenario-slug>.toml`. For machinery scenarios map to real test flags; for **doc-normative** scenarios (design D4: book is the normative home) write normative-doc guards — `tests/evals_guidelines_docs.rs` pattern: one test per requirement asserting normative phrasing in deployed pages, whitespace + markdown-noise normalized. Guards double as doc-drift catchers (caught 2 wording drifts vs spec).
 - **Noted, not fixed**: `evals` module missing from `examples/gen-aix.rs` AIX module list — llms.txt doesn't advertise the evals module (pre-existing).
 - **Next:** `genesis-dvf` (P2) or `add-config`/`add-guide`/`add-test-fixture`; 5 adoption tickets parked until per-repo batteries start.
+
+### 2026-09-28 17:15 — snap
+- Built openspec change `add-git-hooks`: genesis::git_hooks module consolidating git-hook primitives from 3 donors (pretender install/uninstall, wai owner/framework detection, espectacular lefthook injection → rebuilt on managed_block). Rule-of-5 reviewed (fixed dropped requirements, D5 evidence, edge scenarios); 28 donor-grounded scenarios; validated --strict; pushed.
+- Decisions: D1 parameterized ownership markers; D2 core.hooksPath respected everywhere; D7 (user) framework() reports single framework incl. Husky via hook sigil, precedence Lefthook > Prek > Husky.
+- Tickets in bd (committed+pushed): genesis-7l8 (root/hooks-dir, READY entry point) → {genesis-pzz install/uninstall, genesis-3a8 detection, genesis-16c lefthook wiring} → genesis-qjg registration+hygiene guard → consumer migrations genesis-q4k/glc/orq (P3).
+- **Next:** claim `bd update genesis-7l8 --claim` and implement Phase 1 (repo_root + resolve_hooks_dir) via tdd-ro5-wai pipeline; red tests from spec scenarios.
+- 2026-09-28T20:38:06Z [id:9b663d3a8e95c0959c1a4ed458b55578faef00ed25dd49830b303844c2bdc818] ### 2026-09-28 17:38 — snap
+  - add-git-hooks phases 1-2 implemented via tdd-ro5-wai pipeline, tickets genesis-7l8 and genesis-pzz claimed→closed→pushed (commits 725b771 + phase-2 commit): genesis::git_hooks now has repo_root()/repo_root_from(), resolve_hooks_dir() (local core.hooksPath, relative-to-root), HookName enum, install()/uninstall() with parameterized marker, shebang-preserving marker insertion, 0-byte-file-is-foreign (D6), ForeignHook error variant
+  - Full suite 488 tests green, clippy -D warnings clean, ah check clean, all pre-push hooks green
+  - Gotcha: bd auto-export git-add fails (.beads gitignored) — commit the export with `git add -f .beads/issues.jsonl` after every bd claim/close
+  - **Next:** claim genesis-3a8 (owner()/framework() detection — wai sigil table most-specific-first, espectacular detect_hook_framework, design D3/D7), then genesis-16c lefthook wiring, then genesis-qjg registration+hygiene guard, then archive the change
+- 2026-09-28T21:01:49Z [id:e20e3444178b9870f18ee08967985025d2a411c18bfab969760705b25bfbcd32] ### 2026-09-29 — snap
+  - genesis-3a8 (git_hooks phase 3: owner & framework detection) implemented via red→green→commit: Owner enum + ordered OWNER_SIGILS table, owner() honoring core.hooksPath via shared hook_path; Framework enum + framework() with Lefthook > Prek > Husky precedence (design D7)
+  - Design discovery worth keeping: ticket listed sigil order as (lefthook, husky, bd, pre-commit, prek) but a pure prek hook always contains "pre-commit" (exec prek run pre-commit), so Prek MUST precede PreCommit in the table; bd still precedes prek (bd-shim-chaining-prek → Bd). Wai gets this implicitly by checking hook_contains("prek") before hook_owner
+  - 9 new tests, 497 total green, clippy -D warnings clean, ah check clean; commits 0859353 + 2b199cd pushed
+  - **Next:** claim genesis-16c (lefthook wiring: ensure_wired/is_wired on managed_block — tasks 4.1-4.5), then genesis-qjg registration+hygiene guard, then archive the change
+- 2026-09-28T21:09:58Z [id:3e27ca86c01955b165fa87a7ee701a30dfac51439a450d6acd06356ee58cc809] ### 2026-09-29 18:10 — snap
+  - genesis-16c (git_hooks phase 4: lefthook wiring) done via red→green: git_hooks::lefthook submodule with Stage (PreCommit/PrePush, D5b), ensure_wired(root, stage, &BlockDef, content), is_wired() stage-scoped scan (D5); two new GitHooksError variants MissingLefthookConfig / UnanchorableLefthookConfig
+  - Two RED-phase gotchas: '"pre-push":' does NOT contain 'pre-push:' (quote precedes colon) so the unanchorable check matches the bare stage key; block markers at column 0 are not YAML keys so idempotence is file-level (spec wording) not section-level
+  - 10 new tests, 507 total green, clippy/fmt/ah check clean; commits 806d585 + 9c3ede8 pushed
+  - **Next:** claim genesis-qjg (module registration + hygiene guard — tasks 5.1-5.4, last ticket of add-git-hooks), then archive the change via openspec-archive
+- 2026-09-28T21:56:01Z [id:cbb4dcc472663f0e17a1faff9e018bb625b850500f753f4f51af9028ba9351a1] ###  — snap
+  - genesis-qjg (git_hooks phase 5: registration + hygiene guard) done via red→green: guard test scans non-test portion of src/git_hooks.rs (split_once "#[cfg(test)]") for 4 gate strings (ah check, pretender check, testaruda select, just check-claims); RED came from the module's own boundary-note doc comment, fixed by rewording it without example strings
+  - Gotcha: guard tests via include_str! on the module itself are self-referential — scan only production portion (before #[cfg(test)]) so the forbidden-string list in the test doesn't trip itself
+  - Docs: modules.md gained git_hooks row + section (verify enum variant names against source before writing docs — first draft invented WireOutcome/NoHooksDir that don't exist); CHANGELOG [Unreleased] entry with downstream compat note
+  - 508 tests green, fmt/clippy/openspec --strict/pretender/ah check clean; commits e9ce960 + 483ad68 pushed
+  - **Next:** archive the add-git-hooks change via openspec-archive (expect espectacular no-toml findings → deploy .espectacular/git-hooks/<scenario-slug>.toml contracts), then consumer migrations genesis-q4k/glc/orq (P3, downstream repos)
+- 2026-09-28T21:59:35Z [id:2f76e519719407d25a11bdc2e3b072819cea55b3c1b1163848469258175b0c05] ### 2026-09-30 — snap (archive)
+  - add-git-hooks change archived: spec deployed to openspec/specs/git-hooks/spec.md (+9 reqs); 29 espectacular contracts deployed (.espectacular/git-hooks/ + genesis/tools-need-git-hook-primitives.toml) mapped to unit test flags; ah check --run-tests 95 passed 0 findings
+  - add-git-hooks is now fully closed (genesis-7l8/pzz/3a8/16c/qjg all done); remaining follow-ups are downstream migrations genesis-q4k (pretender) / glc (espectacular) / orq (wai), all P3
+  - Commits e9ce960 + 483ad68 + fe1fe4c pushed; tree clean
+  - **Next:** pick genesis-dvf (P2 testaruda feedback wiring, in testaruda repo) or genesis-qlj (P3 evals AIX registration), or start downstream git_hooks migrations
+- 2026-09-28T22:22:18Z [id:e045cb4661960ac2dbd716bdb10f58c98802e9f85653f791793c46697574e4ff] ### 2026-09-28 22:25 — release v0.8.0
+  - Rule-of-5 release review (converged stage 4): 0 CRITICAL, 3 HIGH — all release-metadata gaps, not code: (1) CHANGELOG [Unreleased] was missing the whole add-evals-guidelines payload (shipped after the v0.7.0 tag), (2) gen-aix.rs module registry missing evals AND git_hooks so packaged llms.txt/llm.txt under-advertised 2 of 16 modules (genesis-qlj only covered evals), (3) README module table same gap
+  - All fixed: gen-aix registry + aix-gen regeneration, README/getting-started pins 0.7→0.8 (doc_sync guard enforces same-commit sync), CHANGELOG stamped [0.8.0] — 2026-09-28 with evals-guidelines + git_hooks + AIX-registry entries
+  - Released: tag v0.8.0 pushed, CI publish succeeded, crates.io shows 0.8.0 (22:21 UTC), just notify-downstream 0.8.0 opened issues in all 7 downstream repos
+  - Gotchas: (a) bd close did NOT regenerate .beads/issues.jsonl export — needed explicit bd export -o (the git-add hint was the only symptom; check the jsonl content, not just git status); (b) just ci's aix-check fails on uncommitted regenerated AIX files — that's index-vs-tree, not drift, commit first
+  - genesis-qlj closed. Remaining: genesis-dvf (P2 testaruda feedback), genesis-ntg (P0 epic), downstream git_hooks migrations q4k/glc/orq (P3)
+  - Commits 1cc756d (release) + fcc451a (beads) pushed
+- 2026-09-28T23:07:12Z [id:be35fd8e0c4b807ca14029019ded0ecf125c55db20cf1e2f9978d188a9c6aa0b] ### 2026-09-28 23:05 — snap
+  - genesis-og6 + genesis-gle done in one red→green pass: feedback stdin now read_to_string (no more one-line truncation); multi-line stdin promotes first line to title (rest = Description body); FeedbackArgs.title: Option<String> + with_title() builder, override applied uniformly after both branches; single-line input byte-identical (echo-compat rule: trailing newline = single line)
+  - Gotcha: multi-line-with-trailing-blank trims to single line — compat rule beats title promotion; struct-literal construction of FeedbackArgs is breaking for downstream (doc example in src/feedback.rs needed title: None — doc tests caught it)
+  - Title precedence documented in modules.md § feedback (flag > first stdin line > auto-reported error > generic); CHANGELOG [Unreleased] compat note added
+  - 515 tests green, ah check --run-tests 95 passed, clippy/fmt/pretender clean; commits + beads closes pushed (b0740a9)
+  - **Next:** genesis-dvf (P2 testaruda feedback wiring — can now use --title), genesis-ntg (P0 epic), downstream git_hooks migrations q4k/glc/orq (P3); unreleased feedback changes → next release will be 0.8.1 or bundle into 0.9
+- 2026-09-29T12:08:44Z [id:d2e07457721f93d674e25249c5a4c83bf0e70b1724a12327959d8ed2f3a64236] ### 2026-09-29 12:10 — release v0.8.1
+  - Patch release: feedback full-stdin read (genesis-og6) + title option (genesis-gle); version 0.8.1, README git-tag example bumped (doc_sync guard requires tag = "v0.8.1" present; caret pin 0.8 unchanged), CHANGELOG stamped [0.8.1] — 2026-09-28
+  - CI publish succeeded; crates.io shows 0.8.1 (12:08 UTC 2026-09-29); just notify-downstream 0.8.1 opened issues in all 7 downstream repos
+  - Gotcha: first git commit attempt was silently swallowed by a lefthook pre-commit failure (tail -1 hid the error) — files stayed staged, push said up-to-date; rerun commit with full output to diagnose
+  - Note for next feature release: title field addition is struct-literal-breaking for downstream → real minor bump (0.9.0) at next feature; 0.8.1 defensible because ::new callers are unaffected
+  - **Next:** genesis-dvf (P2), genesis-ntg (P0), git_hooks migrations q4k/glc/orq (P3)
