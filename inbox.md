@@ -9,6 +9,9 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 <!-- New entries go below, newest first, with date prefix -->
 
 - 2026-09-29 [ ] genesis: wire select→run loop in lefthook hooks once testaruda ships `exec` (feature request testaruda#26); also switch genesis feedback usage away from multi-line stdin until #27 fixed
+- 2026-09-29 [ ] bd upstream: 1.3.0's `bd setup --print` template still ships `bd dolt push # Sync with remote when authorized` — file issue asking bd to drop it when `no-db: true` (agents keep echoing it)
+- 2026-09-29 [ ] fotos: broken pre-push hook — lint/test need leptonica/pipewire via distrobox and fail in 0.31s outside it; fix hook (or its distrobox detection) — currently every push needs --no-verify
+- 2026-09-29 [ ] suite: per-repo bd stores work again post-migration — re-point cross-repo genesis edges off charly-7f5 (suite index) into the per-repo stores when convenient
 
 - 2026-09-25 [ ] whisper workspace hygiene: legacy colon-key dirs in live `~/.whisper/repos/` (cv:charly-vibes, ak:akielbowicz, sk:sashakile) + stale mirrors in jornal `archive/whisper/` — run `turu doctor` → `turu consolidate` in the live workspace, then re-sync or prune the journal archive copy
 - 2026-09-17 [ ] REPLy.jl: stale untracked `aek-analysis/` (Aug 7 progressive-eval plan, 5 waves) — commit to a branch, file in beads, or delete
