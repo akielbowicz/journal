@@ -61,3 +61,9 @@
 - Rule-of-5 review (converged stage 4): fixed misleading double-warning on unlisted assets, sha256sum `-b` `*` prefix parsing, doc-header updates, residual-risk comment (malicious release listing own digest needs sigstore — out of scope). Tidy commit separate (1401bd1)
 - Merged PR #29 → main. Merge-commit CI failed: init_noninteractive tests hung in `ddl init --yes`'s real `npx --yes` skill install (network); CMD_TIMEOUT kill = `code=interrupted`. Fixed test-only in PR #32 by stubbing `incitaciones` on PATH (4.76s→0.02s); main CI green (run 36612841340)
 - **Next:** remaining beads: DDL-3i4/DDL-91a (registry partition + catalog cmd), DDL-zw4 (P2 install-manifest bug), DDL-x0m (P3 bd version unknown), DDL-2um (P2 needs TAP_GITHUB_TOKEN secret from user), DDL-gap, DDL-isi. Follow-up P3 filed: networked-mock checksum-mismatch integration test
+### 2026-09-29 16:01 — snap
+- Closed DDL-zw4 (PR #33) + DDL-3i4 (PR #34), both merged to main, merge-commit CI green; branches deleted, local main synced
+- DDL-zw4: `ddl install` on PATH-but-untracked tool now records manifest entry (source `skipped`, probed version); integration test stubs `turu` on PATH
+- DDL-3i4: `ToolCategory` + `Maturity` on all 11 MANAGED_TOOLS, locked to census draft by drift test; rendered in status `[core/stable]` + version JSON; README block regenerated as category groups
+- CI incident: init test's second cmd2 lacked the incitaciones PATH stub → real `npx --yes` network install → CMD_TIMEOUT kill (PR #32's incomplete fix); fixed test-only (7c83d2a)
+- **Next:** DDL-91a (`ddl catalog` command + generated docs/capability-matrix.md) — now unblocked, 3i4 landed first; extensions: drift test in tests/tool_registry_drift.rs. Remaining beads: DDL-gap, DDL-isi, DDL-x0m, DDL-hsn, DDL-2um (needs TAP_GITHUB_TOKEN from user)

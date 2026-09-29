@@ -22,3 +22,8 @@
 - Rule-of-5 review of the investigation: verdict READY-WITH-NOTES (converged stage 4); key corrections: chunking must be single-call input assembly per ex_single_call, SBD is alignment aid not gate, add language-coverage + short-episode dedup caveats
 - Filed bajan-15i (P2): pin deterministic NLP/IR crates — two-table crate map, default+fallback picks, live-verify acceptance criteria, metadata.files=Cargo.toml, label branch:main; committed bcc41e9 and pushed
 - **Next:** claim bajan-15i (live-verify + pin crates, extend p_no_llm_post generators with short/non-English episodes) or claim bajan-2xv scaffold — coordinate if both in flight (share Cargo.toml)
+
+### 2026-09-29 16:09 — snap
+- Landed bajan-2xv scaffold (clap + genesis envelopes, 4 stub modules, .cargo git-fetch-with-cli fix), then spec deltas bajan-0hs.1 (gm_human_adopt, gm_schema_v2, conjunction guard verified representable) and .2 (ex_supersession + supersede transition, ex_run_record, ex_evidence_containment; ex_typed_gate amended) — all gates green, pushed through 67140f7
+- Rule-of-5 self-review of scaffold → 3 findings filed as tickets: bajan-aan (exit non-zero on ok:false), bajan-ts6 (arg errors bypass envelope), bajan-cdi (Result<(),_> stub trap); issue-review pass applied: .5/.7 now blocked-by .3, all 17 tickets re-anchored to 81d5f81, .3–.7 NOTES refreshed with Meters + anti-goals
+- **Next:** claim bajan-0hs.3 (schema v2 evidence field + loud migration, creates src/store.rs; TDD red→green) — it gates .5 and .7; .4 and .6 also ready

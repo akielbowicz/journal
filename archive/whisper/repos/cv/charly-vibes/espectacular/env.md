@@ -70,3 +70,7 @@ scenarios were blocked, masking the collision.
 The `for (slug, _spec, _id)` destructuring was misleading: `slug` was bound
 to the spec_path (e.g. "compiler"), not the actual slug. Fixed to
 `(spec, slug, _heading)` with a clearer message.
+## bd embedded no-db workflow (2026-09-29)
+- Embedded bd does NOT auto-export `.beads/issues.jsonl` on writes (close/claim/update). Before committing tracker state, run `bd export -o .beads/issues.jsonl` or the git-committed JSONL goes stale. Hit twice in one session.
+- `bd update <id> --claim` prints a stale "repair: bd dolt remote add…" hint — ignore (no dolt remote by design).
+- `dont ground` in this repo fails with an internal Cozo `parser::pest` error on any claim (its generated datom-put query is malformed) — do not retry twice; embed evidence inline in tickets and flag the dont bug upstream.

@@ -94,3 +94,11 @@
 - Filed beads mirrors for GH issues: p5zl (gh-27), n5b4 (gh-26), 50m4 (gh-25) — all closed after shipping; gh-24 closed as superseded. bd JSONL exports need `bd export -o` + `git add -f` (global ~/.gitignore `.beads/` fights repo negation) + separate JSONL-only commit
 - genesis-vibes bumped 0.8.1 → 0.8.2 (PR #31): audit found no code changes needed — testaruda uses none of the changed APIs, emits no Error-kind envelopes; genesis_version_is_v0_7 fixture modernized to v0_8 (pins FeedbackArgs::with_title)
 - **Next:** remaining ready backlog = qdw9 (P3, one-line docs fix in getting-started.md), rty (P3, mining survey bookkeeping — candidate to close), 5q1/cwu (P4s); ehse (P1) still blocked on user-provided homebrew-charly credential
+
+### 2026-09-29 16:29 — snap
+- **gh-34 arc complete (3 PRs merged):** root cause of "clojure adapter discover always empty" was hard-coded `.clj/.cljs/.cljc` in all 3 filter sites — finanzas is a babashka (`.bb`) repo. Fix: `is_clojure_source()` helper with `.bb` (PR #35). Follow-ups shipped same session: top-level `(require '[...])` forms now produce edges (deps.scm 2nd pattern, captures INNER vec_lit/sym_lit of quoting_lit so no leading-quote strip needed) (PR #36/xcb6); ns-less script files map to namespace by path convention (strip src|test|lib root, underscore→dash) (PR #38/t79n). Verified on finanzas: 0→17 discovered, 0→6 edges
+- Honest finding: finanzas `cli_test.bb` spawns the CLI as a subprocess and never requires `finanzas.cli` — 0 edges is the CORRECT static answer there; a real edge would need `runtime_edges` capability
+- tree-sitter-clojure gotchas: quoted forms are `quoting_lit` nodes (not `quoting`); top-level `(require ...)` has a SYMBOL head vs `:require` KWD inside `(ns ...)`
+- **qdw9/rty closed:** docs example now prefers global `--json` (both orderings verified identical envelopes); mining survey ticket closed — all 5 bugs it filed already fixed
+- **Release v0.5.0 shipped** (PR #39): CHANGELOG had NO 0.4.0 entry (backfilled); exec subcommand justified minor bump; adapters bumped 0.1.0→0.2.0; handshake versions now read CARGO_PKG_VERSION. GH release + crates.io 0.5.0 both live
+- **Next:** ehse (P1) still blocked on user TAP_GITHUB_TOKEN credential — tap+scoop serving 0.4.0, need backfill (re-run update-homebrew.py or re-tag); remaining backlog = 5q1/cwu (P4 epics)
