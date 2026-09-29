@@ -55,3 +55,8 @@ genesis — file a genesis change first, then adopt.
 - Envelope::error(cli_version, err, warnings) — 3 args
 - report.to_envelope(cli_version) — 1 arg
 - Use env!("CARGO_PKG_VERSION") for the cli_version parameter
+
+## Known bugs / conventions (2026-09-29)
+- `testaruda feedback` truncates multi-line stdin descriptions to the first line (silent data loss; `--dry-run` shares the bug). Bug filed: charly-vibes/testaruda#27. Until fixed, file feedback issues via plain `gh issue create --body-file`.
+- Feature request for an `exec` subcommand (select→run→ingest→calibrate loop) + uncalibrated-store warning: testaruda#26.
+- 2026-09-29T16:38:35Z [id:b1c64edf3242bd2e7d79fd4bfe7c59f06e748bc827470a032acf8186c6440cf6] (#feedback) UPDATE (2026-09-29, PR #28/#29 session): gh-27 feedback truncation is FIXED — genesis-vibes 0.8.1 reads full stdin (0.7 used read_line) and partitions multi-line input (first line → title, rest → Description).  with piped multi-line input is now safe; the old 'use gh issue create --body-file' workaround no longer applies. Regression pinned in tests/cli.rs::feedback_multiline_stdin_is_not_truncated. Also:  (gh-26) now completes select→run→ingest→calibrate; uncalibrated-store advisory fires when run history is empty.

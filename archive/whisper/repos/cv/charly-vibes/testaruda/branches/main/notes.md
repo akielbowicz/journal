@@ -88,3 +88,9 @@
 - Gotcha: appending to docs/multi-language-import-validation.json duplicates rows — replace the existing repo rows before re-adding
 - Python eval arc complete: kyz2 (scale-up) → wpil (comment strip) → rpqs (validator fix). Remaining known weakness: docstring/string import detection (precision-only, recall-safe)
 - **Next:** P3s jxd0 (format_iso_ts), qdw9 (stale docs example), vax (u32 overflow), rty (git mining survey); P4s 5q1/cwu; ehse blocked on homebrew-charly credential
+
+### 2026-09-29 15:32 — snap
+- Session shipped 4 PRs, all merged to main with green CI: #28 (gh-27 feedback multi-line stdin fix — genesis 0.8.1 already fixed it, regression test pinned), #29 (gh-26 `testaruda exec` subcommand: select→run→ingest→calibrate loop + uncalibrated-store advisory that fires BEFORE select because select process-exits with CI code 10/20), #32 (vax: saturating_add in all 4 Ascent distance/comparison sites + cycle-convergence test), #33 (jxd0: ~55 lines hand-rolled calendar math → time crate + Rfc3339, characterization tests verified green on both impls)
+- Filed beads mirrors for GH issues: p5zl (gh-27), n5b4 (gh-26), 50m4 (gh-25) — all closed after shipping; gh-24 closed as superseded. bd JSONL exports need `bd export -o` + `git add -f` (global ~/.gitignore `.beads/` fights repo negation) + separate JSONL-only commit
+- genesis-vibes bumped 0.8.1 → 0.8.2 (PR #31): audit found no code changes needed — testaruda uses none of the changed APIs, emits no Error-kind envelopes; genesis_version_is_v0_7 fixture modernized to v0_8 (pins FeedbackArgs::with_title)
+- **Next:** remaining ready backlog = qdw9 (P3, one-line docs fix in getting-started.md), rty (P3, mining survey bookkeeping — candidate to close), 5q1/cwu (P4s); ehse (P1) still blocked on user-provided homebrew-charly credential
