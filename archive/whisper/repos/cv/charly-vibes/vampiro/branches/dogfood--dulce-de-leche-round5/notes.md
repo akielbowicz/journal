@@ -1,0 +1,72 @@
+### 2026-09-30 12:53 — snap
+- Dogfood round 5: scanned the dulce-de-leche family (8 repos) + specodelic + bajan; pre-fix 515 findings ~100% FP on foreign code. Root causes filed under epic vampiro-224 (.3-.12), all with verified source evidence in docs/verification/dogfood-5.md
+- Landed R1 fix (vampiro-224.3, closed): extract_shape named types → Opaque; unify_shapes extended (nested-opaque/bottom/alias-arity/wrapper-leaf exclusions). 831 tests green, fixture TPs intact. Re-run: total 515→299 (−42%), composition 393→185 (−53%) on the original 8 repos
+- Ran Rule-of-5 review of the investigation: all claims independently verified; fixed doc wording (R1 impact, test counts), archived dogfood-5-corpus.json, filed vampiro-224.12 (union opaque-witness gap)
+- All work committed on branch dogfood/dulce-de-leche-round5 (also contains fix/r1-opaque-named-types merged). NOT pushed — awaiting user authorization per project push rule
+- **Next:** push branch + open PR (needs user go-ahead); then vampiro-224.9 (P1, return-position gating — biggest remaining FP class); next round must re-triage the 185 post-fix findings to measure FP rate vs <5% target
+- 2026-09-30T16:13:52Z [id:6ce2ff1dd8aa0a3f756e1e2f2ed7a5d4d874e9eea7e934330b55135321ad138f] (#session) ### 2026-09-30 (later) — drift re-eval + Ro5U review + s3e fix
+  - Re-evaluated tool vs value prop: Python frontend still has R1-class bug (named types -> Unit in type_hint_to_shape); no cross-frontend parity ticket exists. Epic vampiro-224 IS the correction plan; compiler-subsumption adopted as design rule.
+  - Ro5U review of the Rust correction plan (TypeSafe-verified): fixed corpus-mixing arithmetic (185->~60 projection wrong; per-corpus restated), scoped unit gate to same-language Rust, intermediate triage checkpoint added to epic.
+  - Landed vampiro-s3e (closed): unit-callee-codomain gate, raw-codomain key (?-unwrap unresolved-T still compares; try-operator TP fixture caught first attempt), cross-language edges exempt. Measured: composition 185->162 (-23), total 299->276. Residual nested-unit class (Result<()> callers + statement-position) = 224.9, next up.
+  - Updated dogfood-5.md (interim section) + corpus post-s3e. redundancy.expected.json updated (2 REQ-7 breaks were unit-callee FPs from hand-built graph).
+  - Commits b6dc701 + 7c9a2af on dogfood/dulce-de-leche-round5. Branch 9 commits ahead of origin, NOT pushed (awaiting authorization).
+  - **Next:** vampiro-224.9 (return-position gating, P1) — expect biggest remaining drop; then intermediate re-triage checkpoint.
+- 2026-09-30T16:28:33Z [id:40ad095c3901d82dc2c2490768baf896317ffae3f8981d98e84aa44617a68060] (#snap) ### 2026-09-30 13:28 — snap
+  - Landed vampiro-s3e (closed, commits b6dc701 + 7c9a2af): unit-callee-codomain gate on same-language Rust boundaries; measured composition 185→162 on original 8 repos; residual nested-unit class = 224.9
+  - Ro5U review applied to plan (per-corpus arithmetic, gate scoping, intermediate checkpoint noted on epic vampiro-224)
+  - Branch dogfood/dulce-de-leche-round5: 9 commits ahead of origin, NOT pushed (awaiting authorization)
+  - **Next:** /renew → claim vampiro-224.9 (return-position gating, P1); then intermediate re-triage checkpoint; decide on push
+- 2026-09-30T16:49:51Z [id:314fa0506e039fd7e3cad2168614613eff47ce8e92a48d30af4214e768b4ba9d] ### 2026-09-30 (later) — landed vampiro-224.9 (return-position gating)
+  - TDD: red tests at 3 layers (CIR serde, frontend tail-position visitor, analyzer gate), then green
+  - CirEdge.return_position: additive field, serde default true (legacy graphs keep firing), omitted when true on wire
+  - Rust frontend: tail-position visitor (tail exprs, return operands, ?-tails, tail if/match arms; args/receivers/conditions/guards/let-bound excluded)
+  - Analyzer gates codomain-vs-codomain on return_position; stress composition.rs fixture re-seeded as genuine tail-call break; composition_e2e now asserts the SlotMismatch TP
+  - Measured: composition 162 -> 21 (-87%) on original 8 repos (wai 61->0, pretender 10->0, ddl 12->0, vampiro 25->5); specodelic/bajan acceptance sites = 0; testaruda/dont drifted same-day
+  - Surprise: testaruda target/scratch/ vendored code yields 888 composition FPs -> filed vampiro-y45 (exclude target/artifact dirs at discovery)
+  - Commit 6ea1954 on dogfood/dulce-de-leche-round5 (now 10 commits ahead, NOT pushed — awaiting authorization)
+  - **Next:** intermediate re-triage checkpoint (triage the 21 residual findings vs <25% milestone); then decide push + PR
+- 2026-09-30T16:57:35Z [id:29517d4e9b5a05bcb95f43869c5d148da7c7d222cb5eedeecd6beecd21943c06] ### 2026-09-30 13:57 — snap
+  - Landed vampiro-224.9 (commit 6ea1954): return-boundary composition check now gated to return-position calls via new CirEdge.return_position flag + tail-position visitor in the Rust frontend; TDD red at 3 layers then green
+  - Measured: composition 162 -> 21 (-87%) on original 8 dogfood repos; specodelic/bajan acceptance sites = 0; workspace green (53 targets)
+  - Surprise: testaruda target/scratch/ vendored code -> 888 composition FPs; filed vampiro-y45 (exclude artifact dirs at discovery)
+  - Branch dogfood/dulce-de-leche-round5: 10 commits ahead of origin, NOT pushed (awaiting authorization)
+  - **Next:** /renew -> intermediate re-triage checkpoint (triage the ~21 residual findings vs <25% milestone); decide push + PR
+- 2026-09-30T17:04:38Z [id:22b5bf48791eb52402b03ccec92d9531078d588dd3b004188e568b6c3033b048] ### 2026-09-30 15:05 — checkpoint snap
+  - Intermediate epic-224 checkpoint done: fresh post-224.9 scans of all 8 repos, source dirs only; composition-break 162→9 (−94%)
+  - Triage: 5 seeded TPs (vampiro fixtures, expected.json-confirmed), 5 foreign FPs — dont as_ref(), espectacular clone()→ref(opaque), testaruda deref-coercion Vec→slice (NEW ticket vampiro-224.13), testaruda as_bytes()/tests/ (224.10)
+  - 224.5 + 224.7 have zero residual findings — deprioritized; remaining FP classes: 224.4/.6, 224.13, 224.10
+  - dogfood-5.md checkpoint section + corpus.json post-224.9-checkpoint block; commits 7cef309 + 186ccfb; branch now 12 ahead, NOT pushed
+  - **Next:** /renew → pick 224.10 (cheap filter) or 224.13 (deref coercion); decide push + PR (needs authorization)
+- 2026-09-30T17:09:39Z [id:170b5de948a855577cccf659c2fa07ef1d066aa9fcc6e26fcdbf3fb1c62a57d5] ### 2026-09-30 15:40 — snap
+  - Landed vampiro-224.10 (commit f3e3b25): tests/ dir files excluded at scan-scope level (GitContext scope resolution + CLI dir expansion); explicit --path <file> args not filtered
+  - Design note: scan-scope not frontend marking — stress_seeded_fixtures harness feeds absolute tests/fixtures paths through analyze_with_visibility, frontend marking would break it
+  - TDD red→green; workspace green; acceptance verified: specodelic --full = 0 tests/ findings, testaruda queries_test.rs FP gone (checkpoint composition 9→8)
+  - Branch 14 commits ahead of origin, NOT pushed
+  - **Next:** /renew → vampiro-224.13 (deref coercion) or 224.4/.6 (method modeling); decide push + PR
+- 2026-09-30T17:11:56Z [id:d7c633a125196f28e4fb03cb7e909423f38af551614e1e3810308177132d6206] ### 2026-09-30 16:10 — snap
+  - Landed vampiro-224.13 (commit ba2fc4b): Ref-Ref recursion in unify_shapes — &Vec<T>/&mut Vec<T>→&[T], &mut T→&T; deref-to-non-Ref deliberately excluded (not rustc arg-position behavior, control test pins it)
+  - TDD: e2e first draft did NOT reproduce FP (tail-position call) — real reproducer is statement-position call + tuple type (engine.rs pattern); red at unit+e2e layers, then green
+  - Verified: testaruda --full engine.rs REQ-7 gone; checkpoint composition 9→8 (remaining foreign FPs: dont as_ref, espectacular clone → 224.4/.6); workspace green (53 suites)
+  - Branch 16 commits ahead of origin, NOT pushed
+  - **Next:** /renew → 224.4/.6 method modeling (as_ref/clone) — last foreign FP class; decide push + PR
+- 2026-09-30T17:16:20Z [id:c773e7c83a642446d9c92453ee2fd487693a1529d6e20ee093a88c58da4a3883] ### 2026-09-30 16:50 — snap
+  - Landed vampiro-224.6 (commit 85fabc3): method-output shape table in extract_expr_shape; unknown methods -> None (opaque) instead of receiver guess
+  - The unknown-method rule alone cleared the espectacular clone() FP — no struct-field registry needed; latent field-access guess filed as 224.14 (P3)
+  - TDD red->green: 4 frontend expression-node shape tests + as_ref e2e; own test caught a missing Option wrapper in ok()
+  - MEASURED (checkpoint re-scan, post-224.10+13+6): composition-break 9->5, ALL remaining are vampiro seeded fixture TPs; foreign composition FPs = 0; REQ-11 noise trimmed (testaruda 5->3, vampiro 21->15)
+  - dogfood-5.md + corpus.json post-224.6 block updated; branch 19 commits ahead of origin, NOT pushed
+  - **Next:** /renew → decide push + PR (foreign composition FP goal reached); remaining foreign findings are REQ-11 (224.8 grouping class)
+- 2026-09-30T17:20:16Z [id:ec6a2a33b92d9162a7315af3ee7fa0014fd273cf738da561c45f6676bfdd1003] ### 2026-09-30 14:20 — snap
+  - Session landed three tickets on dogfood/dulce-de-leche-round5: 224.10 (tests/ dir excluded at scan scope, f3e3b25), 224.13 (Ref-Ref recursion in unify_shapes for deref coercion, ba2fc4b), 224.6 (method-output shape table; unknown methods -> opaque, 85fabc3); plus checkpoint docs (7cef309)
+  - Checkpoint measured post-224.6: composition-break 9->5, all 5 remaining are vampiro seeded fixture TPs; foreign composition FPs = 0 (round started at 393); REQ-11 noise trimmed (foreign 101->97)
+  - Field-access latent guess filed as 224.14 (P3); 224.5/224.7 deprioritized (zero residual findings)
+  - Branch is 19 commits ahead of origin, NOT pushed — awaiting authorization
+  - **Next:** /renew -> push + PR decision (needs go-ahead), then 224.8 redundancy grouping work if chasing the REQ-11 axis
+- 2026-09-30T17:40:54Z [id:941e7207b6962f61ffba018cf57c0641fcb83dc644be416a55dc088a0b8609c6] ### 2026-09-30 17:40 — push + PR
+  - Pushed dogfood/dulce-de-leche-round5 (20 commits) to origin; opened PR #22 (base main) — 'dogfood round 5: composition FP reduction 393→5 (epic vampiro-224)'
+  - PR covers 224.3/s3e/224.9/224.10/224.13/224.6 + docs; no workflow files touched (gh token scope safe); merge awaits review/authorization
+  - Next: merge PR #22 when approved; then 224.4 (P2, Ok/Some/Err rewrap) or 224.8 (P3, REQ-11 redundancy noise) on a fresh branch
+- 2026-09-30T18:24:59Z [id:910eb8f4f4e1967fadb86e37410700e2dbe57cc2975608acbbb84a5758c18417] ### 2026-09-30 18:24 — PR #22 merged
+  - Three CI repair commits after PR push: clippy cmp_owned (extract.rs map_err), retype vampiro-224.14 task->bug (check_planning approval gate), clippy cloned_ref_to_slice_refs + cargo fmt (224.10 tests)
+  - Lesson: run clippy/fmt at WORKSPACE level before pushing — crate-scoped checks missed vampiro-cli issues
+  - PR #22 merged into main (ac668e3); branch deleted; dogfood round-5 composition work is now on main

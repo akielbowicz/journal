@@ -1,0 +1,10 @@
+- 2026-09-30T18:50:47Z [id:1a437205686980d86440923f809ed4ee82b5f358137b65a06081fc90992bc35a] ### 2026-09-30 18:50 — landed vampiro-224.4
+  - fix/224.4-variant-rewrap (2 commits, d1294df + c7a1806): Ok/Some/Err rewrap in extract_expr_shape — last path segment match (qualified Result::Ok covered), inner shape wrapped in variant enum, tuple payload -> Record, uninferred slots Opaque
+  - TDD: 4 red tests (ok/some/err/qualified) then green; workspace gates green (clippy/fmt/tests at workspace level this time)
+  - Acceptance: the 3 original FP sites (dont skill_pack.rs:56, espectacular checks/shape.rs:101, fotos credentials.rs) = 0 findings; source-only scans of all 8 repos show NO regressions and redundancy improved (wai 37->33, testaruda 3->1, ddl 6->5); foreign composition FPs still 0; stress seeded fixtures sound+precise
+  - Note: repo scans of vampiro now show 0 composition-break (checkpoint's 5 TPs live in tests/ — excluded by 224.10 at scan scope); TPs fire via harness
+  - Corpus post-224.4 block + dogfood-5.md section; 224.4 closed+exported
+  - NOT pushed — awaiting authorization. Next: push fix/224.4-variant-rewrap + PR; then 224.8 (P3, REQ-11 redundancy grouping) is the last remaining FP-class ticket
+- 2026-09-30T18:55:29Z [id:16ae92090c511319fc6aaeed75debb681ce2e7e21ec320866dd46b5cb071960f] ### 2026-09-30 18:55 — PR #23 opened
+  - fix/224.4-variant-rewrap pushed (2 commits, 0 behind main, no workflow files); PR #23 base main — 'fix(224.4): Ok/Some/Err variant rewrap in expression shape inference'
+  - Next: check CI green then merge (workspace gates already verified locally)

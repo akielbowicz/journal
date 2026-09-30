@@ -1,0 +1,5 @@
+- 2026-09-30T19:07:12Z [id:d6c06fe3906b2988d8d5f6f168bb423657419a51b572149995c2af40fbf2194c] ### 2026-09-30 19:07 — landed vampiro-y45
+  - fix/y45-exclude-artifact-dirs (e91e058): target/, node_modules/, dist/, dot-dirs excluded at discovery (CLI collect_source_dir + GitContext tree walk + status collection); explicit --path roots unfiltered, mirroring 224.10 policy
+  - TDD: red at both layers then green; acceptance: testaruda full-repo scan 888 composition-breaks -> 2 (both in adapter-typescript/src, real code); zero findings under artifact dirs
+  - Workspace gates green; y45 closed+exported; dogfood-5.md post-y45 section
+  - NOT pushed — awaiting authorization. Next: push + PR; then 224.8 (P3, REQ-11 redundancy grouping) is the last remaining FP-class ticket

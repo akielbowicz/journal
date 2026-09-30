@@ -1,0 +1,6 @@
+- 2026-09-30T19:22:34Z [id:ab08c3ab25b4d3c0fa9506787a1a3ac6766bdfba4d12b3e044cd95e38b80d05f] ### 2026-09-30 19:22 — landed vampiro-224.8
+  - fix/224.8-redundancy-grouping (00bdb4e): redundancy tracer excludes edges whose source node's span ENCLOSES the edge span (frontend call edges source = enclosing function => independent call sites, not branches). Hand-built disjoint-span feeder graphs still group (legit REQ-11 shape per stress fixture docs: frontend can't naturally produce >=2-inbound consumers)
+  - Investigated via scratch CIR dump (deleted): the dont events.rs FP was two callers of is_leap grouped as branches (int vs 6-tuple codomains vs callee domain)
+  - TDD: enclosed_call_sites red + disjoint_span_feeders guard; measured redundancy-mismatch 0 on ALL 8 dogfood repos (was 74 post-224.4); seeded fixtures sound+precise; workspace gates green
+  - 224.8 closed+exported; dogfood-5.md post-224.8 section. NOT pushed — awaiting authorization
+  - REQ-11 FP axis now closed. Remaining: 224.11 (P2 python), 224.12/224.14 (P3), 224.5/.7 (deprioritized, zero findings)

@@ -1,3 +1,10 @@
+### TypeSafe API key via chezmoi
+To add a new API key managed by chezmoi without committing it to the dotfiles repo:
+1. Add `[data.<scope>] <key> = "<value>"` to `~/.config/chezmoi/chezmoi.toml` (private config)
+2. In the dotfiles source dir (`~/para/areas/dev/gh/ak/dotfiles/`), rename the shell config to `.tmpl`
+3. Use `{{ .<scope>.<key> }}` template syntax in the file
+4. Run `chezmoi apply`
+
 ## CI Release Pipeline Gotchas (charly-vibes suite)
 
 ### `--locked` breaks with newer CI Rust
@@ -159,3 +166,26 @@ Before pushing to a repo, check for an active concurrent session (shifting branc
 - Editing library config by hand while stopped doesn't reliably trigger a rescan; recreating the library via the web UI (Dashboard → Libraries) is the robust fix.
 - Inspect state without auth: sqlite3 read-only on `~/jellyfin/config/data/jellyfin.db`, table `BaseItems` (Name/Type/Path).
 - Docker CE is a layered rpm on this machine; podman 5.x is native — prefer podman/quadlets for services on Bluefin.
+
+### 2026-09-30 — OpenRouter `z-ai/glm-5.3-flash` mode collapse
+
+`z-ai/glm-5.3-flash` is routed through **33+ providers** on OpenRouter with different quantization levels (fp4→fp8). During peak US hours (8AM-9AM ET = 9AM-10AM ART) Z.AI's native API congests and OpenRouter falls back to cheap **fp4 (4-bit)** providers. At fp4, the model's attention mechanism collapses under complex tool-use + high thinking load, producing streams of random words (mode collapse).
+
+**Symptoms:** Assistant message starts with plausible technical jargon, then free-associates into random words (hospital beds, diseases, etc.), model self-identifies drift ("Wait — I notice I'm drifting again") but can't stop. OpenRouter eventually aborts with "Operation aborted."
+
+**Diagnosis:**
+```
+curl -s https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints | python3 -c "
+import json,sys
+for ep in json.load(sys.stdin)['data']['endpoints']:
+    n=ep['provider_name']; q=ep.get('quantization','?')
+    u1=ep['uptime_last_1d']
+    if n == 'Z.AI' or 'fp4' in q:
+        print(f'{n:20} {q:6}  1d={u1:.1f}%')
+"
+```
+If Z.AI uptime < 99% or fp4 providers degraded, switch model.
+
+**Safe hours (ART):** 10AM (0.25% failure), 12PM (0.26%), 7PM (0.38%)
+**Risky hours:** 9AM (peaked at 13% on Sep 30), 2PM (1.78% baseline)
+**Alternative:** `deepseek/deepseek-v4-flash` routes through providers with fp8 minimum quality floor.

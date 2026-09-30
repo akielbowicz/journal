@@ -189,3 +189,46 @@
 - #3 trycmd 0.15→1.2, #2 clap, #5 clap_complete, #4 toml (lock-only bump, spec 1.1.3 already permits 1.1.6) — all green, API-merged.
 - #6 git2 0.21: CI red — git2 0.21 changed `StatusEntry::path()` from `Option<&str>` to `Result<&str, Error>` (non-UTF-8 → Err). Fixed in PR #14 (2 call sites in crates/vampiro-cli/src/scan/mod.rs:350/:404, `if let Ok(path)`), 822 tests green, vendored-libgit2+openssl features unchanged. Dependabot can't fix source breaks — supersede its PR.
 - bd dolt push fails in vampiro ("this operation must be run in a work tree" from bd's internal git invocation) — unresolved; issues.jsonl export still syncs via plain git push.
+- 2026-09-30T19:01:39Z [id:c47974ec0ae06b0f2f785ce7b79a0d621875ca9263441e1634fb248986086528] ### 2026-09-30 19:01 — PR #23 merged
+  - CI green first try (workspace-level gates pre-push paid off); PR #23 merged into main (3175f1d); branch deleted, main updated locally
+  - vampiro-224.4 fully landed. Remaining FP-class ticket: vampiro-224.8 (P3, REQ-11 redundancy branch-shape grouping); others: y45 (P2, target/ exclusion), 224.11 (P2 python), 224.12/224.14 (P3)
+- 2026-09-30T19:14:29Z [id:02cd232fd603cf9ff7df0a275b135ced74eb6d86d1cd5553ecfa2adea6c4ae20] ### 2026-09-30 19:14 — PR #24 merged
+  - CI green first try; PR #24 merged into main (be9db18); branch deleted, main updated locally
+  - y45 fully landed. Remaining: 224.8 (P3, REQ-11 redundancy grouping — last FP-class ticket), 224.11 (P2 python), 224.12/224.14 (P3), 224.5/.7 (deprioritized)
+- 2026-09-30T19:30:21Z [id:a9b9dad10f1cac0aa2860f9c777b0cb3af3f298917274d1417ae37a55acb1fee] ### 2026-09-30 19:30 — PR #25 merged, session close
+  - CI green first try; PR #25 merged into main (a9d1b0a); branch deleted, main updated locally
+  - Session total: 4 PRs merged (#22 dogfood-5 epic, #23 224.4 rewrap, #24 y45 artifact dirs, #25 224.8 redundancy). All foreign FP axes closed: composition 0, redundancy 0 on all 8 repos
+  - Remaining tickets: 224.11 (P2 python annotations), 224.12/224.14 (P3), 224.5/.7 (deprioritized); epic 224 composition axis target long met — consider epic-level triage next session
+- 2026-09-30T19:31:57Z [id:51e002e79035a3f4b2a057c827d98f37b9aae8e9970f8a155bf493f78a9fcc53] ### 2026-09-30 16:31 — snap
+  - Session closed 4 merged PRs on main: #22 (dogfood-5 epic: 224.3/s3e/224.9/.10/.13/.6, composition 393->0 foreign FPs), #23 (224.4 Ok/Some/Err rewrap), #24 (y45 target/node_modules/dist/dot-dir exclusion at discovery), #25 (224.8 enclosed call sites are not redundancy branches)
+  - All foreign FP axes at ZERO on all 8 dulce-de-leche repos (composition + redundancy); seeded-fixture harness sound+precise throughout; workspace gates green per PR
+  - Working pattern established: workspace-level clippy/fmt/tests before every push (CI green first-try x3); turu snaps per ticket; TDD red->green each ticket
+  - **Next:** /renew -> epic-level triage of vampiro-224 (composition target long met, decide close); remaining tickets 224.11 (P2 python annotations), 224.12/224.14 (P3), 224.5/.7 (deprioritized, zero residual findings)
+- 2026-09-30T19:36:38Z [id:edee8e955831db862528026f7a95e9bb325f74545d9c415b5c9205aaf6fd16df] ### 2026-10-01 — epic-level triage of vampiro-224: CLOSED
+  - Target met and exceeded: 0 foreign composition FPs + 0 redundancy FPs on all 8 dulce-de-leche repos (epic target was <25% from 100%); evidence in docs/verification/dogfood-5.md
+  - Children disposition: 224.5 + 224.7 deferred (zero residual findings on foreign repos); 224.11 (Python subscripted annotations), 224.12, 224.14 remain open as standalone P2/P3 bug tickets
+  - bd state: 186 total, 3 open, 0 in_progress; next highest-priority ready ticket is vampiro-224.11 (P2, Python annotations degrade to Unit)
+- 2026-09-30T19:50:39Z [id:29ba783b48c5c37c221964e0879d1bcef9e7489cca81a892edb70be29f39a516] ### 2026-10-01 — PR #26 merged, vampiro-224.11 closed
+  - Python frontend annotation extraction rewritten: generic_type (list/set/frozenset→Vec, dict→HashMap, tuple→Record, Optional→Option, typing.Union→Union) + PEP 604 binary_operator unions (X|None→Option[X], else Union). Bare containers/Any/bytes/custom classes → Opaque (224.3 rule).
+  - vampiro-224.9 mirrored to Python: return_position only for return-statement operands (Python has no tail-expression return); slot edges never return-boundary. Key gotcha: tree-sitter-python parses list[str] as type→generic_type→[identifier, type_parameter], NOT subscript — the old code's identifier/subscript arms were dead for subscripts.
+  - TDD: 14 table-driven inference tests + 5 return-position gating tests (mirror of Rust return_position.rs), all red first. Workspace 54 binaries green, clippy/fmt clean, CI green first try.
+  - Acceptance evidence: specodelic check_section_sync.py 10→0 findings; 8-repo dogfood 0 composition + 0 redundancy (1 pre-existing espectacular robustness finding verified on main).
+  - bd: 2 open (224.12, 224.14 — both P3), 2 deferred (224.5, 224.7), epic 224 closed.
+  - **Next:** 224.12 (P3 unify: opaque-only unhandled union arms should not witness Mismatch) or 224.14 (P3 field-access shape inference needs struct field types). Both small; consider batch triage/closure of remaining P3s.
+- 2026-09-30T19:57:45Z [id:fe4fa5443a84909ecd059fb5db2c2ceb8a949657e2c58fc254602ca68a83d87a] ### 2026-10-01 — PR #27 merged, vampiro-224.12 closed
+  - Unify produced-union path: unhandled arms involving unknown (involves_unknown) are filtered; empty filtered set → OpaqueExcluded. Concrete unhandled arms still witness Mismatch. Fixes differs_only_by_unknown's missing Union arm (Rule-of-5 edge case of 224.3).
+  - TDD red→green: union_opaque_arm_not_witness + concrete-witness-amid-unknown; re-pinned unify_union_subset_unhandled (was pinning the buggy behavior) and the analyzer side-by-side-evidence test (finding still fires on the concrete Unit arm).
+  - Dogfood sweep unchanged (0 composition + 0 redundancy); workspace 54 binaries + clippy + fmt green; CI green first try.
+  - bd: 1 open (vampiro-224.14, P3 — field-access shape inference needs struct field types), 2 deferred (224.5, 224.7).
+  - **Next:** vampiro-224.14 (last open P3). Larger than the others: needs a struct-field type registry in the Rust frontend. Alternatively close out the session here.
+- 2026-09-30T19:58:28Z [id:cb6fb0433409d99d733cb41503c8a634eafb87fb5e71a26e5f794b1fc29affd5] ### 2026-09-30 16:58 — snap (quick stash)
+  - Session: epic 224 triaged+closed (target met: 0 foreign FPs; 224.5/.7 deferred), then two PR cycles — #26 (224.11: Python subscripted annotations + PEP 604 unions + 224.9 return-position mirrored to Python; check_section_sync.py 10→0) and #27 (224.12: unknown-only unhandled union arms filtered → OpaqueExcluded). All merged, CI green, bd synced (main @ 2410d70).
+  - bd: 1 open (224.14, P3 field-access shape inference — needs struct-field registry, larger feature), 2 deferred (224.5, 224.7).
+  - **Next:** fresh-session ticket vampiro-224.14 (struct-field type registry in the Rust frontend). Snaps recorded; /renew or turu recall branch resumes.
+- 2026-09-30T20:17:53Z [id:664e2a2e6502ed4edb6ee99370ebfbc78be8f9c8517fc8bc8744405ac8ec3841] ### 2026-09-30 — PR #28 merged, vampiro-224.14 closed (backlog now empty)
+  - Struct-field registry in the Rust frontend: pre-pass over Item::Struct (incl. inline mods) records field name → shape + type name; Expr::Field resolves base type via param/annotated-local type maps, chained a.b.c hop by hop; unknown base/field + tuple-index → opaque (224.3 rule).
+  - Bonus: annotated let bindings (let x: &Ctx = …) were NEVER tracked — syn parses them as Pat::Type, the Pat::Ident-only arm dropped them. Now unwrapped.
+  - TDD gotchas: (1) single-param callees have bare-scalar domains → domain_slot(0) is None → slot checks never fire; shape E2E tests need 2-param callees (Record domain). (2) callees must be declared BEFORE callers — resolve_node fails on not-yet-registered names, silently making tests vacuous.
+  - Evidence: 6 E2E tests (5 red first), workspace 54 binaries + clippy -D + fmt green, CI green first try, dogfood 0 composition + 0 redundancy on all 8 repos (dogfood-5.md updated).
+  - bd: 0 open, 2 deferred (224.5, 224.7 — zero residual findings). main @ db4328f pushed.
+  - **Next:** backlog is empty. Options: un-defer 224.5/224.7 (P2s, need test cases), or close out the session.

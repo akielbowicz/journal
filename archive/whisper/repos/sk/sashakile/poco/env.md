@@ -20,3 +20,6 @@ Architectural maps live in `docs/cartography/` (17 files: macro + 13 meso + 2 mi
 - Row-id prefixes are per-capability (`cd.*` dataframe, `cp.*` pipeline, `cr.*` reducer-core, `red.*` provenance/integrity reducers, `fe.*` fix-errors…); keep unique across the corpus
 - On archive: reducer + errors capabilities receive layers from multiple deltas — re-author the four-layer tables, don't copy (EDGE-001 from ro5 review)
 - 8 commits (2026-09-29) migrated all 25 deltas; local-only, push pending user authorization
+- Dual-format mirror policy (learned by experiment + spk lint probes): `## Requirements` mirror is compared against the ADDED section body ONLY (MODIFIED-only files fall back to mirroring MODIFIED). Canonical file layout: delta sections → ONE mirror identical to ADDED body → bare trailing `## Requirements` header at EOF. Regenerate mirrors mechanically (python splice), never hand-edit both sections
+- Naming convention: "poxo (poco)" — poxo = project/dist name, poco = importable library (`from poco import po`, tests/test_import.py). Spec prose about the library/API says `poco` (normalized 2026-09-29, 087496d)
+- bd here needs `issue-prefix` uncommented in `.beads/config.yaml` + `bd init --reinit-local --prefix poco` before `bd create` works (read cmds like `bd list` succeed regardless — misleading)
