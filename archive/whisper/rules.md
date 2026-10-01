@@ -192,3 +192,16 @@ If Z.AI uptime < 99% or fp4 providers degraded, switch model.
 
 ## borradores justfile (note-taking)
 **`just note-stdin <cat> <title>` can fail with `categoria: unbound variable` when invoked from agent shells (set -u + just interpolation quirk). Fallback that always works: write the `.org` file with `#+TITLE:`/`#+DATE:` frontmatter directly into the category dir (`exploraciones/`, `machetes/`, etc.), then `just --justfile ~/para/areas/dev/gh/ak/borradores/justfile sync "<commit msg>"`. Filename = kebab-case title + `.org`.
+- 2026-10-01T19:22:06Z [id:d9340e82e872fbd413b7400207d490b16a53f1ea67a9ebfaf7c23e2127c9f929] ## Universal rules (charly ecosystem, 2026-10-01)
+  - lefthook exclude/glob NEVER applies to non-templated commands (e.g. 'git diff --check --cached' without {staged_files}) — any glob syntax (pipe OR array) is silently ignored. Use git pathspec magic instead: 'git diff --check --cached -- . ":(exclude).beads/hooks/*"'. Verified empirically in vampiro; root cause of a multi-hour shim-whitespace treadmill.
+  - trycmd snapshot files (tests/cmd/*.stdout) contain clap-generated trailing spaces on indentation-only lines — hygiene gates must exclude them (git pathspec), never sed-strip them; stripping corrupts exact-match and deadlocks the two gates.
+  - Checker tools with advisory defaults (pretender tiered, vampiro guidance) ALWAYS exit 0 — wiring them without explicit --mode gate is noise, not a gate. As of v0.7.0/v0.6.0 the default flipped to gate; advisory modes require a dated advisory_until lease; expired lease fails closed (quality-drift detector). §9 conformance enforces explicit --mode in all fleet hooks.
+  - Trip-wire probes against hook gates MUST target the checker's actual domain (fmt for rust gates, content/ frontmatter for incitaciones check-links, spec frontmatter kinds for spk lint) — out-of-domain probes 'pass' vacuously and a probe commit can LAND, polluting history. Revert immediately if rc=0 and HEAD moved.
+  - cargo install --path <repo> after ANY local version bump before expecting hooks/CI to accept new flags — stale ~/.cargo/bin binaries (0.3.1 vs 0.6.0) fail with 'unknown flag' and look like tool bugs.
+  - When cleaning 'generated junk' from a repo, verify nothing in the deleted tree is an include_str!/build input (e.g. pretender/languages/*/metrics.scm) — CI will fail at the tag and the release needs a tag-retarget (tag -d, push :refs/tags/vX, re-tag, re-push).
+
+## TypeSafe systemone API request shape (jev)
+- Minimal accepted body: `{"model":"jev-latest","state":{...},"questions":{...}}` — verified live.
+- A top-level `findings` key (sibling of state/questions) returns `api_usage_error: Invalid request`. Fold findings into `state` (e.g. `state.findings` or `state.code_evidence`) and reference them inside each question's instructions text instead of `instructions.finding` backtick-refs.
+- First probe with a trivial 1-question request before batching N verification questions — shape errors fail the whole batch.
+- Confidence gate 0.8 (skill constant): a `verified` below gate stays REVIEW_REQUIRED → escalate to human, don't drop it.
