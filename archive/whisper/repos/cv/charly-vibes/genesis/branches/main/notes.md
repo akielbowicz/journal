@@ -118,3 +118,29 @@
   - Gotcha: first git commit attempt was silently swallowed by a lefthook pre-commit failure (tail -1 hid the error) — files stayed staged, push said up-to-date; rerun commit with full output to diagnose
   - Note for next feature release: title field addition is struct-literal-breaking for downstream → real minor bump (0.9.0) at next feature; 0.8.1 defensible because ::new callers are unaffected
   - **Next:** genesis-dvf (P2), genesis-ntg (P0), git_hooks migrations q4k/glc/orq (P3)
+
+### 2026-09-30 19:48 — snap
+- genesis-2ex phases 1-2 shipped: `genesis::update_check` feature-gated module (cached-passive, fail-silent, CI-aware), 18 hermetic tests, openspec change add-update-check + deployed spec + `.espectacular` contracts; commits 3455f1c, 62a9232 (fixed CI red on main — doc paths to docs/src/), abbea01 (tool-name agnosticism scrub). CI + Docs green on main.
+- Tool-agnosticism enforced: genesis-side artifacts use neutral `mytool`; key fact — wai's crate is `wai-cli` (crates.io `wai` is unrelated), dependents must pass CARGO_PKG_NAME.
+- Rule-of-5 review of the changes: READY, 0 CRITICAL/HIGH; hardening ticket filed (selection via first-element, crate_name validation, hermetic env test, clock skew, 2s/5s timeout, request-path contract test, debug signal for silent 404s).
+- genesis-2ex still open: phase 3 = downstream wiring (wai/pretender/testaruda, one ticket per repo) + doctor/version pull-check reuse.
+- **Next:** fix CI (verify — CI currently green on main; check for other red workflows) and release a new genesis version (v0.9.0): `just ci` → bump Cargo.toml + versions.ddl.toml → tag → `just publish` → `just notify-downstream`.
+- 2026-09-30T23:02:35Z [id:05d9eaa176212ba46d0b29889f5c4d4804a71a14ae4e6299fa0fd32dcb07be53] ### 2026-09-30 23:59 — snap (genesis-4mq + v0.9.0)
+  - genesis-4mq done via red→green: 7 RED tests (equal-timestamp selection, crate-name validation incl. traversal, backoff preserves known-good latest, future checked_at stale, 5s total budget via 3s-response server, request-path lock, debug stderr via subprocess --exact --nocapture pattern) then GREEN in src/update_check.rs: first-stable-entry selection (find, clippy-rejected filter().next()), is_valid_crate_name guard in cache_path+check_with, backoff_entry() preserving prior latest/published_at, TOTAL_TIMEOUT 2s→5s (consts now pub), GENESIS_UPDATE_CHECK_DEBUG debug_emit() with HTTP-status vs transport split (404 no longer mislabeled transport error)
+  - Subprocess stderr test pattern that works: Command::new(current_exe()).args(["--exact", child_name, "--nocapture"]).stderr(piped); child doubles as a regular fail-silent test
+  - Contract a-binary-wires-its-own-crate-name.toml now maps request_path_is_the_crate_endpoint; spec unchanged (no timeout/debug requirements pinned)
+  - Released v0.9.0: just ci green, Cargo.toml 0.9.0 + README/docs pins same-commit (doc_sync guard), CHANGELOG stamped [0.9.0] — 2026-09-30, tag pushed, crates.io max_stable 0.9.0, just notify-downstream 0.9.0 → all 7 downstream repos
+  - genesis-4mq closed + export committed; tree clean, main pushed
+  - **Next:** genesis-2ex phase 3 (downstream update-check wiring, one ticket per repo), genesis-dvf (P2), genesis-ntg (P0 epic), downstream git_hooks migrations q4k/glc/orq (P3)
+
+### 2026-10-01 12:36 — snap
+- Mined ../tv corpus (3.5M words, direct transcript passes) → genesis feature investigation; ran Rule-of-5 reviews on the investigation and the specs; created openspec change `add-artifact-provenance` (proposal/design/tasks/5 spec deltas, `--strict` valid) covering provenance footers, ManagedBlockDrift lint, receipt terminal-outcome eval check, aix-gap feedback kind. Filed 8 beads tickets (genesis-fg3, 3xf, aii, 1mm, d6x, ihq, a3k, fkt) with deps, metadata.files + base_commit anchors, meters/anti-goals; ran issue-review → READY_TO_WORK.
+- Key decision: footer hash (no timestamp) to keep generator determinism; mutating scoping stays caller-side (no AgentStep change); claims decomposition + contract-test utility + revocation explicitly deferred as future changes.
+- Working tree has untracked openspec/changes/add-artifact-provenance/ + .beads updates — not committed/pushed yet.
+- **Next:** pick up `genesis-fg3` (managed-block provenance footer, TDD red first); then {3xf, aii, d6x} in parallel; before closing, run session-close flow (git pull --rebase && git push) — work not yet pushed.
+- 2026-10-01T16:52:25Z [id:404194805b8af8fb3044f8206e4aa79ba74f9ef9882238242e80f3e089451890] ### 2026-10-01 13:52 — snap (genesis-39r fix + v0.10.1 release + wai wiring done)
+  - genesis-39r red→green: cache_path honored XDG_CACHE_HOME as HOME-like dir (appended .cache); now XDG is the cache root per spec + scratch.rs precedent; released v0.10.1 (tag pushed, crates.io max_stable confirmed, notify-downstream hit all 7)
+  - wai update-check wiring DONE: wai-r3p0 closed — main.rs maybe_notify_update() after commands::run Ok, notice on stderr via env!(CARGO_PKG_NAME)/CARGO_PKG_VERSION, feature update-check enabled; hermetic tests/update_notice_test.rs seeds wai-cli.json at XDG_CACHE_HOME/genesis/update-check/; full suite 1198 passed
+  - Parallel session collision in wai: another agent closed wai-uz6i (crate name is wai-cli NOT 'wai' — genesis-4mq EXCL-002 live), refined tests, committed first (28ad3d3); reconciled cleanly on top
+  - Tidy: all 30 wai test helper files set GENESIS_NO_UPDATE_CHECK=1 so suite is immune to real ~/.cache state (was breaking why_no_llm integration test)
+  - genesis-2ex phase-3 recipe recorded as ticket comment; **Next:** pretender + testaruda wiring (fresh sessions; create ticket per repo, then same recipe), genesis-dvf (P2), genesis-ntg (P0 epic), git_hooks migrations q4k/glc/orq (P3)

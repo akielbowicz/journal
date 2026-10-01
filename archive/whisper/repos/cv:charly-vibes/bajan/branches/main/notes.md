@@ -55,3 +55,10 @@
 - Session started with /next immediately — no new work this session; state moved on since last snap.
 - Repo advanced since 12:09 snap: main now synced with origin (no longer 2 ahead); new commits landed: bajan-6j1 entity-review HITL queue (57b4186, deterministic ER proposals + human resolution), beads export closing bajan-7q8 + bajan-cdi (dd1a389).
 - **Next:** run `bd ready` to see the post-cdi board and claim next item (bajan-4hv still pending proposal approval if TypeSafe Jev work resumes).
+
+### 2026-09-30 18:13 — snap (quick stash)
+- Real-doc smoke of ~/Downloads/fpa through the deterministic (no-LLM) path: EPUB clean end-to-end (Profit First → 50 episodes → 4815 atomic claims → query/adopt/ER); PDF path surfaced 3 real bugs, all filed with metadata.files + base_commit: bajan-98x (P1 pdf2bajan silent-empty on Type0 CID fonts — Mike Piper PDF exits 0 with empty stream), bajan-6jp (P2 \x01 control bytes survive collapse()), bajan-9pm (P2 ER pair walk O(n²) unusable at book scale). Also regenerated stale converters/Cargo.lock (build --locked was failing)
+- issue-review (Rule of 5) over the 5-issue board: fixed mechanical debt (files-as-string metadata → JSON arrays, base_commit anchors, co-mod notes for shared converters/src/lib.rs); verdict READY_TO_WORK
+- Review fixes applied: bajan-98x acceptance tightened (Err-exit-1 is THE bar, quantified ACCEPTANCE/ANTI-GOALS/METER); bajan-sbs created as HUMAN-ONLY approval gate and wired bajan-sbs --blocks bajan-4hv so the user-gated ticket no longer shows in bd ready
+- All remediation pushed (main in sync); gates green throughout; 9pm still carries SCOPE-001 note: items 1-2 (O(n) normalize precompute + candidate pre-filter) are behavior-preserving, item 3 (budget counts candidate pairs) is a spec-semantics change needing a separate openspec revision ticket
+- **Next:** claim bajan-6jp (control-byte strip in collapse(), land BEFORE 98x per co-mod note) → bajan-98x (whole-book-empty → Err) → bajan-9pm (ER perf items 1-2 only); bajan-4hv waits on user approving the openspec proposal via closing bajan-sbs; /renew picks up from turu recall

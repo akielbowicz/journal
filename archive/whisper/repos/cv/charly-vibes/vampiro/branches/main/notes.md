@@ -232,3 +232,16 @@
   - Evidence: 6 E2E tests (5 red first), workspace 54 binaries + clippy -D + fmt green, CI green first try, dogfood 0 composition + 0 redundancy on all 8 repos (dogfood-5.md updated).
   - bd: 0 open, 2 deferred (224.5, 224.7 — zero residual findings). main @ db4328f pushed.
   - **Next:** backlog is empty. Options: un-defer 224.5/224.7 (P2s, need test cases), or close out the session.
+- 2026-09-30T20:38:37Z [id:cdf610d40f051421ecb19a5c197a3f94e50e9a37b5ae3a7a421f7cc04986fc8b] ### 2026-09-30 — deferred P2s completed (PRs #29, #30); epic 224 fully emptied
+  - 224.5: unify_shapes compares only the success param when both sides are Result (? auto-converts via From). Result<T> alias vs Result<T,E> now Matches — re-pinned unify_result_arity_alias_excluded (supersedes OpaqueExcluded approximation).
+  - 224.7: root cause was pre-224.9 return-boundary check on ALL call edges (days_in_month→is_leap mid-body fired bool vs u64); already gated. Completed as regression pins: tests/condition_slots.rs (if/match-scrutinee/while). Lesson: verify the FP still reproduces before implementing a ticket's prescribed mechanism — it described a data-path that no longer exists.
+  - TDD reminder: deferred tickets are not claimable via --claim; use `bd update <id> --status in_progress --assignee …`.
+  - Evidence: both PRs CI green first try, dogfood re-verified 0/0 on all 8 repos (dogfood-5.md updated), workspace gates green.
+  - bd: 186 issues, ZERO open/in-progress/deferred. Epic 224 closed with all children closed. main @ fb3b6c8 pushed.
+  - **Next:** session can close — backlog empty. Future axes: data-flow edges for other frontends' deeper inference, or fresh epic (modularity/optionality/trust-boundary depth).
+- 2026-09-30T21:25:00Z [id:378e624e19bf0923689198dcd422a80d4846aa22cb795250aebc12cbdb67f891] ### 2026-09-30 21:20 — v0.5.0 RELEASED (PRs #31 release prep, #32 publish hotfix)
+  - Release prep merged (#31): version 0.4.0→0.5.0 across workspace + 10 crates, AIX artifacts + trycmd snapshot regenerated, CHANGELOG 0.5.0 entry, README + docs/src/index.md status refreshed (were stale at v0.3.1/v0.2.0!).
+  - First publish run FAILED: PR #28 introduced a versioned dev-dep (rust-frontend→seam-analysis ^0.5.0) while seam-analysis dev-depended on rust-frontend ^0.5.0 — circular dev-dep deadlock; cargo publish resolves versioned dev-deps against the registry. Fix (#32): strip version from both dev-deps (path-only; dev-deps are stripped from published packages) + seam-analysis before rust-frontend in release.yml. cir/law/harness 0.5.0 already published in run 1, skipped idempotently in run 2.
+  - Tag force-moved 3dc05d5→5fb66fa to re-trigger with the fixed workflow. LESSON: tags trigger workflows from the TAG's commit — fix-then-force-move the tag, don't rerun the old ref.
+  - Verified: all 10 crates 0.5.0 on crates.io, GH Release with 5 platform binaries + checksums, Homebrew tap "Update vampiro to 0.5.0".
+  - main @ 5fb66fa. Next: nothing pending — backlog empty, release done.

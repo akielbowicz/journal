@@ -189,3 +189,6 @@ If Z.AI uptime < 99% or fp4 providers degraded, switch model.
 **Safe hours (ART):** 10AM (0.25% failure), 12PM (0.26%), 7PM (0.38%)
 **Risky hours:** 9AM (peaked at 13% on Sep 30), 2PM (1.78% baseline)
 **Alternative:** `deepseek/deepseek-v4-flash` routes through providers with fp8 minimum quality floor.
+
+## borradores justfile (note-taking)
+**`just note-stdin <cat> <title>` can fail with `categoria: unbound variable` when invoked from agent shells (set -u + just interpolation quirk). Fallback that always works: write the `.org` file with `#+TITLE:`/`#+DATE:` frontmatter directly into the category dir (`exploraciones/`, `machetes/`, etc.), then `just --justfile ~/para/areas/dev/gh/ak/borradores/justfile sync "<commit msg>"`. Filename = kebab-case title + `.org`.

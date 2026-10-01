@@ -67,3 +67,46 @@
 - DDL-3i4: `ToolCategory` + `Maturity` on all 11 MANAGED_TOOLS, locked to census draft by drift test; rendered in status `[core/stable]` + version JSON; README block regenerated as category groups
 - CI incident: init test's second cmd2 lacked the incitaciones PATH stub → real `npx --yes` network install → CMD_TIMEOUT kill (PR #32's incomplete fix); fixed test-only (7c83d2a)
 - **Next:** DDL-91a (`ddl catalog` command + generated docs/capability-matrix.md) — now unblocked, 3i4 landed first; extensions: drift test in tests/tool_registry_drift.rs. Remaining beads: DDL-gap, DDL-isi, DDL-x0m, DDL-hsn, DDL-2um (needs TAP_GITHUB_TOKEN from user)
+### 2026-09-30 18:31 — snap
+- Ecosystem standardization: ratified docs/standardization.md v0.3 in ddl (CI, docs structure, microdancing charly theme, dogfood matrix with pinned installs, why/status blocks); specodelic got the standard 5-target release.yml (DDL-cle closed); conformance drift test tests/standard_conformance.rs shipped — ddl green, siblings red; ecosystem dev guide at docs/src/ecosystem.md; turu/whisper reclassified in-org (10 in-org repos, external = bd + openspec only)
+- Key decisions: vendored theme/charly.css (no theme crate); default-theme = "coal" (mdBook can't register custom names); versions.ddl.toml pins for all CI ecosystem installs; ddl dogfoods first
+- **Next:** rollout steps 2–6 under bd epic DDL-u8x — turn sibling repos green on the conformance test (worst first: whisper — needs docs.yml, book, llms.txt, pins, README block; then dont CI rename, vampiro pages→docs, incitaciones ci.yml, then theme/book.toml + pins + README blocks across the rest; finally per-tool stable/beta/experimental status assignment)
+
+### 2026-09-30 22:1x — snap (standardization rollout marathon)
+- Ratified docs/standardization.md v0.3 (DDL-u8x ✓), verified/dogfooded microdancing theme (DDL-sii ✓), migrated CI in dont/vampiro/incitaciones to §1 (DDL-kh5 ✓), added canonical release-naming assertion (DDL-d6z ✓), whisper full rollout: mdBook+theme+docs.yml+llms.txt+llm.txt+pins+README block (DDL-qms ✓)
+- DDL-1a0 partial: versions.ddl.toml landed in all 10 repos (s4 green) — remaining: ci.yml install wiring, bd pinned-install mechanism decision (brew vs release download), run-integration
+- DDL-jnt bulk: theme/charly.css + coal wired everywhere, README §5 why/status blocks + status.md backfilled ×8 (statuses provisional: beta fleet, experimental specodelic/incitaciones), specodelic+incit books created, wai/espectacular root-book docs.yml fixed → conformance drift test 11/11 GREEN fleet-wide
+- All 9 tool repos pushed to origin; ddl beads state exported; meta-repo pointer bumps local-only (no remote)
+- **Next:** DDL-57e (confirm statuses + capability matrix) or DDL-1a0 install pass; jnt residual = docs/src restructure for testaruda/dont/pretender, artifacts → docs/research/, llm.txt gaps
+
+### 2026-10-01 — DDL-y49 closed (live-URL smoke guardrail)
+- TDD: red mechanism validated against a nonexistent Pages repo (temp probe observed failing, then removed); characterization green-start per ticket
+- s2_book_repos_deploy_pages: docs.yml must use actions/deploy-pages — content-based detection, not hardcoded list; ticket's incitaciones/genesis carve-outs were STALE (both deploy books, both live 200) — included, stricter than ticket
+- s2_live_book_sites_return_200: GET charly-vibes.github.io/<repo>/ for every detected repo, retry x2 10s timeout, DDL_SKIP_LIVE_SMOKE=1 opt-out; gotcha: reqwest blocking available to tests via main deps; clippy collapsible-if fix
+- Coverage boundary: conformance suite runs in ddl CI (ddl URL only — GH Actions parent dir makes ../dulce-de-leche resolve to the checkout itself); full 11-repo smoke only in hub checkouts; per-repo CI doesn't run the suite — accepted residual, documented in module header
+- PRE-EXISTING fmt drift at genesis_pin (local rustfmt vs committed style) — cargo fmt fixed whole file in this commit
+- Commit e7b8c27 + beads export 8ebbaa4; pushed+synced
+- **Next:** DDL-j0u (§6 fleet rollout, s6 test red on ~9 repos expected) or DDL-561; DDL-2um still blocked on TAP_GITHUB_TOKEN
+
+### 2026-10-01 — DDL-j0u closed (§6 fleet rollout: versioned docs + generated release pages)
+- s6_docs_deploy_on_tags_with_version_injection: RED on all non-ddl repos → green fleet-wide (18/18 conformance). Scope: pages-deploying ∩ has-Cargo.toml; carve-outs incitaciones (npm) + genesis (lib-crate) per ticket
+- 8 repos patched (wai/dont/testaruda/espectacular/pretender/vampiro/specodelic/whisper): v* tag + Cargo.toml path trigger, Generate release-status pre-build step, .gitignore docs/src/release.md, SUMMARY wiring
+- GOTCHAS caught by local mdbook verification: (1) pretender root Cargo.toml is a WORKSPACE manifest — no version; step reads pretender/Cargo.toml; (2) mdBook 0.5.2 DROPS a bare SUMMARY entry inserted between list items — repos whose first entry is a list item (- [..]) need list-item syntax for the release link; bare top-level link only works when neighboring entries are bare links
+- Hand-typed version claims → generated-page links: vampiro index.md ×2, whisper status.md ×1 (historical/changelog refs deliberately left)
+- specodelic: concurrent session ACTIVE (committed hooks refactor on top of mine, pushed both) — staged only my files, zero conflict
+- Commits: wai c15ab02, dont 9eb7677, testaruda 60e6ba3, espectacular 4c1283b, pretender 696ffb3, vampiro 7ce0c99, specodelic 127b195, whisper a188fab; ddl ee34d36; charly pointer bumped; all pushed
+- **Next:** DDL-561 (genesis conformance declaration test) or DDL-frh (ecosystem landing page); DDL-2um still blocked on TAP_GITHUB_TOKEN
+
+### 2026-10-01 — DDL-frh closed (ecosystem landing page)
+- Landing = ddl book page, user's choice over org-profile/root-page: docs.yml 'Generate ecosystem landing' step copies docs/ecosystem-map.md → docs/src/ecosystem-map.md (provenance header; capability-matrix.md relative link rewritten to GitHub absolute since it's not in the book); SUMMARY wires [charly-vibes Tool Ecosystem]
+- s7_ecosystem_landing_generated_in_ddl + s7_ecosystem_landing_cross_linked: SUMMARY + README status block must link https://charly-vibes.github.io/dulce-de-leche/ecosystem-map.html in all 11 repos (ddl exempt → in-book relative); red→green; §7 checklist updated in standardization.md
+- MDBOOK GOTCHAS (banked, 0.5.2): (1) create-missing=false + external-URL SUMMARY entry → mdbook ABORTS exit 101 trying to read the URL as a chapter source (pretender was the only repo with the flag — removed); (2) bare SUMMARY entries inserted BETWEEN list items are silently DROPPED — match neighbor syntax (list item vs bare/prefix); (3) external URLs render fine as chapters when create-missing=true (fleet default)
+- genesis README: multi-line blockquote status — keep the blank '>' continuation when appending segments
+- Commits: wai a6c266e, dont 2a8c580, testaruda 18126c8, espectacular ce094ed, pretender 8e9f72c, vampiro 07184e3, specodelic 1d32989, whisper 7b4feac, incitaciones e9cc333, genesis fa6497c, ddl 4865579+d4178aa; all pushed; charly pointer bumped
+- **Next:** DDL-561 (genesis conformance declaration test) or DDL-43g (per-repo live-URL smoke step); DDL-2um blocked on TAP_GITHUB_TOKEN
+
+### 2026-10-01 12:17 — snap (quick stash)
+- Session banked 3 tickets end-to-end: DDL-y49 (live-URL smoke guardrail — content-based `actions/deploy-pages` detection + networked 200 check, `DDL_SKIP_LIVE_SMOKE=1` opt-out), DDL-j0u (§6 fleet rollout — s6 conformance red→green on 8 repos: v* tag + Cargo.toml triggers, generated release-status pages, SUMMARY wiring; vampiro/whisper hand-typed versions → generated-page links), DDL-frh (ecosystem landing — ddl book hosts page generated from ecosystem-map.md, s7 tests cross-link every book SUMMARY + README status block across 11 repos)
+- Key gotchas banked in turu: mdbook 0.5.2 drops bare SUMMARY entries between list items (match neighbor syntax); create-missing=false aborts on external-URL SUMMARY entries (pretender flag removed); pretender workspace manifest needs version from pretender/Cargo.toml; genesis README blockquote blank-'>' continuation
+- Conformance suite now 20/20; all repos pushed+synced; charly pointer 198444b; DDL-43g filed as y49 residual (per-repo ci.yml curl of own Pages URL)
+- **Next:** user reviewed P3 menu — pick from DDL-bq6 (quick genesis update_check doc row), DDL-43g (highest-value guardrail), or DDL-hsn (installer mock seam, code work); DDL-2um still blocked on TAP_GITHUB_TOKEN; /renew to resume

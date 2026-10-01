@@ -76,3 +76,18 @@
 - gh token lacks `workflow` scope: PRs touching `.github/workflows/*` can't merge via API. Workaround: `git fetch origin pull/N/head` then `git merge --no-ff FETCH_HEAD` + `git push` (SSH not scope-bound). Do NOT `git pull --rebase` between merge and push — it flattens merge commits and the PR stays OPEN despite content being on main.
 - CI runs serialized (concurrency group) — back-to-back pushes queue; check `gh run list --branch main` before judging pending status.
 - git2 0.21 API break: `StatusEntry::path()` returns `Result<&str, Error>` (non-UTF-8 → Err) instead of `Option<&str>` (2026-09-20, fixed in PR #14).
+## Release / publishing (2026-09-30, v0.5.0)
+
+- `cargo publish` resolves **versioned dev-deps against the registry** — keep
+  internal dev-deps path-only when a cycle exists (rust-frontend ⇄
+  seam-analysis both dev-depended on each other `^0.5.0` → publish deadlock;
+  fixed by stripping versions, PR #32). Convention: only *production* deps
+  carry explicit `{ path, version }`.
+- release.yml publish order: seam-analysis must precede rust-frontend and
+  frontend-harness; the loop is idempotent ("already on crates.io — skipping").
+- A tag push runs the workflow from the **tag's own commit** — to hotfix a
+  release: fix on main, merge, `git tag -f vX.Y.Z <new-sha> && git push -f`.
+  `gh run rerun` on the old tag ref re-runs the broken workflow.
+- After a version bump regenerate: AIX artifacts (`cargo test -p vampiro
+  --lib aix_regenerate_artifacts -- --ignored`) + trycmd snapshots
+  (`TRYCMD=overwrite cargo test -p vampiro --test cli_tests cli_snapshots`).
