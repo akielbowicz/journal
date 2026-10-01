@@ -17,13 +17,20 @@ patterns) beyond linters, with CI/agent integration. Source:
 - [x] pretender-15w — gate exit-code enforcement (advisory stays default; runnable-meter acceptance) — closed 09-29
 - [x] pretender-u8a — stable finding IDs + resolution-rate metric (computable kill-criterion) — closed 09-29
 - [x] pretender-5p4 — hook-location doctor check (genesis 0.8.3 effective_hooks_dir) — closed 09-29
+- [x] pretender-xgt — --staged/--diff short-circuit format-aware output (JSON/SARIF envelope) — closed 10-01, shipped in v0.8.0
 - [ ] pretender-dj5 — persistent gate findings → bd tickets (unblocked: u8a + 15w landed)
-- [ ] pretender-2tp — set TAP_GITHUB_TOKEN secret (needs GitHub web UI PAT: contents:write on homebrew-charly + scoop-charly)
+- [ ] pretender-2tp — set TAP_GITHUB_TOKEN secret (needs GitHub web UI PAT: contents:write on homebrew-charly + scoop-charly; 3rd manual tap patch this release — PAT makes releases zero-touch)
+- [ ] merge 2 dependabot PRs (serde_json 1.0.151, clap 4.6.7) — CI green, landed during v0.8.0 release
 - [ ] refresh PATH-installed pretender binary (`cargo install --path pretender`)
 - [ ] (optional) `bd dolt remote remove origin` to silence broken dolt push in no-db mode
 
 ## Notes
 
+- Released **v0.8.0** (10-01): managed-block provenance + drift doctor check
+  (genesis 0.11.1), tree-sitter-rust 0.24 (&raw silent metric-loss fix),
+  format-aware --staged short-circuit. crates.io + GH release at 0.8.0;
+  tap/scoop patched manually (5585fbf / 5a5227a — token still missing).
+- Released **v0.7.1** (10-01): advisory-lease fail-closed diagnostics (GH #35).
 - Released **v0.6.0** (09-29): resolution tracking, pre-push hooks, hook-location
   doctor check, genesis 0.8.3. crates.io + GH release + tap/scoop all at 0.6.0
   (tap/scoop patched manually — workflow token missing, see pretender-2tp).
