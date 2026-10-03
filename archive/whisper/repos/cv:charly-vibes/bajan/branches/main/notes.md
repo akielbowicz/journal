@@ -62,3 +62,9 @@
 - Review fixes applied: bajan-98x acceptance tightened (Err-exit-1 is THE bar, quantified ACCEPTANCE/ANTI-GOALS/METER); bajan-sbs created as HUMAN-ONLY approval gate and wired bajan-sbs --blocks bajan-4hv so the user-gated ticket no longer shows in bd ready
 - All remediation pushed (main in sync); gates green throughout; 9pm still carries SCOPE-001 note: items 1-2 (O(n) normalize precompute + candidate pre-filter) are behavior-preserving, item 3 (budget counts candidate pairs) is a spec-semantics change needing a separate openspec revision ticket
 - **Next:** claim bajan-6jp (control-byte strip in collapse(), land BEFORE 98x per co-mod note) → bajan-98x (whole-book-empty → Err) → bajan-9pm (ER perf items 1-2 only); bajan-4hv waits on user approving the openspec proposal via closing bajan-sbs; /renew picks up from turu recall
+
+### 2026-10-01 14:53 — snap
+- Burn-in of bajan's LLM extraction vs deepseek/deepseek-v4-flash (OpenRouter) on Profit First EPUB: 40/50 episodes, 249→344 claims, ~$0.02 spend; findings F1-F7 in docs/burnin-deepseek-v4-flash-profit-first.org; follow-ups filed (gso/266/noj/3w4)
+- Section-noise fix shipped end-to-end TDD: spec ic_section_tags (bajan-0yg) + ex_section_filter (bajan-ie0), converter tagging (bajan-pbd), post-pass filter (bajan-162), eval measured (bajan-tq5, closes bajan-9uy) — junk claims 41→4 (−90%) on re-run; evals/results.md checked in
+- All pushed to origin/main (8d3993c); working tree clean; remaining open: bajan-a57 (burn-in, partial), bajan-sbs (HITL jev approval), bajan-amp (ER aliases), bajan-gso/266/noj/3w4 (operational P3s), bajan-bku (config file), bajan-4hv (jev impl, blocked)
+- **Next:** adopt/review pass on the ~246 staged claims in /tmp/bajan-burnin/pf2.db to put extraction quality in front of the human bar — or grab bajan-gso (failure telemetry) first since the burn-in DB is fresh in mind; burn-in scratch DBs live in /tmp/bajan-burnin/ (pf.db = v1 baseline, pf2.db = post-filter)

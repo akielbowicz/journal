@@ -144,3 +144,46 @@
   - Parallel session collision in wai: another agent closed wai-uz6i (crate name is wai-cli NOT 'wai' — genesis-4mq EXCL-002 live), refined tests, committed first (28ad3d3); reconciled cleanly on top
   - Tidy: all 30 wai test helper files set GENESIS_NO_UPDATE_CHECK=1 so suite is immune to real ~/.cache state (was breaking why_no_llm integration test)
   - genesis-2ex phase-3 recipe recorded as ticket comment; **Next:** pretender + testaruda wiring (fresh sessions; create ticket per repo, then same recipe), genesis-dvf (P2), genesis-ntg (P0 epic), git_hooks migrations q4k/glc/orq (P3)
+- 2026-10-01T17:13:53Z [id:a325bac74a8a1eb6cfebaada9b878a19c5d1d4a4aec152182c48dee80be9035b] ### 2026-10-01 session 2 — genesis-sci closed + genesis-fg3 done (provenance footer §1)
+  - genesis-sci closed (v0.10.1 already shipped); cleaned build artifacts docs/book/ + stray docs/src/https:/; committed validated add-artifact-provenance openspec scaffold (75d958f)
+  - genesis-fg3 red→green→refactor in src/managed_block.rs (7957703): RED 1.1 footer-less byte-identity golden; GREEN with_provenance(generator) writes '<!-- provenance: generator=… version=… source=… sha=… -->' inside end marker; hash = content_sha8 (DefaultHasher/hash_one, repro_hash style, 8 hex) over content excluding footer line — version bump doesn't move hash; round-trip re-inject updates sha; 29 managed_block tests green, suite 575, clippy/fmt/doc-test/pretender/ah clean
+  - Beads gotcha: bd close does NOT auto-refresh .beads/issues.jsonl (embedded mode) — run 'bd export -o .beads/issues.jsonl' then 'git add -f' (.beads partially gitignored but issues.jsonl is tracked); pushed 2e05d4d
+  - **Next:** §2 aix provenance (genesis-3xf/d6x family), §3 ManagedBlockDrift (genesis-aii), §4 receipt check (genesis-1mm), genesis-ntg P0 epic
+- 2026-10-01T17:18:35Z [id:804bc155d079ab60e55ef75da206c60e61440d8271027f331b854e7d8854ce2c] ### 2026-10-01 session 2b — §2 aix provenance done (genesis-3xf closed)
+  - RED 2.1 determinism+footer-free guard; GREEN: generate_{llms,llm}_txt_with_provenance + *_timestamped (caller-supplied RFC3339 ts, no new dep) + generate_llms_txt_bounded_with_provenance; final line '# provenance: generator=genesis version=… sha=…' blank-line separated; hash = managed_block::content_sha8 over footer-free content (version bump safe); bounded ladder degrades first, footer hashes degraded content
+  - Test gotcha: stage-3 degradation renders module bullets '- `m`' not headings; aix-check live guard confirms shipped llms.txt/llm.txt unchanged
+  - 580 tests green, clippy/fmt/doc-test/aix-check clean; pushed 9772333
+  - **Next:** §3 ManagedBlockDrift (genesis-aii — reuse content_sha8+provenance_footer, LintCheck impl in suite_linter.rs, registry wiring), §4 receipt check (genesis-1mm), §5 aix-gap kind (genesis-d6x), §6 docs; then genesis-ntg P0 epic
+- 2026-10-01T17:20:08Z [id:686dba35dca02160af8d01a2942480ec3e128a7a55ab23d54640aab9acc8f5b7] ### 2026-10-01 14:20 — snap
+  - Session 2 wrapped: genesis-fg3 (managed-block provenance footer) + genesis-3xf (aix footer variants) both closed, all red→green cycles green, pushed through 9772333
+  - add-artifact-provenance change progress: §1 ✓ §2 ✓ — remaining §3 ManagedBlockDrift (genesis-aii), §4 receipt check (genesis-1mm), §5 aix-gap kind (genesis-d6x), §6 docs
+  - Reusable now: content_sha8 + provenance_footer (pub in managed_block.rs) for the §3 drift lint
+  - **Next:** §3 ManagedBlockDrift LintCheck in suite_linter.rs (hash fast-path, full-text fallback, LinterRegistry wiring) — claim genesis-aii, TDD per tasks.md §3
+- 2026-10-01T17:31:21Z [id:9851d578d22217f074a86ff1a37e95b5cf85fd727703b0db7f6c9b783f5409b4] ### 2026-10-01 session 3 — §3 ManagedBlockDrift done (genesis-aii closed)
+  - RED 3.1/3.3/3.4 (7 tests) then GREEN: ManagedBlockDrift + DriftTarget in suite_linter.rs (284 lines). Per-target: file+block+expected content+caller fix command. Footer present → hash fast path (sha vs content_sha8 of footer-free body); footer-less → full-text compare. Drift=Warning (message names file+block, carries fix), block absent=Advisory
+  - Gotcha: inject format is {content}\n{footer}\n — split_provenance_footer must strip the separator newline too or the hash never matches (caught by test_current_block_no_finding)
+  - 480 lib tests green, clippy/fmt/doc-test/pretender/ah clean; pushed 8d56ff5 (beads export folded in)
+  - Parallel session committed f28be68 (lefthook bd hooks chaining, DDL-0tp) — reconciled cleanly
+  - **Next:** §4 receipt check (genesis-1mm), §5 aix-gap kind (genesis-d6x), §6 docs; then genesis-ntg P0 epic
+- 2026-10-01T17:38:23Z [id:242edf162e647ecdaeeb129b82278be61d2f7ee650a370fe99b9b4815cbced81] ### 2026-10-01 session 3b — §4 receipt check done (genesis-1mm closed)
+  - receipt_records_terminal_outcome(step) in evals.rs: parses /receipt/terminal_outcome inline via serde_json pointer (no EnvelopeOutcome change, design D4). Pass when receipt outcome consistent with ok; tool_fault when missing or success-over-ok:false (cites contradiction)
+  - 5 RED tests then GREEN incl. composition test: Scenario with ok_envelope + receipt check — unrelated check unaffected when only receipt missing
+  - 485 lib tests green, clippy/fmt/doc-test/pretender/ah clean; pushed cae2aed
+  - **Next:** §5 aix-gap kind (genesis-d6x — add to VALID_KINDS in feedback.rs), §6 docs; then genesis-ntg P0 epic
+- 2026-10-01T17:44:02Z [id:4325cefe7bf2b71a7ffd41862fa282d2f01adca6d44a308c57bd195c78aba7d0] ### 2026-10-01 session 3c — §5 aix-gap kind done (genesis-d6x closed)
+  - 'aix-gap' added to VALID_KINDS (feedback.rs) — validation/redaction/ContextBundle routing untouched; near-misses aix_gap/aixgap get typo suggestions from the existing engine
+  - E2E test: ContextBundle (sync exit 1, footer hint) → from_feedback_context → scenario.run(recorded error-envelope transcript) passes; this test was green pre-GREEN since conversion is kind-agnostic
+  - Test gotcha: FeedbackArgs::new(kind, dry_run, from_last_error) — acceptance test needs from_last_error=true + write_scratch, else 'No issue content specified'
+  - 488 lib tests green, clippy/fmt/doc-test/ah clean; pushed 1e217db
+  - **Next:** §6 docs & validation of add-artifact-provenance, then genesis-ntg P0 epic
+- 2026-10-01T17:47:47Z [id:025c3988186007e924ba5a02e56a4fc5e356dde6223cfdc047ff420b4eabec28] ### 2026-10-01 session 3d — §6 done; add-artifact-provenance COMPLETE
+  - All tasks [x]: CHANGELOG [Unreleased] entry (footer, ManagedBlockDrift, receipt check, aix-gap); openspec validate --strict passed; aix-check confirms llms.txt/llm.txt current; module docs were already current from §1-§2
+  - Follow-up tickets created: wai-jfc4, dont-0x6t, pretender-ivo, testaruda-p7m0 (per-repo with_provenance + DriftTarget adoption); genesis-3ps P2 (CI eval-gate recipe, deps on the four)
+  - just ci green; pushed 8287faa
+  - **Next:** change is archive-ready (openspec-archive); genesis-ntg P0 epic; genesis-2ex remaining repos
+- 2026-10-01T17:58:28Z [id:1c6934decfbf34b7e2b9af0ebb29e6712099489699371c2d97e87d17eee28d8e] ### 2026-10-01 session 3e — add-artifact-provenance ARCHIVED + v0.11.0 released
+  - openspec archive: deltas applied to 5 deployed specs (managed-block, suite-linter, evals, feedback, aix); validate --strict clean except pre-existing update-check spec failures (in-flight add-update-check change, 8/12 — fix belongs there)
+  - Push was blocked by espectacular pre-push hook: 15 new deployed scenarios had no contract tomls ('no-toml'). Wrote 15 .espectacular stubs mapping each scenario to its existing cargo test (archetype PF, authored_with 0.3.0); ah check clean; pushed 78d26f2
+  - v0.11.0: Cargo.toml + README/docs pins '0.10'→'0.11' + git tag pin 'v0.10.1'→'v0.11.0' (doc_sync guard catches the tag pin!) + CHANGELOG stamped; tag pushed, just publish OK, crates.io max_stable 0.11.0 confirmed, notify-downstream hit all 7
+  - Known race: tag-triggered Publish workflow may fail 'crate already exists' — benign
+  - **Next:** genesis-ntg P0 epic; adoption tickets wai-jfc4/dont-0x6t/pretender-ivo/testaruda-p7m0; genesis-3ps CI eval-gate; add-update-check remains 8/12

@@ -155,3 +155,13 @@
   - Session closed two tickets, both pushed to main: bajan-di6 (381de82 — SQLite WAL journal mode + EXPLICIT busy_timeout=10s at open; key finding: rusqlite already sets a 5s default inside InnerConnection::open, so the end-to-end contention test passed green before any change — pinning the PRAGMA VALUE is what made it red-first) and bajan-10l (623201d — ci.yml + justfile, CI run 36792976972 green on first push; ecosystem tools NOT on crates.io yet, pinned via --git --tag: pretender v0.6.0, wai-cli v2026.9.28, dont-cli v0.2.2, specodelic v0.2.0, espectacular v0.8.0; two jobs incl. Spec Corpus Gates spk lint + ah check --run-tests)
   - Gates at close: 222 tests (19 suites), clippy 0, fmt, spk lint 0, ah check --run-tests 17; beads export pushed c364221; working tree clean
   - **Next:** board — bajan-a57 (P2 real-provider burn-in, user-gated on API spend), bajan-amp/bajan-bku/bajan-23s (P3), bajan-sbs (P3 user-gated); /renew picks up from turu recall
+- 2026-10-01T20:06:57Z [id:803dcdd3abe561d788445016389febcdf3ecf4fbe55621128168d8c3df08b643] (#snap) ### 2026-10-01 17:09 — snap (bajan-a57 burn-in round)
+  - Corpus 1 (pf2.db) adopt/review pass done: er 0 candidates, scan 0 contradicts edges, adopt 246 staged-to-active (246 audits), query 91 hits, scope praise-to-0 cross-validates section post-pass
+  - Second corpus FI4E epub (58 eps, 432k chars) into fi4e.db: pass 1 39/58, 719 claims, ~95 min, 33% parked; pass 2 requeue launched 16:39, still running in background at wrap (45/58, 921 claims, nohup, log /tmp/bajan-burnin/fi4e-extract1.log)
+  - Findings F8-F10 appended to docs/burnin-deepseek-v4-flash-profit-first.org; F8 filed as bajan-lp6 (query text renderer drops hits, files=src/cli.rs)
+  - Spend ~0.14-0.20 USD within cap. Pushed 25eee0b (docs + beads export)
+  - Next: /renew, check fi4e pass-2 completion, rerun extract until parked set stops shrinking, adopt/review fi4e.db, append verdict, close bajan-a57, then fix bajan-lp6 (red-first render_text test)
+- 2026-10-01T20:09:15Z [id:8c4ef95ba2fa36bb5141fc07b6a0da10420b9c2aaf18fffa7aa242bef84028c5] (#snap) ### 2026-10-01 17:08 — snap (quick stash, post-round)
+  - Round complete at 25eee0b (pushed): a57 corpus-1 adopt/review done, corpus-2 fi4e launched, F8-F10 recorded, bajan-lp6 filed, turu snap 803dcdd3 landed (first two append attempts used wrong CLI syntax — correct form: turu append <scope> --stdin --topic snap)
+  - fi4e pass 2 still running in background (45/58, 921 claims @ 17:08; nohup, /tmp/bajan-burnin/fi4e-extract1.log)
+  - **Next:** /renew then check pass-2 completion, rerun extract until parked stops shrinking, adopt/review fi4e.db, verdict, close bajan-a57, fix bajan-lp6 (red-first render_text test)

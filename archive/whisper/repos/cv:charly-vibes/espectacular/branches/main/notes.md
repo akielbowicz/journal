@@ -14,3 +14,16 @@
 - Issue-review remediation: filed 5 cycle tickets (yq3→7js→vej→jul→n8b chain) after finding zero backing tickets for the 18-task change; task 5.2 amended; migrate-2-deltas retro-note appended.
 - Tasks 17/18 done. Only n8b (cycle 5) remains: just ci + openspec validate --specs, then openspec archive add-contract-property-class (verify gate delta text vs deployed first — hct pattern), wire contracts for the 7 new gate scenarios (else ah check red on missing contracts), keep deployed gate spec dual-format for spk lint, tick 5.1/5.2, close n8b, final push.
 - **Next:** claim espectacular-n8b and run cycle 5 validation + change archive; after that: c9v deferred P0 (pi extension), user still owes TAP_GITHUB_TOKEN + Publish re-run for 0.7.0 tap/scoop.
+
+### 2026-10-01 14:56 — snap
+- Grounded the `derive-contracts-from-specodelic` proposal zip against ah 0.8.0/spk 0.2.0 (all claims verified), reviewed it under Rule-of-5 (converged Stage 4, TypeSafe pass), and revised it: Option-B integration (`spk parse --json` IR, no markdown re-parsing), D8 governance decision, runner.rs zero-tests guard, archive-companion marked unreleased.
+- Created the change in both repos: espectacular `openspec/changes/derive-contracts-from-specodelic/` (gate/lint/cli-core dual-format deltas, all validators green) and specodelic `openspec/changes/add-parse-command/` (parse capability delta).
+- Wired bd tickets: espectacular 73v(upstream)→enf(derivation)→0hd(sync)→6sl(gate)→3l8(pilot)→a0f(validation), lint branch aq0, HITL pv6 (governance); specodelic 9rv(implement)→1uv(docs+release).
+- PR #26 merged to espectacular main; feature branch cleaned up. specodelic branch `feat/add-parse-command` (ced45d3) committed locally, unpushed.
+- **Next:** push specodelic `feat/add-parse-command` + open PR; then HITL decisions espectacular-pv6 (derived-contract commit policy) and 73v (upstream release pin) before starting the derivation-core TDD chain.
+
+### 2026-10-03 10:23 — snap
+- espectacular-cgt closed (36 -> 2 lint advisories, 2 scenario-unlinked excluded by ticket): per-file commits d637592 (explain), 33bfb85 (gate), 866db0f (cli), 629cc2d (lint) pushed 41f1395..629cc2d; ah sync refreshed lint/p-ambiguity derived_from only.
+- All gates green: ah lint 2 (excluded only), ah check --run-tests 227/0, 535/0 suite, clippy/fmt/spk lint+graph/openspec validate clean. Every negative scenario verified against target/debug/ah tempdir probes before authoring.
+- DISCOVERED (needs code ticket, HITL before filing): gate binary path dedupes same-id scenarios in the (spec,id) BTreeMap BEFORE detect_slug_collisions — deployed-spec slug-collision findings never fire from the binary; only structural_findings()/doctor paths see them (unit-true, binary-stale since f358e3e + c96615a).
+- **Next:** fresh session → file/claim slug-collision binary-path fix ticket (ask user first per HITL), or v0.9.1 release (explain topics + docs, needs authorization); TAP_GITHUB_TOKEN still user-owed, close GH#31 after next ah release.

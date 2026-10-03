@@ -31,3 +31,7 @@
 - Bug: VALID_JID lacked `@broadcast`/`@newsletter` suffixes → status@broadcast unresolvable every run; fixed + regression test
 - Media audit (2026-09-15): 4,132 media msgs → 636 on disk, ~3,172 permanent mac-mismatch (LID rekey ceiling, matches 09-08 findings), ~324 transient (auto-retried each run now). Transcripts 443/443. media-ingest (adb, phone storage) is the only path for mac-mismatch
 - **Next:** periodic `download-all.sh` runs for maintenance; per-chat `media-ingest` if mac-mismatch media matters
+- 2026-10-01T18:45:35Z [id:c29f4ae459d54ebdb9695e0a4c195b3e8c04250cd1dea5a7dad55383870088bc] ### 2026-10-01 15:44 — snap: OCR descriptions + cross-chat media dedupe
+  - classify-media.mjs --ocr now works: temp-file tesseract (stdin execFile deadlocks), TESSDATA_PREFIX prefers ~/.local/share/tessdata (brew lacks eng), second-chance binarize+upscale for photo-scanned PDFs → data/classification.jsonl has 1,235/2,408 OCR texts; PDFs 181/185
+  - New src/dedupe.ts + scripts/media-dupes.mjs: media identity = message fileSha256 → data/media-dupes.jsonl, 335 cross-chat groups from 5,270 media msgs; --include-system for status/broadcast
+  - Next candidates: vision captioning (~1,290 photos), voice-note transcription, per-file chat-lookup in report/link
