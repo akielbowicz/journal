@@ -67,3 +67,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-10-01 [ ] uarup/WhatsApp: pull crypt15 backup key from Drive appdata (non-E2E backups; WhatsApp-GD-Extractor w/ app password, or clean OAuth script w/ `drive.appdata` scope), then decrypt old `msgstore.db.crypt15` with wa-crypt-tools → deep history + call logs the API never served. Playbook: `borradores/machetes/whatsapp-crypt15-backup-extraction-no-root.org`
 - 2026-10-01 [ ] uarup: ~1,511 media downloads unrecoverable (404 on server + absent from phone dump); only path is a future phone backup restore or per-chat export. Re-check after any full phone backup
 - 2026-10-03 [ ] charly-vibes/espectacular: add the `TAP_GITHUB_TOKEN` secret (GitHub repo variable) so the Release workflow can publish the homebrew tap + scoop bucket — skipped for 8 straight releases (0.5.0 → 0.9.2); then re-run the Publish job for any release needing backfill
+- 2026-10-06 [ ] charly-vibes/incitaciones: push commits d73df28, e9e74b3 + tag v0.12.0 (lane×complexity scheme, published to npm but repo commits local-only) — **awaiting authorization**
+- 2026-10-06 [ ] coffee: add `glm` family mapping to `usage-tracker.py` `model_details()` (~:538) — 5-min ticket, makes the incumbent baseline visible in monthly reports
+- 2026-10-06 [ ] Night-lane pilot: tRAGar + REPLy.jl + XAct.jl — curate `afk/s` + `afk/m` tickets, local `codex exec --worktree` + test gate, review diffs next morning with gpt-6.1-sol
+- 2026-10-06 [ ] Testimonial.jl ↔ testaruda design session (merge-or-diverge decision; Astra candidate) + cositos-40e P2 into night queue
+- 2026-10-06 [ ] evallerina: add CI (8 `no-gate` tickets waiting on it); reconcile tRAGar's `[A]/[B]/[C]/[E]` title prefixes with complexity labels
