@@ -20,3 +20,9 @@
 - Resolved the 479-finding pretender test debt in the same PR: assert_cmd builder chains codemodded to assert! style, tests/integration.rs (10.6k lines) split into 12 suite_* files + tests/common/mod.rs, abc offenders refactored — 43/43 test files pass pretender gate mode.
 - Rebased branch onto origin/main mid-flight (branch base predated genesis-vibes 0.12.1, which an uncommitted Cargo.toml edit was masking); force-with-lease pushed after first "failed" push actually landed the pre-rebase history.
 - **Next:** src/commands app-role pretender debt (~130 findings: run() handlers, matrix.rs, sync_core.rs) filed as wai-abiy — those files gate-block commits until refactored; use prime.rs refactor as template. Untracked codemod scripts kept at scripts/pretender-codemod.py + scripts/split-integration-tests.py.
+
+### 2026-10-08 15:02 — snap
+- Shipped wai-sib1 end-to-end via epic-autonomy-tdd-ro5 (PR #40 merged, CI green after fixing bail!-in-expression-position for newer rustc): `wai project use --shell <posix|fish>` override, ShellSyntax/resolve_shell/detect_shell/export_line extracted in src/commands/project.rs, 4-test contract suite, RO5U converged (5 findings all fixed)
+- Double-checked orchestrator spec state: openspec change `add-epic-orchestrator-template` missing everywhere (no branch/worktree/stash has it); 6-ticket chain all open; the real reference template lives in specodelic/.wai/resources/pipelines/epic-orchestrator.toml (select-ticket→land-gates→write-brief→spawn-subagent→verify-subagent→ship→stop, battle-tested run 8)
+- Chain: scaffold openspec change → wai-t2ar (port specodelic template) → wai-wvjz → wai-3eo0 → wai-979g → wai-hr0w → wai-qjcz → distribute to tambor/wanna
+- **Next:** /renew → scaffold openspec change add-epic-orchestrator-template (proposal + tasks 1.1–5.4 mirroring tickets), then claim wai-t2ar and port the specodelic template red→green
