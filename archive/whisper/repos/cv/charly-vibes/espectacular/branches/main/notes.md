@@ -260,3 +260,9 @@
   - Verification: suite 10/10 flake-free, clippy -D warnings/fmt clean, CI 37130993545 all jobs green, docs deploy green, live site verified. Commits 51c460e..969e190 + aa875e7 pushed.
   - Latent (unticketed): quality.rs trio-runner still feeds serde JSON through printf format (safe while findings stay numeric).
   - Board: empty. TAP_GITHUB_TOKEN still user-owed.
+- 2026-10-03T16:32:12Z [id:6997631d4a8c690852bb1e6a21f98307074a8e3fa0fb699d2ebd72ab6826074e] ### 2026-10-03 — v0.9.2 released + verified; all dependabot PRs cleared
+  - Board sweep: PR #29 (jsonschema 0.18->0.58) fixed forward 4083b6a — Validator::new/options API, single ValidationError, local referencing::Registry for custom-runner $ref (0.58 resolves external refs eagerly over HTTP). #6/#12/#14 (toml 1.1.6, clap 4.6.7, clap_complete 4.6.11) fixed forward 0d74555 — zero API changes; verified on PR branch in isolated worktree (1 failure = known bridge-shim flake, 3/3 clean reruns). #7-#11 (Actions bumps: checkout v7, artifact v7/v8, deploy-pages v5, codecov v7) fixed forward 9d92be4 — gh token lacks workflow scope for workflow-file merges, git-push-over-SSH works. All 9 dependabot PRs closed as superseded; GH board empty.
+  - toml gotcha: genesis-vibes 0.12.0 still transitively pulls toml 0.8.23 alongside direct 1.1.6 (upstream-owned).
+  - v0.9.2 released (4d432e8, tag pushed): Release workflow green, 5 platform assets + checksums.txt, crates.io max_stable 0.9.2, live release.html updated via manual docs.yml dispatch on main. CHANGELOG: Fixed ETXTBSY bounded retry in runner spawn path; Changed toml 1.1 + clap 4.6.7. Local ah refreshed 0.9.2.
+  - Docs deploy on tag refs FAILS by design: github-pages environment protection rules only allow main (tag run on v0.9.2 rejected, benign — same on v0.9.1). Always dispatch docs.yml on main after tag releases.
+  - TAP_GITHUB_TOKEN still user-owed (8th release skipping tap/scoop). Suite 535/0, clippy/fmt/ah check green throughout.

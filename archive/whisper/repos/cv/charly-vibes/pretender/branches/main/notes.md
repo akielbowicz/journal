@@ -90,3 +90,7 @@
   - Two dependabot PRs landed during release, CI green, unmerged: serde_json 1.0.151, clap 4.6.1→4.6.7. NOTE: merging these after the tag means they land in the NEXT release, not 0.8.0.
   - Board: pretender-2tp (P2, user PAT — this release is the 3rd manual tap patch; PAT would have made it zero-touch), pretender-dj5 (P3) remain. pretender-xgt closed & shipped in 0.8.0.
   - **Next:** merge the 2 dependabot PRs (local merge if workflow files involved — they're cargo-only so gh merge should work) or new session for pretender-dj5.
+
+- 2026-10-02T11:30:00Z [close] ### 2026-10-02 11:30 — post-mlw verification
+- Follow-up on pretender-mlw: upstream tree-sitter-rust 0.24 already supports let-chains AND &raw locals — v0.8.0's bump covered both, but its CHANGELOG only credits &raw. Verified against a downstream file exercising both constructs (dont/src/main.rs) — parses cleanly under the 0.8.0 grammar, zero remaining false 'Parse errors detected'.
+- Disposition: nothing pending — no bd follow-up, no code change. Docs-only CHANGELOG touch-up (mention let-chains alongside &raw) optional, offered to user, not done.

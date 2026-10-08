@@ -1,0 +1,6 @@
+- 2026-10-06T16:32:47Z [id:66ccecfe4ef3772543772d3472bd23160989451f555ef03aa2a2c24f0b4627d9] ### 2026-10-06 13:32 — snap
+  - Reviewed and repaired all nine wild specifications; commit 4526db2 is pushed to origin/main.
+  - Added docs/wild-formats-v1.md, schemas/wild-v1.schema.json, structural examples, explicit future acceptance cases, and executable design gates. Defined artifact-bound evidence, certificate commitments, conservative policy/cache rules, scoped substitution, and coordinated deployment safety.
+  - Validation: 35 pytest tests passed; ah passed 23 checks; strict OpenSpec, specodelic, Pretender, and pre-push CI passed. Future runtime cases are distinguished from currently implemented prototype checks.
+  - Existing user edit to testaruda.toml remains uncommitted and untouched. Specification task wild-0il is closed; runtime conformance is tracked in wild-3rr.
+  - **Next:** Start with wild-3rr and implement v1 canonical reading, semantic validation, and subtype/accretion checks against the explicit acceptance cases; preserve the user's testaruda.toml edit.

@@ -37,3 +37,9 @@ ignored-path hints for `.beads/backup/*` — harmless, commits land fine.
 - Cartography reports live in `docs/cartography/`: 12 markdown artifacts of record + self-contained HTML views + `index.html` + `assets/` (vendored `mermaid.min.js` v9.4.3 IIFE, shared `cartography.css`).
 - Regeneration path is re-running the codebase-cartography skill — there is deliberately NO build pipeline or render script (skill v0.8.0 invariant; a pandoc-based `scripts/render-cartography.sh` existed briefly and was deleted as superseded).
 - Reports are evidence snapshots: counts (fan-in, file sizes, check counts) drift with `src/`; every claim carries file:line so drift is visible on re-run.
+- 2026-10-03T18:11:01Z [id:57014b754115dfa35b37bb7d787886cc9d21a48d7974c5fabf1d48d93f4fad25] 
+  ## 2026-10-03: docs deploy conventions (mdbook 0.5 fallout)
+  - book.toml build-dir = "docs/_book" (root book.toml, src = docs/src) — the upload-pages-artifact path must be docs/_book, not book/.
+  - Archived openspec specs (spec.md.archived, e.g. bead-lifecycle) are skipped by the spec-copy loop; a spec dir without spec.md used to hard-fail docs.yml.
+  - docs.yml paths filter covers only docs/** and Cargo.toml — workflow-file changes (.github/workflows/*) do NOT trigger docs; dispatch manually (`gh workflow run docs.yml --ref main`).
+  - Tag-ref docs runs: v2026.10.3 tag run failed at build stage (predates fixes). Versioned snapshots per tag need workflow_dispatch-with-input or similar (filed wai-35zh).

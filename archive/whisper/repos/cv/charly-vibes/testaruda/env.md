@@ -64,3 +64,8 @@ genesis — file a genesis change first, then adopt.
 ## Release workflow order (release.yml, 2026-09-29)
 - Tag push `v*` → 3 platform builds → publish job order: GitHub release → crates.io publish → homebrew tap → scoop. The ehse tap/scoop auth failure does NOT block release publishing — package managers just fall behind until TAP_GITHUB_TOKEN (PAT with contents:write on homebrew-charly + scoop-charly) is set
 - Release binaries only bundle testaruda/adapter-rust/adapter-python — adapter-clojure/typescript are source-installed via `cargo install --path adapter-<x>`, so adapter fixes reach users via repo installs, not release assets
+
+## Release workflow verification (v0.5.2, 2026-10-07)
+- Exec-bit fix (DDL-3av, chmod +x before tar staging in release.yml) VERIFIED live: `curl -sfL .../testaruda_0.5.2_linux_amd64.tar.gz | tar xz` → binaries `-rwxr-xr-x`, `./testaruda --version` runs. Prior releases shipped mode-644 binaries.
+- Tap update failed AGAIN on v0.5.2 with blank TAP_GITHUB_TOKEN (auth: "Invalid username or token"). Every release run since 0.3.1 has failed this same way — the "completed failure" status on release.yml is the expected noise until the repo secret is set; builds + GitHub release itself always succeed. bd P1 filed 2026-10-07.
+- Julia adapter tests (tests/adapter_julia.rs) spawn `testaruda-adapter-julia` from PATH, symlinked to sk/Testimonial.jl; broken Julia precompiles there (MbedTLS/HTTP/Coverage) surface as testaruda test failures — fix in the Testimonial.jl repo, not testaruda.
