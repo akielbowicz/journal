@@ -187,3 +187,9 @@
   - v0.11.0: Cargo.toml + README/docs pins '0.10'→'0.11' + git tag pin 'v0.10.1'→'v0.11.0' (doc_sync guard catches the tag pin!) + CHANGELOG stamped; tag pushed, just publish OK, crates.io max_stable 0.11.0 confirmed, notify-downstream hit all 7
   - Known race: tag-triggered Publish workflow may fail 'crate already exists' — benign
   - **Next:** genesis-ntg P0 epic; adoption tickets wai-jfc4/dont-0x6t/pretender-ivo/testaruda-p7m0; genesis-3ps CI eval-gate; add-update-check remains 8/12
+
+### 2026-10-09 17:49 — snap
+- Audited git dependence across the charly-vibes suite (8 tools shell out or link git2), wrote it up as bd epic genesis-tpf + openspec change `add-git-interface` (proposal/tasks/spec, 19 scenarios + contract TOMLs; `ah check --changes add-git-interface` green). Two Rule-of-5 passes (audit, then proposal) with TypeSafe verification; fixes baked in: EnvPolicy opt-in env hygiene, declared failure semantics (+`*_lossy`), enumeration sets (uncommitted ⊇ untracked / changed_files excludes untracked), unborn-HEAD fallback, single-path check-ignore tri-state, tracked+content_hash requirements.
+- Filed epic `genesis-tpf` (epic) with 8 tickets: `.1` implement `genesis::git` (P1, release-tag gate), `.2`–`.8` per-repo migrations, all blocked on `.1`. Created repo-local twins: testaruda-licv, espectacular-o77, pretender-4hc, dont-9gry, whisper-tlp, DDL-u8u, wai-jhut — cross-linked via external-ref both ways, lane/complexity labels + meters + anti-goals applied.
+- Uncommitted: `.beads` exports across 8 repos (wai shows pending export), genesis openspec change dir. Push NOT done (needs explicit authorization). Throwaway testaruda-20nx created+closed during probing.
+- **Next:** get authorization, commit+push the 8 repos' beads JSONL + genesis change dir; then start `genesis-tpf.1` (RED tests first per tasks.md 1.1).

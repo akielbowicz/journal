@@ -6,3 +6,9 @@
   - **Next:** Start with wild-3rr and implement v1 canonical reading, semantic validation, and subtype/accretion checks against the explicit acceptance cases; preserve the user's testaruda.toml edit.
 
 - 2026-10-09T18:26:01Z [id:6cd4b41165b491a10f6b8ea9063ef5eaafd2d7931dd505f05bc6d063dcc42d46] Semantic-composition research is in .wai/projects/semantic-composition (protocol revision 2, commit 89905bc). Compare H0 flat, H1 authored wrappers and H2 schema-native composites on the same graph/oracle before varying decomposition. C05 shared identity and C07 artifact-bound evidence are mandatory from P1; required case counts are P1=18/P2=19/P3=20. C12 portability starts P2; C15 refinement starts P3. Architecture choice remains OPEN; a finite same-shape race probe is not evidence of full runtime conformance. Next: wild-9co.2/.3, then .4; .1/.5/.6 are closed. Follow the comparison protocol's cost ledger, frozen variants and readiness rules. Historical provisional-scope notes are superseded.
+
+### 2026-10-09 18:09 — snap
+- Renewed wild repo context; latest commit archives add-local-contract-checking (wild-mh5.5), all six mh5 children (mh5.1–mh5.6 incl. audit) are closed in bd.
+- Epic wild-mh5 itself is still OPEN — close candidate now that mh5.6 audit is done, but verify success criteria (runtime scenario conformance + CI) first.
+- Untracked: .wai/projects/software-updates mh5.1 orient/quality-ledger artifacts, cv/ dir; user's testaruda.toml edit remains uncommitted and untouched.
+- **Next:** verify then close epic wild-mh5, or resume wild-9co.2 per prior snap (protected public laws vs valid/faulty replacements).
