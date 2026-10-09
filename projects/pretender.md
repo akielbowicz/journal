@@ -20,6 +20,7 @@ patterns) beyond linters, with CI/agent integration. Source:
 - [x] pretender-xgt — --staged/--diff short-circuit format-aware output (JSON/SARIF envelope) — closed 10-01, shipped in v0.8.0
 - [ ] pretender-dj5 — persistent gate findings → bd tickets (unblocked: u8a + 15w landed)
 - [ ] wire `--scan-ignored` into complexity/report/duplication/mutation (only `check` has the flag today; others follow config only) — surfaced during pretender-094, not yet filed as bd issue
+- [x] pretender-094 filed from specodelic close-session (10-09 evening): honor .gitignore by default in walk scans — full acceptance criteria + specodelic's 11-pattern exclude list as evidence; the in-repo `--scan-ignored` flag above suggests partial support already exists — reconcile scope before implementing
 - [ ] refresh PATH-installed pretender binary (`cargo install --path pretender`)
 - [ ] (optional) `bd dolt remote remove origin` to silence broken dolt push in no-db mode
 
