@@ -8,6 +8,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-10-09 [ ] charly pain/: act on toolpath autopsy verdict — design the three enforcement layers for agents (file read-lock, structured error channel, script wall-clock budget); nushell/typed pipes ruled secondary in the analysis (pain/report.org, corpus reproducible via archive-v1 pipeline)
+
 - 2026-09-29 [ ] genesis: wire select→run loop in lefthook hooks — unblocked 2026-09-30: testaruda `exec` shipped in v0.5.0 (gh-26 closed) and multi-line feedback stdin fixed in genesis-vibes 0.8.1 (gh-27 closed, regression pinned in testaruda)
 - 2026-09-29 [ ] bd upstream: 1.3.0's `bd setup --print` template still ships `bd dolt push # Sync with remote when authorized` — file issue asking bd to drop it when `no-db: true` (agents keep echoing it)
 - 2026-09-29 [ ] fotos: broken pre-push hook — lint/test need leptonica/pipewire via distrobox and fail in 0.31s outside it; fix hook (or its distrobox detection) — currently every push needs --no-verify

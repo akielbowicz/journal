@@ -10,3 +10,6 @@
 - skills.sh distribution added: committed `skills/` catalog via generate-skills-dir.mjs with `metadata.internal` for pointers; verified live (`npx skills add charly-vibes/incitaciones --list` = 38); GitHub Pages site + llms.txt now list the skills.sh path
 - Open beads: incitaciones-8pv (npm 0.10.0 release + reinstall — shipping vehicle), ajp (monitor router triggers), mtw (remove pointers next major), 0tf, 22y
 - **Next:** cut the 0.10.0 release (8pv) so installed copies in other repos pick up routers; watch trigger behavior in live sessions
+
+### 2026-10-09 16:54 — documentation-review session
+- Reviewed ~/Downloads/cv grok + zai specodelic conversation exports (Mistral download blocked; not a lesson source) and folded lessons into .agents/skills/documentation-review/SKILL.md. Shipped as v0.13.0 (commits 98bb3e3, 4f0c83d). Key lessons: (1) cold-read reports must state reading order and a jargon table; (2) explicit UNKNOWN / do-not-invent-rules integrity policy; (3) ground claims in citable sources with section anchors; (4) separate facts / assumptions / open-questions sections; (5) dense-zip artifacts need an unpack-then-verify step before review. If revisiting: compare the SKILL lessons against the full cv README.md (333 lines) to confirm nothing was dropped.

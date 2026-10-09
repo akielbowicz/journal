@@ -1,0 +1,16 @@
+### 2026-10-08 19:13 — snap
+- Wired CI per ddl standard (commit 87f7546): new `.github/workflows/ci.yml` runs `just ci` (new justfile parity entrypoint: tsc, eslint, vitest, ah check, spk lint, pretender gate) with pinned tools (pretender/specodelic 0.7.0, espectacular 0.9.3, smoke-dogfooded); node 24 matches devenv shell. Bumped `.espectacular/config.toml` tool_version 0.9.2→0.9.3 to resolve ah doctor drift. devenv.yml stays as the DDL-irv proving job.
+- Verified locally before commit: `just ci` exit 0 (711 tests/123 files), all lefthook pre-commit gates green.
+- **Next:** `git push` — blocked: remote `cv:charly-vibes/wanna.git` unreachable (push + ls-remote time out; suspect the `cv` SSH alias or network). Retry push when it resolves, then confirm the CI workflow runs green on GitHub.
+
+### 2026-10-09 09:39 — snap
+- Autonomous-orchestration session resumed the add-composition-shell run: landed wanna-y8j (composition-shell scaffold + consumer conformance harness + binding convention, commit 4419efc chain), wanna-9wu (consumer-behavior contract in transitional RED with skip-guard + RED evidence), wanna-0te (declared-port open slice), wanna-15e (evaluate composition), wanna-8k6 (revision-bound commit transactions); all committed + pushed through 4419efc, gates green (741 tests, ah overlay 378, spk lint, pretender, tsc, eslint).
+- Orchestrator pattern held: one pi -p subagent per ticket with bounded briefs; orchestrator verified gates, tidied pretender violations (session ctx+command split, probe split, file splits), committed, closed beads. Falsifiability evidence in .wai/projects/wanna/research/2026-10-10-*.md.
+- wanna-gcp (composition-shell:3.1 — projection/retirement/supersession/refresh/restart/uncertain-effect reconcile) claimed and in_progress but NOT started: lease expired twice, no work on disk; 13 it.todo RED stubs + 2 guarded consumer suites (reconcile/cancel probes) await it.
+- Learned: pre-commit pretender gate blocks commits silently via 🥊 marker — run `pretender check --staged --mode gate` before every commit; testaruda pre-push needs vitest junit ingest first; git push takes ~6min (ah-check 313s in pre-push hook).
+- **Next:** /renew → finish wanna-gcp RED→GREEN (the 5 gcp-owned todos in tests/composition-shell/consumer.test.ts), then wave order: wanna-snh (IndexedDB adapter) → wanna-01q (workbench screen) → wanna-9r2 (recovery proof) → 2o8/lwo/zcq/zbn/jw2; P3 upstream kz9+vk3 stay filed upstream.
+
+### 2026-10-09 12:21 — snap
+- wanna-gcp (composition-shell 3.1) implemented + committed (dd41405): explicit cancel with retired-reviews replay folding, refresh-required retries, uncertain-effect reconciliation, duplicate-receipt reconstruction guard; consumer probes unguarded, session split for pretender clean.
+- Push flaky-failed once on testaruda-gate (🥊), passed standalone via `lefthook run pre-push --commands testaruda-gate --all-files`; retry push succeeded — all pre-push gates green (ah-check 340s, pretender, testaruda 17s), remote main up to date (0fdab51..dd41405).
+- **Next:** /renew → bd ready → wanna-snh P1 (durable adapter preserving pending-operation identity across restart) or wanna-bql P2 (corpus OpenSpec required-section compat).

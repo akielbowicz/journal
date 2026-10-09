@@ -26,3 +26,9 @@
 - Double-checked orchestrator spec state: openspec change `add-epic-orchestrator-template` missing everywhere (no branch/worktree/stash has it); 6-ticket chain all open; the real reference template lives in specodelic/.wai/resources/pipelines/epic-orchestrator.toml (select-ticket→land-gates→write-brief→spawn-subagent→verify-subagent→ship→stop, battle-tested run 8)
 - Chain: scaffold openspec change → wai-t2ar (port specodelic template) → wai-wvjz → wai-3eo0 → wai-979g → wai-hr0w → wai-qjcz → distribute to tambor/wanna
 - **Next:** /renew → scaffold openspec change add-epic-orchestrator-template (proposal + tasks 1.1–5.4 mirroring tickets), then claim wai-t2ar and port the specodelic template red→green
+
+### 2026-10-09 13:34 — snap
+- Evaluated pi sessions (Oct 8–9) for autonomous orchestration + friction in wai pipeline resume flow
+- Found: after `/clear` or resume, `wai prime`/project context doesn't tell the agent an active pipeline run exists — user had to manually say "continue with orchestration"
+- Was about to check `wai prime` output + pipeline resume detection to surface active runs in prime context
+- **Next:** inspect `wai prime` / `wai status` code path to surface active pipeline run state on resume
