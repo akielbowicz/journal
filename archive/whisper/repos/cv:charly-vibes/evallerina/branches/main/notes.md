@@ -29,3 +29,8 @@
 - Found + worked around genesis false positive: agent_followed_hint exact-match flags `wai doctor --json` as hint-blind; shipped agent_followed_hint_loose (exact-or-prefix), filed evallerina-2rr (genesis-channel P2)
 - Gates green: just tier0 (fmt/clippy/2 tests), just smoke → passed:true; closed e10, committed 8b615ab, pushed
 - **Next:** claim evallerina-ey7 (P1 hint-adherence scenario family via contrived-failure injection)
+
+### 2026-10-09 14:53 — snap
+- Orchestration session: 2rr closed (genesis v0.12.3 agent_followed_hint prefix fix + owned signature; evallerina consumed it, dropped agent_followed_hint_loose), 1vw closed (tier-2 live runner ecde2df: Transport seam, 10 offline protocol tests, registry, CLI live command), 00n PARKED (parallel agent owns wai repo; red→green work in wai git stash 'evallerina-00n WIP', design in ticket description).
+- User constraint: no direct edits in wai repo while parallel agent is active; genesis-side fixes remain allowed.
+- **Next:** claim evallerina-aay (tier-2 GHA rotation cells, unblocked by 1vw) or evallerina-sqq (synthetic archetypes); check whether the parallel agent finished wai before touching 00n again.

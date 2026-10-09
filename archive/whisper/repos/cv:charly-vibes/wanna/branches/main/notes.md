@@ -14,3 +14,9 @@
 - wanna-gcp (composition-shell 3.1) implemented + committed (dd41405): explicit cancel with retired-reviews replay folding, refresh-required retries, uncertain-effect reconciliation, duplicate-receipt reconstruction guard; consumer probes unguarded, session split for pretender clean.
 - Push flaky-failed once on testaruda-gate (🥊), passed standalone via `lefthook run pre-push --commands testaruda-gate --all-files`; retry push succeeded — all pre-push gates green (ah-check 340s, pretender, testaruda 17s), remote main up to date (0fdab51..dd41405).
 - **Next:** /renew → bd ready → wanna-snh P1 (durable adapter preserving pending-operation identity across restart) or wanna-bql P2 (corpus OpenSpec required-section compat).
+
+### 2026-10-09 17:36 — snap
+- Docs review session (documentation skill, review mode): audited README.md + docs/ human-facing suite (docs/review-quickstart.md, docs/reuse-comparison.md) against Diátaxis/EPPO/scannability/AI-readiness; spot-checked claims against repo artifacts (tests/review-workbench/, examples/review-*, examples READMEs missing, no llms.txt).
+- Findings: docs are technically sound and contract-verified (review-docs.test.ts pins quickstart claims); main gaps were examples lacking READMEs and no llms.txt/AI entry-point; reuse-comparison.md is honest (narrow decision recorded).
+- Verified housekeeping state: working tree clean, branch main up to date with origin/main, pre-push dry-run "Everything up-to-date" — nothing left to commit or push after the docs fixes (07adf13 already landed).
+- **Next:** /renew → bd ready → per last snap: wanna-snh P1 (durable adapter) or wanna-bql P2 (corpus OpenSpec required-section compat); optional follow-ups from docs review: add examples/*/* READMEs, add llms.txt.

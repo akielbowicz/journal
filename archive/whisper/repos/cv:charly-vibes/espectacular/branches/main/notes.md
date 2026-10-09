@@ -27,3 +27,15 @@
 - All gates green: ah lint 2 (excluded only), ah check --run-tests 227/0, 535/0 suite, clippy/fmt/spk lint+graph/openspec validate clean. Every negative scenario verified against target/debug/ah tempdir probes before authoring.
 - DISCOVERED (needs code ticket, HITL before filing): gate binary path dedupes same-id scenarios in the (spec,id) BTreeMap BEFORE detect_slug_collisions — deployed-spec slug-collision findings never fire from the binary; only structural_findings()/doctor paths see them (unit-true, binary-stale since f358e3e + c96615a).
 - **Next:** fresh session → file/claim slug-collision binary-path fix ticket (ask user first per HITL), or v0.9.1 release (explain topics + docs, needs authorization); TAP_GITHUB_TOKEN still user-owed, close GH#31 after next ah release.
+
+### 2026-10-09 16:57 — snap
+- Session resumed on main; renew loaded (turu key OK), nothing else done yet. Pending user context: check GitHub issue 40.
+- Prior state (2026-10-03): slug-collision binary-path fix + v0.9.1 release still un-filed/unstarted; TAP_GITHUB_TOKEN user-owed, GH#31 closes after next ah release.
+- **Next:** check gh issue 40 (user-requested), then decide slug-collision fix vs release.
+
+### 2026-10-09 17:40 — snap
+- bm2 phase 2 tasks 1.1–1.3 GREEN + committed (073b53f): src/batching.rs (eligibility via exact `--testNamePattern=` flags, OR-joined `((?:p_a)|(?:p_b))` batch + `--reporter=json`, timeout=max(entries), attribution all-passed/failed/matched-zero/skipped→no-tests-ran, conservative whole-batch fallback to per-binding); check.rs run loop collects eligible bindings post-L2-prune, batches if > BATCH_THRESHOLD (8) else per-binding via shared `apply_execution_verdict`; runner.rs `execute_command_full` exposes full stdout for parsing.
+- RED e2e first: 9 vitest bindings → 1 invocation (was 9); below-threshold pin 3→3. Two fixture bugs found & fixed: shim `printf '%s\n' "$@"` logs one line per ARGV token (use `"$*"`), and trailing comma in fixture JSON made attribution unparseable → silent all-fallback (spawn count exposed it).
+- RO5U review recorded on espectacular-bm2 via bd note: 0 critical/0 open high; high-deferred = C-batch-fallback named JSON signal (task 2.2 RED-first; needs `batching` field + check-output.schema.json update, pinned by spec delta). Suite 565 green, clippy/fmt clean, ah check green (6 expected no-toml phase-2 contracts).
+- Gotchas this session: assert_cmd captures child stderr (eprintln debug invisible — run target/debug/ah manually instead); findings.sort_by normalizes post-loop finding order so below-threshold path stays byte-identical.
+- **Next:** task 1.4 RED→GREEN (JS-only regex constructs — lookahead/backrefs — excluded from batching upfront, run per-binding; currently they batch then hit Rust-regex compile failure → fallback, wasteful but correct). Then 2.1–2.4 attribution REDs (incl. fallback signal + schema), 3.x wire 6 no-toml contracts + hygiene. Push of 073b53f still pending user authorization. tasks.md 3/12 done.

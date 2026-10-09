@@ -894,3 +894,10 @@
   - Full session arc already snarled at 10:29's close: hya D4 re-point closed, changelog #110-#112, v0.5.1 RELEASED (GH + crates.io verified), epic 84i closed, docs.yml tag-deploy bug fixed (7db410b), 9um deferred. All pushed + CI green.
   - Post-close warning surfaced: a PARALLEL session is actively editing the tree (docs.yml, release.yml, README.md, llms.txt, llm.txt) — did not touch per 2g1. Verify that work landed cleanly before claiming anything.
   - **Next:** /renew → let parallel work land, then 0jg (tap, needs user token) / gre task 1.1 RED / dz4-do8 race remediation.
+
+### 2026-10-09 16:54 — snap
+- Orchestrated lf4b.4 (docs epic) end-to-end via epic-orchestrator: 3 subagent spawns — #1 killed at 1h bash timeout (mid-research, no output), #2 halted on a false "sibling subagent" hallucination (introspected its own pid, no output), #3 with a mechanical finish checklist landed clean in ~35min.
+- Landed 2a8b3e2 docs: architecture page — 3 static mermaid diagrams (four-layer, lint checker layered join-point pipeline — honestly declared NOT a DAG, optional verify-workflow), SUMMARY.md wired, docs-build green, meter verified in book/. Pushed range dfe8ebf..17cbeb9, lf4b.4 closed → epic 4/11.
+- Foreign commit dfe8ebf (tap token close) landed mid-run from a parallel session — left untouched per 2g1. Verified pretender_gate::head_passes_gate red is PRE-EXISTING at that HEAD (88 recurring vendor/mermaid findings, 0 new, cont3 stash experiment) → filed specodelic-m1rk (P1, HITL gate-config decision).
+- Gotchas banked: nohup background spawns defeat tool timeouts; pgrep -f self-matches its own bash wrapper ("STILL ALIVE" false positives); wai add review wants --reviews/attached artifacts — one-off verify records go in as research; wai needs WAI_PROJECT=domain-specific-extensions for this epic.
+- **Next:** /renew → next lf4b run: lf4b.5 (evolving worked example, P2) or lf4b.6/lf4b.7; disposition specodelic-m1rk first if just-test-green matters.
