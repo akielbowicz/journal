@@ -8,6 +8,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-10-09 [ ] evallerina: deliver the status report requested via project-status-report — session closed before drafting; audience/reporting period/baseline commitments still unknown (evidence already gathered: commit log, bd, wai status — see log 2026-10-09 Session:20:43)
 - 2026-10-09 [ ] charly pain/: act on toolpath autopsy verdict — design the three enforcement layers for agents (file read-lock, structured error channel, script wall-clock budget); nushell/typed pipes ruled secondary in the analysis (pain/report.org, corpus reproducible via archive-v1 pipeline)
 
 - 2026-09-29 [ ] genesis: wire select→run loop in lefthook hooks — unblocked 2026-09-30: testaruda `exec` shipped in v0.5.0 (gh-26 closed) and multi-line feedback stdin fixed in genesis-vibes 0.8.1 (gh-27 closed, regression pinned in testaruda)
