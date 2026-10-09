@@ -80,3 +80,27 @@ to the spec_path (e.g. "compiler"), not the actual slug. Fixed to
 - gh OAuth token in agent context lacks the `workflow` scope → cannot merge PRs touching .github/workflows (GraphQL refusal) — push workflow changes via git-over-SSH instead.
 - dependabot Cargo PRs mutually conflict on Cargo.lock once one lands; fix-forward (apply bump on main, close PRs as superseded) is faster than @dependabot rebase rounds.
 - jsonschema 0.58 resolves external $refs eagerly over HTTP — schemas cross-referencing by absolute URL need a referencing::Registry registered locally (tests/check_cli.rs).
+
+## stale-fsmonitor hazard — verify before committing (2026-10-09)
+- The repo's git fsmonitor daemon can serve STALE status: `git status`/`git diff` show clean while the worktree diverges from HEAD (recurred twice: 62cec4b "lost to a stale index blob", and the rev-18 rekey 7b2311c silently omitted 6 archive spec.md files). Masked the drift from status, pre-commit hooks, and CI triage for hours — local `spk lint` passed (worktree content) while CI lint failed (committed blobs).
+- Verification habit: `git -c core.fsmonitor=false status --short` (and diff) before committing spec-corpus or generated-artifact changes; restart the daemon (`git fsmonitor--daemon stop`) when divergence is suspected.
+
+## local spk is a dev build — corpus-drift blind spot (2026-10-09)
+- `spk` on PATH is `cargo install`ed from the local path `~/para/areas/dev/gh/charly/specodelic` (v0.7.0), NOT crates.io — its lint semantics can diverge from the pinned CI release, masking corpus drift locally. Verify corpus gates with a scratch crates.io build: `CARGO_INSTALL_ROOT=/tmp/spkXXX cargo install specodelic --locked --version <pinned>`.
+
+## CI spk pin (2026-10-09)
+- ci.yml pins `specodelic 0.7.0` (bumped from 0.4.0, which was red since the rev-18 rekey). Three install steps — keep them in sync when bumping.
+
+## testaruda integration facts (espectacular-0k8 Layer 2, 2026-10-09)
+- `testaruda init` resolves the project root by walking UP for `.git` — the git repo must exist BEFORE any testaruda step; `init -q` in a non-git dir silently landed the store at /tmp (parent), making later `select` fail with "Store has not been initialized".
+- Seed stores via `testaruda init` + `testaruda import graph.json` + `testaruda fingerprint` (refreshes blake3 fingerprints from disk). Graph JSON: content_units/test_items/edges/run_history, format `testaruda-graph-v1`.
+- Stores NEED passing run_history entries (outcome "passed", environment "default") or SAFE-007 no-history always_run puts every test in the fallback set — selection becomes vacuous.
+- `testaruda select --agent` output carries `node_id` per selected test; plain `--json` only carries integer ids (no names). EMPTY selection = exit_code 20 (data.exit_code; also process exit in CI mode).
+- ah Layer 2 (released v0.10.0): consults `testaruda select --agent --files` when `.testaruda/store.db` exists; prunes non-shell contract bindings whose flags match no selected node_id; guards: select/parse failure, exit-20 EMPTY (skip refinement only), unresolved changed files, anchor guard (≥1 binding must match) — all conservative.
+
+## Selection semantics (GH#42, 2026-10-09)
+- `ah check --run-tests` selects from WORKTREE diff only (`changed_files_from_git` = `git diff --name-only HEAD`, src/main.rs:725). Empty diff → no selection signal → ALL declared contracts run (asserted by test `selection_absent_changed_files_run_everything` in src/check.rs). Pathological for pre-push: clean worktree at push time ⇒ every contract runs every push.
+- Measured (tambor .gate-timing.log): espectacular-contracts 790–894s/push (~97%); wanna first measurement 522s (~87% of 9m push). SSH handshake to cv 1.6s; network not a factor.
+- Fix filed: GH#42 `--base/--head` range selection, precedent = testaruda `ChangeSet::from_diff(base, head)` (testaruda-jdw5). Complementary: GH#40/bm2 batches runner spawns per (runner, test file). Deep follow-up (needs design round): delegate contract tests to testaruda — tension between ah per-contract attribution/no-tests-ran and testaruda store batching.
+- ah↔testaruda coupling is zero in src/ (contract [[tests.vitest]]/[[tests.shell]] run via ah's own runner); "testaruda integration facts" above concerns Layer 2 refinement only.
+- Consumer workaround pending GH#42: lefthook `--files` from push range; tambor/wanna benchmarks: espectacular's own pre-push (range-based via testaruda) = 23s median.
