@@ -19,13 +19,19 @@ patterns) beyond linters, with CI/agent integration. Source:
 - [x] pretender-5p4 — hook-location doctor check (genesis 0.8.3 effective_hooks_dir) — closed 09-29
 - [x] pretender-xgt — --staged/--diff short-circuit format-aware output (JSON/SARIF envelope) — closed 10-01, shipped in v0.8.0
 - [ ] pretender-dj5 — persistent gate findings → bd tickets (unblocked: u8a + 15w landed)
-- [ ] pretender-2tp — set TAP_GITHUB_TOKEN secret (needs GitHub web UI PAT: contents:write on homebrew-charly + scoop-charly; 3rd manual tap patch this release — PAT makes releases zero-touch)
-- [ ] merge 2 dependabot PRs (serde_json 1.0.151, clap 4.6.7) — CI green, landed during v0.8.0 release
+- [ ] wire `--scan-ignored` into complexity/report/duplication/mutation (only `check` has the flag today; others follow config only) — surfaced during pretender-094, not yet filed as bd issue
 - [ ] refresh PATH-installed pretender binary (`cargo install --path pretender`)
 - [ ] (optional) `bd dolt remote remove origin` to silence broken dolt push in no-db mode
 
 ## Notes
 
+- Released **v0.9.0** (10-09): .gitignore-aware walk by default
+  (pretender-094 — respect_gitignore=true + --scan-ignored; kills the
+  ./-anchoring exclude-list footgun specodelic hit), executable release
+  tarballs + curl install docs (PR #42), genesis-vibes 0.12.3 (pretender-ipn,
+  zero code changes). crates.io + GH release + binaries live; tap/scoop both
+  GREEN for the first time (TAP_GITHUB_TOKEN fix validated, pretender-2tp
+  closed).
 - Released **v0.8.0** (10-01): managed-block provenance + drift doctor check
   (genesis 0.11.1), tree-sitter-rust 0.24 (&raw silent metric-loss fix),
   format-aware --staged short-circuit. crates.io + GH release at 0.8.0;
