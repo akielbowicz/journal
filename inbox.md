@@ -74,3 +74,5 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-10-06 [ ] Night-lane pilot: tRAGar + REPLy.jl + XAct.jl — curate `afk/s` + `afk/m` tickets, local `codex exec --worktree` + test gate, review diffs next morning with gpt-6.1-sol
 - 2026-10-06 [ ] Testimonial.jl ↔ testaruda design session (merge-or-diverge decision; Astra candidate) + cositos-40e P2 into night queue
 - 2026-10-06 [ ] evallerina: add CI (8 `no-gate` tickets waiting on it); reconcile tRAGar's `[A]/[B]/[C]/[E]` title prefixes with complexity labels
+- 2026-10-09 [ ] espectacular: file ticket for `no-tests-ran` execution finding on lint/mismatched-id-is-reported (stale contract filter after rev-18 rekey; confirm with user first)
+- 2026-10-09 [ ] espectacular-c8u: homebrew tap fix — needs TAP_GITHUB_TOKEN PAT; release.yml tap-update step silently no-ops without it
