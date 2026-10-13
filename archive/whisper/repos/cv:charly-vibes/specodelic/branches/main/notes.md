@@ -229,3 +229,9 @@
 - NEW ticket filed: pretender vendor-role bug (P3) — [thresholds.vendor] lacks function-metric limits, mermaid bundle breaks head_passes_gate after docs-mermaid.
 - Spawn 1 of lf4b.1 aborted on provider repetition-loop → continuation-spawn pattern (brief documents partial state, subagent owns inherited files) worked cleanly.
 - **Next:** /renew → continue orchestrating lf4b epic: suggested order lf4b.5/.7/.6 (book content), then .4 diagrams, then P3s .8/.9/.11, lf4b.10 accuracy gate LAST (guards finished content). Sessions end at context ~40% — one ticket per orchestrator run.
+
+### 2026-10-13 10:11 — snap
+- Grounded the external `specodelic-design` skill/chat-primer drafts against the v0.8.0 binary; found and fixed 4 drifts (8-vs-9 explain topics, 24-vs-34 rule list with self-contradiction, false 05-model-fixed provenance — properties really come from 06-over-claim, missing `observes` column). Patched `~/Downloads/specodelic-chat-primer.md` + `specodelic-design-skill.zip` in place (.orig backups kept); patched example lints 0/0.
+- Reviewed the `~/Downloads/cv` cold-read bundle (Grok/Zai conversations) and added three book pages: `docs/src/faq.md`, `docs/src/design-canvas.md`, `docs/src/decision-guide.md` (commit 2e52854, SUMMARY/index/llms.txt wired, all gates green).
+- Studied `../whisper`'s skill-pack pattern (`src/skill_pack.rs`: generate_pack, managed marker, content-hash staleness via doctor, in-binary tests) and authored openspec change `add-skill-pack` (commit ec157af; proposal/design D1–D8/7-requirement delta/tasks) + 6 chained beads tickets (commit 426bef6 after `bd export` flush): specodelic-o1l3 (pack core, READY) ← ifm7 + xoeu ← pxh5 (CLI verb) ← p94h (doctor), tdmm (docs wiring).
+- **Next:** proposal needs approval before implementation starts — then `specodelic-o1l3` is the first work item (`bd update specodelic-o1l3 --claim`). Local commits 2e52854/ec157af/426bef6 not pushed (push needs explicit go).

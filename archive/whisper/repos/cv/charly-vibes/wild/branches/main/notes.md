@@ -12,3 +12,15 @@
 - Epic wild-mh5 itself is still OPEN — close candidate now that mh5.6 audit is done, but verify success criteria (runtime scenario conformance + CI) first.
 - Untracked: .wai/projects/software-updates mh5.1 orient/quality-ledger artifacts, cv/ dir; user's testaruda.toml edit remains uncommitted and untouched.
 - **Next:** verify then close epic wild-mh5, or resume wild-9co.2 per prior snap (protected public laws vs valid/faulty replacements).
+
+### 2026-10-09 20:47 — snap
+- Docs work complete: mdBook site (README epigraph, docs.yml, book.toml, theme/, 11 pages, llms.txt) + Cargo.toml wild-vibes publish-name change (wild-6ig) — all lint/build checks green
+- Commit+push approved via /skill:next interrupt — two atomic commits proposed (wild-vibes feat; docs site), NOT yet executed; also proposed a status report for wild-9co with commit evidence
+- wild-9co epic in progress: mh5.x chain done through mh5.5 (contract-checked extraction), report to wild-9co pending
+**Next:** re-engage wild-9co reporting or wild-9co.2 (laws evaluation); finish the two proposed commits and push first
+
+### 2026-10-10 09:25 — snap
+- No new work since 20:47 snap: working tree unchanged (docs site + wild-vibes Cargo rename still uncommitted; two atomic commits already proposed and user-approved, not yet run)
+- README, llms.txt, docs/src/*, book.toml, theme/, .github/workflows/docs.yml ready; .wai/ + cv/ excluded from commits
+- wild-9co.2 and wild-9co.3 remain ready/pending; mh5.x chain complete through mh5.5
+**Next:** run the two proposed commits (git add explicit paths), push, then resume wild-9co.2

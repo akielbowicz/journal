@@ -11,3 +11,8 @@
 - Grounded the upstream-review report against the specs + implementation: verified the report's claims against ge-oracle/ge-layout/ge-text_parser specs, justfile (no `oracle-pin` recipe, `cpanm` syntax issue confirmed), and local env (Perl 5.44 + Graph::Easy 0.76, not 0.69 — corpus determinism probe is live).
 - Filed 8 beads for the report's findings (gently-mwo repro suite, gently-ghh byte-compat scope, 0h9 cli flags, plus re-derivation beads for text_parser/layout/graph_model/dot_parser/round-trips/oracle-determinism/perf/renderers/smaller-errors), all blocked on mwo+ghh.
 - **Next:** implementation can proceed on the 10 capability beads (gently-4nx ge.layout, 0cq ge.ascii_render, bzx text_parser, ef5 cli, eyo/css/b4v renderers, 89p dot_parser, q1x oracle-deepen, 4ln perf) — report findings don't block them; the mwo/ghh beads gate spec amendments only.
+### 2026-10-10 21:22 — snap
+- FULL WAVE COMPLETE: 15 orchestrated nohup runs (timeout 1800, 20-min polls) closed all 12 original beads + 8 follow-ups — b4v graphviz_render, ef5 cli p5-p8, 0kg/j2i/8jf round-trip trio (group identity restored), cbb/dcp/ikm/k4u/liz/89d spec re-derivations, a83 %XX decode, 4ln ge.perf (just perf-check live), q1x ge.oracle p1-p6.
+- CI green throughout after fixing 3 pre-existing failures inline: .gitattributes LF pin (windows CRLF corrupted byte-exact fixtures), deny.toml license allowlist (cargo-deny rejected all crates), cli.rs BrokenPipe flake (p4 exit-255 race).
+- Final state: 0 open beads, cargo test 146/0, ah check --run-tests 0 findings (69 passed), just gates + perf-check green, origin in sync at 4462bb5, tree clean.
+- **Next:** nothing queued — project wave done; /renew shows clean slate. Resume only if new findings/beads emerge.
