@@ -240,6 +240,14 @@ fallback placed *after* the include silently overrides every profile identity.
 Verified both branches (ak profile → akielbowicz; unmatched repo → fallback).
 Dotfiles commit 39f6431.
 
+## Per-account ssh profiles need IdentitiesOnly yes
+When adding a new GitHub-account ssh profile (`~/.ssh/profiles/<alias>`), always set
+`IdentitiesOnly yes` alongside the `IdentityFile`. Without it the ssh-agent's loaded
+keys are offered first and `ssh -T git@<alias>` can authenticate as the WRONG account
+(observed 2026-10-13: new `at`/arltificial profile answered as akielbowicz via an
+agent key). Existing profiles (ak, ch, …) predate this and work because the agent
+usually isn't loaded with those keys — don't rely on that.
+
 ## Git semantics gotcha
 `[include]`-file values are inserted at the include point; assignments later in the
 including file override them. When testing override chains, test BOTH branches — a
