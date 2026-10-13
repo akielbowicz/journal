@@ -248,6 +248,37 @@ keys are offered first and `ssh -T git@<alias>` can authenticate as the WRONG ac
 agent key). Existing profiles (ak, ch, …) predate this and work because the agent
 usually isn't loaded with those keys — don't rely on that.
 
+## Onboarding a new GitHub account profile = 5 touchpoints
+Per-account GitHub identity on this machine spans FIVE files; missing any one causes
+silent wrong-account behavior. For a new dir `~/para/areas/dev/gh/<dir>/` with alias
+`<alias>` and GitHub login `<account>` (all paths relative to $HOME):
+
+1. `~/.ssh/id_<alias>` — ed25519 keypair (no passphrase, machine-local)
+2. `~/.ssh/profiles/<alias>` — `Host <alias>` → ssh.github.com:443 + IdentityFile +
+   **IdentitiesOnly yes** (see rule above)
+3. `~/.config/git/private` — `[url "git@<alias>:<account>/"]` insteadOf rewrites +
+   `[includeIf "gitdir:…/gh/<dir>/"]` → profiles file
+4. `~/.config/git/profiles/<alias>` — user.name/user.email (emails live here only,
+   untracked)
+5. `~/.config/nushell/private.nu` — PWD env_change hook branch:
+   `gh_base/<dir>` → `$env.GH_TOKEN = (gh auth token -u <account>)`
+
+Gotchas for touchpoint 5 (bit us 2026-10-13, gh/at — agent did 1–4, missed 5):
+- Stale GH_TOKEN from the previously visited dir persists in the new one; `gh`
+  then reports the WRONG account (or 404s on the new account's private repos —
+  keyring has no token for it).
+- The hook fails SILENTLY when `gh auth token -u <account>` errors (account not
+  in keyring yet) and leaves the stale token.
+- `gh auth login` refuses to run while GH_TOKEN is set; workaround:
+  `hide-env GH_TOKEN; gh auth login` (interactive, user-side).
+- The hook never unsets GH_TOKEN outside gh/ dirs — last visited token lingers.
+
+Verification checklist (run in the new repo):
+- `git config user.name && git config user.email` → resolves to profile values
+- `git remote get-url origin` → `git@<alias>:<account>/<repo>.git`
+- `ssh -T git@<alias>` → `Hi <account>!`
+- `gh auth status` → shows `<account>` as GH_TOKEN/active in that dir
+
 ## Git semantics gotcha
 `[include]`-file values are inserted at the include point; assignments later in the
 including file override them. When testing override chains, test BOTH branches — a
