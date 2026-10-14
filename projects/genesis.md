@@ -10,7 +10,7 @@ Shared substrate for the charly-vibes suite: feedback bus, update_check, git int
 - [ ] genesis-tpf.5 — migrate dont git plumbing (work in charly/dont)
 - [ ] genesis-tpf.8 — migrate wai close.rs uncommitted-files + rename defect (work in charly/wai)
 - [ ] genesis-tpf.6 — migrate whisper private-zone checks (work in charly/whisper)
-- [ ] genesis-tpf.7 — migrate dulce dot_ddl tracked check (work in charly/dulce-de-leche)
+- [x] genesis-tpf.7 — migrate dulce dot_ddl tracked check (CLOSED, PR #86 merged d219e3b 2026-10-14; also fixed main's GIT_DIR pre-push gate red via clean_git_env superset)
 - [~] Orchestration: fan .2–.8 out via **separate per-repo worktree subagents** — donor repos currently occupied by parallel agents (espectacular/pretender security-remediation, dont whisper-fixes); orchestration child ticket not yet created.
 
 **Waiting**
