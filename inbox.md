@@ -85,3 +85,5 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] Adopt or revert the chezmoi drift on `~/.wai/resources/patterns/orchestrator-subagents.md` (live file is newer — wai added resume-exception + no-blind-block rules; chezmoi wants to revert). Run `chezmoi add ~/.wai/resources/patterns/orchestrator-subagents.md` if live content wins. (16:59)
 - [ ] Delete `/tmp/whisper-consolidate-backup` once pushed whisper consolidation feels stable. (16:59)
 - [ ] turu doctor warning: 207 freeform lines in `~/.whisper/rules.md` — run `turu distill global` someday to bring it back to managed-entry format. (16:59)
+- [ ] ryan: wire `catitas archive-sync` automation to commit through normal hooks (it bypasses lefthook; the pre-push range gate covers it at push, but normal-flow commits would close the gap). (18:02)
+- [ ] ryan: schedule monthly `just full-scan` (gitleaks full history, ~20 min) — mandatory before any repo visibility change (public/collaborators). (18:02)
