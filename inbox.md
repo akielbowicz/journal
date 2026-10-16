@@ -80,3 +80,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-10-09 [ ] Rotate the fine-grained TAP_GITHUB_TOKEN PAT (pasted in chat log 10-09) — regenerate at github.com/settings/personal-access-tokens and `gh secret set` in dulce-de-leche, pretender, testaruda, espectacular, specodelic, bajan, dont, vampiro, bichos, fotos, wai
 - 2026-10-09 [ ] hardware: HDMI projector "no signal" on Framework HDMI Expansion Card — resolution unknown, user to check projector side (input source, HDMI Signal Format, reseat card); suspect stale 1920x1200 feed vs projector's 1920x1080 preferred. Journal log/2026/2026-10/2026-10-09.md has full diagnosis
 - [ ] bogart: authorize commit+push of openspec corpus + design (17+ commits ahead of origin/main; full file list in log 2026-10-14 18:43)
+
+## 2026-10-16
+- [ ] Adopt or revert the chezmoi drift on `~/.wai/resources/patterns/orchestrator-subagents.md` (live file is newer — wai added resume-exception + no-blind-block rules; chezmoi wants to revert). Run `chezmoi add ~/.wai/resources/patterns/orchestrator-subagents.md` if live content wins. (16:59)
+- [ ] Delete `/tmp/whisper-consolidate-backup` once pushed whisper consolidation feels stable. (16:59)
+- [ ] turu doctor warning: 207 freeform lines in `~/.whisper/rules.md` — run `turu distill global` someday to bring it back to managed-entry format. (16:59)
