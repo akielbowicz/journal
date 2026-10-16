@@ -1,0 +1,22 @@
+# lefthook — git hooks manager (wai way: pre-commit quality gates)
+# Hooks are wired globally: core.hooksPath -> ~/.git-hooks (lefthook shims),
+# which dispatch to this per-repo config. No `lefthook install` needed here.
+#
+# Gitleaks gates (gitleaks 8.30.1):
+#   - pre-commit: scan staged changes only (fast, catches secrets at the gate)
+#   - pre-push:   scan the entire history (belt & suspenders; ~1s on this repo)
+# Bypass (emergencies): LEFTHOOK=0 git commit ... — do not make a habit of it.
+
+pre-commit:
+  commands:
+    gitleaks:
+      run: gitleaks git --staged --redact --verbose
+      skip:
+        - merge
+
+pre-push:
+  commands:
+    gitleaks:
+      run: gitleaks git . --redact --verbose
+      skip:
+        - merge
