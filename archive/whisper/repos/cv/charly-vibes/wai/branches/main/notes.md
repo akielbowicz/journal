@@ -73,3 +73,38 @@
   - v2026.10.3 released: GitHub Release (6 assets), crates.io (wai-cli 2026.10.3), homebrew-charly tap, scoop-charly bucket. Tag on b4c0ee7.
   - Docs deploy was broken (0 green in last 8 runs): (1) spec-copy loop assumed every openspec/specs/*/ has spec.md — bead-lifecycle is archived (spec.md.archived); (2) Upload Pages artifact path: book but book.toml build-dir = docs/_book since mdbook-0.5 fallout. Both fixed (PR#29, PR#30); main docs deploy green via workflow_dispatch. NOTE: PR#29 merge didn't trigger docs because paths filter lacks .github/workflows — dispatch manually after workflow-file changes. Versioned snapshot for the tag itself missing — filed wai-35zh.
   - Governance slip: pushed docs fix c00399e directly to main, reverted immediately (dc2ff8d), redone via PR#30. Branches cleaned up (release/v2026.10.3, fix/docs-archived-specs, fix/docs-upload-path deleted).
+
+
+### 2026-10-04 19:46 — snap
+- Investigated acset orchestration failure (specodelic): worker s1 thrashed 954 tool calls/0 commits on glm-flash, concurrent workers flapped the same worktree, OpenRouter 402 in-flight budget killed s2 at spawn; s1b succeeded in ~20 min with a sharp brief + pre-recovered artifact. Analyzed 114 user messages: checker pattern = status probe / fact-check / release gate / "continue" nudge / decision.
+- Compared omp.sh (fork of pi: subagents+isolation, advisor watchdog, goal mode — solves runner half) and wai pipelines (solves checker/gates half). Audited 83 wai pipeline runs across 9 repos: only 2/52 tdd-ro5 completed; 41 stall at steps 7-8 because agents ship via habitual close ritual; approvals:{} everywhere; stale .pipeline-run pointers months old.
+- Created beads epic `wai-vx02` + children in wai repo: wai-csgb (P1, close-time enforcement, ready), vx02.1 session-start adoption, vx02.2 stale-run GC (`pipeline.staleDays`), vx02.3 epic run tree (narrowed slice), vx02.4 approval+release oracle gates (hitl), vx02.5 inter-child handoff (blocked by .3). All anchored at base_commit db0bd9e, AFK/HITL labeled.
+- Ran issue-review (Rule of 5): 0 criticals; fixed Must/Meter gates, split handoff from epic tree, removed redundant epic→csgb dep, de-duped epic title. Verdict READY_TO_WORK.
+- Uncommitted in wai repo: .beads/issues.jsonl changes + .wai research artifact (pipeline orchestration audit).
+- **Next:** implement `wai-csgb` (red→green→tidy per ticket body); commit beads + .wai research artifact in wai repo first (user said "record into the wai repo").
+
+### 2026-10-07 20:25 — snap
+- Diagnosed bogus update notice ("wai-cli 2026.9.28 available — you have 2026.10.4"): genesis update_check compared with string inequality (`latest != current`), so a stale 7-day cache made newer installed versions look outdated. Symptom cleared by deleting `~/.cache/genesis/update-check/wai-cli.json`.
+- End-to-end fix: genesis-u47 fixed + released as genesis-vibes 0.12.1; wai bumped 0.11→0.12.1 (PR #38 merged, wai-khgi closed) with `tests/update_check_regression.rs` proven red on 0.11.1 (Some(UpdateInfo) downgrade) / green on 0.12.1.
+- wai-2am8 slice 1 merged (PR #37): `manual_cycle_matches` in src/commands/doctor/checks_pipeline.rs rewritten — removed overbroad `"follow "` substring and dead literal `"TDD.*ro5.*fix.*commit"`; now line-based regex (per-ticket pipeline / tdd→ro5 arrow incl. ascii / tdd-ro5u-fix-commit word sequence); lines containing `wai pipeline start` are treated as pointers and never match. 6 doctor tests. Slice 2 (AGENTS.md prose redirect) still gated on wai-fvhv.92 decision.
+- Issue-review (Rule of 5) on the orchestration cluster: 1 CRITICAL fixed (wai-khgi was READY while externally blocked → set blocked); retitled wai-2am8; tagged wai-fvhv.92 design; set metadata.files on 8 tickets.
+- **Repo infra facts (wai):** `.beads/` is gitignored — issues.jsonl is NOT committed despite AGENTS.md claiming otherwise; only `.beads/backup/backup_state.json` is tracked. bd sync autostashes that backup file and `git pull --rebase` repeatedly conflicts on it (hit 2× this session): run `git checkout -- .beads/backup/backup_state.json` before pulling and drop leftover autostashes (contents are stale bd export churn, safe to drop — verify issues.jsonl diff first).
+- **bd CLI gotchas:** `bd close <id> -m "..."` (no `--close` flag); `bd update --append-notes` (not `--add-note`); preflight reads `bd list --format json`. Doctor tests live in the BIN target (`cargo test --bin wai doctor::tests::…`), not the lib — mod doctor is under main.rs.
+
+### 2026-10-08 12:30 — snap
+- Shipped wai-gkk3 via PR #39 (merged into main): `wai prime` lists global ~/.wai/resources/patterns, `wai search` scans global resources (tagged `global:`, deduped), `global_resources_dir()` extracted; test harnesses isolate HOME.
+- Resolved the 479-finding pretender test debt in the same PR: assert_cmd builder chains codemodded to assert! style, tests/integration.rs (10.6k lines) split into 12 suite_* files + tests/common/mod.rs, abc offenders refactored — 43/43 test files pass pretender gate mode.
+- Rebased branch onto origin/main mid-flight (branch base predated genesis-vibes 0.12.1, which an uncommitted Cargo.toml edit was masking); force-with-lease pushed after first "failed" push actually landed the pre-rebase history.
+- **Next:** src/commands app-role pretender debt (~130 findings: run() handlers, matrix.rs, sync_core.rs) filed as wai-abiy — those files gate-block commits until refactored; use prime.rs refactor as template. Untracked codemod scripts kept at scripts/pretender-codemod.py + scripts/split-integration-tests.py.
+
+### 2026-10-08 15:02 — snap
+- Shipped wai-sib1 end-to-end via epic-autonomy-tdd-ro5 (PR #40 merged, CI green after fixing bail!-in-expression-position for newer rustc): `wai project use --shell <posix|fish>` override, ShellSyntax/resolve_shell/detect_shell/export_line extracted in src/commands/project.rs, 4-test contract suite, RO5U converged (5 findings all fixed)
+- Double-checked orchestrator spec state: openspec change `add-epic-orchestrator-template` missing everywhere (no branch/worktree/stash has it); 6-ticket chain all open; the real reference template lives in specodelic/.wai/resources/pipelines/epic-orchestrator.toml (select-ticket→land-gates→write-brief→spawn-subagent→verify-subagent→ship→stop, battle-tested run 8)
+- Chain: scaffold openspec change → wai-t2ar (port specodelic template) → wai-wvjz → wai-3eo0 → wai-979g → wai-hr0w → wai-qjcz → distribute to tambor/wanna
+- **Next:** /renew → scaffold openspec change add-epic-orchestrator-template (proposal + tasks 1.1–5.4 mirroring tickets), then claim wai-t2ar and port the specodelic template red→green
+
+### 2026-10-09 13:34 — snap
+- Evaluated pi sessions (Oct 8–9) for autonomous orchestration + friction in wai pipeline resume flow
+- Found: after `/clear` or resume, `wai prime`/project context doesn't tell the agent an active pipeline run exists — user had to manually say "continue with orchestration"
+- Was about to check `wai prime` output + pipeline resume detection to surface active runs in prime context
+- **Next:** inspect `wai prime` / `wai status` code path to surface active pipeline run state on resume

@@ -122,3 +122,10 @@
 - Mined all pi sessions Jul 30–Oct 8 (297 this month; consumer inits: uarup 9/5, finanzas 9/14+9/29, bajan 9/28, REPLy 10/1, wanna/tambor 10/6, gently 10/8) → init-workflow friction report: ddl init never wires gates/wai/no-db; cascade ordering bugs; envelope schema drift; no feedback cmd; repo-unaware doctor; migrate symlinks break tracked dirs
 - Filed epic **DDL-6zn** + 6 children (6zn.2 init --gates = top fix, .3 cascade, .4 envelope contract, .5 repo doctor→gh#46, .6 feedback→gh#31, .7 migrate→gh#30, .8 aliases); exported + committed 43b0516, pushed to main
 - **Next:** user said "we need to implement" — pick up **DDL-6zn.2** (`ddl init --gates`: lefthook managed blocks inside commands:, gitignore for all tool data dirs, beads no-db stamping, openspec-init-before-ah ordering); claim via `bd update DDL-6zn.2 --claim`, TDD per wai pipeline
+
+### 2026-10-13 10:44 — snap
+- Ecosystem-map SVG diagram in docs/ecosystem-map.md (+ generated copy): color-coded responsibility bands, clickable cards → tool mdBooks/GitHub, hover affordance, wai `matrix` subcommand noted.
+- Added wild / bajan / gently to map + tables; genesis foundation bar now lists `git` + `git_hooks` modules and provenance-footer format for `managed_block`; exclusion table removed; incitaciones relabeled "non-Rust" not "external".
+- scripts/sync-github-meta.py (new): syncs description/homepage/topics for 14 fleet repos via gh; all now carry `charly-vibes` + `dulce-de-leche` topics; idempotent, applied and verified.
+- Fleet search URL pinned in README + ecosystem-map: topic:charly-vibes topic:dulce-de-leche (AND query — lone topic matches unrelated dessert project Antonela89/humaya).
+- **Next:** wild/bajan/gently not in ddl's install registry (src/platform.rs) — needs its own ticket (manifest entries, 5-target releases, conformance fixtures). Uncommitted docs/script changes in ddl working tree; consider commit.

@@ -1,1 +1,4 @@
-274d9b55d99ccd35e5bf1d869f331d7826c850e7:areas/log/2026/2026-10/2026-10-09.md:generic-api-key
+# FP 1: prose phrase in a 2026-10-09 log note (see commit 274d9b5) matched generic-api-key
+274d9b55d99ccd35e5bf1d869f331d7826c850e7:areas/log/2026/2026-10/2026-10-09.md:generic-api-key:49
+# FP 2: turu managed block "Repo key: ..." in AGENTS.md (deterministic paths, not credentials)
+AGENTS.md:generic-api-key:5
