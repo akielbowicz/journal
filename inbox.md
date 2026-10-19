@@ -1,4 +1,5 @@
 - 2026-04-11 [ ] Commit or discard the remaining `.gitignore` change in `nayra` after deciding whether local artifacts should be shared repo-wide
+
 # Inbox
 
 Quick capture for unsorted tasks, thoughts, and follow-ups.
@@ -86,4 +87,5 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] Delete `/tmp/whisper-consolidate-backup` once pushed whisper consolidation feels stable. (16:59)
 - [ ] turu doctor warning: 207 freeform lines in `~/.whisper/rules.md` — run `turu distill global` someday to bring it back to managed-entry format. (16:59)
 - [ ] ryan: wire `catitas archive-sync` automation to commit through normal hooks (it bypasses lefthook; the pre-push range gate covers it at push, but normal-flow commits would close the gap). (18:02)
-- [ ] ryan: schedule monthly `just full-scan` (gitleaks full history, ~20 min) — mandatory before any repo visibility change (public/collaborators). (18:02)
+- [~] ryan: schedule monthly `just full-scan` (gitleaks full history, ~20 min) — mandatory before any repo visibility change (public/collaborators). (18:02)
+- [~] 2026-10-19 pinky: decide untracked session dirs (`.agents/`, `.claude/`, `CLAUDE.md`, `.codex/`, `.cursor/`) — gitignore vs commit. (17:09)
