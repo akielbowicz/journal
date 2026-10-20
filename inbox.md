@@ -82,6 +82,12 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - 2026-10-09 [ ] hardware: HDMI projector "no signal" on Framework HDMI Expansion Card — resolution unknown, user to check projector side (input source, HDMI Signal Format, reseat card); suspect stale 1920x1200 feed vs projector's 1920x1080 preferred. Journal log/2026/2026-10/2026-10-09.md has full diagnosis
 - [ ] bogart: authorize commit+push of openspec corpus + design (17+ commits ahead of origin/main; full file list in log 2026-10-14 18:43)
 
+## 2026-10-20
+- [ ] Push catitas main (7bb2ce2 + ~10 previos: crv.3 + catitas-26j artifact capture) — pendiente de autorización. (19:00)
+- [ ] Terminar issue-review Rule-of-5 del cluster capture/evidence (PASS 0 hecho: metadata.files faltante en 92v/5b3/wr3; 957 stale con site_api.py inexistente; STALE-TOUCHED z5f/v69/957) — pasadas 1-5 sin correr. (19:00)
+- [ ] Limpiar worktree catitas-worktree-artifacts (`git worktree remove` + branch delete) tras push. (19:00)
+- [ ] catitas gate pretender en worktrees: baseline `.pretender/` no se hereda — documentar o compartir baseline entre worktrees. (19:00)
+
 ## 2026-10-16
 - [ ] Adopt or revert the chezmoi drift on `~/.wai/resources/patterns/orchestrator-subagents.md` (live file is newer — wai added resume-exception + no-blind-block rules; chezmoi wants to revert). Run `chezmoi add ~/.wai/resources/patterns/orchestrator-subagents.md` if live content wins. (16:59)
 - [ ] Delete `/tmp/whisper-consolidate-backup` once pushed whisper consolidation feels stable. (16:59)
