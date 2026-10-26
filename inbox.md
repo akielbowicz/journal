@@ -2,6 +2,9 @@
 
 # Inbox
 
+## 2026-10-26
+- [ ] cloudflared security: check ALL other hosts/containers on the Cloudflare account for cloudflared < 2026.10.2 (dashboard > Networking > Tunnels > connectors) and upgrade them too. (16:23)
+- [ ] cloudflared security: verify the tunnel's HTTPS origins don't chain to affected eMudhra/emSign certs — upgraded cloudflared rejects them; fix by replacing the origin cert, never `noTLSVerify`. (16:23)
 Quick capture for unsorted tasks, thoughts, and follow-ups.
 Process regularly — migrate items to projects, areas, or resources, or schedule them.
 
