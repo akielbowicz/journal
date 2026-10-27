@@ -1,0 +1,12 @@
+# Daily Log — 2026-10-26
+
+## Log
+
+### Session:21:08 — tambor: add-spa-delivery executed (tambor-dfk closed)
+- Worked on: tambor — minified + chunked SPA build, PWA shell.
+- Changes: scripts/build-spa.mjs (esbuild JS API, split into demo-dist/); gallery.ts DemoDef.create→load() with dynamic import() (zero example code in initial chunk); new src/spa/sw.ts (cache-first hashed assets / network-first nav / content-hash versioning) + src/spa/todo-spa.ts (extracted to keep example code out of mount.ts/npm subpath); src/spa/main.ts registers the worker on secure origins (automation opt-in via ?sw=1).
+- Tests: tests/spa-delivery.test.ts (5 contract groups + fake-double SW serving), tests/e2e/sw.spec.ts (offline reload), updated gallery/logo/bundle/mount tests for demo-dist + async load; 4 scenario TOMLs in .espectacular/changes/add-spa-delivery/distribution-packaging/.
+- Deviations: workers stable-named (index/fixture/clients ref them); cache invalidation via content-hash over asset-manifest; tsconfig.build excludes sw.ts; build prunes stale dist/ bundles; deploy-pages stages demo-dist/.
+- Numbers: 217 kB→122.1 kB raw / 56→52.1 kB gzip total; npm tarball 312→305 files; CI green; Pages live.
+- Gates: vitest 745, eslint 0, tsc 0, playwright 86, ah check --changes --run-tests 759/0, openspec validate --strict. Pushed b851314/2573774/e9ff99e; CI + deploy-pages green.
+- **Next:** tambor-2ep (accessibility, dep-chain root) or tambor-bva (frame-coalescing). add-spa-delivery ready for openspec archive.
