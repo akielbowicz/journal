@@ -1,0 +1,11 @@
+#+title: 2026-10-29
+
+* Log
+
+** Session:10:04 (disk cleanup)
+- Diagnosed disk usage: 814 GB used (89%); development build artifacts, downloaded movies, and temporary Cargo builds dominated.
+- Removed MOVIES/DONE contents (114 GB), specodelic/dont target directories (79 GB), and Cargo registry/git caches (about 2 GB); preserved source code.
+- User removed temporary Cargo targets in /var/tmp after sandbox restrictions blocked agent deletion.
+- Verified: 491 GB used (54%), 430 GB available; /var/tmp reduced from 130 GB to 233 MB. Total recovered approximately 323 GB.
+- Review: checked df and du after cleanup; no code changes or tests required. Cargo dependencies/builds regenerate on demand.
+- Journal sync blocked by SSH configuration permissions on /etc/ssh/ssh_config.d/20-systemd-ssh-proxy.conf.
