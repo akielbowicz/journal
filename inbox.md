@@ -98,3 +98,5 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] ryan: wire `catitas archive-sync` automation to commit through normal hooks (it bypasses lefthook; the pre-push range gate covers it at push, but normal-flow commits would close the gap). (18:02)
 - [~] ryan: schedule monthly `just full-scan` (gitleaks full history, ~20 min) — mandatory before any repo visibility change (public/collaborators). (18:02)
 - [~] 2026-10-19 pinky: decide untracked session dirs (`.agents/`, `.claude/`, `CLAUDE.md`, `.codex/`, `.cursor/`) — gitignore vs commit. (17:09)
+- [ ] equivocadxs: sincronizar programa/cronograma.org con episodios reales (numeración y fechas stale; filas 9–12 en "(por anunciar)" ya salieron al aire)
+- [ ] equivocadxs: decidir fecha canónica del episodio 08 (frontmatter 2026-10-08 vs audio 2026-10-15)
