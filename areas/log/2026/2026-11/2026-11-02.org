@@ -2,6 +2,15 @@
 
 * Log
 
+** Session:22:12 (bogart — ChatGPT OAuth registration)
+
+- Confirmed ChatGPT creation failure: Auth0 DCR returned HTTP 403, tenant application/SSO integration quota exhausted. Dashboard confirmed quota and multiple ChatGPT/Claude registrations; user subsequently reported connection works. Exact dashboard remediation was not recorded.
+- Redeployed existing Pages site with ~npx wrangler pages deploy site --project-name bogart-site --branch main --commit-dirty=true~; deployment ~8f32a9b1.bogart-site.pages.dev~. No source changes needed.
+- Verified production landing/health/resource metadata HTTP 200 and unauthenticated MCP HTTP 401; Auth0 discovery advertised registration and PKCE. Endpoint was healthy before deployment too.
+- Corrected initial unsupported Cloudflare diagnosis: missing ~BOGART_ORIGIN_HOST~ was not the cause (worker has a default). Pages deploy rejects ~--var~ in current Wrangler; omitted it successfully.
+- Risk: repeated DCR registrations can exhaust quota; review client usage before deleting anything. Credentials were unnecessarily displayed during investigation; rotate exposed Cloudflare token as a precaution, without copying its value into notes.
+- Next: optional end-to-end ~get_coverage~ call; successful tool execution not verified in this session.
+
 ** Session:13:24 (el-mundo-ha-vivido-equivocado — stream + episodios 09/08/09)
 
 - Pull de la grabación del stream del 29/10 desde la VM Oracle (~just pull-grabacion~). Falló la validación: bug en el parseo de duración esperada (~tr -dc '0-9'~ agarraba el ~3~ de ~.mp3~ → 54003s). Fix con ~sed~ (commit 6b12bdc).
