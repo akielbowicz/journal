@@ -86,7 +86,7 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] bogart: authorize commit+push of openspec corpus + design (17+ commits ahead of origin/main; full file list in log 2026-10-14 18:43)
 
 ## 2026-10-20
-- [ ] Push catitas main (7bb2ce2 + ~10 previos: crv.3 + catitas-26j artifact capture) — pendiente de autorización. (19:00)
+- [x] Push catitas main (7bb2ce2 + ~10 previos: crv.3 + catitas-26j artifact capture) — done 2026-11-10 session close: pushed through ad11a55 (sync-unrecoverable fix + synthesis/topics leftovers); 7bb2ce2 confirmed ancestor of origin/main. (19:00)
 - [ ] Terminar issue-review Rule-of-5 del cluster capture/evidence (PASS 0 hecho: metadata.files faltante en 92v/5b3/wr3; 957 stale con site_api.py inexistente; STALE-TOUCHED z5f/v69/957) — pasadas 1-5 sin correr. (19:00)
 - [ ] Limpiar worktree catitas-worktree-artifacts (`git worktree remove` + branch delete) tras push. (19:00)
 - [ ] catitas gate pretender en worktrees: baseline `.pretender/` no se hereda — documentar o compartir baseline entre worktrees. (19:00)
