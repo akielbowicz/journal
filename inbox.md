@@ -105,3 +105,6 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] equivocadxs: sincronizar programa/cronograma.org con episodios reales (numeración y fechas stale; filas 9–12 en "(por anunciar)" ya salieron al aire)
 - [ ] equivocadxs: decidir fecha canónica del episodio 08 (frontmatter 2026-10-08 vs audio 2026-10-15)
 - [ ] wai upstream: `wai status` mutates the workspace (creates empty `.testaruda/` with zero-byte store.db via metrics plugin) — file/fix in charly-vibes/wai; bajan justfile works around it with a usable-store guard (bajan-nsh). (11:37)
+
+## 2026-11-12
+- [ ] wai upstream: pipeline template `tdd-ro5` ships a `release-docs-fresh` oracle that requires `Cargo.toml`/`CHANGELOG.md`/`docs/` — it fails on every non-Rust repo and blocks ship-close. Report to charly-vibes/wai (maybe auto-detect or ship the oracle disabled by default). (16:06)
