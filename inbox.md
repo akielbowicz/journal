@@ -104,3 +104,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [~] 2026-10-19 pinky: decide untracked session dirs (`.agents/`, `.claude/`, `CLAUDE.md`, `.codex/`, `.cursor/`) — gitignore vs commit. (17:09)
 - [ ] equivocadxs: sincronizar programa/cronograma.org con episodios reales (numeración y fechas stale; filas 9–12 en "(por anunciar)" ya salieron al aire)
 - [ ] equivocadxs: decidir fecha canónica del episodio 08 (frontmatter 2026-10-08 vs audio 2026-10-15)
+- [ ] wai upstream: `wai status` mutates the workspace (creates empty `.testaruda/` with zero-byte store.db via metrics plugin) — file/fix in charly-vibes/wai; bajan justfile works around it with a usable-store guard (bajan-nsh). (11:37)
