@@ -4,7 +4,7 @@
 
 ## 2026-11-11
 - [ ] borradores: fix bug en note-from-file/note-stdin ($categoria referenciada como var bash bajo set -u explota) — una línea en el justfile. (21:58)
-- [ ] borradores: decidir purga de historia pública (commits 6aa1b2c + 2893b22 contienen nota privada de prep INTA) — requiere rewrite + force-push, solo con autorización explícita. (21:58)
+- [x] borradores: purga de historia pública HECHA con autorización ("ok purge", 2026-11-11 ~22:05): reset --hard 35df7b2 + push --force-with-lease + reflog expire + gc local. Los 3 commits (6aa1b2c/2893b22/8b4b1d9) fuera de todas las refs locales y del remoto. Caveat pendiente: GitHub puede servir los SHAs viejos por cache hasta su GC — pedir purga a GitHub Support si el acceso por SHA preocupa.
 
 ## 2026-10-26
 - [ ] cloudflared security: check ALL other hosts/containers on the Cloudflare account for cloudflared < 2026.10.2 (dashboard > Networking > Tunnels > connectors) and upgrade them too. (16:23)
