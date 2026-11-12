@@ -2,6 +2,10 @@
 
 # Inbox
 
+## 2026-11-11
+- [ ] borradores: fix bug en note-from-file/note-stdin ($categoria referenciada como var bash bajo set -u explota) — una línea en el justfile. (21:58)
+- [ ] borradores: decidir purga de historia pública (commits 6aa1b2c + 2893b22 contienen nota privada de prep INTA) — requiere rewrite + force-push, solo con autorización explícita. (21:58)
+
 ## 2026-10-26
 - [ ] cloudflared security: check ALL other hosts/containers on the Cloudflare account for cloudflared < 2026.10.2 (dashboard > Networking > Tunnels > connectors) and upgrade them too. (16:23)
 - [ ] cloudflared security: verify the tunnel's HTTPS origins don't chain to affected eMudhra/emSign certs — upgraded cloudflared rejects them; fix by replacing the origin cert, never `noTLSVerify`. (16:23)
