@@ -120,3 +120,10 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] Memory-crash follow-up: wrap `catitas` invocations in `systemd-run --user --scope -p MemoryMax=8G` (catitas sync-log/index written 10:02 right after 49G python3 OOM kill at 10:00:45; dangling pre-kill sync run). Same for any manual `catitas analyze/trigger/download`. (13:02)
 - [ ] Check stuck oh-my-posh processes: OOM dump showed 8 persistent `omp` procs at 200–400MB RSS — prompt renderers should exit. `ps aux | grep omp`; investigate nu prompt-hook if they accumulate. (13:02)
 - [ ] rust-lld SIGBUS ×4 (Nov 15/18): watch `df -h /tmp` during debug builds — /tmp is 31G tmpfs; SIGBUS = mmap past EOF, likely tmpfs-full during linking. Consider capping debug parallelism or moving target tmpdir. (13:02)
+
+## 2026-11-21 (tdd-ro5 enforcement / wai doctor check)
+- [ ] Cut wai release with `319fc8d` (doctor check `tdd-ro5-gate`), then `ddl upgrade` on each machine; in pipeline repos run `wai doctor --fix` to install the gate rule. (13:20)
+- [ ] charly/wai: declare the 4 `research-management/add-research-*` scenarios in `scripts/ah-undeclared.txt` with owning tickets — pre-commit `ddl-ah-check` is red at HEAD; `319fc8d` landed with `LEFTHOOK=0`. (13:20)
+- [ ] charly/wai: stalled run `tdd-ro5-2026-11-21-way-testing-guide-hegel-pbt-bombadil-ui-pbt-kani` (1/9) — resume or `wai close --force`. (13:20)
+- [ ] Decide: user-level `~/.omp/agent/rules/tdd-ro5-gate.md` for repos without wai (project copies shadow it by name; ~half of impl runs happen in non-wai repos). (13:20)
+- [ ] wai ticket candidate: `ro5u-review` gate should require a review artifact to exist (currently vacuous when none recorded). (13:20)
