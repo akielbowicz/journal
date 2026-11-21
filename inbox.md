@@ -3,6 +3,7 @@
 ## 2026-11-21
 - [ ] catitas: re-auth expired provider tokens — kimi (401), meta (403), perplexity (401), qwen (unauthorized), per sync-log 2026-11-21 10:02; after re-auth run `catitas classify _conversations --retry-dead` for the 3 dead-lettered entries. (10:44)
 - [ ] pinky upstream: drift scan flags corpus `runs/` dir as Unregistered — add `runs` to `CATITAS_INFRA_DIRS` in pinky/drift_check.py (spec-governed: openspec inventory-drift). (10:44)
+- [ ] sessions-in-repo pilot: wire pi (`.pi/settings.json` → `sessionDir: ".pi/sessions"`) + omp (direnv `PI_CODING_AGENT_SESSION_DIR=$PWD/.omp/sessions`) in one repo (canticos), gitignore both session dirs; roll out to the 14 pipeline repos if it sticks. (13:51)
 
 # Inbox
 
