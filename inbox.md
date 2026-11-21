@@ -115,3 +115,8 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 ## 2026-11-16
 - [~] charly Rust CLI suite: 32 Hegel research/testing tickets created across 16 repos (research spike + blocked implementation per repo); `.beads/issues.jsonl` exported but uncommitted/unpushed — awaiting authorization. Start with `funkalization-0ur`. (18:44)
+
+## 2026-11-21
+- [ ] Memory-crash follow-up: wrap `catitas` invocations in `systemd-run --user --scope -p MemoryMax=8G` (catitas sync-log/index written 10:02 right after 49G python3 OOM kill at 10:00:45; dangling pre-kill sync run). Same for any manual `catitas analyze/trigger/download`. (13:02)
+- [ ] Check stuck oh-my-posh processes: OOM dump showed 8 persistent `omp` procs at 200–400MB RSS — prompt renderers should exit. `ps aux | grep omp`; investigate nu prompt-hook if they accumulate. (13:02)
+- [ ] rust-lld SIGBUS ×4 (Nov 15/18): watch `df -h /tmp` during debug builds — /tmp is 31G tmpfs; SIGBUS = mmap past EOF, likely tmpfs-full during linking. Consider capping debug parallelism or moving target tmpdir. (13:02)
