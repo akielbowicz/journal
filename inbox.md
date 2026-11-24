@@ -128,3 +128,6 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 - [ ] charly/wai: stalled run `tdd-ro5-2026-11-21-way-testing-guide-hegel-pbt-bombadil-ui-pbt-kani` (1/9) — resume or `wai close --force`. (13:20)
 - [ ] Decide: user-level `~/.omp/agent/rules/tdd-ro5-gate.md` for repos without wai (project copies shadow it by name; ~half of impl runs happen in non-wai repos). (13:20)
 - [ ] wai ticket candidate: `ro5u-review` gate should require a review artifact to exist (currently vacuous when none recorded). (13:20)
+
+## 2026-11-24 (tambor 0.2.0 release)
+- [ ] Rotate/delete the stale npm token in `~/.npmrc` (E401 since 0.2.0 release; CI publishes via NPM_TOKEN secret now, local publish unnecessary). (20:46)
