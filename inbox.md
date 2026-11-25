@@ -21,6 +21,9 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-11-25 [ ] bogart: align the spk pin with dir-mode lint attribution — `.espectacular/config.toml` pins spk 0.10.0 while the installed binary is 0.14.0; ah v0.12.4's dir-mode bridge needs an spk that emits per-issue `file` fields, otherwise it takes the named `spk-bridge-fallback` path and stays per-file (correct, but slow). Verify what bogart's CI installs, then bump the pin. (20:23)
+- 2026-11-25 [ ] bogart: profile the ~420s `ah check` row — the rule-of-5 review found no spk-lint path in ah's check code (zero refs; `ah check` = 0.02s locally), so the consumer-side cost is still unattributed and may be a second O(N²) hot path (contract scan? stale-detection?). Worth a spawn-timing pass like the lint one. (20:23)
+
 - 2026-10-09 [ ] evallerina: deliver the status report requested via project-status-report — session closed before drafting; audience/reporting period/baseline commitments still unknown (evidence already gathered: commit log, bd, wai status — see log 2026-10-09 Session:20:43)
 - 2026-10-09 [ ] charly pain/: act on toolpath autopsy verdict — design the three enforcement layers for agents (file read-lock, structured error channel, script wall-clock budget); nushell/typed pipes ruled secondary in the analysis (pain/report.org, corpus reproducible via archive-v1 pipeline)
 
