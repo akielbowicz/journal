@@ -131,3 +131,4 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 ## 2026-11-24 (tambor 0.2.0 release)
 - [ ] Rotate/delete the stale npm token in `~/.npmrc` (E401 since 0.2.0 release; CI publishes via NPM_TOKEN secret now, local publish unnecessary). (20:46)
+- [ ] lefthook pre-push lingers after all commands print ✓ (hook-sync against .beads/hooks?); concurrent sessions' pushes then hang each other — catherine session 2026-11-25, 5 stalls until window cleared
