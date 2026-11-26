@@ -21,6 +21,10 @@ Process regularly — migrate items to projects, areas, or resources, or schedul
 
 <!-- New entries go below, newest first, with date prefix -->
 
+- 2026-11-26 [ ] bluefin power-off: read the EC console for the 2026-11-26 12:00:56 cut — it survives AP power-off and usually names the cause. Needs root (no passwordless sudo): `sudo mount -t debugfs none /sys/kernel/debug && sudo cat /sys/kernel/debug/cros_ec/console`, or `sudo ectool --interface=lpc console` / `ectool chipinfo` (reset flags). (12:20)
+- 2026-11-26 [ ] bluefin: check `fwupdmgr get-updates` — BIOS 03.16 / EC azalea 3.4.113388 predate Framework's EC/BIOS shutdown fixes; recurring abrupt power-offs (Oct 28, Nov 18, Nov 26) with zero log trace. (12:20)
+- 2026-11-26 [ ] bluefin: arm capture so the next abrupt power-off leaves evidence — `kernel.hardlockup_panic=1`, `kernel.softlockup_panic=1`, enable kdump (`kexec_crash_loaded` was 0; pstore empty). (12:20)
+- 2026-11-26 [ ] bluefin: fix the silently-denied hibernation — logind requests hibernate all day and Secure Boot lockdown refuses it (`Lockdown: systemd-logind: hibernation is restricted`); decide lid/idle policy (suspend-to-idle) instead of a policy that always no-ops. (12:20)
 - 2026-11-25 [ ] bogart: align the spk pin with dir-mode lint attribution — `.espectacular/config.toml` pins spk 0.10.0 while the installed binary is 0.14.0; ah v0.12.4's dir-mode bridge needs an spk that emits per-issue `file` fields, otherwise it takes the named `spk-bridge-fallback` path and stays per-file (correct, but slow). Verify what bogart's CI installs, then bump the pin. (20:23)
 - 2026-11-25 [ ] bogart: profile the ~420s `ah check` row — the rule-of-5 review found no spk-lint path in ah's check code (zero refs; `ah check` = 0.02s locally), so the consumer-side cost is still unattributed and may be a second O(N²) hot path (contract scan? stale-detection?). Worth a spawn-timing pass like the lint one. (20:23)
 
