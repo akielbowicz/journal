@@ -7,6 +7,11 @@
 
 # Inbox
 
+## 2026-11-27
+- 2026-11-27 [~] podras upstream: watch gastownhall/beads#8641 (metadata filing guard) — implement PR in the ready clone ~/para/areas/dev/gh/charly/beads once maintainers pick the guard shape; push authorized podras-only, beads needs explicit go-ahead. Handoff: turu branch resume-beads-8641. (17:43)
+- 2026-11-27 [ ] podras: CORR-003 as a deliberate openspec change (from older handoff; admission is a human call). (17:43)
+- 2026-11-27 [ ] genesis fleet-adoption remaining rows in podras: sunshine, funkalization-62, bajan bump, wildcard wrap v1 (per genesis openspec add-fleet-adoption-plan tasks). (17:43)
+
 ## 2026-11-11
 - [ ] borradores: fix bug en note-from-file/note-stdin ($categoria referenciada como var bash bajo set -u explota) — una línea en el justfile. (21:58)
 - [x] borradores: purga de historia pública HECHA con autorización ("ok purge", 2026-11-11 ~22:05): reset --hard 35df7b2 + push --force-with-lease + reflog expire + gc local. Los 3 commits (6aa1b2c/2893b22/8b4b1d9) fuera de todas las refs locales y del remoto. Caveat pendiente: GitHub puede servir los SHAs viejos por cache hasta su GC — pedir purga a GitHub Support si el acceso por SHA preocupa.
